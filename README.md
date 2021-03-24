@@ -19,7 +19,9 @@
 | Ahoy | 491312f2ce2f0d05cc8821956a34138428a72d6cbf3e426ef6bcc87f2905b614 |
 | Ahoj, jak se dneska máš? | 56528a982b106e43d1f236360b6a72c4334918c0a83413d810ac0041f8f2e377 |
 
-**těžení** – v podstatě se jedná o soutěž o právo zápisu dalšího bloku do blockchain. Soutěž vyhraje ten, kdo jako první sestaví takový navazující blok transakcí, jehož hash (resp. hash jeho hlavičky) bude menší, než nastavený cíl (target) sítě. Nalezení takového hashe je věc náhody, šance se zvyšují se schopností otestovat co nejvíce variant v co nejmenším čase (ergo s početním výkonem).
+**peněženka** – software, případně i samostatné hw zařízení, který generuje a uchovává privátní klíče, vytváří a podepisuje transakce.
+
+**HD peněženka** – zkratka hierarchical deterministic; peněženka, která na místo jednotlivých privátních klíčů generuje a uchovává pouze tzv. seed, z kterého pak determisticky odvozuje hierarchistické uspořádání prakticky neomezeného počtu klíčů.  
 
 **slova seedu** – počáteční entropie (zpravidla 128 až 256 bitové číslo) vyjádřená – z důvodů čitelnosti a odolnosti proti chybě při čtení/psaní – variací 12 až 24 slov z 2048 prvkového seznamu. Slova se mohou opakovat a odolnost pro chybě je zvýšena „kontrolní součtem“ (v posledním slově je zakodováno 4 až 8 bitů hashe počáteční entropie).
 
@@ -31,17 +33,43 @@
 
 **veřejný klíč (public key)** – druhý z páru. Slouží k zašifrování tajné zprávy, nebo k ověření podpisu. V případě Bitcoinu se jedná o bod na eliptické křivce, který je vypočten násobením stanoveného bodu (tzv. generátor cyklické grupy) a privátního klíče. Jelikož je bitcoinová eliptická křivka souměrná podle osy x, stačí k jeho reprezentaci souřadnice x (256 bitové číslo) a příznak sudosti. 
 
-**bitcoinová adresa** - je to zahashovaný (funkcí SHA256 a následně ještě RIPEMD160) veřejný klíč, případně skript, ve prospěch kterého budou bitcoiny uzamčeny. V minulosti bývala zakódovaná v Base58Check, poslední standard využívá kódování Bech32 se sofistikovanější ochranou před překlepy. Příklady různých adres:
+**bitcoinová adresa** – je to zahashovaný (funkcí SHA256 a následně ještě RIPEMD160) veřejný klíč, případně skript, ve prospěch kterého budou bitcoiny uzamčeny. V minulosti bývala zakódovaná v Base58Check, poslední standard využívá kódování Bech32 se sofistikovanější ochranou před překlepy. K vygenerování adresy není nutná komunikace se sítí, lze ji vygenerovat offline nutný je pouze zdroj entropie (případně již pomocí kvalitní entropie vygenerový seed).  
 
-| typ | označení | adresa |
-| ------ | ------ | ------ |
-| p2pkh | legacy | 1GRYfroBCL6wJeggD92VdPvJp5vKaVtsrA |
-| p2sh | nested segwit | 39qmkmoB1t1mjGAowURRimoQduubbhVoZz |
-| p2wpkh | legacy segwit | bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g |
+<figure align="center">
+    <img src="img/adresa.png" alt="bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g">
+    <figcaption>Na počátku je náhoda, na konci adresa. Vracet se však nelze.</figcaption>
+</figure>
 
-**segwit** - zkratka segregated witness. Vylepšení aktivované formou soft-forku v roce 2017 v síti Bitcoin. Mimo jiného opravuje problém zvaný transaction malleability (trvárnost transakcí) tím, že podpisová data (scriptSig) nejsou součástí serializované podoby transakce, z které je počítán její hash. Mění limit bloku z milionu bajtů (1 MB) na 4 miliony weight unit. Mění se výpočet podpisového hashe, kdy doposud počet vstupů zvyšoval kvadraticky náročnost podepsání/oveření transakce. Atd... 
+U adresy vygenerováné standardní cestou s dostatkem počáteční energie je prakticky vyloučeno (teoretická pravděpodobnost je nepředstavitelně nízká), že by již byla někdy vygenerována. Dřív objevíte trpaslíka uprostřed černé díry jak hledá s baterkou vypínač, než aby se vám podařilo z kvalitní entropie vygenerovat již vygenerovanou adresu. 
 
-**soft-fork** - změna pravidel sítě způsobem, který je kompatibilní s uzly, které tuto změnu neimplementují.
+Příklady různých adres:
 
-**hard-fork** - změna pravidel sítě způsobem, který je nekompatibilní s uzly, které tuto změnu neimplementují. Následkem může být rozštěpení sítě na dvě (či více) různých větví blockchainu. 
+| typ | označení | adresa | kódování |
+| ------ | ------ | ------ | ------ |
+| p2pkh | legacy | 1GRYfroBCL6wJeggD92VdPvJp5vKaVtsrA | Base58Check s počáteční 1 |
+| p2sh | nested segwit | 39qmkmoB1t1mjGAowURRimoQduubbhVoZz | Base58Check s počáteční 3 |
+| p2wpkh | legacy segwit | bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g | Bech32 s počátečním bc1 |
+ 
+<figure align="center">
+    <img src="img/QR.PNG" alt="bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g">
+    <figcaption>QR kód bitcoinové adresy</figcaption>
+</figure>
+
+**transakce** – základní operace bitcoinové sítě. Na svém vstupu utrácí (spotřebováva) dosud neutracené výstupy (UTXO) předchozích transakcí. Na svém výstupu uzamyká bitcoiny ve prospěch daných adres a vytváří tak nové UTXO. Potvrzená transakce se stává nesmazatelnou součástí blockchainu (který není nic jiného, než seznam do bloku uspořádáných transakcí). 
+
+**poplatek (fee)** – odměna těžaři za povrzení transakce (zařazení do bloku). Je to rozdíl mezi součtem částek na výstupu a součtem částek na vstupu. Nesmí být záporný a v současné době už ani nulový. 
+
+**mincetvorná transakce (coinbase transaction)** – speciální transakce, která jako jediná nemá žádné vstupy. Je to první transakce každého bloku, vytváří nové bitcoiny, které jsou společně s poplatky odměnou těžažům. Počet nově vytvořených bitcoinů je pevně stanoveno protokolem sítě, každé přibližně 4 roky dochází k jeho půlení z původních 50 BTC na dnešních 6,25 BTC až přibližně v roce 2140 dosáhne nuly. 
+
+**segwit** – zkratka segregated witness; vylepšení aktivované formou soft-forku v roce 2017 v síti Bitcoin. Mimo jiného opravuje problém zvaný transaction malleability (trvárnost transakcí) tím, že podpisová data (scriptSig) nejsou součástí serializované podoby transakce, z které je počítán její hash. Mění limit bloku z milionu bajtů (1 MB) na 4 miliony weight unit. Mění se výpočet podpisového hashe, kdy doposud počet vstupů zvyšoval kvadraticky náročnost podepsání/oveření transakce. Atd... 
+
+**soft-fork** – změna pravidel sítě způsobem, který je kompatibilní s uzly, které tuto změnu neimplementují.
+
+**hard-fork** – změna pravidel sítě způsobem, který je nekompatibilní s uzly, které tuto změnu neimplementují. Následkem může být rozštěpení sítě na dvě (či více) různých větví blockchainu. 
+
+**těžení** – v podstatě se jedná o soutěž o právo zápisu dalšího bloku do blockchain. Soutěž vyhraje ten, kdo jako první sestaví takový navazující blok transakcí, jehož hash (resp. hash jeho hlavičky) bude menší, než nastavený cíl (target) sítě. Nalezení takového hashe je věc náhody, šance se zvyšují se schopností otestovat co nejvíce variant v co nejmenším čase (ergo s početním výkonem).
+
+**obtížnost sítě (diffuculty)** – vyjádření obtížnosti těžby poměrem genesis targetu / současného targetu
+
+**cíl těžby (target)** – 256 bitové číslo stanovící hranici hashe platného bloku. Pouze pokud je hash bloku nižší než toto číslo, může být zařazen do blockchainu. K přepočtu dochází každých 2016 bloků (přibližně každé dva týdny) – na základě doby potřebné k vytěžení posledních 2015 (toto je stále aktivní bug) bloků se upraví target tak, aby docházelo k vytěžení bloku jednou za 10 minut.
 
