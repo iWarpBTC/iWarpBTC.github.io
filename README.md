@@ -7,7 +7,7 @@
 
 **blockchain** – speciální typ databáze, kde každý nový záznam navazuje (odkazuje) na ten předešlý.
 
-**blok** – předepsaná datová struktura transakcí omezené velikosti (4 000 000 WU). Sestavá se z hlavičky bloku a serializovaných transakcí. 
+**blok** – předepsaná datová struktura transakcí omezené velikosti (4 000 000 WU; dříve 1 MB). Sestavá se z hlavičky bloku a serializovaných transakcí. 
 
 **hlavička bloku** – sestává se z verze bloku, hashe předchozí bloku, hashe (rootu) merklovského stromu obsažených transakcí, času vytěžení, stanového targetu sítě a nonce – variabilního čísla jehož změnou se dosahuje různých hashů. 
 
@@ -35,6 +35,13 @@
 
 | typ | označení | adresa |
 | ------ | ------ | ------ |
-| p2pkh | legacy |  |
-| p2sh | nested segwit |  |
-| p2 | legacy segwit |  |
+| p2pkh | legacy | 1GRYfroBCL6wJeggD92VdPvJp5vKaVtsrA |
+| p2sh | nested segwit | 39qmkmoB1t1mjGAowURRimoQduubbhVoZz |
+| p2wpkh | legacy segwit | bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g |
+
+**segwit** - zkratka segregated witness. Vylepšení aktivované formou soft-forku v roce 2017 v síti Bitcoin. Mimo jiného opravuje problém zvaný transaction malleability (trvárnost transakcí) tím, že podpisová data (scriptSig) nejsou součástí serializované podoby transakce, z které je počítán její hash. Mění limit bloku z milionu bajtů (1 MB) na 4 miliony weight unit. Mění se výpočet podpisového hashe, kdy doposud počet vstupů zvyšoval kvadraticky náročnost podepsání/oveření transakce. Atd... 
+
+**soft-fork** - změna pravidel sítě způsobem, který je kompatibilní s uzly, které tuto změnu neimplementují.
+
+**hard-fork** - změna pravidel sítě způsobem, který je nekompatibilní s uzly, které tuto změnu neimplementují. Následkem může být rozštěpení sítě na dvě (či více) různých větví blockchainu. 
+
