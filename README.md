@@ -7,9 +7,9 @@
 
 **blockchain** – speciální typ databáze, kde každý nový záznam navazuje (odkazuje) na ten předešlý.
 
-**blok** – předepsaná datová struktura transakcí omezené velikosti (4 000 000 WU). Sestavá se s hlavičky bloku a serializovaných transakcí. 
+**blok** – předepsaná datová struktura transakcí omezené velikosti (4 000 000 WU). Sestavá se z hlavičky bloku a serializovaných transakcí. 
 
-**hlavička bloku** – sestává se z verze bloku, hashe předchozí bloku, hashe (rootu) merklovského stromu obsažených transakcí, času vytěžení, stanové obtížnosti sítě a nonce – variabilního čísla jehož změnou se dosahuje různých hashů. 
+**hlavička bloku** – sestává se z verze bloku, hashe předchozí bloku, hashe (rootu) merklovského stromu obsažených transakcí, času vytěžení, stanového targetu sítě a nonce – variabilního čísla jehož změnou se dosahuje různých hashů. 
 
 **hash (otisk, fingerprint)** – výstup jednosměrné matematické funkce, která libovolně dlouhá data převede číslo s daným rozsahem. Výstupem v Bitcoinu používané funkce SHA256 je 256 bitové číslo, zpravidla zapisované v šestnáctkové soustavě. Příklady:
 
@@ -31,4 +31,10 @@
 
 **veřejný klíč (public key)** – druhý z páru. Slouží k zašifrování tajné zprávy, nebo k ověření podpisu. V případě Bitcoinu se jedná o bod na eliptické křivce, který je vypočten násobením stanoveného bodu (tzv. generátor cyklické grupy) a privátního klíče. Jelikož je bitcoinová eliptická křivka souměrná podle osy x, stačí k jeho reprezentaci souřadnice x (256 bitové číslo) a příznak sudosti. 
 
-**bitcoinová adresa** -
+**bitcoinová adresa** - je to zahashovaný (funkcí SHA256 a následně ještě RIPEMD160) veřejný klíč, případně skript, ve prospěch kterého budou bitcoiny uzamčeny. V minulosti bývala zakódovaná v Base58Check, poslední standard využívá kódování Bech32 se sofistikovanější ochranou před překlepy. Příklady různých adres:
+
+| typ | označení | adresa |
+| ------ | ------ | ------ |
+| p2pkh | legacy |  |
+| p2sh | nested segwit |  |
+| p2 | legacy segwit |  |
