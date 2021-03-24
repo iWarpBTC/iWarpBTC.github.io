@@ -19,7 +19,7 @@
 | Ahoy | 491312f2ce2f0d05cc8821956a34138428a72d6cbf3e426ef6bcc87f2905b614 |
 | Ahoj, jak se dneska máš? | 56528a982b106e43d1f236360b6a72c4334918c0a83413d810ac0041f8f2e377 |
 
-**těžení** – v podstatě se jedná o soutěž o právo zápisu dalšího bloku do blockchain. Soutěž vyhraje ten, kdo jako první sestaví takový navazující blok transakcí, jehož hash (resp. hash jeho hlavičky) bude menší, než nastavená obtížnost sítě. Nalezení takového hashe je věc náhody, šance se zvyšují se schopností otestovat co nejvíce variant v co nejmenším čase (ergo s početním výkonem).
+**těžení** – v podstatě se jedná o soutěž o právo zápisu dalšího bloku do blockchain. Soutěž vyhraje ten, kdo jako první sestaví takový navazující blok transakcí, jehož hash (resp. hash jeho hlavičky) bude menší, než nastavený cíl (target) sítě. Nalezení takového hashe je věc náhody, šance se zvyšují se schopností otestovat co nejvíce variant v co nejmenším čase (ergo s početním výkonem).
 
 **slova seedu** – počáteční entropie (zpravidla 128 až 256 bitové číslo) vyjádřená – z důvodů čitelnosti a odolnosti proti chybě při čtení/psaní – variací 12 až 24 slov z 2048 prvkového seznamu. Slova se mohou opakovat a odolnost pro chybě je zvýšena „kontrolní součtem“ (v posledním slově je zakodováno 4 až 8 bitů hashe počáteční entropie).
 
