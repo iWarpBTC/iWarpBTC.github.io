@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+        <title>Bitcoinový slovníček pro mírně pokročilé</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Bitcoinový slovníček pro mírně pokročilé</h1>
+            <div class="entry">
+                <h2 id="capital-bitcoin">Bitcoin</h2>
+                <p>Název decentralizované P2P sítě sloužící k uchování a přenosu hodnoty. Síť byla spustěna 3. ledna 2009, když došlo k vytěžení prvního bloku.</p>
+            </div>
+            <div class="entry">
+                <h2 id="bitcoin">bitcoin</h2>
+                <p>V síti přenášená jednotka hodnoty. Protokol stanoví maximální počet 21 milionů bitcoinů. Zkracuje se obvykle jako BTC.</p>
+            </div>
+            <div class="entry">
+                <h2 id="satoshi">satoshi</h2>
+                <p>Základní a zároveň nejmenší nejmenší možná jednotka používaná v sítí. 1 bitcoin = 100 000 000 satoshi. Pojmenování vzniklo jako pocta tvůrci vystupujícímu pod pseudonymem Satoshi Nakamoto. Také se zkracuje jako sat, saty, satů, či anglickým sats.</p>
+            </div>
+            <div class="entry">
+                <h2 id="p2p">P2P</h2><h2 class="short">peer-to-peer (volně přeloženo rovný s rovným)</h2>
+                <p>Jedná se o síť bez centrálních, či nadřízených uzlů.</p>
+            </div>
+            <div class="entry">
+                <h2 id="node">uzel, node</h2>
+                <p>Zařízení (počítač) tvořící síť. Do bitcoinové sítě je v současnosti (rok 2021) zapojeno na tisíce uzlů. Pokud se uzel neúčastní těžby, má jen minimální nároky na výpočetní výkon a jeho provoz si tak může dovolit široká veřejnost.</p>
+            </div>
+            <div class="entry">
+                <h2 id="blockchain">blockchain</h2>
+                <p>Speciální typ databáze, kde každý nový záznam navazuje (odkazuje) na ten předešlý.</p>
+            </div>
+            <div class="entry">
+                <h2 id="block">blok</h2>
+                <p>Předepsaná datová struktura transakcí omezené velikosti (4 000 000 WU; dříve 1 MB). Sestavá se z hlavičky bloku a serializovaných transakcí.</p>
+            </div>
+            <div class="entry">
+                <h2 id="block-header">hlavička bloku</h2>
+                <p>Sestává se z verze bloku, hashe předchozí bloku, hashe (rootu) merklovského stromu obsažených transakcí, času vytěžení, stanového targetu sítě a nonce – variabilního čísla jehož změnou se dosahuje různých hashů.</p>
+            </div>
+            <div class="entry">
+                <h2 id="genesis">genesis blok</h2>
+                <p>První blok bitcoinové sítě vytěžený Satoshim 3. ledna 2009. Jeho coinbase transakce v sobě obsahuje text odkazujcí na legendární novinový titulek "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks". </p>
+            </div>
+            <div class="entry">
+                <h2 id="hash">hash, otisk</h2>
+                <p>výstup jednosměrné matematické funkce, která libovolně dlouhá data převede číslo s daným rozsahem. Výstupem v Bitcoinu používané funkce SHA256 je 256 bitové číslo, zpravidla zapisované v šestnáctkové soustavě.</p>
+                <h3>Příklady: </h3>
+                <table>
+                    <thead>
+                      <tr>
+                        <th>vstup</th>
+                        <th>sha256(vstup)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Ahoj</td>
+                        <td>f23e6807b3fb0be0ea999ea8cb88a3e94dc359c84230461f9761efac57dcb081</td>
+                      </tr>
+                      <tr>
+                        <td>Ahoy</td>
+                        <td>491312f2ce2f0d05cc8821956a34138428a72d6cbf3e426ef6bcc87f2905b614</td>
+                      </tr>
+                      <tr>
+                        <td>Ahoj, jak se dneska máš?</td>
+                        <td>56528a982b106e43d1f236360b6a72c4334918c0a83413d810ac0041f8f2e377</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="entry">
+                <h2 id="wallet">peněženka</h2>
+                <p>Software, případně i samostatné HW zařízení, který generuje a uchovává privátní klíče, vytváří a podepisuje <a href="#transaction">transakce</a>.</p>
+            </div>
+            <div class="entry"><h2 class="short">hierarchical deterministic</h2>
+                <h2 id="hd-wallet">HD peněženka</h2>
+                <p><a href="#wallet">Peněženka</a>, která na místo jednotlivých privátních klíčů generuje a uchovává pouze tzv. seed, z kterého pak determisticky odvozuje hierarchistické uspořádání prakticky neomezeného počtu klíčů.</p>
+            </div>
+            <div class="entry">
+                <h2 id="seed-words">slova seedu</h2>
+                <p>Počáteční entropie (zpravidla 128 až 256 bitové číslo) vyjádřená – z důvodů čitelnosti a odolnosti proti chybě při čtení/psaní – variací 12 až 24 slov z 2048 prvkového seznamu. Slova se mohou opakovat a odolnost pro chybě je zvýšena „kontrolní součtem“ (v posledním slově je zakodováno 4 až 8 bitů <a href="#hash">hashe</a> počáteční entropie).</p>
+            </div>
+            <div class="entry">
+                <h2 id="seed">seed (semínko)</h2>
+                <p>Počáteční entropie (zpravidla 128 až 256 bitů) rozšířená funkcí PBKDF2 v 512 bitové číslo. Z tohoto čísla jsou následně deterministicky odvozovány všechny klíče (resp. adresy). Levých 256 bitů slouží jako master privátní klíč, pravých 256 bitů se použije jako master chain klíč. Často se slovem „seed“ zjednodušeně označují výše popsaná <a href="#seed-words">„slova seedu“</a>.</p>
+            </div>
+            <div class="entry">
+                <h2 id="asym-crypto">asymetrická kryptografie</h2>
+                <p>Způsob šifrování kde je pro zašifrování zprávy použit jiný klíč, než jaký je použit k rozšifrování zprávy. Obráceným použitím klíčů (viz. níže) lze dosáhnout kryptografického podpisu. Bitcoin používá k podepisování transakcí asymetrickou kryptografii eliptických křivek (konkrétně křivku popsanou standardem secp256k1: y<sup>2</sup> = x<sup>3</sup> + 7).</p>
+            </div>
+            <div class="entry">
+                <h2 id="privkey">privátní klíč (private key)</h2>
+                <p>Ten tajný z dvojce klíčů asymetrické kryptografie. Slouží k rozšifrování tajné zprávy, popř. k podpisu. V případě Bitcoinu se jedná o 256 bitové číslo.</p>
+            </div>
+            <div class="entry">
+                <h2 id="pubkey">veřejný klíč (public key)</h2>
+                <p>Druhý z páru. Slouží k zašifrování tajné zprávy, nebo k ověření podpisu. V případě Bitcoinu se jedná o bod na eliptické křivce, který je vypočten násobením stanoveného bodu (tzv. generátor cyklické grupy) a privátního klíče. Jelikož je bitcoinová eliptická křivka souměrná podle osy x, stačí k jeho reprezentaci souřadnice x (256 bitové číslo) a příznak sudosti.</p>
+            </div>
+            <div class="entry">
+                <h2 id="address">bitcoinová adresa</h2>
+                <p>Je to <a href="#hash">zahashovaný</a> (funkcí SHA256 a následně ještě RIPEMD160) veřejný klíč, případně skript, ve prospěch kterého budou bitcoiny uzamčeny. V minulosti bývala zakódovaná v Base58Check, poslední standard využívá kódování Bech32 se sofistikovanější ochranou před překlepy. K vygenerování adresy není nutná komunikace se sítí, lze ji vygenerovat offline nutný je pouze zdroj entropie (případně již pomocí kvalitní entropie vygenerový seed).</p>
+                <figure>
+                    <img src="img/adresa.png" alt="bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g">
+                    <figcaption>Na počátku je náhoda, na konci adresa. Vracet se však nelze.</figcaption>
+                </figure>
+                <p>U adresy vygenerováné standardní cestou s dostatkem počáteční entropie je prakticky vyloučeno (teoretická pravděpodobnost je nepředstavitelně nízká), že by již byla někdy vygenerována. Dřív objevíte trpaslíka uprostřed černé díry jak hledá s baterkou vypínač, než aby se vám podařilo z kvalitní entropie vygenerovat již vygenerovanou adresu.</p>
+                <h3>Příklady různých adres:</h3>
+                <table>
+                    <thead>
+                      <tr>
+                        <th>typ</th>
+                        <th>označení</th>
+                        <th>adresa</th>
+                        <th>kódování</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>p2pkh</td>
+                        <td>legacy</td>
+                        <td>1GRYfroBCL6wJeggD92VdPvJp5vKaVtsrA</td>
+                        <td>Base58Check s počáteční 1</td>
+                      </tr>
+                      <tr>
+                        <td>p2sh</td>
+                        <td>nested segwit</td>
+                        <td>39qmkmoB1t1mjGAowURRimoQduubbhVoZz</td>
+                        <td>Base58Check s počáteční 3</td>
+                      </tr>
+                      <tr>
+                        <td>p2wpkh</td>
+                        <td>legacy segwit</td>
+                        <td>bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g</td>
+                        <td>Bech32 s počátečním bc1</td>
+                      </tr>
+                    </tbody>
+                  </table> 
+                  <figure>
+                    <img src="img/QR.PNG" alt="bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g">
+                    <figcaption>QR kód bitcoinové adresy</figcaption>
+                </figure>
+            </div>
+            <div class="entry">
+                <h2 id="transaction">transakce</h2>
+                <p>Základní operace bitcoinové sítě. Na svém vstupu utrácí (spotřebováva) dosud neutracené výstupy (UTXO) předchozích transakcí. Na svém výstupu uzamyká bitcoiny ve prospěch daných adres a vytváří tak nové UTXO. Potvrzená transakce se stává nesmazatelnou součástí blockchainu (který není nic jiného, než seznam do bloku uspořádáných transakcí).</p>
+            </div>
+            <div class="entry">
+                <h2 id="fee">poplatek (fee)</h2>
+                <p>Odměna těžaři za povrzení transakce (zařazení do bloku). Je to rozdíl mezi součtem částek na výstupu a součtem částek na vstupu. Nesmí být záporný a v současné době už ani nulový.</p>
+            </div>
+            <div class="entry">
+                <h2 id="mempool">mempool</h2>
+                <p>Seznam dosud nepotvrzených transakcí vedený každý <a href="#node">uzlem</a>. Těžící uzly z tohoto seznamu vybírají <a href="#transaction">transakce</a> do svých kandidátských <a href="#block">bloků</a>, přičemž zpravidla upřednostňují transakce s vyším poměrem <a href="#fee">poplatek</a>/<a href="#wu">weight unit</a>.</p>
+            </div>
+            <div class="entry">
+                <h2 id="wu">weight unit, WU</h2>
+                <p>Jednotka váhy (velikosti) <a href="#transaction">transkace</a>. Zavedení <a href="#segwit">segwitu</a> stanoví jednotlivým bajtům různých částí transakce jinou váhu, čímž zvýhodňuje právě segwitové transakce, jejichž podpisová data mají vůči předsegwitovým 4x nižší váhu.</p>
+            </div>
+            <div class="entry">
+                <h2 id="vsize">vsize, vbytes, vB</h2>
+                <p>Jiné vyjádření <a href="#wu">weight unit</a>. 1vB = 4WU. </p>
+            </div>
+            <div class="entry">
+                <h2 id="coinbase">mincetvorná transakce (coinbase transaction)</h2>
+                <p>Speciální <a href="#transaction">transakce</a>, která jako jediná nemá žádné vstupy. Je to první transakce každého <a href="#block">bloku</a>, vytváří nové <a href="#bitcoin">bitcoiny</a>, které jsou společně s poplatky odměnou těžažům. Počet nově vytvořených bitcoinů je pevně stanoveno protokolem sítě, každé přibližně 4 roky dochází k jeho půlení z původních 50 BTC na dnešních 6,25 BTC (rok 2021) až přibližně v roce 2140 dosáhne nuly. </p>
+            </div>
+            <div class="entry"><h2 class="short">segregated witness</h2>
+                <h2 id="segwit">segwit</h2>
+                <p>Vylepšení aktivované formou soft-forku v roce 2017 v síti Bitcoin. Mimo jiného opravuje problém zvaný transaction malleability (trvárnost transakcí) tím, že podpisová data (scriptSig) nejsou součástí serializované podoby transakce, z které je počítán její hash. Mění limit bloku z milionu bajtů (1 MB) na 4 miliony weight unit. Mění se výpočet podpisového hashe, kdy doposud počet vstupů zvyšoval kvadraticky náročnost podepsání/oveření transakce. Atd...</p>
+            </div>
+            <div class="entry">
+                <h2 id="sfork">soft-fork</h2>
+                <p>Změna pravidel sítě způsobem, který je kompatibilní s uzly, které tuto změnu neimplementují.</p>
+            </div>
+            <div class="entry">
+                <h2 id="hfork">hard-fork</h2>
+                <p>Změna pravidel sítě způsobem, který je nekompatibilní s uzly, které tuto změnu neimplementují. Následkem může být rozštěpení sítě na dvě (či více) různých větví blockchainu.</p>
+            </div>
+            <div class="entry">
+                <h2 id="mining">těžení</h2>
+                <p>V podstatě se jedná o soutěž o právo zápisu dalšího bloku do blockchainu. Soutěž vyhraje ten, kdo jako první sestaví takový navazující blok transakcí, jehož hash (resp. hash jeho hlavičky) bude menší, než nastavený cíl (target) sítě. Nalezení takového hashe je věcí náhody, šance se zvyšují se schopností otestovat (zahashovat) co nejvíce variant v co nejmenším čase (ergo s početním výkonem).</p>
+            </div>
+            <div class="entry">
+                <h2 id="target">cíl těžby (target)</h2>
+                <p>256 bitové číslo stanovící hranici hashe platného bloku. Pouze pokud je hash bloku nižší než toto číslo, může být zařazen do blockchainu. K přepočtu dochází každých 2016 bloků (přibližně každé dva týdny) – na základě doby potřebné k vytěžení posledních 2015 (toto je stále aktivní bug) bloků se upraví target tak, aby docházelo k vytěžení bloku jednou za 10 minut.</p>
+            </div>
+            <div class="entry">
+                <h2 id="difficulty">obtížnost sítě (diffuculty)</h2>
+                <p>Vyjádření obtížnosti těžby poměrem genesis targetu / současného targetu</p>
+            </div>
+            <div class="entry">
+                <h2 id="nakamoto">Satoshi Nakamoto</h2>
+                <p>Pseudonym tvůrce, či snad tvůrců Bitcoinu. Pravá identita je předmětem spekulací.</p>
+                <figure>
+                    <img src="img/satoshi.jpeg" alt="We all are Satoshi meme." width="500" height="500">
+                    <figcaption>Andreas Antonopoulos, Luke Dashjr, Nick Szabo, Pieter Wuille, podvodník Craig Wright, Hal Finney, Adam Back, Dorian Satoshi Nakamoto, Greg Maxwell</figcaption>
+                </figure>
+            </div>
+        </div>
+    </body>
+</html>
+
+

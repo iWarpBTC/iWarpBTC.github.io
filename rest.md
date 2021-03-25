@@ -1,9 +1,6 @@
-# Bitcoinový slovníček pro mírně pokročilé
-**Bitcoin** – název decentralizované P2P sítě sloužící k uchování a přenosu hodnoty. Síť byla spustěna 3. ledna 2009,  když došlo k vytěžení prvního bloku. 
-
 **bitcoin** – v síti přenášená jednotka hodnoty. Protokol stanoví maximální počet 21 milionů bitcoinů. Zkracuje se obvykle jako BTC.
 
-**satoshi** – základní a zároveň nejmenší nejmenší možná jednotka používaná v sítí. 1 bitcoin = 100 000 000 satoshi. Pojmenování vzniklo jako pocta tvůrci vystupujícímu pod pseudonymem Satoshi Nakamoto. Také se zkracuje jako sat, saty, satů, či anglickým plurálem sats. 
+**satoshi** – základní a zároveň nejmenší nejmenší možná jednotka používaná v sítí. 1 bitcoin = 100 000 000 satoshi. Pojmenování vzniklo jako pocta tvůrci vystupujícímu pod pseudonymem Satoshi Nakamoto. Také se zkracuje jako sat, saty, satů, či anglickým sats. 
 
 **P2P** – zkratka peer-to-peer (volně přeloženo rovný s rovným). Jedná se o síť bez centrálních, či nadřízených uzlů. 
 
@@ -46,7 +43,7 @@
     <figcaption>Na počátku je náhoda, na konci adresa. Vracet se však nelze.</figcaption>
 </figure>
 
-U adresy vygenerováné standardní cestou s dostatkem počáteční energie je prakticky vyloučeno (teoretická pravděpodobnost je nepředstavitelně nízká), že by již byla někdy vygenerována. Dřív objevíte trpaslíka uprostřed černé díry jak hledá s baterkou vypínač, než aby se vám podařilo z kvalitní entropie vygenerovat již vygenerovanou adresu. 
+U adresy vygenerováné standardní cestou s dostatkem počáteční entropie je prakticky vyloučeno (teoretická pravděpodobnost je nepředstavitelně nízká), že by již byla někdy vygenerována. Dřív objevíte trpaslíka uprostřed černé díry jak hledá s baterkou vypínač, než aby se vám podařilo z kvalitní entropie vygenerovat již vygenerovanou adresu. 
 
 Příklady různých adres:
 
@@ -54,7 +51,7 @@ Příklady různých adres:
 | ------ | ------ | ------ | ------ |
 | p2pkh | legacy | 1GRYfroBCL6wJeggD92VdPvJp5vKaVtsrA | Base58Check s počáteční 1 |
 | p2sh | nested segwit | 39qmkmoB1t1mjGAowURRimoQduubbhVoZz | Base58Check s počáteční 3 |
-| p2wpkh | legacy segwit | bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g | Bech32 s počátečním bc1 |
+| p2wpkh | native segwit | bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g | Bech32 s počátečním bc1 |
  
 <figure>
     <img src="img/QR.PNG" alt="bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g">
