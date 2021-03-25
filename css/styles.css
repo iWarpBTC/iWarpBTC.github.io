@@ -1,0 +1,144 @@
+html {
+  background-image: linear-gradient(to right, #F0F0F0, #FAFAFA, #F0F0F0);
+}
+
+body{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+div.container {
+    max-width: 900px;
+    margin: 0 auto;
+    min-width: 720px;
+  }
+
+div.entry
+{
+  padding: 5px 10px 5px 10px;
+  margin-bottom: 5px;
+}
+
+div.entry:hover{
+  background-color: #E1E1E1;
+}
+
+footer{
+  text-align: center;
+  background-color: #eaecef;
+  padding: 1px;
+  margin: 0 -8px -8px -8px;
+  border-top: solid 1px #4d4d4d;
+}
+
+header
+{
+  height: 60px;
+  border-bottom: 1px solid #eaecef;
+  text-align: center;
+  margin-bottom:20px;
+}
+
+div.h2{
+  width: 100%;
+}
+
+div.fig
+{
+  display: flex;
+  justify-content: center;
+}
+
+h2{
+  display: inline;
+}
+
+h2.short{
+  float: right;
+  font-size: initial;
+  font-style: italic;
+  margin-top: 0;
+  color: #555;
+}
+
+h3{
+  padding-left: 20px;
+}
+
+figure { 
+  display: table; 
+  text-align: center;
+  border: solid 1px #8D8D8D;
+}
+
+figcaption { 
+  display: table-caption; 
+  caption-side: bottom ; 
+  background-color: #f2f2f2;
+  margin-top: -5px;
+  padding: 5px 0 5px 0;
+  border: solid 1px #8D8D8D;
+  border-top: none;
+}
+
+p {
+  margin-left: 20px;
+}
+
+td, th {
+  border: 1px solid #aaa;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dadada;
+}
+
+tr:nth-child(odd) {
+  background-color: #FAFAFA;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #f7931a;
+  color: white;
+}
+
+a {
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+}
+
+a.warp {
+  color: #f7931a;
+  text-decoration: none;
+}
+
+.area {
+    background:#fff;
+    display:block;
+    height:165px;
+    opacity:0;
+    position:absolute;
+    width:165px;
+}
+
+a#luke{margin-left: 165px;}
+a#nick{margin-left: 330px;}
+a#pieter{margin-top: 165px;}
+a#poo{margin-left: 165px;margin-top: 165px;}
+a#hal{margin-left: 330px;margin-top: 165px;}
+a#back{margin-top: 330px;}
+a#dorian{margin-left: 165px;margin-top: 330px;}
+a#greg{margin-left: 330px;margin-top: 330px;}
+a#anto:hover ~ figcaption > span.anto{color: #f7931a;}
+a#luke:hover ~ figcaption > span.luke{color: #f7931a;}
+a#nick:hover ~ figcaption > span.nick{color: #f7931a;}
+a#pieter:hover ~ figcaption > span.pieter{color: #f7931a;}
+a#poo:hover ~ figcaption > span.poo{color: red;}
+a#hal:hover ~ figcaption > span.hal{color: #f7931a;}
+a#back:hover ~ figcaption > span.back{color: #f7931a;}
+a#dorian:hover ~ figcaption > span.dorian{color: #f7931a;}
+a#greg:hover ~ figcaption > span.greg{color: #f7931a;}

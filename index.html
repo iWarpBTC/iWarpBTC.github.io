@@ -3,24 +3,29 @@
     <head>
         <meta charset="UTF-8">
         <title>Bitcoinový slovníček pro mírně pokročilé</title>
+        <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
+        <header>
+            <h1><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně pokročilé</h1>
+        </header>
         <div class="container">
-            <h1>Bitcoinový slovníček pro mírně pokročilé</h1>
             <div class="entry">
                 <h2 id="capital-bitcoin">Bitcoin</h2>
-                <p>Název decentralizované P2P sítě sloužící k uchování a přenosu hodnoty. Síť byla spustěna 3. ledna 2009, když došlo k vytěžení prvního bloku.</p>
+                <p>Název decentralizované <a href="#p2p">P2P</a> sítě sloužící k uchování a přenosu hodnoty. Síť byla spustěna 3. ledna 2009, když došlo k vytěžení <a href="#genesis">prvního bloku</a></p>
             </div>
             <div class="entry">
                 <h2 id="bitcoin">bitcoin</h2>
                 <p>V síti přenášená jednotka hodnoty. Protokol stanoví maximální počet 21 milionů bitcoinů. Zkracuje se obvykle jako BTC.</p>
             </div>
             <div class="entry">
-                <h2 id="satoshi">satoshi</h2>
-                <p>Základní a zároveň nejmenší nejmenší možná jednotka používaná v sítí. 1 bitcoin = 100 000 000 satoshi. Pojmenování vzniklo jako pocta tvůrci vystupujícímu pod pseudonymem Satoshi Nakamoto. Také se zkracuje jako sat, saty, satů, či anglickým sats.</p>
+                <h2 id="#nakamoto">satoshi</h2>
+                <p>Základní a zároveň nejmenší nejmenší možná jednotka používaná v sítí. 1 bitcoin = 100 000 000 satoshi. Pojmenování vzniklo jako pocta tvůrci vystupujícímu pod pseudonymem <a href="#nakamoto">Satoshi Nakamoto</a>. Také se zkracuje jako sat, saty, satů, či anglickým sats.</p>
             </div>
             <div class="entry">
-                <h2 id="p2p">P2P</h2><h2 class="short">peer-to-peer (volně přeloženo rovný s rovným)</h2>
+                <div class="h2">
+                    <h2 id="p2p">P2P</h2><h2 class="short">peer-to-peer (rovný s rovným)</h2>
+                </div>
                 <p>Jedná se o síť bez centrálních, či nadřízených uzlů.</p>
             </div>
             <div class="entry">
@@ -47,36 +52,38 @@
                 <h2 id="hash">hash, otisk</h2>
                 <p>výstup jednosměrné matematické funkce, která libovolně dlouhá data převede číslo s daným rozsahem. Výstupem v Bitcoinu používané funkce SHA256 je 256 bitové číslo, zpravidla zapisované v šestnáctkové soustavě.</p>
                 <h3>Příklady: </h3>
-                <table>
-                    <thead>
-                      <tr>
-                        <th>vstup</th>
-                        <th>sha256(vstup)</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Ahoj</td>
-                        <td>f23e6807b3fb0be0ea999ea8cb88a3e94dc359c84230461f9761efac57dcb081</td>
-                      </tr>
-                      <tr>
-                        <td>Ahoy</td>
-                        <td>491312f2ce2f0d05cc8821956a34138428a72d6cbf3e426ef6bcc87f2905b614</td>
-                      </tr>
-                      <tr>
-                        <td>Ahoj, jak se dneska máš?</td>
-                        <td>56528a982b106e43d1f236360b6a72c4334918c0a83413d810ac0041f8f2e377</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div class="fig">
+                    <table>
+                        <thead>
+                          <tr>
+                            <th>vstup</th>
+                            <th>sha256(vstup)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>"Ahoj"</td>
+                            <td>f23e6807b3fb0be0ea999ea8cb88a3e94dc359c84230461f9761efac57dcb081</td>
+                          </tr>
+                          <tr>
+                            <td>"Ahoy"</td>
+                            <td>491312f2ce2f0d05cc8821956a34138428a72d6cbf3e426ef6bcc87f2905b614</td>
+                          </tr>
+                          <tr>
+                            <td>"Ahoj, jak se dneska máš?"</td>
+                            <td>56528a982b106e43d1f236360b6a72c4334918c0a83413d810ac0041f8f2e377</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
             </div>
             <div class="entry">
                 <h2 id="wallet">peněženka</h2>
-                <p>Software, případně i samostatné HW zařízení, který generuje a uchovává privátní klíče, vytváří a podepisuje <a href="#transaction">transakce</a>.</p>
+                <p>Software, případně i samostatné HW zařízení, který generuje a uchovává <a href="#privkey">privátní klíče</a>, vytváří a podepisuje <a href="#transaction">transakce</a>.</p>
             </div>
             <div class="entry"><h2 class="short">hierarchical deterministic</h2>
                 <h2 id="hd-wallet">HD peněženka</h2>
-                <p><a href="#wallet">Peněženka</a>, která na místo jednotlivých privátních klíčů generuje a uchovává pouze tzv. seed, z kterého pak determisticky odvozuje hierarchistické uspořádání prakticky neomezeného počtu klíčů.</p>
+                <p><a href="#wallet">Peněženka</a>, která na místo jednotlivých <a href="#privkey">privátních klíčů</a> generuje a uchovává pouze tzv. <a href="#seed">seed</a>, z kterého pak determisticky odvozuje hierarchistické uspořádání prakticky neomezeného počtu klíčů a k nim náležících <a href="#address">adres</a>.</p>
             </div>
             <div class="entry">
                 <h2 id="seed-words">slova seedu</h2>
@@ -100,51 +107,61 @@
             </div>
             <div class="entry">
                 <h2 id="address">bitcoinová adresa</h2>
-                <p>Je to <a href="#hash">zahashovaný</a> (funkcí SHA256 a následně ještě RIPEMD160) veřejný klíč, případně skript, ve prospěch kterého budou bitcoiny uzamčeny. V minulosti bývala zakódovaná v Base58Check, poslední standard využívá kódování Bech32 se sofistikovanější ochranou před překlepy. K vygenerování adresy není nutná komunikace se sítí, lze ji vygenerovat offline nutný je pouze zdroj entropie (případně již pomocí kvalitní entropie vygenerový seed).</p>
-                <figure>
-                    <img src="img/adresa.png" alt="bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g">
-                    <figcaption>Na počátku je náhoda, na konci adresa. Vracet se však nelze.</figcaption>
-                </figure>
+                <p>Je to <a href="#hash">zahashovaný</a> (funkcí SHA256 a následně ještě RIPEMD160) veřejný klíč, případně skript, ve prospěch kterého budou bitcoiny uzamčeny. V minulosti bývala zakódovaná v Base58Check, poslední standard využívá kódování Bech32 se sofistikovanější ochranou před překlepy. K vygenerování adresy není nutná komunikace se sítí, lze ji vygenerovat offline nutný je pouze zdroj entropie (případně již pomocí kvalitní entropie vygenerový <a href="#seed">seed</a>).</p>
+                <div class="fig">
+                    <figure>
+                        <img src="img/adresa.png" alt="bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g">
+                        <figcaption>Na počátku je náhoda, na konci adresa. Vracet se však nelze.</figcaption>
+                    </figure>
+                </div>
                 <p>U adresy vygenerováné standardní cestou s dostatkem počáteční entropie je prakticky vyloučeno (teoretická pravděpodobnost je nepředstavitelně nízká), že by již byla někdy vygenerována. Dřív objevíte trpaslíka uprostřed černé díry jak hledá s baterkou vypínač, než aby se vám podařilo z kvalitní entropie vygenerovat již vygenerovanou adresu.</p>
                 <h3>Příklady různých adres:</h3>
-                <table>
-                    <thead>
-                      <tr>
-                        <th>typ</th>
-                        <th>označení</th>
-                        <th>adresa</th>
-                        <th>kódování</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>p2pkh</td>
-                        <td>legacy</td>
-                        <td>1GRYfroBCL6wJeggD92VdPvJp5vKaVtsrA</td>
-                        <td>Base58Check s počáteční 1</td>
-                      </tr>
-                      <tr>
-                        <td>p2sh</td>
-                        <td>nested segwit</td>
-                        <td>39qmkmoB1t1mjGAowURRimoQduubbhVoZz</td>
-                        <td>Base58Check s počáteční 3</td>
-                      </tr>
-                      <tr>
-                        <td>p2wpkh</td>
-                        <td>legacy segwit</td>
-                        <td>bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g</td>
-                        <td>Bech32 s počátečním bc1</td>
-                      </tr>
-                    </tbody>
-                  </table> 
-                  <figure>
-                    <img src="img/QR.PNG" alt="bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g">
-                    <figcaption>QR kód bitcoinové adresy</figcaption>
-                </figure>
+                  <div class="fig">
+                    <table>
+                        <thead>
+                          <tr>
+                            <th>typ</th>
+                            <th>označení</th>
+                            <th>adresa</th>
+                            <th>kódování</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>p2pkh</td>
+                            <td>legacy</td>
+                            <td>1GRYfroBCL6wJeggD92VdPvJp5vKaVtsrA</td>
+                            <td>Base58Check s počáteční 1</td>
+                          </tr>
+                          <tr>
+                            <td>p2sh</td>
+                            <td>nested segwit</td>
+                            <td>39qmkmoB1t1mjGAowURRimoQduubbhVoZz</td>
+                            <td>Base58Check s počáteční 3</td>
+                          </tr>
+                          <tr>
+                            <td>p2wpkh</td>
+                            <td>legacy segwit</td>
+                            <td>bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g</td>
+                            <td>Bech32 s počátečním bc1</td>
+                          </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                  <div class="fig">
+                    <figure>
+                        <img src="img/QR.PNG" alt="bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g">
+                        <figcaption>QR kód bitcoinové adresy</figcaption>
+                    </figure>
+                  </div>
             </div>
             <div class="entry">
                 <h2 id="transaction">transakce</h2>
                 <p>Základní operace bitcoinové sítě. Na svém vstupu utrácí (spotřebováva) dosud neutracené výstupy (UTXO) předchozích transakcí. Na svém výstupu uzamyká bitcoiny ve prospěch daných adres a vytváří tak nové UTXO. Potvrzená transakce se stává nesmazatelnou součástí blockchainu (který není nic jiného, než seznam do bloku uspořádáných transakcí).</p>
+            </div>
+            <div class="entry">
+                <h2 id="utxo">UTXO</h2><h2 class="short">unspent transaction output</h2>
+                <p>Neutracený transakční výstup, který může být použit na vstupu nové <a href="#transaction">transakce</a>. Součet částek všech aktuálních UTXO se rovná aktuálně vytěženému množství <a href="bitcoin">bitcoinů</a>.</p>
             </div>
             <div class="entry">
                 <h2 id="fee">poplatek (fee)</h2>
@@ -193,12 +210,26 @@
             <div class="entry">
                 <h2 id="nakamoto">Satoshi Nakamoto</h2>
                 <p>Pseudonym tvůrce, či snad tvůrců Bitcoinu. Pravá identita je předmětem spekulací.</p>
-                <figure>
-                    <img src="img/satoshi.jpeg" alt="We all are Satoshi meme." width="500" height="500">
-                    <figcaption>Andreas Antonopoulos, Luke Dashjr, Nick Szabo, Pieter Wuille, podvodník Craig Wright, Hal Finney, Adam Back, Dorian Satoshi Nakamoto, Greg Maxwell</figcaption>
-                </figure>
+                <div class="fig">
+                    <figure>
+                        <a id="anto" class="area" href="#nakamoto"></a>
+                        <a id="luke" class="area" href="#nakamoto"></a>
+                        <a id="nick" class="area" href="#nakamoto"></a>
+                        <a id="pieter" class="area" href="#nakamoto"></a>
+                        <a id="poo" class="area" href="#nakamoto"></a>
+                        <a id="hal" class="area" href="#nakamoto"></a>
+                        <a id="back" class="area" href="#nakamoto"></a>
+                        <a id="dorian" class="area" href="#nakamoto"></a>
+                        <a id="greg" class="area" href="#nakamoto"></a>
+                        <img src="img/satoshi.jpeg" alt="We all are Satoshi meme." width="500" height="500">
+                        <figcaption><span class="anto">Andreas Antonopoulos</span>, <span class="luke">Luke Dashjr</span>, <span class="nick">Nick Szabo</span>, <span class="pieter">Pieter Wuille</span>, <span class="poo">podvodník Craig Wright</span>, <span class="hal">Hal Finney</span>, <span class="back">Adam Back</span>, <span class="dorian">Dorian Satoshi Nakamoto</span>, <span class="greg">Greg Maxwell</span></figcaption>
+                    </figure>
+                </div>
             </div>
         </div>
+        <footer>
+            <p>Sepsal <a class="warp" href = "mailto: iwarp@pm.me">iWarp</a>. Toto dílo podléhá licenci <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Uveďte původ 4.0 Mezinárodní License</a>.</p>
+        </footer>
     </body>
 </html>
 
