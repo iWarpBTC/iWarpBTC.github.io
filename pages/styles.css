@@ -67,7 +67,7 @@ footer{
   border-top: solid 1px #4d4d4d;
 }
 
-div.mail{
+div.mail, div.h1{
   position: absolute;
   left:50%;
   transform: translateX(-50%);
@@ -78,6 +78,27 @@ div.cc0
   float: right;
   padding-top: 16px;
   padding-right: 5%;
+}
+
+div.back
+{
+  float: left;
+  margin-top: 12px;
+  margin-left: 5%;
+  border: solid 1px #D4D4D4;
+  padding: 8px 20px;
+}
+
+div.back:hover
+{
+  border: solid 2px #B4B4B4;
+}
+
+div.back > a
+{
+  color: #646464;
+  letter-spacing: 2px;
+  text-decoration: none;
 }
 
 header
