@@ -30,6 +30,19 @@ footer{
   border-top: solid 1px #4d4d4d;
 }
 
+div.mail{
+  position: absolute;
+  left:50%;
+  transform: translateX(-50%);
+}
+
+div.cc0
+{
+  float: right;
+  padding-top: 16px;
+  padding-right: 5%;
+}
+
 header
 {
   height: 60px;
@@ -82,6 +95,7 @@ figcaption {
 
 p {
   margin-left: 20px;
+  margin-right: 20px;
 }
 
 td, th {

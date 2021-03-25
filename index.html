@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Bitcoinový slovníček pro mírně pokročilé</title>
+        <link rel="shortcut icon" href="https://bitcoin.org/favicon.png?1616555510">
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
@@ -26,7 +27,7 @@
                 <div class="h2">
                     <h2 id="p2p">P2P</h2><h2 class="short">peer-to-peer (rovný s rovným)</h2>
                 </div>
-                <p>Jedná se o síť bez centrálních, či nadřízených uzlů.</p>
+                <p>Jedná se o síť bez centrálních, či nadřízených <a href="#node">uzlů</a>.</p>
             </div>
             <div class="entry">
                 <h2 id="node">uzel, node</h2>
@@ -141,7 +142,7 @@
                           </tr>
                           <tr>
                             <td>p2wpkh</td>
-                            <td>legacy segwit</td>
+                            <td>native segwit</td>
                             <td>bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g</td>
                             <td>Bech32 s počátečním bc1</td>
                           </tr>
@@ -189,11 +190,11 @@
             </div>
             <div class="entry">
                 <h2 id="sfork">soft-fork</h2>
-                <p>Změna pravidel sítě způsobem, který je kompatibilní s uzly, které tuto změnu neimplementují.</p>
+                <p>Změna pravidel sítě způsobem, který je kompatibilní s <a href="#node">uzly</a>, které tuto změnu neimplementují.</p>
             </div>
             <div class="entry">
                 <h2 id="hfork">hard-fork</h2>
-                <p>Změna pravidel sítě způsobem, který je nekompatibilní s uzly, které tuto změnu neimplementují. Následkem může být rozštěpení sítě na dvě (či více) různých větví blockchainu.</p>
+                <p>Změna pravidel sítě způsobem, který je nekompatibilní s <a href="#node">uzly</a>, které tuto změnu neimplementují. Následkem může být rozštěpení sítě na dvě (či více) různých větví blockchainu.</p>
             </div>
             <div class="entry">
                 <h2 id="mining">těžení</h2>
@@ -228,9 +229,12 @@
             </div>
         </div>
         <footer>
-            <p>Sepsal <a class="warp" href = "mailto: iwarp@pm.me">iWarp</a>. Toto dílo podléhá licenci <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Uveďte původ 4.0 Mezinárodní License</a>.</p>
+            <div>
+                <div class="cc0"><a class="license" href="./LICENSE"><img src="https://licensebuttons.net/p/zero/1.0/80x15.png" alt="CC0" /></a></div>
+            </div>
+            <div class="mail">
+                <p>Sepsal <a class="warp" href = "mailto: iwarp@pm.me">iWarp</a>.</p>
+            </div>
         </footer>
     </body>
 </html>
-
-
