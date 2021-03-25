@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+        <title>Bitcoinový slovníček pro mírně pokročilé - transakce</title>
+        <link rel="shortcut icon" href="https://bitcoin.org/favicon.png?1616555510">
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body>
+        <header>
+            <h1><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně pokročilé</h1>
+        </header>
+        <div class="container">
+            <h2>Anatomie transakce</h2>
+            <p>K popisu anatomie bitcoinové transakce byla náhodně vybrána segwitová transakce 40e285bd2b757bf455f9e3ce92aa8e51910f88a1ca9dd497465d346310e7df11 z bloku č. 676274. Jedná se o typickou transakci s jedním vstupem a dvěma výstupy – to znamená, že transakce utrácí (spotřebováva) jeden <a href="../index.html#utxo">UTXO</a> a dva nové UTXO vytváří. Následuje hexadecimální reprezentace serializace transakce:</p>
+
+            <p class="raw"><span class="ver">01000000</span><span class="segwitmark">00</span><span class="segwitflag">01</span><span class="nofin">01</span><span class="prevtx">177b550c14d173e1ac3d9987b1c3892572c848381f7ef9d3dd29fbfac09e1461</span><span class="previn">01000000</span><span class="sig">00</span><span class="seq">ffffffff</span><span class="nofout">02</span><span class="amount">b1a6910000000000</span><span class="pub">160014c3c03280e573ec2c59a8a11c2367368b514ff9d2</span><span class="amount">204e000000000000</span><span class="pub">160014e447450ba6baaf561ea6c3b9d1dc2cd687d961d2</span><span class="witness">0247304402201cbbe2ba007b80c6e23ff6c0069b7135580c4f00089474b4c882421408fde92502204e330225ae3a72364662f50a29c2d29db6b7063f71a721af7da905de30df3120012103c0fb6554508be65f82305cab41d97db37e2d5b3ba5920009209f9dfbcb00dbcc</span><span class="locktime">00000000</span></p>
+            <div class="fig">
+                <table>
+                    <thead>
+                      <tr>
+                        <th>barva</th>
+                        <th>hodnota</th>
+                        <th>význam</th>
+                        <th>formát</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="color"><div class="ver"></div></td>
+                        <td>1</td>
+                        <td>verze tx</td>
+                        <td>4 bajty LE</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="segwitmark"></div></td>
+                        <td>0</td>
+                        <td>segwit marker (zavedený segwitem, zatím nevyužitý)</td>
+                        <td>bajt</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="segwitflag"></div></td>
+                        <td>1</td>
+                        <td>segwit flag (zavedený segwitem, zatím pevně 1)</td>
+                        <td>bajt</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="nofin"></div></td>
+                        <td>1</td>
+                        <td>počet vstupů</td>
+                        <td>varint</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="prevtx"></div></td>
+                        <td>61149...17</td>
+                        <td>txid (hash) předchozí tx</td>
+                        <td>32 bajtů LE</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="previn"></div></td>
+                        <td>1</td>
+                        <td>index výstupu předchozí tx</td>
+                        <td>4 bajty LE</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="sig"></div></td>
+                        <td>0</td>
+                        <td>scriptSig (v předsegwitových tx jsou na tomto místě podpisová data)</td>
+                        <td>script</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="seq"></div></td>
+                        <td>ffffffff</td>
+                        <td>sequence (zamýšleno pro časté platby, nyní slouží převážně k RBF)</td>
+                        <td>4 bajty LE</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="nofout"></div></td>
+                        <td>2</td>
+                        <td>počet výstupů</td>
+                        <td>varint</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="amount"></div></td>
+                        <td>91a6b1</td>
+                        <td>částka 1. výstupu v satoshi</td>
+                        <td>8 bajtů LE</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="pub"></div></td>
+                        <td>script</td>
+                        <td>scriptPubKey 1. výstupu</td>
+                        <td>script</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="amount"></div></td>
+                        <td>4e20</td>
+                        <td>částka 2. výstupu v satoshi</td>
+                        <td>8 bajtů LE</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="pub"></div></td>
+                        <td>script</td>
+                        <td>scriptPubKey 2. výstupu</td>
+                        <td>script</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="witness"></div></td>
+                        <td>script</td>
+                        <td>witness; podpisová data ve formě scriptSig</td>
+                        <td>script</td>
+                      </tr>
+                      <tr>
+                        <td class="color"><div class="locktime"></div></td>
+                        <td>0</td>
+                        <td>locktime</td>
+                        <td>4 bajty LE</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Serializace této tx čítá 222 bajtů z čehož je 109 bajtů "segwitových". Pro výpočet <a href="../index.html#wu">váhy</a> tx vynásobíme počet bajtů "nesegwitových" dat čtyřmi a výsledek přičteme k počtu segwitových bajtů (113 &times; 4 = 452; 452 + 109 = 561 WU). Když poté vydělíme WU čtyřmi, dostaneme tzv. <a href="../index.html#vsize">virtuální velikost</a> (561 / 4 = 140,25 vB). Odečtením součtu výstupů od součtu vstupů (hodnoty vstupů nejsou součástí dat této tx; je potřeba se podívat do předchozích) zjistíme absolutní hodnotu <a href="../index.html#fee">poplatku</a> (9566387 - (9545393 + 20000) = 994). Relatvní hodnoty poplatků pak zjistíme už prostým dělením velikostí resp. virtuální velikostí (994/222 = 4,5 satů/bajt; 994/140 = 7,1 satů/vBajt). </p>
+            
+        </div>
+        <footer>
+            <div>
+                <div class="cc0"><a class="license" href="./LICENSE"><img src="https://licensebuttons.net/p/zero/1.0/80x15.png" alt="CC0" /></a></div>
+            </div>
+            <div class="mail">
+                <p>Sepsal <a class="warp" href = "mailto: iwarp@pm.me">iWarp</a>.</p>
+            </div>
+        </footer>
+    </body>
+</html>
