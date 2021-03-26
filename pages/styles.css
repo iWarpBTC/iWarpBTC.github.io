@@ -27,7 +27,7 @@ div.entry:hover{
   background-color: #E1E1E1;
 }
 
-p.raw {
+p.raw, p.script {
   font-family: "Andale Mono", monospace;
   word-break: break-all;
   border: solid 1px black;
@@ -36,10 +36,6 @@ p.raw {
 }
 
 p.script {
-  font-family: "Andale Mono", monospace;
-  border: solid 1px black;
-  padding: 8px;
-  background-color: #D4D4D4;
   text-align: left;
 }
 
@@ -99,33 +95,16 @@ div.cc0
   padding-right: 5%;
 }
 
-div.back
-{
-  border: solid 1px #D4D4D4;
-  padding: 8px 20px;
-  position: fixed;
-  top: 20px;
-  left: 40px;
-}
-
-div.back:hover
-{
-  border: solid 2px #B4B4B4;
-}
-
-div.back > a
-{
-  color: #646464;
-  letter-spacing: 2px;
-  text-decoration: none;
-}
-
 header
 {
   height: 60px;
   border-bottom: 1px solid #eaecef;
   text-align: center;
   padding-bottom:20px;
+}
+
+h1 > a {
+  text-decoration: none;
 }
 
 div.h2{
