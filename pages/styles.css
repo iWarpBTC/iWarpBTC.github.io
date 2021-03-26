@@ -35,6 +35,19 @@ p.raw {
   background-color: #D4D4D4;
 }
 
+p.script {
+  font-family: "Andale Mono", monospace;
+  word-break: break-all;
+  border: solid 1px black;
+  padding: 8px;
+  background-color: #D4D4D4;
+}
+
+p.script > a{
+  text-decoration: none;
+  color: blue;
+}
+
 td > div{
   height: 15px;
   width: 15px;
@@ -82,11 +95,11 @@ div.cc0
 
 div.back
 {
-  float: left;
-  margin-top: 12px;
-  margin-left: 5%;
   border: solid 1px #D4D4D4;
   padding: 8px 20px;
+  position: fixed;
+  top: 20px;
+  left: 40px;
 }
 
 div.back:hover
@@ -106,7 +119,7 @@ header
   height: 60px;
   border-bottom: 1px solid #eaecef;
   text-align: center;
-  margin-bottom:20px;
+  padding-bottom:20px;
 }
 
 div.h2{
@@ -117,10 +130,6 @@ div.fig
 {
   display: flex;
   justify-content: center;
-}
-
-h2{
-  display: inline;
 }
 
 h2.short{
@@ -186,6 +195,11 @@ a:hover {
 a.warp {
   color: #f7931a;
   text-decoration: none;
+}
+
+img[src*="../img/lol.png"]
+{
+  margin-bottom: -1px;  
 }
 
 
