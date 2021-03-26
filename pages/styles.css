@@ -15,7 +15,7 @@ div.container {
 
 div.container > p {
   text-align: justify;
-  font-size: small
+  font-size: small;
 }
 div.entry
 {
@@ -37,15 +37,21 @@ p.raw {
 
 p.script {
   font-family: "Andale Mono", monospace;
-  word-break: break-all;
   border: solid 1px black;
   padding: 8px;
   background-color: #D4D4D4;
+  text-align: left;
 }
 
 p.script > a{
   text-decoration: none;
   color: blue;
+}
+
+div.scriptana > p
+{
+  text-align: justify;
+  font-size: small;
 }
 
 td > div{
