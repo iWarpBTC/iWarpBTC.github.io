@@ -13,7 +13,7 @@ div.container {
     text-align: center;
 }
 
-div.container > p {
+p.just {
   text-align: justify;
   font-size: small;
 }
@@ -33,9 +33,7 @@ p.raw, p.script {
   border: solid 1px black;
   padding: 8px;
   background-color: #D4D4D4;
-}
-
-p.script {
+  font-size: small;
   text-align: left;
 }
 
@@ -44,34 +42,28 @@ p.script > a{
   color: blue;
 }
 
-div.scriptana > p
-{
-  text-align: justify;
-  font-size: small;
-}
-
 td > div{
   height: 15px;
   width: 15px;
-  margin-left: 14px;
+  transform: translateX(14px);
 }
 
 div.ver, div.amount{background-color: red;}
-div.segwitmark, div.nofout{background-color: black;}
-div.segwitflag, div.witness{background-color: blue;}
+div.segwitmark, div.nofout, div.prevbl{background-color: black;}
+div.segwitflag, div.witness, div.merkle{background-color: blue;}
 div.nofin, div.locktime{background-color: yellow;}
-div.prevtx, div.pub{background-color: green;}
-div.previn{background-color: purple;}
+div.prevtx, div.pub, div.time{background-color: green;}
+div.previn, div.bits{background-color: purple;}
 div.sig{background-color: gray;}
-div.seq{background-color: cyan;}
+div.seq, div.nonce{background-color: cyan;}
 
 span.ver, span.amount{color: red;}
-span.segwitflag, span.witness{color: blue;}
+span.segwitflag, span.witness, span.merkle{color: blue;}
 span.nofin, span.locktime{color: yellow;background-color:black}
-span.prevtx, span.pub{color: green;}
-span.previn{color: purple}
+span.prevtx, span.pub, span.time{color: green;}
+span.previn, span.bits{color: purple}
 span.sig{color: gray;}
-span.seq{color: cyan;background-color:black}
+span.seq, span.nonce{color: cyan;background-color:black}
 
 
 footer{
@@ -91,7 +83,7 @@ div.mail, div.h1{
 div.cc0
 {
   float: right;
-  padding-top: 16px;
+  padding-top: 26px;
   padding-right: 5%;
 }
 
@@ -187,4 +179,21 @@ img[src*="../img/lol.png"]
   margin-bottom: -1px;  
 }
 
+div.undernotes {
+  border-top: solid 1px black;
+  text-align: left;
+}
 
+p.note
+{
+  font-size:x-small;
+}
+
+a.lit {
+  color: blue;
+  text-decoration: none;
+}
+
+a.lit:hover {
+  text-decoration: underline;
+}

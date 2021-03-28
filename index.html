@@ -40,6 +40,7 @@
             <div class="entry">
                 <h2 id="block">blok</h2>
                 <p>Předepsaná datová struktura transakcí omezené velikosti (4 000 000 WU; dříve 1 MB). Sestavá se z hlavičky bloku a serializovaných transakcí.</p>
+                <p>Více v pojednání o <a href="pages/block.html">anatomii bloku</a>.</p>
             </div>
             <div class="entry">
                 <h2 id="block-header">hlavička bloku</h2>
@@ -51,7 +52,7 @@
             </div>
             <div class="entry">
                 <h2 id="hash">hash, otisk</h2>
-                <p>výstup jednosměrné matematické funkce, která libovolně dlouhá data převede číslo s daným rozsahem. Výstupem v Bitcoinu používané funkce SHA256 je 256 bitové číslo, zpravidla zapisované v šestnáctkové soustavě.</p>
+                <p>Výstup jednosměrné matematické funkce, která libovolně dlouhá data převede číslo s daným rozsahem. I velmi malá změna vstupních dat způsobít velmi velkou změnu výstupu funkce. Zároveň nelze předvídat jaká změna dat by mohla způsobit kýženou změnu výstupu, např. získaní menšího výstupního číslo (což je mimochodem cílem <a href="#mining">těžby</a>). Výstupem v Bitcoinu používané funkce SHA256 je 256 bitové číslo, zpravidla zapisované v šestnáctkové soustavě.</p>
                 <h3>Příklady: </h3>
                 <div class="fig">
                     <table>
@@ -159,7 +160,12 @@
             <div class="entry">
                 <h2 id="transaction">transakce</h2>
                 <p>Základní operace bitcoinové sítě. Na svém vstupu utrácí (spotřebováva) dosud neutracené výstupy (UTXO) předchozích transakcí. Na svém výstupu uzamyká bitcoiny ve prospěch daných adres a vytváří tak nové UTXO. Potvrzená transakce se stává nesmazatelnou součástí blockchainu (který není nic jiného, než seznam do bloku uspořádáných transakcí).</p>
-                <p>Více na stránce <a href="./pages/transaction.html">anatomie transakce</a>.</p>
+                <p>Více v pojednání o <a href="./pages/transaction.html">anatomii transakce</a>.</p>
+            </div>
+            <div class="entry">
+                <h2 id="script">Script</h2>
+                <p>Název skriptovacího jazyku sítě Bitcoin, prostřednictví kteréhé jsou definovány (a vyhodnocovány) podmínky utracení (odemčení) <a href="#utxo">UTXO</a></p>
+                <p>Více na stránce <a href="./pages/transaction.html#script">anatomie skriptu</a>.</p>
             </div>
             <div class="entry">
                 <h2 id="utxo">UTXO</h2><h2 class="short">unspent transaction output</h2>
@@ -199,7 +205,8 @@
             </div>
             <div class="entry">
                 <h2 id="mining">těžení</h2>
-                <p>V podstatě se jedná o soutěž o právo zápisu dalšího bloku do blockchainu. Soutěž vyhraje ten, kdo jako první sestaví takový navazující blok transakcí, jehož hash (resp. hash jeho hlavičky) bude menší, než nastavený cíl (target) sítě. Nalezení takového hashe je věcí náhody, šance se zvyšují se schopností otestovat (zahashovat) co nejvíce variant v co nejmenším čase (ergo s početním výkonem).</p>
+                <p>V podstatě se jedná o soutěž o právo zápisu dalšího bloku do blockchainu. Soutěž vyhraje ten, kdo jako první sestaví takový navazující blok transakcí, jehož <a href="hash">hash</a> (resp. hash jeho hlavičky) bude menší, než nastavený cíl (target) sítě. Nalezení takového hashe je věcí náhody, šance se zvyšují se schopností otestovat (zahashovat) co nejvíce variant v co nejmenším čase (ergo s početním výkonem).</p>
+                <p>Více v pojednání o <a href="pages/block.html#mining">anatomii těžby</a>.</p>
             </div>
             <div class="entry">
                 <h2 id="target">cíl těžby (target)</h2>
@@ -208,6 +215,10 @@
             <div class="entry">
                 <h2 id="difficulty">obtížnost sítě (diffuculty)</h2>
                 <p>Vyjádření obtížnosti těžby poměrem genesis targetu / současného targetu</p>
+            </div>
+            <div class="entry">
+                <h2 id="pow">proof of work</h2>
+                <p>Koncept, ve kterém na výpočetní výkon velmi náročné <a href="#mining">vytěžení</a> bloku poskytuje síti v podstatě důkaz o vykonané prácí. Objem této vykonané práce zvyšuje šance na vítězství v soutěži o zápis do blockchainu (a získání odpovídající odměny) a zároveň pobízí těžaře sestavit pravidlům vyhovující blok, neboť nevyhovující lze zbytkem téměř bezpracně odhalit a odmítnout, čímž by vykononá práce přisla v niveč.</p>
             </div>
             <div class="entry">
                 <h2 id="nakamoto">Satoshi Nakamoto</h2>
@@ -234,7 +245,7 @@
                 <div class="cc0"><a class="license" href="./LICENSE"><img src="https://licensebuttons.net/p/zero/1.0/80x15.png" alt="CC0" /></a></div>
             </div>
             <div class="mail">
-                <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a>.</p>
+                <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a>.<br><a href="./pages/literature.html">Doporučená literatura</a>.</p>
             </div>
         </footer>
     </body>
