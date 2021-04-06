@@ -1,4 +1,3 @@
-<script type="text/javascript">
   var _gauges = _gauges || [];
   (function() {
     var t   = document.createElement('script');
@@ -11,4 +10,3 @@
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(t, s);
   })();
-</script>
