@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bitcoinový slovníček pro mírně pokročilé - anatomie křivky a podpisu</title>
+  <link rel="shortcut icon" href="https://bitcoin.org/favicon.png?1616555510">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <header>
+    <div class="h1">
+      <h1><a href="../index.html#crypto"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně pokročilé</a>
+      </h1>
+    </div>
+  </header>
+  <div class="container">
+    <h2>Anatomie křivky</h2>
+    <p class="just">Jak je možné vidět na stránce <a href="transaction.html">anatomie transakce a skriptu</a> standardní
+      p2(w)pk transakce prostřednictvím scriptPubKey uzamyká určitý obnos satoshi ve prospěch určitého hashe veřejného
+      klíče (který zakódovaný v Bech32, či starší Base58Check představuje adresu). Prostřednictvím scriptSigu lze pak
+      poskytnutím veřejného klíče a podpisu tento výstup odemknout a utratit v další transakci. To je umožněno díky tzv.
+      asymetrické kryptografii, kterou v případě Bitcoinu představuje kryptografie eliptických křivek. </p>
+    <p class="just">Asymetrická kryptografie se od té běžné – symetrické – liší tím, že na místo jednoho a toho samého
+      klíče (použitého pro zašifrování i rozšifrování) požívá pár klíčů – veřejný a soukromý. Pokud si příjemce zprávy
+      vygeneruje takový pár klíčů a ten veřejný publikuje, kdokoliv může tímto veřejným klíčem zašifrovat zprávu, kterou
+      bude moci rozšifrovat jen a pouze
+      příjemce pomocí svého soukromého klíče. Asymetrická kryptografie však umožnuje, kromě šifrování za účelem skrytí
+      tajné zprávy, také šifrování za účelem podpisu zprávy. Pokud původce zprávy tuto zprávu (v praxi stačí pouze její
+      hash) zašifřuje svým soukromým klíčem, každý může jeho publikovaným veřejným klíčem zprávu rozšifrovat a tím
+      ověřit, že původce zprávy je právě držitel soukromého klíče. Tomuto se říká kryptografický podpis a v Bitcoinu je
+      jím prokozováno, že výstup je utrácen právě držitelem soukromého klíče přislušícího k veřejnému klíči, ve prospěch
+      jehož hashe byl výstup uzamčen. (Že je výstup uzamčen ve prospěch nikoliv přímo veřejného klíče, nýbrž jeho hashe,
+      je jen dalším stupňem ochrany.) </p>
+
+    <p class="just">Asymetrická kryptografie eliptických křivech je založena na tzv. problému diskrétního logaritmu:
+    </p>
+    <p class="math">Nechť <em>G &equals; &#9001;a&#9002;</em> je cyklická grupa řádu <em>n</em> s generátorem grupy
+      <em>a</em>. Každý prvek <em>b &isin; G</em> lze zapsat jako b &equals; a<sup>x</sup> pro jediné x &isin;
+      <img src="../img/zet.svg" alt="Z"><sub>n</sub>. Toto <em>x</em> se nazývá <strong>diskrétní logaritmus</strong> o základu <em>a</em> z prvku
+      <em>b</em> v grupě <em>G</em>.
+    </p>
+    <p class="just">Přičemž je užita eliptický křivka popsaná standardem secp256k1:</p>
+    <ul class="article">
+      <li>Křivka nad konečným tělesem mohutnosti p = 0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f (tj. také 2<sup>256</sup> - 2<sup>32</sup> - 977)</li>
+      <li>Funkční předpis křivky: y<sup>2</sup> = x<sup>3</sup> + 7</li>
+      <li>Generátor cyklické grupy bod A má souřadnice:</li>
+      <ul>
+        <li>A<sub>x</sub> &equals; 0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798</li>
+        <li>A<sub>y</sub> &equals; 0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8</li>
+      </ul>
+      <li>Řád grupy n &equals; 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141</li>
+    </ul>
+    <div class="fig">
+      <figure>
+        <img src="../img/secp256k1.png" alt="secp256k1">
+        <figcaption>Takto by vypadalo zobrazení "bitcoinové" eliptické křivky nad množinou reálných čísel.</figcaption>
+      </figure>
+    </div>
+    <h2>Anatomie podpisu</h2>
+    <h2>Anatomie Schnorrova podpisu</h2>
+  </div>
+  <footer>
+    <div>
+      <div class="cc0"><a class="license" href="../LICENSE"><img
+            src="https://github.com/creativecommons/licensebuttons/raw/master/www/p/zero/1.0/80x15.png" alt="CC0" /></a>
+      </div>
+    </div>
+    <div class="mail">
+      <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a>.<br><a href="./literature.html">Doporučená
+          literatura</a>.</p>
+    </div>
+  </footer>
+</body>
+
+</html>

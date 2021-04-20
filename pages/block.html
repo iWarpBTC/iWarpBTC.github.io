@@ -1,91 +1,172 @@
 <!DOCTYPE html>
 <html lang="cs">
-    <head>
-        <meta charset="UTF-8">
-        <title>Bitcoinový slovníček pro mírně pokročilé - anatomie bloku a těžby</title>
-        <link rel="shortcut icon" href="https://bitcoin.org/favicon.png?1616555510">
-        <link rel="stylesheet" href="./styles.css">
-    </head>
-    <body>
-        <header>
-            <div class="h1">
-                <h1><a href="../index.html#block"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně pokročilé</a></h1>
-            </div>
-        </header>
-        <div class="container">
-            <h2>Anatomie bloku</h2>
-            <p class="just">K popisu anatomie bitcoinového bloku použijeme blok obsahující transakci z dílu <a href="./transaction.html">anatomie transkace</a> s pořadovým číslem <a href="./stuff/676274.txt">676274</a> a hashem 00000000000000000000706c7f21388b285414c4829ee3981398e0cac82e43e3. Následuje hexadecimální reprezentace serializace hlavičky bloku:</p>
-            <p class="raw"><span class="ver" onmouseover="biggerbox('ver')" onmouseout="backbox('ver')">00008020</span><span class="prevbl" onmouseover="biggerbox('prevbl')" onmouseout="backbox('prevbl')">94dbc3cc1db91c6a106f6fb55b6e99a0b80eccc84b6d0b000000000000000000</span><span class="merkle" onmouseover="biggerbox('merkle')" onmouseout="backbox('merkle')">6b63e7d1a32149535d3f429ff5f9e7d9b1b19326876faff54d19610d7923ae7d</span><span class="time" onmouseover="biggerbox('time')" onmouseout="backbox('time')">1ebc5c60</span><span class="bits" onmouseover="biggerbox('bits')" onmouseout="backbox('bits')">6fdf0c17</span><span class="nonce" onmouseover="biggerbox('nonce')" onmouseout="backbox('nonce')">4bf00ded</span></p>
-             <div class="fig">
-                <table>
-                    <thead>
-                      <tr>
-                        <th>barva</th>
-                        <th>hodnota</th>
-                        <th>význam</th>
-                        <th>formát</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="color"><div id="ver" class="ver"></div></td>
-                        <td>20800000</td>
-                        <td>verze bloku</td>
-                        <td>4 bajty LE</td>
-                      </tr>
-                      <tr>
-                        <td class="color"><div id="prevbl" class="prevbl"></div></td>
-                        <td>00...3db94</td>
-                        <td>hash předchozího bloku</td>
-                        <td>32 bajtů LE</td>
-                      </tr>
-                      <tr>
-                        <td class="color"><div id="merkle" class="merkle"></div></td>
-                        <td>d7ae2...6b</td>
-                        <td>merkle root; koreřnový hash merkle stromu transakcí</td>
-                        <td>32 bajtů LE</td>
-                      </tr>
-                      <tr>
-                        <td class="color"><div id="time" class="time"></div></td>
-                        <td>605cbc1e</td>
-                        <td>časové razítko (timestamp)</td>
-                        <td>4 bajty LE</td>
-                      </tr>
-                      <tr>
-                        <td class="color"><div id="bits" class="bits"></div></td>
-                        <td>170cdf6f</td>
-                        <td>bits; stanovuje cíl těžby</td>
-                        <td>4 bajty LE</td>
-                      </tr>
-                      <tr>
-                        <td class="color"><div id="nonce" class="nonce"></div></td>
-                        <td>ed0df04b</td>
-                        <td>nonce; změnou se dosahuje změny hashe, jinak nemá význam</td>
-                        <td>4 bajty LE</td>
-                      </tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="just">Z verze, konkrétně prvních tří bitů z leva (001), můžeme vyčíst signalizaci podle <a href="https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki">BIP 9</a>. Přítomnost hashe předchozího bloku je jasná, blok je tím - podobně jako oka řetezu - pevně spojen s předchozím blokem. Kořenový hash markle stromu transakcí zaručuje, že se změna byť jediného bajtu v jediné do bloku zahrnuté tx projeví v konečném důsledku změnou hashe hlavičky tohoto bloku. Časové razítko říká, že k vytěžení bloku došlo 1616690206 sekund od 1/1/1970, tedy 25/3/2021 v 16:36:46 UTC. Tento údaj ovšem nemusí být zcela přesný. Aby byl block přijat sítí, musí být datové razítko větší, než medián časových razítek posledních 11 bloků a menší než medián aktuálních časů uzlů, ke kterým je uzel připojen. Z pole bits si vypočteme target - první bajt (z leva) je exponent, zbytek koeficient. Zůstaneme-li v hexa, bude target cdf6f &times; 100<sup>17-3</sup>. <a href="https://www.online-python.com/cVBjGF2Y5Z">Porovnáme</a>, jeli hash našeho bloku menší než vypočtený target. Poslední pole obsahuje nonci, které se budeme věnovat později. </p>
-            <p class="just">Za hlavičkou následuje LE varint s počtem transakcí v bloku a pak už serializace všech těchto transakcí. První z nich je ovšem speciální, tzv. mincetvorá (coinbase). Ta se oproti zbytku liší tím, že nemá žádný skutečný vstup, resp. technicky vzato má mincetvorná transakce právě jeden vstup - hash předchozí transakce je 32 bajtů nul, index výstupu je ffffffff, podpisový skript musí být v rozmezí 2 a 100 bajtů, a musí být sám o sobě pravdivý. Právě sem umístil <a href="../index.html#nakamoto">Satoshni</a> v <a href="../index.html#genesis">genesis bloku</a> legendární titulek Timesů, zatímco ve scriptSigu mincetvorné transakci našeho bloku si můžeme přečíst zprávu &bdquo;Mined by AntPool713&ldquo;. Od BIPu 34 se do podpisového skriptu mincetvorné transakce dává na první místo element s číslem bloku. Tím je zajištěno, aby bylo možno odlišit jinak stále stejné mincetvorné transakce jejich unikátním hashem. Navzdory tomu, že neutrácí žádné <a href="../index.html#utxo">UTXO</a>, může si těžař na výstupu uzamknout odměnu (v době psaní) 6,25 BTC plus součet poplatků všech zahrnutých transakcí. Pokud blok obsahuje segwitovou transakci, musí také obsahovat OP_RETURN výstup s kořenem paralelního witness merkle stromu. Protože podpisové skripty segwit transakcí již nejsou sočástí výpočtu hashe transakce a jejich změna by se tedy neprojevila změnou merkle hashe v hlavičce bloku (a protože strukturu hlavičky nelze změnit <a href="../index.html#sfork">soft-forkem</a>) jsou hashe tranaskcí včetně witness dat zahrnuty do hlavního merkle stromu a tím i do hashe hlavičky bloku právě touto cestou. Díky tomu platí, že změna kteréhokoliv bajtu kterékoliv v bloku zahrnuté transakce se nakonec projeví změnou hashe bloku.</p>
-            <p class="just"><em>Velikost</em> v bloku zahrnutých transakcí nesmí překroči 4 miliony <a href="../index.html#wu">WU</a>. Na druhou stranu však nemusí blok obsahovat žádnou další transakci, kromě mincetvorné. To se dělo zejména v prvních měsících fungování sítě, nyní už jen zřídka. </p>
-            <h2 id="mining">Anatomie těžby</h2>
-            <p class="just">Tzv. těžba bitcoinu je způsob, kterým je vybírán takový příští náhodný zápisce do blockchainu, který bude mít ekonomickou incentivu nepokoušet se o podvodný zápis. Úkolem takového uchazeče o zápis příštího bloku do blockchainu je z dosud nepotvrzených transakcí sestavit tzv. kandidátských blok a ten upravit do takové podoby, aby byl <a href="../index.html#hash">hash</a> hlavičky tohoto bloku menší, než tzv. <a href="../index.html#target">cíl těžby</a>. Ten byl v <a href="genesis">genesis bloku</a> nastaven na ffff &times; 100<sup>1d-3</sup>. Od té doby je jednou za 2016 bloků (tzv. epocha obtížnosti) přepočítáván tak, že se spočte <em>rozdíl</em> časového razítka posledního a prvního* bloku končící epochy. Pokud je tento vypočtený <em>rozdíl</em> větší než osm týdnů, použije se dále hodnota osmi týdnů; pokud je vypočtený <em>rozdíl</em> menší než 84 hodin, použije se dále hodnota 84 hodin. Nový cíl = předcházející cíl &times; <em>rozdíl</em> / 2 týdny. Tímto postupem se postupně došlo i k cíli výše popsaného bloku (cdf6f &times; 100<sup>17-3</sup>).</p>
-            <p class="just">Jelikož výstup hashovací funkce nelze předvídat, je splnění této podmínky věcí náhody. Této náhodě lze jít naproti jedině tím, že je zahashováno a otestováno co možná nejvíce hlaviček bloku v co možná nejkratším čase. K tomu právě slouží pole nazvané nonce. S rozsahem 4 bajty dat dává bez změny zbytku hlavičky přes 4 miliardy možný hashů. Protože pole obsahuje také každou vteřinu měnící se timestamp, lze díky nonci testovat přes 4 miliardy hashů každou vteřiny. Těžaři (těžařské pooly) s výkonem přes 4 miliardy hashů za sekundy pak mohou paralelně testovat různé kandidátské bloky, lišící se v pořadí zahrnutých transakcí, čímž je zase dosaženo různých kořenů merkle stromu transakcí.</p>
-            <p class="just">Jakkoliv je vytěžení (najití takové podoby hlavičky, která zahashováním dá relativně nízké číslo – cíle těžby) výpočetně velmi náročné – v době psaní toho pojednání vypočítají všichni těžaři v síti přes 170 miliard miliard hashů za vteřinu, aby jeden z nich objevil průměrně jednou za 10 minut vyhovující hash - ověření celého bloku je ve srovnání s tím až legračně jednoduché - za tímto účelem stačí provést pouhé tisíce výpočtu hashe. Tím je zajištěna krajní nevýhodnost pokusů o podvádění, či porušení pravidel při těžbě, neboť to by bylo nesrovnatelně jednodušeji a rychleji odhaleno. </p>
-            <p class="just">Těžba tedy není žádné "řešení komplexního matematického problému", jako to tvrdí např. Dr. Sheldon Cooper v <a href="https://youtu.be/VOn9KOmy93w?t=151">TBBT S11E09</a>. Je to problém ve skrze jednoduchý – tak dlouho hashovat hlavičku sestaveného bloku s různými noncemi, měnícím se časovým razítkem a eventuelně i různými varianty stromu transakcí, až nám vyjde hash menší, než target. </p>
-            <div class="undernotes">
-              <p class="note">* <em>toto je bug. Správně by se měl použít rozdíl razítka posledního bloku končíčí epochy a posledního bloku epochy předcházející té končící.</em></p>
-            </div>            
-          </div>
-        <footer>
-            <div>
-                <div class="cc0"><a class="license" href="../LICENSE"><img src="https://github.com/creativecommons/licensebuttons/raw/master/www/p/zero/1.0/80x15.png" alt="CC0" /></a></div>
-            </div>
-            <div class="mail">
-              <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a>.<br><a href="./literature.html">Doporučená literatura</a>.</p>
-            </div>
-        </footer>
-        <script src="javascript.js"></script>
-    </body> 
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bitcoinový slovníček pro mírně pokročilé - anatomie bloku a těžby</title>
+  <link rel="shortcut icon" href="https://bitcoin.org/favicon.png?1616555510">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <header>
+    <div class="h1">
+      <h1><a href="../index.html#block"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně pokročilé</a>
+      </h1>
+    </div>
+  </header>
+  <div class="container">
+    <h2>Anatomie bloku</h2>
+    <p class="just">K popisu anatomie bitcoinového bloku použijeme blok obsahující transakci z dílu <a
+        href="./transaction.html">anatomie transkace</a> s pořadovým číslem <a href="./stuff/676274.txt">676274</a> a
+      hashem 00000000000000000000706c7f21388b285414c4829ee3981398e0cac82e43e3. Následuje hexadecimální reprezentace
+      serializace hlavičky bloku:</p>
+    <p class="raw"><span class="ver" onmouseover="biggerbox('ver')" onmouseout="backbox('ver')">00008020</span><span
+        class="prevbl" onmouseover="biggerbox('prevbl')"
+        onmouseout="backbox('prevbl')">94dbc3cc1db91c6a106f6fb55b6e99a0b80eccc84b6d0b000000000000000000</span><span
+        class="merkle" onmouseover="biggerbox('merkle')"
+        onmouseout="backbox('merkle')">6b63e7d1a32149535d3f429ff5f9e7d9b1b19326876faff54d19610d7923ae7d</span><span
+        class="time" onmouseover="biggerbox('time')" onmouseout="backbox('time')">1ebc5c60</span><span class="bits"
+        onmouseover="biggerbox('bits')" onmouseout="backbox('bits')">6fdf0c17</span><span class="nonce"
+        onmouseover="biggerbox('nonce')" onmouseout="backbox('nonce')">4bf00ded</span></p>
+    <div class="fig">
+      <table>
+        <thead>
+          <tr>
+            <th>barva</th>
+            <th>hodnota</th>
+            <th>význam</th>
+            <th>formát</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="color">
+              <div id="ver" class="ver"></div>
+            </td>
+            <td>20800000</td>
+            <td>verze bloku</td>
+            <td>4 bajty LE</td>
+          </tr>
+          <tr>
+            <td class="color">
+              <div id="prevbl" class="prevbl"></div>
+            </td>
+            <td>00...3db94</td>
+            <td>hash předchozího bloku</td>
+            <td>32 bajtů LE</td>
+          </tr>
+          <tr>
+            <td class="color">
+              <div id="merkle" class="merkle"></div>
+            </td>
+            <td>d7ae2...6b</td>
+            <td>merkle root; koreřnový hash merkle stromu transakcí</td>
+            <td>32 bajtů LE</td>
+          </tr>
+          <tr>
+            <td class="color">
+              <div id="time" class="time"></div>
+            </td>
+            <td>605cbc1e</td>
+            <td>časové razítko (timestamp)</td>
+            <td>4 bajty LE</td>
+          </tr>
+          <tr>
+            <td class="color">
+              <div id="bits" class="bits"></div>
+            </td>
+            <td>170cdf6f</td>
+            <td>bits; stanovuje cíl těžby</td>
+            <td>4 bajty LE</td>
+          </tr>
+          <tr>
+            <td class="color">
+              <div id="nonce" class="nonce"></div>
+            </td>
+            <td>ed0df04b</td>
+            <td>nonce; změnou se dosahuje změny hashe, jinak nemá význam</td>
+            <td>4 bajty LE</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="just">Z verze, konkrétně prvních tří bitů z leva (001), můžeme vyčíst signalizaci podle <a
+        href="https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki">BIP 9</a>. Přítomnost hashe předchozího
+      bloku je jasná, blok je tím - podobně jako oka řetezu - pevně spojen s předchozím blokem. Kořenový hash markle
+      stromu transakcí zaručuje, že se změna byť jediného bajtu v jediné do bloku zahrnuté tx projeví v konečném
+      důsledku změnou hashe hlavičky tohoto bloku. Časové razítko říká, že k vytěžení bloku došlo 1616690206 sekund od
+      1/1/1970, tedy 25/3/2021 v 16:36:46 UTC. Tento údaj ovšem nemusí být zcela přesný. Aby byl block přijat sítí, musí
+      být datové razítko větší, než medián časových razítek posledních 11 bloků a menší než medián aktuálních časů uzlů,
+      ke kterým je uzel připojen. Z pole bits si vypočteme target - první bajt (z leva) je exponent, zbytek koeficient.
+      Zůstaneme-li v hexa, bude target cdf6f &times; 100<sup>17-3</sup>. <a
+        href="https://www.online-python.com/cVBjGF2Y5Z">Porovnáme</a>, jeli hash našeho bloku menší než vypočtený
+      target. Poslední pole obsahuje nonci, které se budeme věnovat později. </p>
+    <p class="just">Za hlavičkou následuje LE varint s počtem transakcí v bloku a pak už serializace všech těchto
+      transakcí. První z nich je ovšem speciální, tzv. mincetvorá (coinbase). Ta se oproti zbytku liší tím, že nemá
+      žádný skutečný vstup, resp. technicky vzato má mincetvorná transakce právě jeden vstup - hash předchozí transakce
+      je 32 bajtů nul, index výstupu je ffffffff, podpisový skript musí být v rozmezí 2 a 100 bajtů, a musí být sám o
+      sobě pravdivý. Právě sem umístil <a href="../index.html#nakamoto">Satoshni</a> v <a
+        href="../index.html#genesis">genesis bloku</a> legendární titulek Timesů, zatímco ve scriptSigu mincetvorné
+      transakci našeho bloku si můžeme přečíst zprávu &bdquo;Mined by AntPool713&ldquo;. Od BIPu 34 se do podpisového
+      skriptu mincetvorné transakce dává na první místo element s číslem bloku. Tím je zajištěno, aby bylo možno odlišit
+      jinak stále stejné mincetvorné transakce jejich unikátním hashem. Navzdory tomu, že neutrácí žádné <a
+        href="../index.html#utxo">UTXO</a>, může si těžař na výstupu uzamknout odměnu (v době psaní) 6,25 BTC plus
+      součet poplatků všech zahrnutých transakcí. Pokud blok obsahuje segwitovou transakci, musí také obsahovat
+      OP_RETURN výstup s kořenem paralelního witness merkle stromu. Protože podpisové skripty segwit transakcí již
+      nejsou sočástí výpočtu hashe transakce a jejich změna by se tedy neprojevila změnou merkle hashe v hlavičce bloku
+      (a protože strukturu hlavičky nelze změnit <a href="../index.html#sfork">soft-forkem</a>) jsou hashe tranaskcí
+      včetně witness dat zahrnuty do hlavního merkle stromu a tím i do hashe hlavičky bloku právě touto cestou. Díky
+      tomu platí, že změna kteréhokoliv bajtu kterékoliv v bloku zahrnuté transakce se nakonec projeví změnou hashe
+      bloku.</p>
+    <p class="just"><em>Velikost</em> v bloku zahrnutých transakcí nesmí překroči 4 miliony <a
+        href="../index.html#wu">WU</a>. Na druhou stranu však nemusí blok obsahovat žádnou další transakci, kromě
+      mincetvorné. To se dělo zejména v prvních měsících fungování sítě, nyní už jen zřídka. </p>
+    <h2 id="mining">Anatomie těžby</h2>
+    <p class="just">Tzv. těžba bitcoinu je způsob, kterým je vybírán takový příští náhodný zápisce do blockchainu, který
+      bude mít ekonomickou incentivu nepokoušet se o podvodný zápis. Úkolem takového uchazeče o zápis příštího bloku do
+      blockchainu je z dosud nepotvrzených transakcí sestavit tzv. kandidátských blok a ten upravit do takové podoby,
+      aby byl <a href="../index.html#hash">hash</a> hlavičky tohoto bloku menší, než tzv. <a
+        href="../index.html#target">cíl těžby</a>. Ten byl v <a href="genesis">genesis bloku</a> nastaven na ffff
+      &times; 100<sup>1d-3</sup>. Od té doby je jednou za 2016 bloků (tzv. epocha obtížnosti) přepočítáván tak, že se
+      spočte <em>rozdíl</em> časového razítka posledního a prvního* bloku končící epochy. Pokud je tento vypočtený
+      <em>rozdíl</em> větší než osm týdnů, použije se dále hodnota osmi týdnů; pokud je vypočtený <em>rozdíl</em> menší
+      než 84 hodin, použije se dále hodnota 84 hodin. Nový cíl = předcházející cíl &times; <em>rozdíl</em> / 2 týdny.
+      Tímto postupem se postupně došlo i k cíli výše popsaného bloku (cdf6f &times; 100<sup>17-3</sup>).</p>
+    <p class="just">Jelikož výstup hashovací funkce nelze předvídat, je splnění této podmínky věcí náhody. Této náhodě
+      lze jít naproti jedině tím, že je zahashováno a otestováno co možná nejvíce hlaviček bloku v co možná nejkratším
+      čase. K tomu právě slouží pole nazvané nonce. S rozsahem 4 bajty dat dává bez změny zbytku hlavičky přes 4
+      miliardy možný hashů. Protože pole obsahuje také každou vteřinu měnící se timestamp, lze díky nonci testovat přes
+      4 miliardy hashů každou vteřiny. Těžaři (těžařské pooly) s výkonem přes 4 miliardy hashů za sekundy pak mohou
+      paralelně testovat různé kandidátské bloky, lišící se v pořadí zahrnutých transakcí, čímž je zase dosaženo různých
+      kořenů merkle stromu transakcí.</p>
+    <p class="just">Jakkoliv je vytěžení (najití takové podoby hlavičky, která zahashováním dá relativně nízké číslo –
+      cíle těžby) výpočetně velmi náročné – v době psaní toho pojednání vypočítají všichni těžaři v síti přes 170
+      miliard miliard hashů za vteřinu, aby jeden z nich objevil průměrně jednou za 10 minut vyhovující hash - ověření
+      celého bloku je ve srovnání s tím až legračně jednoduché - za tímto účelem stačí provést pouhé tisíce výpočtu
+      hashe. Tím je zajištěna krajní nevýhodnost pokusů o podvádění, či porušení pravidel při těžbě, neboť to by bylo
+      nesrovnatelně jednodušeji a rychleji odhaleno. </p>
+    <p class="just">Těžba tedy není žádné "řešení komplexního matematického problému", jako to tvrdí např. Dr. Sheldon
+      Cooper v <a href="https://youtu.be/VOn9KOmy93w?t=151">TBBT S11E09</a>. Je to problém ve skrze jednoduchý – tak
+      dlouho hashovat hlavičku sestaveného bloku s různými noncemi, měnícím se časovým razítkem a eventuelně i různými
+      varianty stromu transakcí, až nám vyjde hash menší, než target. </p>
+    <div class="undernotes">
+      <p class="note">* <em>toto je bug. Správně by se měl použít rozdíl razítka posledního bloku končíčí epochy a
+          posledního bloku epochy předcházející té končící.</em></p>
+    </div>
+  </div>
+  <footer>
+    <div>
+      <div class="cc0"><a class="license" href="../LICENSE"><img
+            src="https://github.com/creativecommons/licensebuttons/raw/master/www/p/zero/1.0/80x15.png" alt="CC0" /></a>
+      </div>
+    </div>
+    <div class="mail">
+      <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a>.<br><a href="./literature.html">Doporučená
+          literatura</a>.</p>
+    </div>
+  </footer>
+  <script src="javascript.js"></script>
+</body>
+
 </html>

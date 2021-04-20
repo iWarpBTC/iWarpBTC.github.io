@@ -132,7 +132,7 @@ figcaption {
   caption-side: bottom ; 
   background-color: #f2f2f2;
   margin-top: -5px;
-  padding: 5px 0 5px 0;
+  padding: 5px;
   border: solid 1px #8D8D8D;
   border-top: none;
 }
@@ -196,4 +196,10 @@ a.lit {
 
 a.lit:hover {
   text-decoration: underline;
+}
+
+ul.article {
+  margin-left: 20px;
+  text-align: left;
+  font-size: small;
 }
