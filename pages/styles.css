@@ -99,8 +99,8 @@ h1 > a {
   text-decoration: none;
 }
 
-div.h2{
-  width: 100%;
+h2 {
+  margin-top: 40px;
 }
 
 div.fig
