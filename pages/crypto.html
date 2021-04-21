@@ -11,7 +11,7 @@
 <body>
   <header>
     <div class="h1">
-      <h1><a href="../index.html#crypto"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně pokročilé</a>
+      <h1><a href="../index.html#asym-crypto"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně pokročilé</a>
       </h1>
     </div>
   </header>
@@ -23,28 +23,30 @@
       poskytnutím veřejného klíče a podpisu tento výstup odemknout a utratit v další transakci. To je umožněno díky tzv.
       asymetrické kryptografii, kterou v případě Bitcoinu představuje kryptografie eliptických křivek. </p>
     <p class="just">Asymetrická kryptografie se od té běžné – symetrické – liší tím, že na místo jednoho a toho samého
-      klíče (použitého pro zašifrování i rozšifrování) požívá pár klíčů – veřejný a soukromý. Pokud si příjemce zprávy
+      klíče (použitého pro zašifrování i dešifrování) požívá pár klíčů – veřejný a soukromý. Pokud si příjemce zprávy
       vygeneruje takový pár klíčů a ten veřejný publikuje, kdokoliv může tímto veřejným klíčem zašifrovat zprávu, kterou
-      bude moci rozšifrovat jen a pouze
+      bude moci dešifrovat jen a pouze
       příjemce pomocí svého soukromého klíče. Asymetrická kryptografie však umožnuje, kromě šifrování za účelem skrytí
       tajné zprávy, také šifrování za účelem podpisu zprávy. Pokud původce zprávy tuto zprávu (v praxi stačí pouze její
-      hash) zašifřuje svým soukromým klíčem, každý může jeho publikovaným veřejným klíčem zprávu rozšifrovat a tím
-      ověřit, že původce zprávy je právě držitel soukromého klíče. Tomuto se říká kryptografický podpis a v Bitcoinu je
+      hash) zašifřuje svým soukromým klíčem, každý může jeho publikovaným veřejným klíčem zprávu dešifrovat a tím
+      ověřit, že původce zprávy je právě držitel soukromého klíče náležícímu k publikovanému veřejnému. Tomuto se říká
+      kryptografický podpis a v Bitcoinu je
       jím prokozováno, že výstup je utrácen právě držitelem soukromého klíče přislušícího k veřejnému klíči, ve prospěch
       jehož hashe byl výstup uzamčen. (Že je výstup uzamčen ve prospěch nikoliv přímo veřejného klíče, nýbrž jeho hashe,
       je jen dalším stupňem ochrany.) </p>
 
-    <p class="just">Asymetrická kryptografie eliptických křivech je založena na tzv. problému diskrétního logaritmu:
+    <p class="just">Asymetrická kryptografie eliptických křivek je založena na tzv. problému diskrétního logaritmu:
     </p>
     <p class="math">Nechť <em>G &equals; &#9001;a&#9002;</em> je cyklická grupa řádu <em>n</em> s generátorem grupy
       <em>a</em>. Každý prvek <em>b &isin; G</em> lze zapsat jako b &equals; a<sup>x</sup> pro jediné x &isin;
-      <img src="../img/zet.svg" alt="Z"><sub>n</sub>. Toto <em>x</em> se nazývá <strong>diskrétní logaritmus</strong> o základu <em>a</em> z prvku
-      <em>b</em> v grupě <em>G</em>.
+      <img src="../img/zet.svg" alt="Z"><sub>n</sub>. Toto <em>x</em> se nazývá <strong>diskrétní logaritmus</strong> o
+      základu <em>a</em> z prvku <em>b</em> v grupě <em>G</em>.
     </p>
     <p class="just">Přičemž je užita eliptický křivka popsaná standardem secp256k1:</p>
     <ul class="article">
-      <li>Křivka nad konečným tělesem mohutnosti p = 0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f (tj. také 2<sup>256</sup> - 2<sup>32</sup> - 977)</li>
-      <li>Funkční předpis křivky: y<sup>2</sup> = x<sup>3</sup> + 7</li>
+      <li>Křivka nad konečným tělesem mohutnosti p = 0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f
+        (tj. také 2<sup>256</sup> - 2<sup>32</sup> - 977)</li>
+      <li>Rovnice křivky: y<sup>2</sup> = x<sup>3</sup> + 7</li>
       <li>Generátor cyklické grupy bod A má souřadnice:</li>
       <ul>
         <li>A<sub>x</sub> &equals; 0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798</li>
@@ -52,6 +54,17 @@
       </ul>
       <li>Řád grupy n &equals; 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141</li>
     </ul>
+    <p class="just">Máme tedy eliptickou křivku nad konečným tělesem a zvolený bod na křivce, kterým si můžeme
+      vygenerovat cyklickou grupu s operací sčítání bodů na křivce. Když pak pro opakované sčítání bodu se sebou samým
+      zavedeme operaci násobení skalárem, máme vše, co potřebuje pro využití problému diskrétního logaritmu. Z vřídla
+      chaosu si vytáhneme přirozené číslo v intervalu &#9001;1, n). To bude náš soukromý klíč. Provedeme násobení
+      skalárem – priváním klíčem vynásobíme generátor grupy. Výsledkem bude bod na křivce – nás veřejný klíč. Přestože
+      se operace naší grupy jmenuje součet bodů a opakovanému sčítání bodu sebou samým říkáme násobení skalárem, můžeme
+      si tyto oprace představit jako násobení a opakované násobení jako umocňování. Pak náš postup přesně zapadne do
+      výše
+      uvedené definice diskrétního logaritmu – prvkem <em>b</em> je veřejný klíč, zatímco <em>x</em> je klíč soukromý.
+      Neexistuje polynomiální algoritmus, který by ze znalosti veřejného klíče a
+      generátoru grupy vypočítal soukromý klíč. Můžeme jít podepisovat.</p>
     <div class="fig">
       <figure>
         <img src="../img/secp256k1.png" alt="secp256k1">
@@ -59,7 +72,61 @@
       </figure>
     </div>
     <h2>Anatomie podpisu</h2>
+    <p class="just">Současným podpisovým schámatem Bitcoinu je ECDSA. Připravíme si náš soukromý klíč (a označíme ho
+      jako číslo <em>d</em>), náhodného číslo k
+      z intervalu &#9001;1, n) (číslo k musí být opravdu náhodné a různé pro každý podpis, jinak hrozí vyzrazení
+      soukromého klíče) a nějakou zprávu, resp. její hash.</p>
+    <p class="just">V Bitcoinu prokazujeme podpisem to, že jsme držiteli soukromého klíče náležícího k veřejnému klíči,
+      ve prospěch jehož hashe jsou uzamknuty bitcoiny na výstupu předcházející transakce. Podepisovanou zprávou tedy
+      bude dvojitý SHA256 hash jakéhosi předobrazu naší výsledné transakce. Protože je výroba tohoto předobrazu poměrně
+      komplexní
+      záležítostí, bude této problematice nejspíš věnován další díl anatomie. Zatím si vystačíme s tím, že hash naší
+      zprávy
+      bude číslo <em>e</em>.</p>
+    <p class="just">Výpočet podpisu je pak již jednoduchý: </p>
+    <ul class="article">
+      <li>Provedeme operaci součinu skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, x -ová souřadnice
+        výsledného bodu modulo <em>n</em> bude číslem <em>r</em>.</li>
+      <li><em>s &equals; k<sup>-1</sup> &times; (e &plus; r &times; d)</em> modulo <em>n</em>.</li>
+    </ul>
+    <p class="just">Dvojice čísel <em>r, s</em> je naším podpisem zprávy <em>e</em>. Zakódováním čísel <em>r, s</em> do
+      formátu DER (Distinguished Encoding Rules) získáme podpisový element použitelný v <a
+        href="./transaction.html#script">sigScriptu</a>.</p>
+    <p class="just">K ověření si musíme opět sestavit předobraz podepisované transkace a vypočíst jeho dvojnásobný
+      SHA256 hash, tj. číslo <em>e</em>, dále nám již stačí z scriptSigu získaný podpis (dvojice r, s) a veřejný klíč.
+      Ten je v scriptSigu zakódován ve formátu SEC (Standards of Efficient Cryptography) zpravidla pouze jako x -ová
+      souřadnice a příznak sudosti – v takovém případě dopočítáme y -ovou souřadnici.</p>
+    <p class="just">Postup ověření je pak: </p>
+    <ul class="article">
+      <li><em>u &equals; e &times; s<sup>-1</sup></em> modulo <em>n</em>.</li>
+      <li><em>v &equals; r &times; s<sup>-1</sup></em> modulo <em>n</em>.</li>
+      <li>Provedeme operaci součin skalárem čísla <em>u</em> a generátoru grupy; poté součin skalárem čísla <em>v</em> a
+        veřejného klíče. Výsledné dva body sečteme a označíme jako bod <em>X</em>.</li>
+    </ul>
+    <p class="just">Pokud se x -ová souřadnice vypočteného bodu <em>X</em> rovná číslu <em>r</em>, pak je dvojice <em>r,
+        s</em> platným podpisem zprávy <em>e</em>.</p>
     <h2>Anatomie Schnorrova podpisu</h2>
+    <p class="just">Schnorrův podpis by v budoucnu mohl nahradit ECDSA schéma. Oproti němu má několik výhod, z nichž ta
+      klíčová je možnost kombinovat více podpisů té samé zprávy do podpisu jednoho.</p>
+    <p class="just">Při podepisování začneme stejně jako s ECDSA, připravíme si soukromý klíč <em>d</em>, náhodné číslo
+      <em>k</em> a hash předobrazu transakce <em>e</em>. Oproti ECDSA budeme ovšem navíc potřebovat veřejný klíč: </p>
+    <ul class="article">
+      <li>Provedeme operaci součinu skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, výsledkem je bod
+        <em>R</em>.</li>
+      <li>Zahashujeme zřetězení reprezentace bodu <em>R</em>, veřejného klíče a hashe zprávy <em>e</em>, tento hash
+        označíme <em>r</em>.</li>
+      <li><em>s &equals; k &plus; r &times; d</em> modulo <em>n</em>.</li>
+    </ul>
+    <p class="just">Podpisem je tedy nikoliv dvojice čísel, ale dvojice bod <em>R</em> a číslo <em>s</em>. Tento podpis
+      pak může být postupem: </p>
+    <ul class="article">
+      <li>Zahashujeme zřetězení reprezentace bodu <em>R</em>, veřejného klíče a hashe zprávy <em>e</em>, tento hash
+        označíme <em>r</em>.</li>
+      <li>Provedeme operaci součinu skalárem <em>s</em> a generátoru grupy, výsledný bod označíme <em>X</em>.</li>
+      <li>Provedeme operaci součinu skalárem <em>r</em> a veřejného klíče, k výslednému bodu přičteme bod <em>R</em> a
+        tento součet označíme bodem <em>Y</em>.</li>
+    </ul>
+    <p class="just">Podpis je platný, pokud se body X a Y shodují.</p>
   </div>
   <footer>
     <div>
