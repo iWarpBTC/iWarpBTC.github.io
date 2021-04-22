@@ -93,18 +93,21 @@
     </div>
     <p class="just">Z verze, konkrétně prvních tří bitů z leva (001), můžeme vyčíst signalizaci podle <a
         href="https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki">BIP 9</a>. Přítomnost hashe předchozího
-      bloku je jasná, blok je tím &ndash; podobně jako oka řetezu &ndash; pevně spojen s předchozím blokem. Kořenový hash markle
+      bloku je jasná, blok je tím &ndash; podobně jako oka řetezu &ndash; pevně spojen s předchozím blokem. Kořenový
+      hash markle
       stromu transakcí zaručuje, že se změna byť jediného bajtu v jediné do bloku zahrnuté tx projeví v konečném
       důsledku změnou hashe hlavičky tohoto bloku. Časové razítko říká, že k vytěžení bloku došlo 1616690206 sekund od
       1/1/1970, tedy 25/3/2021 v 16:36:46 UTC. Tento údaj ovšem nemusí být zcela přesný. Aby byl block přijat sítí, musí
       být datové razítko větší, než medián časových razítek posledních 11 bloků a menší než medián aktuálních časů uzlů,
-      ke kterým je uzel připojen. Z pole bits si vypočteme target &ndash; první bajt (z leva) je exponent, zbytek koeficient.
+      ke kterým je uzel připojen. Z pole bits si vypočteme target &ndash; první bajt (z leva) je exponent, zbytek
+      koeficient.
       Zůstaneme-li v hexa, bude target cdf6f &times; 100<sup>17-3</sup>. <a
         href="https://www.online-python.com/cVBjGF2Y5Z">Porovnáme</a>, jeli hash našeho bloku menší než vypočtený
       target. Poslední pole obsahuje nonci, které se budeme věnovat později. </p>
     <p class="just">Za hlavičkou následuje LE varint s počtem transakcí v bloku a pak už serializace všech těchto
       transakcí. První z nich je ovšem speciální, tzv. mincetvorá (coinbase). Ta se oproti zbytku liší tím, že nemá
-      žádný skutečný vstup, resp. technicky vzato má mincetvorná transakce právě jeden vstup &ndash; hash předchozí transakce
+      žádný skutečný vstup, resp. technicky vzato má mincetvorná transakce právě jeden vstup &ndash; hash předchozí
+      transakce
       je 32 bajtů nul, index výstupu je ffffffff, podpisový skript musí být v rozmezí 2 a 100 bajtů, a musí být sám o
       sobě pravdivý. Právě sem umístil <a href="../index.html#nakamoto">Satoshni</a> v <a
         href="../index.html#genesis">genesis bloku</a> legendární titulek Timesů, zatímco ve scriptSigu mincetvorné
@@ -127,12 +130,15 @@
       bude mít ekonomickou incentivu nepokoušet se o podvodný zápis. Úkolem takového uchazeče o zápis příštího bloku do
       blockchainu je z dosud nepotvrzených transakcí sestavit tzv. kandidátských blok a ten upravit do takové podoby,
       aby byl <a href="../index.html#hash">hash</a> hlavičky tohoto bloku menší, než tzv. <a
-        href="../index.html#target">cíl těžby</a>. Ten byl v <a href="../index.html#genesis">genesis bloku</a> nastaven na ffff
+        href="../index.html#target">cíl těžby</a>. Ten byl v <a href="../index.html#genesis">genesis bloku</a> nastaven
+      na ffff
       &times; 100<sup>1d-3</sup>. Od té doby je jednou za 2016 bloků (tzv. epocha obtížnosti) přepočítáván tak, že se
       spočte <em>rozdíl</em> časového razítka posledního a prvního* bloku končící epochy. Pokud je tento vypočtený
       <em>rozdíl</em> větší než osm týdnů, použije se dále hodnota osmi týdnů; pokud je vypočtený <em>rozdíl</em> menší
-      než 84 hodin, použije se dále hodnota 84 hodin. Nový cíl &equals; předcházející cíl &times; <em>rozdíl</em> &divide; 2 týdny.
-      Tímto postupem se postupně došlo i k cíli výše popsaného bloku (cdf6f &times; 100<sup>17-3</sup>).</p>
+      než 84 hodin, použije se dále hodnota 84 hodin. Nový cíl &equals; předcházející cíl &times; <em>rozdíl</em>
+      &divide; 2 týdny.
+      Tímto postupem se postupně došlo i k cíli výše popsaného bloku (cdf6f &times; 100<sup>17-3</sup>).
+    </p>
     <p class="just">Jelikož výstup hashovací funkce nelze předvídat, je splnění této podmínky věcí náhody. Této náhodě
       lze jít naproti jedině tím, že je zahashováno a otestováno co možná nejvíce hlaviček bloku v co možná nejkratším
       čase. K tomu právě slouží pole nazvané nonce. S rozsahem 4 bajty dat dává bez změny zbytku hlavičky přes 4
@@ -140,14 +146,19 @@
       4 miliardy hashů každou vteřiny. Těžaři (těžařské pooly) s výkonem přes 4 miliardy hashů za sekundy pak mohou
       paralelně testovat různé kandidátské bloky, lišící se v pořadí zahrnutých transakcí, čímž je zase dosaženo různých
       kořenů merkle stromu transakcí.</p>
-    <p class="just">Jakkoliv je vytěžení (najití takové podoby hlavičky, která zahashováním dá relativně nízké číslo &ndash;
+    <p class="just">Jakkoliv je vytěžení (najití takové podoby hlavičky, která zahashováním dá relativně nízké číslo
+      &ndash;
       cíle těžby) výpočetně velmi náročné &ndash; v době psaní toho pojednání vypočítají všichni těžaři v síti přes 170
-      miliard miliard hashů za vteřinu, aby jeden z nich objevil průměrně jednou za 10 minut vyhovující hash &ndash; ověření
-      celého bloku je ve srovnání s tím až legračně jednoduché &ndash; za tímto účelem stačí provést pouhé tisíce výpočtu
+      miliard miliard hashů za vteřinu, aby jeden z nich objevil průměrně jednou za 10 minut vyhovující hash &ndash;
+      ověření
+      celého bloku je ve srovnání s tím až legračně jednoduché &ndash; za tímto účelem stačí provést pouhé tisíce
+      výpočtu
       hashe. Tím je zajištěna krajní nevýhodnost pokusů o podvádění, či porušení pravidel při těžbě, neboť to by bylo
       nesrovnatelně jednodušeji a rychleji odhaleno. </p>
-    <p class="just">Těžba tedy není žádné &bdquo;řešení komplexního matematického problému&ldquo;, jako to tvrdí např. Dr. Sheldon
-      Cooper v <a href="https://youtu.be/VOn9KOmy93w?t=151">TBBT S11E09</a>. Je to problém ve skrze jednoduchý &ndash; tak
+    <p class="just">Těžba tedy není žádné &bdquo;řešení komplexního matematického problému&ldquo;, jako to tvrdí např.
+      Dr. Sheldon
+      Cooper v <a href="https://youtu.be/VOn9KOmy93w?t=151">TBBT S11E09</a>. Je to problém ve skrze jednoduchý &ndash;
+      tak
       dlouho hashovat hlavičku sestaveného bloku s různými noncemi, měnícím se časovým razítkem a eventuelně i různými
       varianty stromu transakcí, až nám vyjde hash menší, než target. </p>
     <div class="undernotes">
