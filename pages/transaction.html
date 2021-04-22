@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Bitcoinový slovníček pro mírně pokročilé - anatomie transakce a skriptu</title>
+  <title>Bitcoinový slovníček pro mírně pokročilé &ndash; anatomie transakce a skriptu</title>
   <link rel="shortcut icon" href="https://bitcoin.org/favicon.png?1616555510">
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -19,7 +19,7 @@
     <h2>Anatomie transakce</h2>
     <p class="just">K popisu anatomie bitcoinové transakce byla náhodně vybrána segwitová transakce
       40e285bd2b757bf455f9e3ce92aa8e51910f88a1ca9dd497465d346310e7df11 z bloku č. 676274. Jedná se o typickou transakci
-      s jedním vstupem a dvěma výstupy – to znamená, že transakce utrácí (spotřebováva) jeden <a
+      s jedním vstupem a dvěma výstupy &ndash; to znamená, že transakce utrácí (spotřebováva) jeden <a
         href="../index.html#utxo">UTXO</a> a dva nové UTXO vytváří. Následuje hexadecimální reprezentace serializace
       transakce:</p>
     <p class="raw"><span class="ver" onmouseover="biggerbox('ver')" onmouseout="backbox('ver')">01000000</span><span
@@ -65,7 +65,7 @@
               <div id="segwitmark" class="segwitmark"></div>
             </td>
             <td>0</td>
-            <td>segwit marker; zavedený segwitem, zatím nevyužitý</td>
+            <td>segwit marker&semi; zavedený segwitem, zatím nevyužitý</td>
             <td>bajt</td>
           </tr>
           <tr>
@@ -73,7 +73,7 @@
               <div id="segwitflag" class="segwitflag"></div>
             </td>
             <td>1</td>
-            <td>segwit flag; zavedený segwitem, zatím pevně 1</td>
+            <td>segwit flag&semi; zavedený segwitem, zatím pevně 1</td>
             <td>bajt</td>
           </tr>
           <tr>
@@ -88,7 +88,7 @@
             <td class="color">
               <div id="prevtx" class="prevtx"></div>
             </td>
-            <td>61149...17</td>
+            <td>61149&hellip;17</td>
             <td>txid (hash) předchozí tx</td>
             <td>32 bajtů LE</td>
           </tr>
@@ -105,7 +105,7 @@
               <div id="sig" class="sig"></div>
             </td>
             <td>0</td>
-            <td>scriptSig; v předsegwitových tx je na tomto místě podpisový skript</td>
+            <td>scriptSig&semi; v předsegwitových tx je na tomto místě podpisový skript</td>
             <td>script</td>
           </tr>
           <tr>
@@ -113,7 +113,7 @@
               <div id="seq" class="seq"></div>
             </td>
             <td>ffffffff</td>
-            <td>sequence; zamýšleno pro časté platby, nyní slouží převážně k RBF</td>
+            <td>sequence&semi; zamýšleno pro časté platby, nyní slouží převážně k RBF</td>
             <td>4 bajty LE</td>
           </tr>
           <tr>
@@ -161,7 +161,7 @@
               <div id="witness" class="witness"></div>
             </td>
             <td>script</td>
-            <td>witness; segregovaný podpisový skript (scriptSig)</td>
+            <td>witness&semi; segregovaný podpisový skript (scriptSig)</td>
             <td>script</td>
           </tr>
           <tr>
@@ -169,20 +169,20 @@
               <div id="locktime" class="locktime"></div>
             </td>
             <td>0</td>
-            <td>locktime; může udávat č. bloku, případně čas, po kterém terpve může být tx vytěžena</td>
+            <td>locktime&semi; může udávat č. bloku, případně čas, po kterém terpve může být tx vytěžena</td>
             <td>4 bajty LE</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="just">Serializace této tx čítá 222 bajtů z čehož je 109 bajtů "segwitových" (marger, flag, witness). Pro
-      výpočet <a href="../index.html#wu">váhy</a> tx vynásobíme počet bajtů "nesegwitových" dat čtyřmi a výsledek
-      přičteme k počtu segwitových bajtů (113 &times; 4 = 452; 452 + 109 = 561 WU). Když poté vydělíme WU čtyřmi,
-      dostaneme tzv. <a href="../index.html#vsize">virtuální velikost</a> (561 / 4 = 140,25 vB).</p>
+    <p class="just">Serializace této tx čítá 222 bajtů z čehož je 109 bajtů &bdquo;segwitových&ldquo; (marger, flag, witness). Pro
+      výpočet <a href="../index.html#wu">váhy</a> tx vynásobíme počet bajtů &bdquo;nesegwitových&ldquo; dat čtyřmi a výsledek
+      přičteme k počtu segwitových bajtů (113 &times; 4 &equals; 452&semi; 452 &plus; 109 &equals; 561 WU). Když poté vydělíme WU čtyřmi,
+      dostaneme tzv. <a href="../index.html#vsize">virtuální velikost</a> (561 &divide; 4 &equals; 140,25 vB).</p>
     <p class="just">Odečtením součtu částek výstupů od součtu částek vstupů (hodnoty částek vstupů nejsou součástí dat
-      této tx; je potřeba se podívat do předchozích) zjistíme absolutní hodnotu <a href="../index.html#fee">poplatku</a>
-      (9566387 - (9545393 + 20000) = 994). Relatvní hodnoty poplatků pak zjistíme už prostým dělením velikostí resp.
-      virtuální velikostí (994/222 = 4,5 satů/bajt; 994/140 = 7,1 satů/vBajt). </p>
+      této tx&semi; je potřeba se podívat do předchozích) zjistíme absolutní hodnotu <a href="../index.html#fee">poplatku</a>
+      (9566387 &minus; (9545393 &plus; 20000) &equals; 994). Relatvní hodnoty poplatků pak zjistíme už prostým dělením velikostí resp.
+      virtuální velikostí (994 &divide; 222 &equals; 4,5 satů/bajt&semi; 994 &divide; 140 &equals; 7,1 satů/vBajt). </p>
     <div class="fig">
       <figure>
         <img src="../img/txs.svg" alt="digram transakcí">
@@ -192,18 +192,18 @@
     <h2 id="script">Anatomie skriptu</h2>
     <p class="just">Prostřednictvím skriptovacího jazyka Bitcoinu, který je záměrně co možná nejjednoduší (a turingovsky
       neúplný) stanovujeme a následně i vyhodnocuje podmínky utracení každého UTXO. V našem případě útraty druhého
-      výstupu (počítáno od nuly je to výstup číslo jedna) transakce 61149...17 musela transakce dodat takový podpisový
+      výstupu (počítáno od nuly je to výstup číslo jedna) transakce 61149&hellip;17 musela transakce dodat takový podpisový
       skript (scriptSig), který bude vyhodnocen v kombinaci s uzamykacím skriptem (scriptPubKey) jako pravdivý.
       Skriptovací jazyk Bitcoinu pracuje se zásobníkem a samotný skript je složen z operátoru a elementů (dat). </p>
     <p class="just">Než zjistíme, jakým způsobem došlo k vyhodnocení skriptů naší rozpitvané segwitové (je utráceno
       segwitové UTXO) transakce, podíváme se na to, jak tuto transakci vidí předsegwitové uzly. Takový starý uzel vezme
-      scriptPubKey odkazovaného výstupu předešle tx (61149...17:1):</p>
+      scriptPubKey odkazovaného výstupu předešle tx (61149&hellip;17:1):</p>
     <p class="script">OP_0 OP_PUSHBYTES_20 413879391419d23453c720a1058e959ae663c3d6</p>
     <p class="just">Před tento uzamykací skript (scriptPubKey) předešlé tx je vložen podpisový skript (scriptSig)
       aktuální tx. ScriptSig naší transakce je ale prázdný! No to nevadí, uzel začne s tím to co má. OP_0 vloží na vrch
       zasobníku nulu, OP_PUSHBYTES_20 vloží na vrch zásobníku následujících 32 bajtů skriptu. Uzel vykonal celý skript
       na vrchu zásobníku má nenulovou hodnotu (hash veřejného klíče). Skript je pravdivý, transakce je platná. I bez
-      podpisu je platná! <img src="../img/lol.png" alt="LOL"> Není to chyba, je to schválně – předsegwitové uzly neví,
+      podpisu je platná! <img src="../img/lol.png" alt="LOL"> Není to chyba, je to schválně &ndash; předsegwitové uzly neví,
       že podpisový skript je nyní v poli witness, proto je zajištěno, že se těmto uzlům bude kombinace segwitového
       uzamykacího skriptu a prázdného podpisového skriptu segwit transakce jevit jako platná. Taky se tomu říká zpětná
       kompatibilita.</p>
@@ -214,7 +214,7 @@
       OP_CHECKSIG</p>
     <p class="just">Konečně máme skript, který nebude platný s i prázdným podpisovým skriptem! Toto je již mimochodem
       struktura shodná s předsegwitovým p2pkh. Zkušebně si vyhodnotíme tento skript bez podpisu: OP_DUP duplikuje
-      element na vrchu zásobníku. Zásobník je ale prázdný – skript selhal. Nyní už to bez podpisu nepůjde.</p>
+      element na vrchu zásobníku. Zásobník je ale prázdný &ndash; skript selhal. Nyní už to bez podpisu nepůjde.</p>
     <p class="just">Segwitový uzel ale ví, že v této trasnakci musí podpisový skript hledat v poli witness. Finální
       skript naší transakce je tedy:</p>
     <p class="script"><a href="#eval" onmouseover="chanclrblue('push47')"
@@ -228,15 +228,15 @@
       <br>413879391419d23453c720a1058e959ae663c3d6 <br><a href="#eval" onmouseover="chanclrblue('eq')"
         onmouseout="chanclrblack('eq')">OP_EQUALVERIFY</a> <br><a href="#eval" onmouseover="chanclrblue('check')"
         onmouseout="chanclrblack('check')">OP_CHECKSIG</a></p>
-    <p class="just" id="eval">Vykonáme skript – <span id="push47">71 následujících bajtů (podpis) se vloží na vršek
-        zásob.</span>; <span id="push21">33 následujících bajtů (veřejný klíč) se vloží na vršek zásob.</span>; <span
-        id="dup">element na vršku zásob. se zduplikuje</span>; <span id="hash">element na vršku zásobníku se nahradí
+    <p class="just" id="eval">Vykonáme skript &ndash; <span id="push47">71 následujících bajtů (podpis) se vloží na vršek
+        zásob.</span>&semi; <span id="push21">33 následujících bajtů (veřejný klíč) se vloží na vršek zásob.</span>&semi; <span
+        id="dup">element na vršku zásob. se zduplikuje</span>&semi; <span id="hash">element na vršku zásobníku se nahradí
         svým vlastním hashem (RIPEMD160(SHA256))</span>. Na zásob. je nyní pohledem z vrchu hash (adresa), veřejný klíč
-      a podpis; dále se <span id="push20">32 následujících bajtů vloží na vršek zásob</span>. (tj. adresa z uzamykacího
-      skriptu); <span id="eq">dva vrchní elementy se odeberou ze zásob. a porovnají se – jsou-li shodné, skript
-        pokračuje, v opačném případě končí chybou</span>; <span id="check">konečně poslední operátor odebere z vrchu
-        zásob. nejprve veřejný klíč a pak i podpis – zkontroluje podpis proti danému klíči a předobrazu podepisované
-        transakce a vrátí na vrch zásobníku 1 pro platný, 0 pro neplatný podpis</span>. Jsme na konci skriptu a je-li na
+      a podpis&semi; dále se <span id="push20">32 následujících bajtů vloží na vršek zásob</span>. (tj. adresa z uzamykacího
+      skriptu)&semi; <span id="eq">dva vrchní elementy se odeberou ze zásob. a porovnají se &ndash; jsou&hyphenli shodné, skript
+        pokračuje, v opačném případě končí chybou</span>&semi; <span id="check">konečně poslední operátor odebere z vrchu
+        zásob. nejprve veřejný klíč a pak i podpis &ndash; zkontroluje podpis proti danému klíči a předobrazu podepisované
+        transakce a vrátí na vrch zásobníku 1 pro platný, 0 pro neplatný podpis</span>. Jsme na konci skriptu a je&hyphenli na
       vrchu zásobníku 1, transakce je platná.</p>
   </div>
   <footer>

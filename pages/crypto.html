@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Bitcoinový slovníček pro mírně pokročilé - anatomie křivky a podpisu</title>
+  <title>Bitcoinový slovníček pro mírně pokročilé &ndash; anatomie křivky a podpisu</title>
   <link rel="shortcut icon" href="https://bitcoin.org/favicon.png?1616555510">
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -22,8 +22,8 @@
       klíče (který zakódovaný v Bech32, či starší Base58Check představuje adresu). Prostřednictvím scriptSigu lze pak
       poskytnutím veřejného klíče a podpisu tento výstup odemknout a utratit v další transakci. To je umožněno díky tzv.
       asymetrické kryptografii, kterou v případě Bitcoinu představuje kryptografie eliptických křivek. </p>
-    <p class="just">Asymetrická kryptografie se od té běžné – symetrické – liší tím, že na místo jednoho a toho samého
-      klíče (použitého pro zašifrování i dešifrování) požívá pár klíčů – veřejný a soukromý. Pokud si příjemce zprávy
+    <p class="just">Asymetrická kryptografie se od té běžné &ndash; symetrické &ndash; liší tím, že na místo jednoho a toho samého
+      klíče (použitého pro zašifrování i dešifrování) požívá pár klíčů &ndash; veřejný a soukromý. Pokud si příjemce zprávy
       vygeneruje takový pár klíčů a ten veřejný publikuje, kdokoliv může tímto veřejným klíčem zašifrovat zprávu, kterou
       bude moci dešifrovat jen a pouze
       příjemce pomocí svého soukromého klíče. Asymetrická kryptografie však umožnuje, kromě šifrování za účelem skrytí
@@ -44,9 +44,9 @@
     </p>
     <p class="just">Přičemž je užita eliptický křivka popsaná standardem secp256k1:</p>
     <ul class="article">
-      <li>Křivka nad konečným tělesem mohutnosti p = 0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f
-        (tj. také 2<sup>256</sup> - 2<sup>32</sup> - 977)</li>
-      <li>Rovnice křivky: y<sup>2</sup> = x<sup>3</sup> + 7</li>
+      <li>Křivka nad konečným tělesem mohutnosti p &equals; 0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f
+        (tj. také 2<sup>256</sup> &minus; 2<sup>32</sup> &minus; 977)</li>
+      <li>Rovnice křivky: y<sup>2</sup> &equals; x<sup>3</sup> &plus; 7</li>
       <li>Generátor cyklické grupy bod A má souřadnice:</li>
       <ul>
         <li>A<sub>x</sub> &equals; 0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798</li>
@@ -58,17 +58,17 @@
       vygenerovat cyklickou grupu s operací sčítání bodů na křivce. Když pak pro opakované sčítání bodu se sebou samým
       zavedeme operaci násobení skalárem, máme vše, co potřebuje pro využití problému diskrétního logaritmu. Z vřídla
       chaosu (nebo seedu) si vytáhneme přirozené číslo v intervalu &#9001;1, n). To bude náš soukromý klíč. Provedeme násobení
-      skalárem – priváním klíčem vynásobíme generátor grupy; výsledkem bude bod na křivce – nás veřejný klíč. Přestože
+      skalárem &ndash; priváním klíčem vynásobíme generátor grupy&semi; výsledkem bude bod na křivce &ndash; nás veřejný klíč. Přestože
       se operace naší grupy jmenuje součet bodů a opakovanému sčítání bodu sebou samým říkáme násobení skalárem, můžeme
       si tyto oprace představit jako násobení a opakované násobení jako umocňování. Pak náš postup přesně zapadne do
       výše
-      uvedené definice diskrétního logaritmu – prvkem <em>b</em> je veřejný klíč, zatímco <em>x</em> je klíč soukromý.
+      uvedené definice diskrétního logaritmu &ndash; prvkem <em>b</em> je veřejný klíč, zatímco <em>x</em> je klíč soukromý.
       Neexistuje polynomiální algoritmus, který by ze znalosti veřejného klíče a
       generátoru grupy vypočítal soukromý klíč. Můžeme jít podepisovat.</p>
     <div class="fig">
       <figure>
         <img src="../img/secp256k1.png" alt="secp256k1">
-        <figcaption>Takto by vypadalo zobrazení "bitcoinové" eliptické křivky nad množinou reálných čísel.</figcaption>
+        <figcaption>Takto by vypadalo zobrazení bitcoinové eliptické křivky nad množinou reálných čísel.</figcaption>
       </figure>
     </div>
     <h2>Anatomie podpisu</h2>
@@ -95,7 +95,7 @@
     <p class="just">K ověření si musíme opět sestavit předobraz podepisované transkace a vypočíst jeho dvojnásobný
       SHA256 hash, tj. číslo <em>e</em>, dále nám již stačí z scriptSigu získaný podpis (dvojice r, s) a veřejný klíč.
       Ten je v scriptSigu zakódován ve formátu SEC (Standards of Efficient Cryptography) zpravidla pouze jako x -ová
-      souřadnice a příznak sudosti – v takovém případě dopočítáme y -ovou souřadnici.</p>
+      souřadnice a příznak sudosti &ndash; v takovém případě dopočítáme y -ovou souřadnici.</p>
     <p class="just">Postup ověření je pak: </p>
     <ul class="article">
       <li><em>u &equals; e &times; s<sup>-1</sup></em> mod <em>n</em>.</li>

@@ -27,7 +27,7 @@
         </div>
         <div class="entry">
             <h2 id="#nakamoto">satoshi</h2>
-            <p>Základní a zároveň nejmenší nejmenší možná jednotka používaná v sítí. 1 bitcoin = 100 000 000 satoshi.
+            <p>Základní a zároveň nejmenší nejmenší možná jednotka používaná v sítí. 1 bitcoin &equals; 100 000 000 satoshi.
                 Pojmenování vzniklo jako pocta tvůrci vystupujícímu pod pseudonymem <a href="#nakamoto">Satoshi
                     Nakamoto</a>. Také se zkracuje jako sat, saty, satů, či anglickým sats.</p>
         </div>
@@ -54,7 +54,7 @@
         </div>
         <div class="entry">
             <h2 id="block">blok</h2>
-            <p>Předepsaná datová struktura transakcí omezené velikosti (4 000 000 WU; dříve 1 MB). Sestavá se z hlavičky
+            <p>Předepsaná datová struktura transakcí omezené velikosti (4 000 000 WU&semi; dříve 1 MB). Sestavá se z hlavičky
                 bloku a serializovaných transakcí.</p>
             <div class="ana-link">
                 <p><a href="./pages/block.html">anatomie bloku</a></p>
@@ -63,7 +63,7 @@
         <div class="entry">
             <h2 id="block-header">hlavička bloku</h2>
             <p>Sestává se z verze bloku, hashe předchozí bloku, hashe (rootu) merklovského stromu obsažených transakcí,
-                času vytěžení, stanového targetu sítě a nonce – variabilního čísla jehož změnou se dosahuje různých
+                času vytěžení, stanového targetu sítě a nonce &ndash; variabilního čísla jehož změnou se dosahuje různých
                 hashů.</p>
             <div class="ana-link">
                 <p><a href="./pages/block.html">anatomie bloku</a></p>
@@ -72,8 +72,8 @@
         <div class="entry">
             <h2 id="genesis">genesis blok</h2>
             <p>První blok bitcoinové sítě vytěžený Satoshim 3. ledna 2009. Jeho coinbase transakce v sobě obsahuje text
-                odkazujcí na legendární novinový titulek "The Times 03/Jan/2009 Chancellor on brink of second bailout
-                for banks". </p>
+                odkazujcí na legendární novinový titulek &bdquo;The Times 03/Jan/2009 Chancellor on brink of second bailout
+                for banks&ldquo;. </p>
         </div>
         <div class="entry">
             <h2 id="hash">hash, otisk</h2>
@@ -123,8 +123,8 @@
         </div>
         <div class="entry">
             <h2 id="seed-words">slova seedu</h2>
-            <p>Počáteční entropie (zpravidla 128 až 256 bitové číslo) vyjádřená – z důvodů čitelnosti a odolnosti proti
-                chybě při čtení/psaní – variací 12 až 24 slov z 2048 prvkového seznamu. Slova se mohou opakovat a
+            <p>Počáteční entropie (zpravidla 128 až 256 bitové číslo) vyjádřená &ndash; z důvodů čitelnosti a odolnosti proti
+                chybě při čtení/psaní &ndash; variací 12 až 24 slov z 2048 prvkového seznamu. Slova se mohou opakovat a
                 odolnost pro chybě je zvýšena „kontrolní součtem“ (v posledním slově je zakodováno 4 až 8 bitů <a
                     href="#hash">hashe</a> počáteční entropie).</p>
         </div>
@@ -137,7 +137,7 @@
         </div>
         <div class="entry">
             <h2 id="passphrase">passphrase</h2>
-            <p>Někdy též zvaná 13/25 slovo seedu. Je-li použita, podílí se (jako salt funkce PBKDF2) v kombinaci s
+            <p>Někdy též zvaná 13/25 slovo seedu. Je&hyphenli použita, podílí se (jako salt funkce PBKDF2) v kombinaci s
                 počáteční entropií (vyjadřované nejčastěji 12/24 slovy) na vygenerování semínka. Narozdíl od samotné
                 počáteční entropie není uložena v peněžence a neměla by být uchovávna ani společně s fyzickou zálohou
                 (slovy seedu). Pak passphrase poskytuje další vrstvu ochrany, neboť případná extrakce počáteční entropie
@@ -277,7 +277,7 @@
         </div>
         <div class="entry">
             <h2 id="vsize">vsize, vbytes, vB</h2>
-            <p>Jiné vyjádření <a href="#wu">weight unit</a>. 1vB = 4WU. </p>
+            <p>Jiné vyjádření <a href="#wu">weight unit</a>. 1vB &equals; 4WU. </p>
         </div>
         <div class="entry">
             <h2 id="coinbase">mincetvorná transakce (coinbase transaction)</h2>
@@ -293,19 +293,19 @@
         <div class="entry">
             <h2 class="short">segregated witness</h2>
             <h2 id="segwit">segwit</h2>
-            <p>Vylepšení aktivované formou soft-forku v roce 2017 v síti Bitcoin. Mimo jiného opravuje problém zvaný
+            <p>Vylepšení aktivované formou soft&hyphenforku v roce 2017 v síti Bitcoin. Mimo jiného opravuje problém zvaný
                 transaction malleability (trvárnost transakcí) tím, že podpisová data (scriptSig) nejsou součástí
                 serializované podoby transakce, z které je počítán její hash. Mění limit bloku z milionu bajtů (1 MB) na
                 4 miliony weight unit. Mění se výpočet podpisového hashe, kdy doposud počet vstupů zvyšoval kvadraticky
-                náročnost podepsání/oveření transakce. Atd...</p>
+                náročnost podepsání/oveření transakce. Atd&hellip;</p>
         </div>
         <div class="entry">
-            <h2 id="sfork">soft-fork</h2>
+            <h2 id="sfork">soft&hyphenfork</h2>
             <p>Změna pravidel sítě způsobem, který je kompatibilní s <a href="#node">uzly</a>, které tuto změnu
                 neimplementují.</p>
         </div>
         <div class="entry">
-            <h2 id="hfork">hard-fork</h2>
+            <h2 id="hfork">hard&hyphenfork</h2>
             <p>Změna pravidel sítě způsobem, který je nekompatibilní s <a href="#node">uzly</a>, které tuto změnu
                 neimplementují. Následkem může být rozštěpení sítě na dvě (či více) různých větví blockchainu.</p>
         </div>
@@ -322,7 +322,7 @@
         <div class="entry">
             <h2 id="target">cíl těžby (target)</h2>
             <p>256 bitové číslo stanovící hranici hashe platného bloku. Pouze pokud je hash bloku nižší než toto číslo,
-                může být zařazen do blockchainu. K přepočtu dochází každých 2016 bloků (přibližně každé dva týdny) – na
+                může být zařazen do blockchainu. K přepočtu dochází každých 2016 bloků (přibližně každé dva týdny) &ndash; na
                 základě doby potřebné k vytěžení posledních 2015 (toto je stále aktivní bug) bloků se upraví target tak,
                 aby docházelo k vytěžení bloku jednou za 10 minut.</p>
             <div class="ana-link">
