@@ -57,7 +57,7 @@
     <p class="just">Máme tedy eliptickou křivku nad konečným tělesem a zvolený bod na křivce, kterým si můžeme
       vygenerovat cyklickou grupu s operací sčítání bodů na křivce. Když pak pro opakované sčítání bodu se sebou samým
       zavedeme operaci násobení skalárem, máme vše, co potřebuje pro využití problému diskrétního logaritmu. Z vřídla
-      chaosu si vytáhneme přirozené číslo v intervalu &#9001;1, n). To bude náš soukromý klíč. Provedeme násobení
+      chaosu (nebo seedu) si vytáhneme přirozené číslo v intervalu &#9001;1, n). To bude náš soukromý klíč. Provedeme násobení
       skalárem – priváním klíčem vynásobíme generátor grupy; výsledkem bude bod na křivce – nás veřejný klíč. Přestože
       se operace naší grupy jmenuje součet bodů a opakovanému sčítání bodu sebou samým říkáme násobení skalárem, můžeme
       si tyto oprace představit jako násobení a opakované násobení jako umocňování. Pak náš postup přesně zapadne do
@@ -86,8 +86,8 @@
     <p class="just">Výpočet podpisu je pak již jednoduchý: </p>
     <ul class="article">
       <li>Provedeme operaci součinu skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, x -ová souřadnice
-        výsledného bodu modulo <em>n</em> bude číslem <em>r</em>.</li>
-      <li><em>s &equals; k<sup>-1</sup> &times; (e &plus; r &times; d)</em> modulo <em>n</em>.</li>
+        výsledného bodu mod <em>n</em> bude číslem <em>r</em>.</li>
+      <li><em>s &equals; k<sup>-1</sup> &times; (e &plus; r &times; d)</em> mod <em>n</em>.</li>
     </ul>
     <p class="just">Dvojice čísel <em>r, s</em> je naším podpisem zprávy <em>e</em>. Zakódováním čísel <em>r, s</em> do
       formátu DER (Distinguished Encoding Rules) získáme podpisový element použitelný v <a
@@ -98,8 +98,8 @@
       souřadnice a příznak sudosti – v takovém případě dopočítáme y -ovou souřadnici.</p>
     <p class="just">Postup ověření je pak: </p>
     <ul class="article">
-      <li><em>u &equals; e &times; s<sup>-1</sup></em> modulo <em>n</em>.</li>
-      <li><em>v &equals; r &times; s<sup>-1</sup></em> modulo <em>n</em>.</li>
+      <li><em>u &equals; e &times; s<sup>-1</sup></em> mod <em>n</em>.</li>
+      <li><em>v &equals; r &times; s<sup>-1</sup></em> mod <em>n</em>.</li>
       <li>Provedeme operaci součin skalárem čísla <em>u</em> a generátoru grupy; poté součin skalárem čísla <em>v</em> a
         veřejného klíče. Výsledné dva body sečteme a označíme jako bod <em>X</em>.</li>
     </ul>
@@ -115,7 +115,7 @@
         <em>R</em>.</li>
       <li>Zahashujeme zřetězení reprezentace bodu <em>R</em>, veřejného klíče a hashe zprávy <em>e</em>, tento hash
         označíme <em>r</em>.</li>
-      <li><em>s &equals; k &plus; r &times; d</em> modulo <em>n</em>.</li>
+      <li><em>s &equals; k &plus; r &times; d</em> mod <em>n</em>.</li>
     </ul>
     <p class="just">Podpisem je tedy nikoliv dvojice čísel, ale dvojice bod <em>R</em> a číslo <em>s</em>. Tento podpis
       pak může být ověřen postupem: </p>

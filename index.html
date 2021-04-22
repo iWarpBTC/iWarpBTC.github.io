@@ -44,19 +44,28 @@
         </div>
         <div class="entry">
             <h2 id="blockchain">blockchain</h2>
-            <p>Speciální typ databáze, kde každý nový záznam navazuje (odkazuje) na ten předešlý.</p>
+            <p>Speciální typ databáze, kde každý nový záznam v sobě obsahuje <a href="#hash">otisk</a> toho předchozího.
+            </p>
+            <div class="ana-link">
+                <p><a href="./pages/block.html">anatomie bloku</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="block">blok</h2>
             <p>Předepsaná datová struktura transakcí omezené velikosti (4 000 000 WU; dříve 1 MB). Sestavá se z hlavičky
                 bloku a serializovaných transakcí.</p>
-            <p>Více v pojednání o <a href="pages/block.html">anatomii bloku</a>.</p>
+            <div class="ana-link">
+                <p><a href="./pages/block.html">anatomie bloku</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="block-header">hlavička bloku</h2>
             <p>Sestává se z verze bloku, hashe předchozí bloku, hashe (rootu) merklovského stromu obsažených transakcí,
                 času vytěžení, stanového targetu sítě a nonce – variabilního čísla jehož změnou se dosahuje různých
                 hashů.</p>
+            <div class="ana-link">
+                <p><a href="./pages/block.html">anatomie bloku</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="genesis">genesis blok</h2>
@@ -139,12 +148,17 @@
             <p>Způsob šifrování kde je pro zašifrování zprávy použit jiný klíč, než jaký je použit k rozšifrování
                 zprávy. Obráceným použitím klíčů (viz. níže) lze dosáhnout kryptografického podpisu. Bitcoin používá k
                 podepisování transakcí asymetrickou kryptografii eliptických křivek.</p>
-            <p>Více v pojednání o <a href="./pages/crypto.html">anatomii křivky</a>.</p>
+            <div class="ana-link">
+                <p><a href="./pages/crypto.html">anatomie křivky</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="privkey">privátní klíč (private key)</h2>
             <p>Ten tajný z dvojce klíčů asymetrické kryptografie. Slouží k rozšifrování tajné zprávy, popř. k podpisu. V
                 případě Bitcoinu se jedná o 256 bitové číslo.</p>
+            <div class="ana-link">
+                <p><a href="./pages/crypto.html">anatomie křivky</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="pubkey">veřejný klíč (public key)</h2>
@@ -152,6 +166,9 @@
                 bod na eliptické křivce, který je vypočten násobením stanoveného bodu (tzv. generátor cyklické grupy) a
                 privátního klíče. Jelikož je bitcoinová eliptická křivka souměrná podle osy x, stačí k jeho reprezentaci
                 souřadnice x (256 bitové číslo) a příznak sudosti.</p>
+            <div class="ana-link">
+                <p><a href="./pages/crypto.html">anatomie křivky</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="address">bitcoinová adresa</h2>
@@ -216,13 +233,17 @@
                 předchozích transakcí. Na svém výstupu uzamyká bitcoiny ve prospěch daných adres a vytváří tak nové
                 UTXO. Potvrzená transakce se stává nesmazatelnou součástí blockchainu (který není nic jiného, než seznam
                 do bloku uspořádáných transakcí).</p>
-            <p>Více v pojednání o <a href="./pages/transaction.html">anatomii transakce</a>.</p>
+            <div class="ana-link">
+                <p><a href="./pages/transaction.html">anatomie transakce</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="script">Script</h2>
             <p>Název skriptovacího jazyku sítě Bitcoin, prostřednictví kteréhé jsou definovány (a vyhodnocovány)
                 podmínky utracení (odemčení) <a href="#utxo">UTXO</a></p>
-            <p>Více na stránce <a href="./pages/transaction.html#script">anatomie skriptu</a>.</p>
+            <div class="ana-link">
+                <p><a href="./pages/transaction.html#script">anatomie skriptu</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="utxo">UTXO</h2>
@@ -230,6 +251,9 @@
             <p>Neutracený transakční výstup, který může být použit na vstupu nové <a href="#transaction">transakce</a>.
                 Součet částek všech aktuálních UTXO se rovná aktuálně vytěženému množství <a
                     href="bitcoin">bitcoinů</a>.</p>
+            <div class="ana-link">
+                <p><a href="./pages/transaction.html">anatomie transakce</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="fee">poplatek (fee)</h2>
@@ -260,6 +284,9 @@
                 společně s poplatky odměnou těžažům. Počet nově vytvořených bitcoinů je pevně stanoveno protokolem sítě,
                 každé přibližně 4 roky dochází k jeho půlení z původních 50 BTC na dnešních 6,25 BTC (rok 2021) až
                 přibližně v roce 2140 dosáhne nuly. </p>
+            <div class="ana-link">
+                <p><a href="./pages/block.html">anatomie bloku</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 class="short">segregated witness</h2>
@@ -286,7 +313,9 @@
                 první sestaví takový navazující blok transakcí, jehož <a href="hash">hash</a> (resp. hash jeho hlavičky)
                 bude menší, než nastavený cíl (target) sítě. Nalezení takového hashe je věcí náhody, šance se zvyšují se
                 schopností otestovat (zahashovat) co nejvíce variant v co nejmenším čase (ergo s početním výkonem).</p>
-            <p>Více v pojednání o <a href="pages/block.html#mining">anatomii těžby</a>.</p>
+            <div class="ana-link">
+                <p><a href="./pages/block.html#mining">anatomie těžby</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="target">cíl těžby (target)</h2>
@@ -294,10 +323,16 @@
                 může být zařazen do blockchainu. K přepočtu dochází každých 2016 bloků (přibližně každé dva týdny) – na
                 základě doby potřebné k vytěžení posledních 2015 (toto je stále aktivní bug) bloků se upraví target tak,
                 aby docházelo k vytěžení bloku jednou za 10 minut.</p>
+            <div class="ana-link">
+                <p><a href="./pages/block.html#mining">anatomie těžby</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="difficulty">obtížnost sítě (diffuculty)</h2>
             <p>Vyjádření obtížnosti těžby poměrem genesis targetu / současného targetu</p>
+            <div class="ana-link">
+                <p><a href="./pages/block.html#mining">anatomie těžby</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="pow">proof of work</h2>
@@ -306,6 +341,9 @@
                 do blockchainu (a získání odpovídající odměny) a zároveň pobízí těžaře sestavit pravidlům vyhovující
                 blok, neboť nevyhovující lze zbytkem téměř bezpracně odhalit a odmítnout, čímž by vykononá práce přisla
                 v niveč.</p>
+            <div class="ana-link">
+                <p><a href="./pages/block.html#mining">anatomie těžby</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="nakamoto">Satoshi Nakamoto</h2>
@@ -326,7 +364,8 @@
                         <span class="nick">Nick Szabo</span>, <span class="pieter">Pieter Wuille</span>, <span
                             class="poo">podvodník Craig Wright</span>, <span class="hal">Hal Finney</span>, <span
                             class="back">Adam Back</span>, <span class="dorian">Dorian Satoshi Nakamoto</span>, <span
-                            class="greg">Greg Maxwell</span></figcaption>
+                            class="greg">Greg Maxwell</span>
+                    </figcaption>
                 </figure>
             </div>
         </div>

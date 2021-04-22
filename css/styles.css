@@ -139,6 +139,22 @@ a.warp {
     width:165px;
 }
 
+div.ana-link {
+  text-align: right;
+  text-transform: uppercase;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+div.ana-link > p > a {
+  text-decoration: none;
+  color:#623A0A;
+}
+
+div.ana-link > p > a:hover {
+  text-decoration: underline;
+  color:black;
+}
+
 a#luke{margin-left: 165px;}
 a#nick{margin-left: 330px;}
 a#pieter{margin-top: 165px;}
