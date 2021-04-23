@@ -130,6 +130,19 @@ a.warp {
   text-decoration: none;
 }
 
+a.warp:hover {
+  color: #623A0A;
+}
+
+a.key {
+  color: gray;
+  text-decoration: none;
+}
+
+a.key:hover {
+  color: black;
+}
+
 .area {
     background:#fff;
     display:block;
