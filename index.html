@@ -116,13 +116,13 @@
         </div>
         <div class="entry">
             <h2 id="wallet">peněženka</h2>
-            <p>Software, případně i samostatné HW zařízení, který generuje a uchovává <a href="#privkey">privátní
+            <p>Software, případně i samostatné HW zařízení, který generuje a uchovává <a href="#privkey">soukromé
                     klíče</a>, vytváří a podepisuje <a href="#transaction">transakce</a>.</p>
         </div>
         <div class="entry">
             <h2 class="short">hierarchical deterministic</h2>
             <h2 id="hd-wallet">HD peněženka</h2>
-            <p><a href="#wallet">Peněženka</a>, která na místo jednotlivých <a href="#privkey">privátních klíčů</a>
+            <p><a href="#wallet">Peněženka</a>, která na místo jednotlivých <a href="#privkey">soukromých klíčů</a>
                 generuje a uchovává pouze tzv. <a href="#seed">seed</a>, z kterého pak determisticky odvozuje
                 hierarchistické uspořádání prakticky neomezeného počtu klíčů a k nim náležících <a
                     href="#address">adres</a>.</p>
@@ -139,7 +139,7 @@
             <h2 id="seed">seed (semínko)</h2>
             <p>Počáteční entropie (zpravidla 128 až 256 bitů) rozšířená funkcí PBKDF2 v 512 bitové číslo. Z tohoto čísla
                 jsou následně deterministicky odvozovány všechny klíče (resp. adresy). Levých 256 bitů slouží jako
-                master privátní klíč, pravých 256 bitů se použije jako master chain klíč. Často se slovem „seed“
+                master soukromý klíč, pravých 256 bitů se použije jako master chain klíč. Často se slovem „seed“
                 zjednodušeně označují výše popsaná <a href="#seed-words">„slova seedu“</a>.</p>
         </div>
         <div class="entry">
@@ -162,7 +162,7 @@
             </div>
         </div>
         <div class="entry">
-            <h2 id="privkey">privátní klíč (private key)</h2>
+            <h2 id="privkey">soukromý klíč (private key)</h2>
             <p>Ten tajný z dvojce klíčů asymetrické kryptografie. Slouží k rozšifrování tajné zprávy, popř. k podpisu. V
                 případě Bitcoinu se jedná o 256 bitové číslo.</p>
             <div class="ana-link">
@@ -173,7 +173,7 @@
             <h2 id="pubkey">veřejný klíč (public key)</h2>
             <p>Druhý z páru. Slouží k zašifrování tajné zprávy, nebo k ověření podpisu. V případě Bitcoinu se jedná o
                 bod na eliptické křivce, který je vypočten násobením stanoveného bodu (tzv. generátor cyklické grupy) a
-                privátního klíče. Jelikož je bitcoinová eliptická křivka souměrná podle osy x, stačí k jeho reprezentaci
+                soukromého klíče. Jelikož je bitcoinová eliptická křivka souměrná podle osy x, stačí k jeho reprezentaci
                 souřadnice x (256 bitové číslo) a příznak sudosti.</p>
             <div class="ana-link">
                 <p><a href="./pages/crypto.html">anatomie křivky</a></p>
@@ -268,6 +268,9 @@
             <h2 id="fee">poplatek (fee)</h2>
             <p>Odměna těžaři za povrzení transakce (zařazení do bloku). Je to rozdíl mezi součtem částek na výstupu a
                 součtem částek na vstupu. Nesmí být záporný a v současné době už ani nulový.</p>
+            <div class="ana-link">
+                <p><a href="./pages/transaction.html">anatomie transakce</a></p>
+            </div>
         </div>
         <div class="entry">
             <h2 id="mempool">mempool</h2>
