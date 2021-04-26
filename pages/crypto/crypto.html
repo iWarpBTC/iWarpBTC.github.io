@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://btc-slovnik.cz/css/styles.css">
   <meta name="description"
         content="Vysvětluje základy asymetrické kryptografie a její využít v podepisování bitcoinových transakcí.">
+  <link rel="canonical" href="https://btc-slovnik.cz/pages/crypto">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
   </header>
   <div class="container2">
     <h2>Anatomie křivky</h2>
-    <p class="just">Jak je možné vidět na stránce <a href="https://btc-slovnik.cz/pages/transaction.html">anatomie transakce a skriptu</a> standardní
+    <p class="just">Jak je možné vidět na stránce <a href="https://btc-slovnik.cz/pages/transaction">anatomie transakce a skriptu</a> standardní
       p2(w)pk transakce prostřednictvím scriptPubKey uzamyká určitý obnos satoshi ve prospěch určitého hashe veřejného
       klíče (který zakódovaný v Bech32, či starší Base58Check představuje adresu). Prostřednictvím scriptSigu lze pak
       poskytnutím veřejného klíče a podpisu tento výstup odemknout a utratit v další transakci. To je umožněno díky tzv.
@@ -100,7 +101,7 @@
     </ul>
     <p class="just">Dvojice čísel <em>r, s</em> je naším podpisem zprávy <em>e</em>. Zakódováním čísel <em>r, s</em> do
       formátu DER (Distinguished Encoding Rules) získáme podpisový element použitelný v <a
-        href="https://btc-slovnik.cz/pages/transaction.html#script">sigScriptu</a>.</p>
+        href="https://btc-slovnik.cz/pages/transaction#script">sigScriptu</a>.</p>
     <p class="just">K ověření si musíme opět sestavit předobraz podepisované transkace a vypočíst jeho dvojnásobný
       SHA256 hash, tj. číslo <em>e</em>, dále nám již stačí z scriptSigu získaný podpis (dvojice r, s) a veřejný klíč.
       Ten je v scriptSigu zakódován ve formátu SEC (Standards of Efficient Cryptography) zpravidla pouze jako x -ová
@@ -147,7 +148,7 @@
     </div>
     <div class="mail">
       <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key"
-        href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a>.</p>
+        href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a href="https://btc-slovnik.cz/pages/literature">Doporučená literatura</a>.</p>
     </div>
   </footer>
 </body>
