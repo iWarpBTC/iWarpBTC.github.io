@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Bitcoinový slovníček pro mírně pokročilé &ndash; anatomie bloku a těžby</title>
-  <link rel="shortcut icon" href="https://bitcoin.org/favicon.png?1616555510">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="shortcut icon" href="https://btc-slovnik.cz/img/favicon.png">
+  <link rel="stylesheet" href="https://btc-slovnik.cz/css/styles.css">
 </head>
 
 <body>
   <header>
     <div class="h1">
-      <h1><a href="../index.html#block"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně pokročilé</a>
+      <h1><a href="https://btc-slovnik.cz/#block"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně pokročilé</a>
       </h1>
     </div>
   </header>
-  <div class="container">
+  <div class="container2">
     <h2>Anatomie bloku</h2>
     <p class="just">K popisu anatomie bitcoinového bloku použijeme blok obsahující transakci z dílu <a
         href="./transaction.html">anatomie transkace</a> s pořadovým číslem <a href="./stuff/676274.txt">676274</a> a
@@ -109,28 +109,28 @@
       žádný skutečný vstup, resp. technicky vzato má mincetvorná transakce právě jeden vstup &ndash; hash předchozí
       transakce
       je 32 bajtů nul, index výstupu je ffffffff, podpisový skript musí být v rozmezí 2 a 100 bajtů, a musí být sám o
-      sobě pravdivý. Právě sem umístil <a href="../index.html#nakamoto">Satoshni</a> v <a
-        href="../index.html#genesis">genesis bloku</a> legendární titulek Timesů, zatímco ve scriptSigu mincetvorné
+      sobě pravdivý. Právě sem umístil <a href="https://btc-slovnik.cz/#nakamoto">Satoshni</a> v <a
+        href="https://btc-slovnik.cz/#genesis">genesis bloku</a> legendární titulek Timesů, zatímco ve scriptSigu mincetvorné
       transakci našeho bloku si můžeme přečíst zprávu &bdquo;Mined by AntPool713&ldquo;. Od BIPu 34 se do podpisového
       skriptu mincetvorné transakce dává na první místo element s číslem bloku. Tím je zajištěno, aby bylo možno odlišit
       jinak stále stejné mincetvorné transakce jejich unikátním hashem. Navzdory tomu, že neutrácí žádné <a
-        href="../index.html#utxo">UTXO</a>, může si těžař na výstupu uzamknout odměnu (v době psaní) 6,25 BTC plus
+        href="https://btc-slovnik.cz/#utxo">UTXO</a>, může si těžař na výstupu uzamknout odměnu (v době psaní) 6,25 BTC plus
       součet poplatků všech zahrnutých transakcí. Pokud blok obsahuje segwitovou transakci, musí také obsahovat
       OP_RETURN výstup s kořenem paralelního witness merkle stromu. Protože podpisové skripty segwit transakcí již
       nejsou sočástí výpočtu hashe transakce a jejich změna by se tedy neprojevila změnou merkle hashe v hlavičce bloku
-      (a protože strukturu hlavičky nelze změnit <a href="../index.html#sfork">soft-forkem</a>) jsou hashe tranaskcí
+      (a protože strukturu hlavičky nelze změnit <a href="https://btc-slovnik.cz/#sfork">soft-forkem</a>) jsou hashe tranaskcí
       včetně witness dat zahrnuty do hlavního merkle stromu a tím i do hashe hlavičky bloku právě touto cestou. Díky
       tomu platí, že změna kteréhokoliv bajtu kterékoliv v bloku zahrnuté transakce se nakonec projeví změnou hashe
       bloku.</p>
     <p class="just"><em>Velikost</em> v bloku zahrnutých transakcí nesmí překroči 4 miliony <a
-        href="../index.html#wu">WU</a>. Na druhou stranu však nemusí blok obsahovat žádnou další transakci, kromě
+        href="https://btc-slovnik.cz/#wu">WU</a>. Na druhou stranu však nemusí blok obsahovat žádnou další transakci, kromě
       mincetvorné. To se dělo zejména v prvních měsících fungování sítě, nyní už jen zřídka. </p>
     <h2 id="mining">Anatomie těžby</h2>
     <p class="just">Tzv. těžba bitcoinu je způsob, kterým je vybírán takový příští náhodný zápisce do blockchainu, který
       bude mít ekonomickou incentivu nepokoušet se o podvodný zápis. Úkolem takového uchazeče o zápis příštího bloku do
       blockchainu je z dosud nepotvrzených transakcí sestavit tzv. kandidátských blok a ten upravit do takové podoby,
-      aby byl <a href="../index.html#hash">hash</a> hlavičky tohoto bloku menší, než tzv. <a
-        href="../index.html#target">cíl těžby</a>. Ten byl v <a href="../index.html#genesis">genesis bloku</a> nastaven
+      aby byl <a href="https://btc-slovnik.cz/#hash">hash</a> hlavičky tohoto bloku menší, než tzv. <a
+        href="https://btc-slovnik.cz/#target">cíl těžby</a>. Ten byl v <a href="https://btc-slovnik.cz/#genesis">genesis bloku</a> nastaven
       na ffff
       &times; 100<sup>1d-3</sup>. Od té doby je jednou za 2016 bloků (tzv. epocha obtížnosti) přepočítáván tak, že se
       spočte <em>rozdíl</em> časového razítka posledního a prvního* bloku končící epochy. Pokud je tento vypočtený
@@ -168,16 +168,16 @@
   </div>
   <footer>
     <div>
-      <div class="cc0"><a class="license" href="../LICENSE"><img
-            src="https://github.com/creativecommons/licensebuttons/raw/master/www/p/zero/1.0/80x15.png" alt="CC0" /></a>
+      <div class="cc0"><a class="license" href="https://btc-slovnik.cz/LICENSE"><img
+            src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
       </div>
     </div>
     <div class="mail">
       <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key"
-          href="./stuff/publickey.txt">pubkey</a>).<br><a href="./literature.html">Doporučená literatura</a>.</p>
+          href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a>.</p>
     </div>
   </footer>
-  <script src="javascript.js"></script>
+  <script src="https://btc-slovnik.cz/pages/javascript.js"></script>
 </body>
 
 </html>

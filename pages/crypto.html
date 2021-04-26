@@ -4,21 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Bitcoinový slovníček pro mírně pokročilé &ndash; anatomie křivky a podpisu</title>
-  <link rel="shortcut icon" href="https://bitcoin.org/favicon.png?1616555510">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="shortcut icon" href="https://btc-slovnik.cz/img/favicon.png">
+  <link rel="stylesheet" href="https://btc-slovnik.cz/css/styles.css">
 </head>
 
 <body>
   <header>
     <div class="h1">
-      <h1><a href="../index.html#asym-crypto"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně
+      <h1><a href="https://btc-slovnik.cz/#asym-crypto"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně
           pokročilé</a>
       </h1>
     </div>
   </header>
-  <div class="container">
+  <div class="container2">
     <h2>Anatomie křivky</h2>
-    <p class="just">Jak je možné vidět na stránce <a href="transaction.html">anatomie transakce a skriptu</a> standardní
+    <p class="just">Jak je možné vidět na stránce <a href="https://btc-slovnik.cz/pages/transaction.html">anatomie transakce a skriptu</a> standardní
       p2(w)pk transakce prostřednictvím scriptPubKey uzamyká určitý obnos satoshi ve prospěch určitého hashe veřejného
       klíče (který zakódovaný v Bech32, či starší Base58Check představuje adresu). Prostřednictvím scriptSigu lze pak
       poskytnutím veřejného klíče a podpisu tento výstup odemknout a utratit v další transakci. To je umožněno díky tzv.
@@ -42,7 +42,7 @@
     </p>
     <p class="math">Nechť <em>G &equals; &lang;a&rang;</em> je cyklická grupa řádu <em>n</em> s generátorem grupy
       <em>a</em>. Každý prvek <em>b &isin; G</em> lze zapsat jako b &equals; a<sup>x</sup> pro jediné x &isin;
-      <img src="../img/zet.svg" alt="Z"><sub>n</sub>. Toto <em>x</em> se nazývá <strong>diskrétní logaritmus</strong> o
+      <img src="https://btc-slovnik.cz/img/zet.svg" alt="Z"><sub>n</sub>. Toto <em>x</em> se nazývá <strong>diskrétní logaritmus</strong> o
       základu <em>a</em> z prvku <em>b</em> v grupě <em>G</em>.
     </p>
     <p class="just">Přičemž je užita eliptická křivka popsaná standardem secp256k1:</p>
@@ -74,7 +74,7 @@
       generátoru grupy vypočítal soukromý klíč. Můžeme jít podepisovat.</p>
     <div class="fig">
       <figure>
-        <img src="../img/secp256k1.png" alt="secp256k1">
+        <img src="https://btc-slovnik.cz/img/secp256k1.png" alt="secp256k1">
         <figcaption>Takto by vypadalo zobrazení bitcoinové eliptické křivky nad množinou reálných čísel.</figcaption>
       </figure>
     </div>
@@ -98,7 +98,7 @@
     </ul>
     <p class="just">Dvojice čísel <em>r, s</em> je naším podpisem zprávy <em>e</em>. Zakódováním čísel <em>r, s</em> do
       formátu DER (Distinguished Encoding Rules) získáme podpisový element použitelný v <a
-        href="./transaction.html#script">sigScriptu</a>.</p>
+        href="https://btc-slovnik.cz/pages/transaction.html#script">sigScriptu</a>.</p>
     <p class="just">K ověření si musíme opět sestavit předobraz podepisované transkace a vypočíst jeho dvojnásobný
       SHA256 hash, tj. číslo <em>e</em>, dále nám již stačí z scriptSigu získaný podpis (dvojice r, s) a veřejný klíč.
       Ten je v scriptSigu zakódován ve formátu SEC (Standards of Efficient Cryptography) zpravidla pouze jako x -ová
@@ -139,13 +139,13 @@
   </div>
   <footer>
     <div>
-      <div class="cc0"><a class="license" href="../LICENSE"><img
-            src="https://github.com/creativecommons/licensebuttons/raw/master/www/p/zero/1.0/80x15.png" alt="CC0" /></a>
+      <div class="cc0"><a class="license" href="https://btc-slovnik.cz/LICENSE"><img
+            src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
       </div>
     </div>
     <div class="mail">
       <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key"
-        href="./stuff/publickey.txt">pubkey</a>).<br><a href="./literature.html">Doporučená literatura</a>.</p>
+        href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a>.</p>
     </div>
   </footer>
 </body>

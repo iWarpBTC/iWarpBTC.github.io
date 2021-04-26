@@ -2,7 +2,7 @@ html {
   background-image: linear-gradient(to right, #F0F0F0, #FAFAFA, #F0F0F0);
 }
 
-body{
+body {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
@@ -10,19 +10,69 @@ div.container {
     max-width: 900px;
     margin: 0 auto;
     min-width: 720px;
-  }
+}
 
-div.entry
-{
+div.container2 {
+  max-width: 1200px;
+  margin-top: 40px;
+  margin: 0 auto;
+  min-width: 720px;
+  text-align: center;
+}
+
+div.entry {
   padding: 5px 10px 5px 10px;
   margin-bottom: 5px;
 }
 
-div.entry:hover{
+p.just {
+  text-align: justify;
+  font-size: small;
+}
+
+div.entry:hover {
   background-color: #E1E1E1;
 }
 
-footer{
+p.raw, p.script {
+  font-family: "Andale Mono", monospace;
+  word-break: break-all;
+  border: solid 1px black;
+  padding: 8px;
+  background-color: #D4D4D4;
+  font-size: small;
+  text-align: left;
+}
+
+p.script > a {
+  text-decoration: none;
+  color: blue;
+}
+
+td > div {
+  height: 15px;
+  width: 15px;
+  transform: translateX(14px);
+}
+
+div.ver, div.amount{background-color: red;}
+div.segwitmark, div.nofout, div.prevbl{background-color: black;}
+div.segwitflag, div.witness, div.merkle{background-color: blue;}
+div.nofin, div.locktime{background-color: yellow;}
+div.prevtx, div.pub, div.time{background-color: green;}
+div.previn, div.bits{background-color: purple;}
+div.sig{background-color: gray;}
+div.seq, div.nonce{background-color: cyan;}
+
+span.ver, span.amount{color: red;}
+span.segwitflag, span.witness, span.merkle{color: blue;}
+span.nofin, span.locktime{color: yellow;background-color:black}
+span.prevtx, span.pub, span.time{color: green;}
+span.previn, span.bits{color: purple}
+span.sig{color: gray;}
+span.seq, span.nonce{color: cyan;background-color:black}
+
+footer {
   text-align: center;
   background-color: #eaecef;
   padding: 1px;
@@ -30,42 +80,43 @@ footer{
   border-top: solid 1px #4d4d4d;
 }
 
-div.mail{
+div.mail {
   position: absolute;
   left:50%;
   transform: translateX(-50%);
 }
 
-div.cc0
-{
+div.cc0 {
   float: right;
   padding-top: 26px;
   padding-right: 5%;
 }
 
-header
-{
+header {
   height: 60px;
   border-bottom: 1px solid #eaecef;
   text-align: center;
   margin-bottom:20px;
 }
 
-div.h2{
+h1 > a {
+  text-decoration: none;
+}
+
+div.h2 {
   width: 100%;
 }
 
-div.fig
-{
+div.fig {
   display: flex;
   justify-content: center;
 }
 
-h2{
+h2 {
   display: inline;
 }
 
-h2.short{
+h2.short {
   float: right;
   font-size: initial;
   font-style: italic;
@@ -73,7 +124,7 @@ h2.short{
   color: #555;
 }
 
-h3{
+h3 {
   padding-left: 20px;
 }
 
@@ -88,7 +139,7 @@ figcaption {
   caption-side: bottom ; 
   background-color: #f2f2f2;
   margin-top: -5px;
-  padding: 5px 0 5px 0;
+  padding: 5px;
   border: solid 1px #8D8D8D;
   border-top: none;
 }
@@ -167,6 +218,34 @@ div.ana-link > p > a {
 div.ana-link > p > a:hover {
   text-decoration: underline;
   color:black;
+}
+
+img[src*="../img/lol.png"] {
+  margin-bottom: -1px;  
+}
+
+div.undernotes {
+  border-top: solid 1px black;
+  text-align: left;
+}
+
+p.note {
+  font-size:x-small;
+}
+
+a.lit {
+  color: blue;
+  text-decoration: none;
+}
+
+a.lit:hover {
+  text-decoration: underline;
+}
+
+ul.article {
+  margin-left: 20px;
+  text-align: left;
+  font-size: small;
 }
 
 a#luke{margin-left: 165px;}

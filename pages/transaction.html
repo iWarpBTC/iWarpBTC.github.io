@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <title>Bitcoinový slovníček pro mírně pokročilé &ndash; anatomie transakce a skriptu</title>
-  <link rel="shortcut icon" href="https://bitcoin.org/favicon.png?1616555510">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="shortcut icon" href="https://btc-slovnik.cz/img/favicon.png">
+  <link rel="stylesheet" href="https://btc-slovnik.cz/css/styles.css">
 </head>
 
 <body>
   <header>
     <div class="h1">
-      <h1><a href="../index.html#transaction"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně
+      <h1><a href="https://btc-slovnik.cz/#transaction"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně
           pokročilé</a></h1>
     </div>
   </header>
-  <div class="container">
+  <div class="container2">
     <h2>Anatomie transakce</h2>
     <p class="just">K popisu anatomie bitcoinové transakce byla náhodně vybrána segwitová transakce
       40e285bd2b757bf455f9e3ce92aa8e51910f88a1ca9dd497465d346310e7df11 z bloku č. 676274. Jedná se o typickou transakci
       s jedním vstupem a dvěma výstupy &ndash; to znamená, že transakce utrácí (spotřebováva) jeden <a
-        href="../index.html#utxo">UTXO</a> a dva nové UTXO vytváří. Následuje hexadecimální reprezentace serializace
+        href="https://btc-slovnik.cz/#utxo">UTXO</a> a dva nové UTXO vytváří. Následuje hexadecimální reprezentace serializace
       transakce:</p>
     <p class="raw"><span class="ver" onmouseover="biggerbox('ver')" onmouseout="backbox('ver')">01000000</span><span
         class="segwitmark" onmouseover="biggerbox('segwitmark')" onmouseout="backbox('segwitmark')">00</span><span
@@ -177,20 +177,20 @@
     </div>
     <p class="just">Serializace této tx čítá 222 bajtů z čehož je 109 bajtů &bdquo;segwitových&ldquo; (marger, flag,
       witness). Pro
-      výpočet <a href="../index.html#wu">váhy</a> tx vynásobíme počet bajtů &bdquo;nesegwitových&ldquo; dat čtyřmi a
+      výpočet <a href="https://btc-slovnik.cz/#wu">váhy</a> tx vynásobíme počet bajtů &bdquo;nesegwitových&ldquo; dat čtyřmi a
       výsledek
       přičteme k počtu segwitových bajtů (113 &times; 4 &equals; 452&semi; 452 &plus; 109 &equals; 561 WU). Když poté
       vydělíme WU čtyřmi,
-      dostaneme tzv. <a href="../index.html#vsize">virtuální velikost</a> (561 &divide; 4 &equals; 140,25 vB).</p>
+      dostaneme tzv. <a href="https://btc-slovnik.cz/#vsize">virtuální velikost</a> (561 &divide; 4 &equals; 140,25 vB).</p>
     <p class="just">Odečtením součtu částek výstupů od součtu částek vstupů (hodnoty částek vstupů nejsou součástí dat
       této tx&semi; je potřeba se podívat do předchozích) zjistíme absolutní hodnotu <a
-        href="../index.html#fee">poplatku</a>
+        href="https://btc-slovnik.cz/#fee">poplatku</a>
       (9566387 &minus; (9545393 &plus; 20000) &equals; 994). Relatvní hodnoty poplatků pak zjistíme už prostým dělením
       velikostí resp.
       virtuální velikostí (994 &divide; 222 &equals; 4,5 satů/bajt&semi; 994 &divide; 140 &equals; 7,1 satů/vBajt). </p>
     <div class="fig">
       <figure>
-        <img src="../img/txs.svg" alt="digram transakcí">
+        <img src="https://btc-slovnik.cz/img/txs.svg" alt="digram transakcí">
         <figcaption>Diagram popisované transakce včetně předcházející</figcaption>
       </figure>
     </div>
@@ -209,7 +209,7 @@
       aktuální tx. ScriptSig naší transakce je ale prázdný! No to nevadí, uzel začne s tím to co má. OP_0 vloží na vrch
       zasobníku nulu, OP_PUSHBYTES_20 vloží na vrch zásobníku následujících 32 bajtů skriptu. Uzel vykonal celý skript
       na vrchu zásobníku má nenulovou hodnotu (hash veřejného klíče). Skript je pravdivý, transakce je platná. I bez
-      podpisu je platná! <img src="../img/lol.png" alt="LOL"> Není to chyba, je to schválně &ndash; předsegwitové uzly
+      podpisu je platná! <img src="https://btc-slovnik.cz/img/lol.png" alt="LOL"> Není to chyba, je to schválně &ndash; předsegwitové uzly
       neví,
       že podpisový skript je nyní v poli witness, proto je zajištěno, že se těmto uzlům bude kombinace segwitového
       uzamykacího skriptu a prázdného podpisového skriptu segwit transakce jevit jako platná. Taky se tomu říká zpětná
@@ -256,16 +256,16 @@
   </div>
   <footer>
     <div>
-      <div class="cc0"><a class="license" href="../LICENSE"><img
-            src="https://github.com/creativecommons/licensebuttons/raw/master/www/p/zero/1.0/80x15.png" alt="CC0" /></a>
+      <div class="cc0"><a class="license" href="https://btc-slovnik.cz/LICENSE"><img
+            src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
       </div>
     </div>
     <div class="mail">
       <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key"
-        href="./stuff/publickey.txt">pubkey</a>).<br><a href="./literature.html">Doporučená literatura</a>.</p>
+        href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a>.</p>
     </div>
   </footer>
-  <script src="javascript.js"></script>
+  <script src="https://btc-slovnik.cz/pages/javascript.js"></script>
 </body>
 
 </html>
