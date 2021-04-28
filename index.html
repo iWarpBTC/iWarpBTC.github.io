@@ -138,14 +138,13 @@
         </div>
         <div class="entry">
             <h2 id="seed">seed (semínko)</h2>
-            <p>Počáteční entropie (zpravidla 128 až 256 bitů) rozšířená funkcí PBKDF2 v 512 bitové číslo. Z tohoto čísla
-                jsou následně deterministicky odvozovány všechny klíče (resp. adresy). Levých 256 bitů slouží jako
-                master soukromý klíč, pravých 256 bitů se použije jako master chain klíč.</p>
+            <p>Počáteční entropie (zpravidla 128 až 256 bitů) rozšířená společně s případnou passphrase funkcí PBKDF2 v 512 bitové číslo. Z tohoto čísla
+                jsou následně deterministicky odvozovány všechny klíče (resp. adresy).</p>
         </div>
         <div class="entry">
             <h2 id="passphrase">passphrase</h2>
             <p>Někdy též zvaná 13/25 slovo seedu. Je&hyphenli použita, podílí se (jako salt funkce PBKDF2) v kombinaci s
-                počáteční entropií (vyjadřované nejčastěji 12/24 slovy) na vygenerování semínka. Narozdíl od samotné
+                počáteční entropií (vyjadřované nejčastěji řetězcem 12/24 slov seedu) na vygenerování seedu. Narozdíl od samotné
                 počáteční entropie není uložena v peněžence a neměla by být uchovávna ani společně s fyzickou zálohou
                 (slovy seedu). Pak passphrase poskytuje další vrstvu ochrany, neboť případná extrakce počáteční entropie
                 z peněženky, či nalezení zálohy (slov seedu) dává přístup pouze k prostředkům uloženým pod semínkem bez

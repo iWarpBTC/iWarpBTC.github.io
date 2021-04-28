@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Anatomie peněženky a adresy</title>
+  <link rel="shortcut icon" href="https://btc-slovnik.cz/img/favicon.png">
+  <link rel="stylesheet" href="https://btc-slovnik.cz/css/styles.css">
+  <meta name="description"
+        content="Popisuje základní funkce bitcoinové peněženky a odvozování adres.">
+  <link rel="canonical" href="https://btc-slovnik.cz/pages/wallet.html">
+</head>
+
+<body>
+  <header>
+    <div class="h1">
+      <h1><a href="https://btc-slovnik.cz/#hd-wallet"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně
+          pokročilé</a>
+      </h1>
+    </div>
+  </header>
+  <div class="container2">
+    <h2>Anatomie HD peněženky (BIP 32/39/44)</h2>
+    <p class="just">Deterministicky hierarchistická peněženka je software, který dokáže z tzv. počáteční entropie generovat prakticky neomezené množství klíčových párů a tedy i adres.</p>
+    <p class="just">Při prvním zpuštění (inicializaci) si taková peněženka ideálně z několika různých zdrojů (pseudo)náhodných čísel vygeneruje oněch zpravidla 128 až 256 bitů entropie. Nakonec přidáme prvních 4 až 8 bitů hashe (SHA256) naší entropie. Toto číslo se následně rozdělíme na 12 až 24 částí po 11 bitech tak, aby každý část odpovídala slovu ze <a href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt">seznamu 2048 slov</a>. Tato <a href="https://btc-slovnik.cz/#seed-words">slova seedu</a> jsou zobrazene uživateli, který je v ideálním případě bezpečně a trvanlivě zaznamená a uchová. Taktéž peněženka si těchto 132 až 264 bitů dat uloží do své paměti.</p>
+    <p class="just">Po inicializaci (a následně i při každém další zpuštění) je uživatel vyzván k zadání passphrase (popřípadě si ji musí nejdřív povolit). Poté je zavolána funkce PBKDF2 s hashováním HMAC-SHA512 a počtem iterací 2048. Dále je na vstupu jako parametr password řetezec slov seedu a jako parametr salt řetězec passphrase (v případě vypnuté nebo nezadané prázdný) předsazený řetezcem "menemonic". Výstupem funkce je 512bitový seed.</p>
+    <p class="just">  </p>
+  </div>
+  <footer>
+    <div>
+      <div class="cc0"><a class="license" href="https://btc-slovnik.cz/LICENSE"><img
+            src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
+      </div>
+    </div>
+    <div class="mail">
+      <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a
+        class="key" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <a class="key" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Diskrece</a></p>
+    </div>
+  </footer>
+</body>
+
+</html>
