@@ -248,6 +248,13 @@ ul.article {
   font-size: small;
 }
 
+iframe.donate {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  min-width: 680px;
+  min-height: 660px;
+}
+
 a#luke{margin-left: 165px;}
 a#nick{margin-left: 330px;}
 a#pieter{margin-top: 165px;}
