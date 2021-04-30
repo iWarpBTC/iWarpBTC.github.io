@@ -6,8 +6,7 @@
   <title>Anatomie peněženky a adresy</title>
   <link rel="shortcut icon" href="https://btc-slovnik.cz/img/favicon.png">
   <link rel="stylesheet" href="https://btc-slovnik.cz/css/styles.css">
-  <meta name="description"
-        content="Popisuje základní funkce bitcoinové peněženky a odvozování adres.">
+  <meta name="description" content="Popisuje základní funkce bitcoinové peněženky a odvozování klíčů.">
   <link rel="canonical" href="https://btc-slovnik.cz/pages/wallet.html">
 </head>
 
@@ -20,12 +19,89 @@
     </div>
   </header>
   <div class="container2">
-    <h2>Anatomie HD peněženky (BIP 32/39/44)</h2>
-    <p class="just">Deterministicky hierarchistická peněženka je software, který dokáže z tzv. počáteční entropie generovat prakticky neomezené množství klíčových párů a tedy i adres.</p>
-    <p class="just">Při prvním zpuštění (inicializaci) si taková peněženka ideálně z několika různých zdrojů (pseudo)náhodných čísel vygeneruje oněch zpravidla 128 až 256 bitů entropie. Nakonec přidáme prvních 4 až 8 bitů hashe (SHA256) naší entropie. Toto číslo se následně rozdělíme na 12 až 24 částí po 11 bitech tak, aby každý část odpovídala slovu ze <a href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt">seznamu 2048 slov</a>. Tato <a href="https://btc-slovnik.cz/#seed-words">slova seedu</a> jsou zobrazene uživateli, který je v ideálním případě bezpečně a trvanlivě zaznamená a uchová. Taktéž peněženka si těchto 132 až 264 bitů dat uloží do své paměti.</p>
-    <p class="just">Po inicializaci (a následně i při každém další zpuštění) je uživatel vyzván k zadání passphrase (popřípadě si ji musí nejdřív povolit). Poté je zavolána funkce PBKDF2 s hashováním HMAC-SHA512 a počtem iterací 2048. Dále je na vstupu jako parametr <em>password</em> řetezec slov seedu a jako parametr <em>salt</em> řetězec passphrase (v případě vypnuté nebo nezadané prázdný) předsazený řetezcem "menemonic". Výstupem funkce je 512 bitový seed.</p>
-    <p class="just">Když je pak seed jako <em>message</em> společně řetězcem znaků &bdquo;Bitcoin seed&ldquo; jako <em>key</em> přiveden na vstup funkce HMAC-SHA512, dostaneme opět 512 bitové číslo, jehož levých 256 bitů představuje hlavní soukromý klíč (master private key) a pravých 256 bitů představuje hlavní kód řetězu (master chain code). Hlavního soukromého klíče je pak možné <a href="https://btc-slovnik.cz/pages/crypto.html">standardním způsobem</a> vypočítat veřejný klíč. Kombinace kteréhokoliv z klíčů s kódem řetězu se pak nazývá rozšířený klíč (extended key).</p>
-
+    <h2>Anatomie HD peněženky (BIP 32/39/44/84)</h2>
+    <p class="just">Deterministicky hierarchistická peněženka je software, který dokáže z tzv. počáteční entropie (následně zakonzerované ve slovech seedu)
+      generovat prakticky neomezené množství klíčových párů a tedy i adres.</p>
+    <p class="just">Při prvním zpuštění (inicializaci) si taková peněženka ideálně z několika různých zdrojů
+      vygeneruje zpravidla mezi 128 a 256 bity entropie. Za to ještě přidá prvních 4 až 8 bitů
+      hashe (SHA256) této entropie. Toto číslo se následně rozdělíme na 12 až 24 částí po 11 bitech tak, že každá část
+      odpovídala slovu ze <a href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt">slovníku 2048
+        slov</a>. Tato slova seedu jsou zobrazene uživateli, který je v
+      ideálním případě bezpečně a trvanlivě zaznamená a uchová. Taktéž peněženka si těchto 132 až 264 bitů dat uloží do
+      své paměti.</p>
+    <div class="fig">
+      <figure>
+        <img src="../img/seed.svg" alt="slova seedu">
+        <figcaption>Entropie s kontrolním hashem je převáděna do slov dle BIP 39</figcaption>
+      </figure>
+    </div>
+    <p class="just">Po inicializaci (a následně i při každém další spuštění) může být uživatel vyzván k zadání passphrase
+      (pokud si její použítí povolil). Poté je zavolána funkce PBKDF2 s hashováním HMAC-SHA512 a počtem iterací
+      2048. Na vstupu je jako parametr <em>password</em> řetezec slov seedu a jako parametr <em>salt</em> řetězec
+      passphrase (v případě vypnuté passphrase prázdný) předsazený řetezcem "menemonic". Výstupem funkce je 512
+      bitový seed.</p>
+    <div class="fig">
+      <figure>
+        <img src="../img/seed2.svg" alt="512 bitů seedu">
+        <figcaption>Seed je rozšířen na 512 bitů</figcaption>
+      </figure>
+    </div>
+    <p class="just">Když je pak seed jako <em>message</em> společně s řetězcem znaků &bdquo;Bitcoin seed&ldquo; jako
+      <em>key</em> přiveden na vstup funkce HMAC-SHA512, dostaneme opět 512 bitové číslo, jehož levých 256 bitů
+      představuje <strong>hlavní</strong> soukromý klíč (master private key) a pravých 256 bitů představuje <strong>hlavní</strong> kód řetězu (master
+      chain code). Z hlavního soukromého klíče je pak možné <a href="https://btc-slovnik.cz/pages/crypto.html">standardním
+        způsobem</a> vypočítat veřejný klíč. <strong>Kombinace kteréhokoliv z klíčů s korespondujícím kódem řetězu se
+        pak nazývá rozšířený klíč
+        (extended key).</strong>
+    </p>
+    <div class="fig">
+      <figure>
+        <img src="../img/xkey.svg" alt="hlavní klíč">
+        <figcaption>Ze seedu je odvozen hlavní rozšířený klíč dle BIP 32</figcaption>
+      </figure>
+    </div>
+    <p class="just">S rozšířenými klíči již můžeme generovat dle libosti jejich potomky, přičemž u potomků soukromého
+      klíče se rozlišuje mezi tvrzeným a netvrzeným odvozením. Zabývat se nyní musíme něčím, čemu se říká derivační
+      cesta. Díky standardizovaným derivačním cestám dospěje každá kompatibilní peněženka z daného seedu (kombinace slov seedu a passphrase)
+      vždy ke stejné sadě klíčů, resp. adres.</p>
+    <p class="just">Podle BIPu 44 je standardní formát derivační cesty: </p>
+    <p class="raw">m / purpose' / coin_type' / account' / change / address_index</p>
+    <p class="just">Apostrof nám značí tvrzené odvození, které lze provádět pouze se znalostí soukromého klíče. Malé m
+      je hlavní rozšířený klíč (master). Purpose je index účelu – 44 je vyhrazena pro původní (legacy) BTC adresy, 48
+      pro adresy
+      skriptu (typicky zapouzřený segwit, nebo nějaký multisig), 84 pak vede k nejnovějším adresám native segwit. Index
+      coin_type rozlišuje mezi hlavní síti mainnet (0) a testovací sítí testnet (1). Index account je pořadové číslo účtu. Všechny
+      indexy jsou rozsahu 4 bajty, přičemž pro tvrzené odvozování jsou vyhrazeni indexy od 2<sup>31</sup> do
+      2<sup>32</sup>&minus;1. To dává dost prostoru pro odvození 2&nbsp;147&nbsp;483&nbsp;647 účtů. Index change roven
+      nule odvozuje adresy ke zveřejnění (ty, které peněženka zobrazuje při kliknutí na tlačítko Přijmout), jednička
+      jsou vnitřní adresy užívané pěněženkou k uzamčení zbytku při útratě příliš velkého UTXO. Konečně poslední index již čísluje
+      jednotlivé adresy. Těch může být opět 2&nbsp;147&nbsp;483&nbsp;647 pod každým účtem. Nemusíte se tedy bát používat
+      pro každou transakci novou adresu tak, jak to stanovují best practice Bitcoinu. </sup></p>
+    <p class="just">Odvozování potomků provádíme již představenou funkcí HMAC-SHA512 a jako <em>key</em> slouží ve všech
+      případech kód řetězu. Liší se vstupy do <em>message</em> a to, co provádíme s výstupem.</p>
+    <p class="just">Netvrzené odvození ze soukromého rozšířeného klíče provedeme tak, že do <em>message</em> vložíme
+      veřejný klíč a index. K levým 256 bitům výstupu přičteme rodičovský soukromý klíč &ndash; to celé modulo <a
+        href="https://btc-slovnik.cz/pages/crypto.html">řádem grupy</a>. Tím získáme soukromý klíč potomka, kódem řetězu
+      potomka je pravých 256 bitů výstupu.</p>
+    <p class="just">Tvrzené odvození ze soukromého rozšířeného klíče se liší od netvrzeného pouze tím, že do
+      <em>message</em> vložíme
+      nulový bajt, po něm soukromý klíč a index. S výstupem si již počínáme stejně.
+    </p>
+    <p class="just">A konečně odvození potomka od veřejného klíče provedeme tak, že do <em>message</em> vložíme
+      serializovaný veřejný klíč a index. Levých 256 bitů použijeme jako <a
+        href="https://btc-slovnik.cz/pages/crypto.html">skalár pro násobení generátoru grupy</a>, výsledný bod přičteme
+      k veřejnému klíči rodiče a dostaneme
+      veřejný klíč potomka, pravých 256 bitů je opět kódem řetězu potomka.</p>
+    <p class="just">Pro přenos rozšířených klíčů se použije následující serializace zakódovaná v Base58Check:
+      <ul class="article">
+        <li>4 bajty verze &ndash; 0x0488ade4 pro soukromý klíč se zakóduje jako xprv; 0x0488b21e pro veřejný klíč bude xpub</li>
+        <li>1 bajt hloubky &ndash; počtu odvození od hlavního klíče</li>
+        <li>4 bajty otisku rodiče – první 4 bajty RIPEMD160 ze SHA256 rodičovského klíče (0x00000000 pro hlavní klíč)</li>
+        <li>4 bajty pro index tohoho potomka (0x00000000 pro hlavní klíč)</li>
+        <li>32 bajtů pro kód řetězu</li>
+        <li>33 bajtů
+          pro klíč (v případě soukromého předsazeno 0x00)</li>
+      </ul>
   </div>
   <footer>
     <div>
@@ -34,8 +110,10 @@
       </div>
     </div>
     <div class="mail">
-      <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a
-        class="key" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <a class="key" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Diskrece</a></p>
+      <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key"
+          href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a class="key"
+          href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <a class="key" rel=”nofollow”
+          href="https://btc-slovnik.cz/pages/donate.html">Diskrece</a></p>
     </div>
   </footer>
 </body>
