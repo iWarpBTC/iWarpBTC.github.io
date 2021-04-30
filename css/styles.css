@@ -20,7 +20,7 @@ div.container2 {
   text-align: center;
 }
 
-div.entry {
+div.entry, div.entryln {
   padding: 5px 10px 5px 10px;
   margin-bottom: 5px;
 }
@@ -32,6 +32,10 @@ p.just {
 
 div.entry:hover {
   background-color: #E1E1E1;
+}
+
+div.entryln:hover {
+  background-color: #CCABF7;
 }
 
 p.raw, p.script {
