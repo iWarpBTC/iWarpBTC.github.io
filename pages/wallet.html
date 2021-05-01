@@ -22,11 +22,11 @@
     <h2>Anatomie HD peněženky (BIP 32/39/44/84)</h2>
     <p class="just">Deterministicky hierarchistická peněženka je software, který dokáže z tzv. počáteční entropie (následně zakonzerované ve slovech seedu)
       generovat prakticky neomezené množství klíčových párů a tedy i adres.</p>
-    <p class="just">Při prvním zpuštění (inicializaci) si taková peněženka ideálně z několika různých zdrojů
+    <p class="just">Při prvním spuštění (inicializaci) si taková peněženka, ideálně z několika různých zdrojů,
       vygeneruje zpravidla mezi 128 a 256 bity entropie. Za to ještě přidá prvních 4 až 8 bitů
-      hashe (SHA256) této entropie. Toto číslo se následně rozdělíme na 12 až 24 částí po 11 bitech tak, že každá část
-      odpovídala slovu ze <a href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt">slovníku 2048
-        slov</a>. Tato slova seedu jsou zobrazene uživateli, který je v
+      hashe (SHA256) této entropie. Toto číslo se následně rozdělíme na 12 až 24 částí po 11 bitech tak, aby každá část
+      odpovídala indexu slova ze <a href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt">slovníku 2048
+        slov</a>. Tato slova seedu jsou zobrazené uživateli, který je v
       ideálním případě bezpečně a trvanlivě zaznamená a uchová. Taktéž peněženka si těchto 132 až 264 bitů dat uloží do
       své paměti.</p>
     <div class="fig">
@@ -36,10 +36,9 @@
       </figure>
     </div>
     <p class="just">Po inicializaci (a následně i při každém další spuštění) může být uživatel vyzván k zadání passphrase
-      (pokud si její použítí povolil). Poté je zavolána funkce PBKDF2 s hashováním HMAC-SHA512 a počtem iterací
-      2048. Na vstupu je jako parametr <em>password</em> řetezec slov seedu a jako parametr <em>salt</em> řetězec
-      passphrase (v případě vypnuté passphrase prázdný) předsazený řetezcem "menemonic". Výstupem funkce je 512
-      bitový seed.</p>
+      (pokud si její použití povolil). Poté je zavolána funkce PBKDF2 s hashováním HMAC-SHA512 a počtem iterací
+      2048. Na vstupu je jako parametr <em>password</em> řetězec slov seedu a jako parametr <em>salt</em> řetězec
+      passphrase (v případě vypnuté passphrase prázdný) předsazený řetězcem "menemonic". Výstupem funkce je 512bitový seed.</p>
     <div class="fig">
       <figure>
         <img src="https://btc-slovnik.cz/img/seed2.svg" alt="512 bitů seedu">
@@ -47,7 +46,7 @@
       </figure>
     </div>
     <p class="just">Když je pak seed jako <em>message</em> společně s řetězcem znaků &bdquo;Bitcoin seed&ldquo; jako
-      <em>key</em> přiveden na vstup funkce HMAC-SHA512, dostaneme opět 512 bitové číslo, jehož levých 256 bitů
+      <em>key</em> přiveden na vstup funkce HMAC-SHA512, dostaneme opět 512bitové číslo, jehož levých 256 bitů
       představuje <strong>hlavní</strong> soukromý klíč (master private key) a pravých 256 bitů představuje <strong>hlavní</strong> kód řetězu (master
       chain code). Z hlavního soukromého klíče je pak možné <a href="https://btc-slovnik.cz/pages/crypto.html">standardním
         způsobem</a> vypočítat veřejný klíč. <strong>Kombinace kteréhokoliv z klíčů s korespondujícím kódem řetězu se
@@ -69,14 +68,14 @@
     <p class="just">Apostrof nám značí tvrzené odvození, které lze provádět pouze se znalostí soukromého klíče. Malé m
       je hlavní rozšířený klíč (master). Purpose je index účelu – 44 je vyhrazena pro původní (legacy) BTC adresy, 48
       pro adresy
-      skriptu (typicky zapouzřený segwit, nebo nějaký multisig), 84 pak vede k nejnovějším adresám native segwit. Index
+      skriptu (typicky zapouzdřený segwit, nebo nějaký multisig), 84 pak vede k nejnovějším adresám native segwit. Index
       coin_type rozlišuje mezi hlavní síti mainnet (0) a testovací sítí testnet (1). Index account je pořadové číslo účtu. Všechny
-      indexy jsou rozsahu 4 bajty, přičemž pro tvrzené odvozování jsou vyhrazeni indexy od 2<sup>31</sup> do
+      indexy jsou rozsahu 4 bajty, přičemž pro tvrzené odvozování jsou vyhrazeny indexy od 2<sup>31</sup> do
       2<sup>32</sup>&minus;1. To dává dost prostoru pro odvození 2&nbsp;147&nbsp;483&nbsp;647 účtů. Index change roven
       nule odvozuje adresy ke zveřejnění (ty, které peněženka zobrazuje při kliknutí na tlačítko Přijmout), jednička
-      jsou vnitřní adresy užívané pěněženkou k uzamčení zbytku při útratě příliš velkého UTXO. Konečně poslední index již čísluje
+      jsou vnitřní adresy užívané peněženkou k uzamčení zbytku při útratě příliš velkého UTXO. Konečně poslední index již čísluje
       jednotlivé adresy. Těch může být opět 2&nbsp;147&nbsp;483&nbsp;647 pod každým účtem. Nemusíte se tedy bát používat
-      pro každou transakci novou adresu tak, jak to stanovují best practice Bitcoinu. </sup></p>
+      pro každou transakci novou adresu tak, jak to stanovují best practices Bitcoinu. </sup></p>
     <p class="just">Odvozování potomků provádíme již představenou funkcí HMAC-SHA512 a jako <em>key</em> slouží ve všech
       případech kód řetězu. Liší se vstupy do <em>message</em> a to, co provádíme s výstupem.</p>
     <p class="just">Netvrzené odvození ze soukromého rozšířeného klíče provedeme tak, že do <em>message</em> vložíme
@@ -97,7 +96,7 @@
         <li>4 bajty verze &ndash; 0x0488ade4 pro soukromý klíč se zakóduje jako xprv; 0x0488b21e pro veřejný klíč bude xpub</li>
         <li>1 bajt hloubky &ndash; počtu odvození od hlavního klíče</li>
         <li>4 bajty otisku rodiče – první 4 bajty RIPEMD160 ze SHA256 rodičovského klíče (0x00000000 pro hlavní klíč)</li>
-        <li>4 bajty pro index tohoho potomka (0x00000000 pro hlavní klíč)</li>
+        <li>4 bajty pro index tohoto potomka (0x00000000 pro hlavní klíč)</li>
         <li>32 bajtů pro kód řetězu</li>
         <li>33 bajtů
           pro klíč (v případě soukromého předsazeno 0x00)</li>

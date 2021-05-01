@@ -96,7 +96,7 @@
     </div>
     <p class="just">Z verze, konkrétně prvních tří bitů zleva (001), můžeme vyčíst signalizaci podle <a
         href="https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki">BIP 9</a>. Přítomnost hashe předchozího
-      bloku je jasná, blok je tím &ndash; podobně jako oka řetezu &ndash; pevně spojen s předchozím blokem. Kořenový
+      bloku je jasná, blok je tím &ndash; podobně jako oka řetězu &ndash; pevně spojen s předchozím blokem. Kořenový
       hash merkle
       stromu transakcí zaručuje, že se změna byť jediného bajtu v jediné do bloku zahrnuté tx projeví v konečném
       důsledku změnou hashe hlavičky tohoto bloku. Časové razítko říká, že k vytěžení bloku došlo 1616690206 sekund od
@@ -105,7 +105,7 @@
       ke kterým je uzel připojen. Z pole bits si vypočteme target &ndash; první bajt (zleva) je exponent, zbytek
       koeficient.
       Zůstaneme-li v hexa, bude target cdf6f &times; 100<sup>17-3</sup>. <a
-        href="https://www.online-python.com/cVBjGF2Y5Z">Porovnáme</a>, jeli hash našeho bloku menší než vypočtený
+        href="https://www.online-python.com/cVBjGF2Y5Z">Porovnáme</a>, je-li hash našeho bloku menší než vypočtený
       target. Poslední pole obsahuje nonci, které se budeme věnovat později. </p>
     <p class="just">Za hlavičkou následuje LE varint s počtem transakcí v bloku a pak už serializace všech těchto
       transakcí. První z nich je ovšem speciální, tzv. mincetvorná (coinbase). Ta se oproti zbytku liší tím, že nemá
@@ -120,8 +120,8 @@
         href="https://btc-slovnik.cz/#utxo">UTXO</a>, může si těžař na výstupu uzamknout odměnu (v době psaní) 6,25 BTC plus
       součet poplatků všech zahrnutých transakcí. Pokud blok obsahuje segwitovou transakci, musí také obsahovat
       OP_RETURN výstup s kořenem paralelního witness merkle stromu. Protože podpisové skripty segwit transakcí již
-      nejsou sočástí výpočtu hashe transakce, a jejich změna by se tedy neprojevila změnou merkle hashe v hlavičce bloku
-      (a protože strukturu hlavičky nelze změnit <a href="https://btc-slovnik.cz/#sfork">soft-forkem</a>), jsou hashe tranaskcí
+      nejsou součástí výpočtu hashe transakce, a jejich změna by se tedy neprojevila změnou merkle hashe v hlavičce bloku
+      (a protože strukturu hlavičky nelze změnit <a href="https://btc-slovnik.cz/#sfork">soft-forkem</a>), jsou hashe transakcí
       včetně witness dat zahrnuty do hlavního merkle stromu, a tím i do hashe hlavičky bloku právě touto cestou. Díky
       tomu platí, že změna kteréhokoliv bajtu kterékoliv v bloku zahrnuté transakce se nakonec projeví změnou hashe
       bloku.</p>
