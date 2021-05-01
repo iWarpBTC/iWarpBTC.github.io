@@ -32,14 +32,14 @@
       zprávy
       vygeneruje takový pár klíčů a ten veřejný publikuje, kdokoliv může tímto veřejným klíčem zašifrovat zprávu, kterou
       bude moci dešifrovat jen a pouze
-      příjemce pomocí svého soukromého klíče. Asymetrická kryptografie však umožnuje, kromě šifrování za účelem skrytí
+      příjemce pomocí svého soukromého klíče. Asymetrická kryptografie však umožňuje, kromě šifrování za účelem skrytí
       tajné zprávy, také šifrování za účelem podpisu zprávy. Pokud původce zprávy tuto zprávu (v praxi stačí pouze její
-      hash) zašifřuje svým soukromým klíčem, každý může jeho publikovaným veřejným klíčem zprávu dešifrovat a tím
+      hash) zašifruje svým soukromým klíčem, každý může jeho publikovaným veřejným klíčem zprávu dešifrovat a tím
       ověřit, že původce zprávy je právě držitel soukromého klíče náležícímu k publikovanému veřejnému. Tomuto se říká
       kryptografický podpis a v Bitcoinu je
-      jím prokozováno, že výstup je utrácen právě držitelem soukromého klíče přislušícího k veřejnému klíči, ve prospěch
+      jím prokazováno, že výstup je utrácen právě držitelem soukromého klíče přislušícího k veřejnému klíči, ve prospěch
       jehož hashe byl výstup uzamčen. (Že je výstup uzamčen ve prospěch nikoliv přímo veřejného klíče, nýbrž jeho hashe,
-      je jen dalším stupňem ochrany.) </p>
+      je jen dalším stupněm ochrany.) </p>
 
     <p class="just">Asymetrická kryptografie eliptických křivek je založena na tzv. problému diskrétního logaritmu:
     </p>
@@ -69,7 +69,7 @@
       násobení skalárem &ndash; soukromým klíčem vynásobíme generátor grupy&semi; výsledkem bude bod na křivce &ndash;
       náš veřejný klíč. Přestože
       se operace naší grupy jmenuje součet bodů a opakovanému sčítání bodu sebou samým říkáme násobení skalárem, můžeme
-      si tyto oprace představit jako násobení a opakované násobení jako umocňování. Pak náš postup přesně zapadne do
+      si tyto operace představit jako násobení a opakované násobení jako umocňování. Pak náš postup přesně zapadne do
       výše
       uvedené definice diskrétního logaritmu &ndash; prvkem <em>b</em> je veřejný klíč, zatímco <em>x</em> je klíč
       soukromý.
@@ -90,7 +90,7 @@
       ve prospěch jehož hashe jsou uzamknuty bitcoiny na výstupu předcházející transakce. Podepisovanou zprávou tedy
       bude dvojitý SHA256 hash jakéhosi předobrazu naší výsledné transakce. Protože je výroba tohoto předobrazu poměrně
       komplexní
-      záležítostí, bude této problematice nejspíš věnován další díl anatomie. Zatím si vystačíme s tím, že hash naší
+      záležitostí, bude této problematice nejspíš věnován další díl anatomie. Zatím si vystačíme s tím, že hash naší
       zprávy
       bude číslo <em>e</em>.</p>
     <p class="just">Výpočet podpisu je pak již jednoduchý: </p>

@@ -21,7 +21,7 @@
         <div class="entry">
             <h2 id="capital-bitcoin">Bitcoin</h2>
             <p>Název decentralizované <a href="https://btc-slovnik.cz/#p2p">P2P</a> sítě sloužící k uchování a přenosu hodnoty. Síť byla
-                spustěna 3.&nbsp;ledna 2009, když došlo k vytěžení <a href="https://btc-slovnik.cz/#genesis">prvního bloku</a>.</p>
+                spuštěna 3.&nbsp;ledna 2009, když došlo k vytěžení <a href="https://btc-slovnik.cz/#genesis">prvního bloku</a>.</p>
         </div>
         <div class="entry">
             <h2 id="bitcoin">bitcoin</h2>
@@ -66,7 +66,7 @@
         </div>
         <div class="entry">
             <h2 id="block">blok</h2>
-            <p>Předepsaná datová struktura transakcí omezené velikosti (4&nbsp;000&nbsp;000&nbsp;WU&semi; dříve 1&nbsp;MB). Sestavá se z
+            <p>Předepsaná datová struktura transakcí omezené velikosti (4&nbsp;000&nbsp;000&nbsp;WU&semi; dříve 1&nbsp;MB). Sestává se z
                 hlavičky
                 bloku a serializovaných transakcí.</p>
             <div class="ana-link">
@@ -86,7 +86,7 @@
         <div class="entry">
             <h2 id="genesis">genesis blok</h2>
             <p>První blok bitcoinové sítě vytěžený Satoshim 3.&nbsp;ledna 2009. Jeho coinbase transakce v sobě obsahuje text
-                odkazujcí na legendární novinový titulek &bdquo;The Times 03/Jan/2009 Chancellor on brink of second
+                odkazující na legendární novinový titulek &bdquo;The Times 03/Jan/2009 Chancellor on brink of second
                 bailout
                 for banks&ldquo;. </p>
         </div>
@@ -94,8 +94,8 @@
             <h2 id="hash">hash, otisk</h2>
             <p>Výstup jednosměrné matematické funkce, která libovolně dlouhá data převede na číslo s daným rozsahem. I
                 velmi malá změna vstupních dat způsobí velmi velkou změnu výstupu funkce. Zároveň nelze předvídat jaká
-                změna dat by mohla způsobit kýženou změnu výstupu, např. získaní menšího výstupního číslo (což je
-                mimochodem cílem <a href="https://btc-slovnik.cz/#mining">těžby</a>). Výstupem v Bitcoinu používané funkce SHA256 je 256 bitové
+                změna dat by mohla způsobit kýženou změnu výstupu, např. získání menšího výstupního číslo (což je
+                mimochodem cílem <a href="https://btc-slovnik.cz/#mining">těžby</a>). Výstupem v Bitcoinu používané funkce SHA256 je 256bitové
                 číslo, zpravidla zapisované v šestnáctkové soustavě.</p>
             <h3>Příklady: </h3>
             <div class="fig">
@@ -132,7 +132,7 @@
             <h2 class="short">hierarchical deterministic</h2>
             <h2 id="hd-wallet">HD peněženka</h2>
             <p><a href="https://btc-slovnik.cz/#wallet">Peněženka</a>, která namísto jednotlivých <a href="https://btc-slovnik.cz/#privkey">soukromých klíčů</a>
-                generuje a uchovává pouze tzv. <a href="https://btc-slovnik.cz/#seed">seed</a>, z kterého pak determisticky odvozuje
+                generuje a uchovává pouze tzv. <a href="https://btc-slovnik.cz/#seed">seed</a>, z kterého pak deterministicky odvozuje
                 hierarchistické uspořádání prakticky neomezeného počtu klíčů a k nim náležících <a
                     href="#address">adres</a>.</p>
             <div class="ana-link">
@@ -141,7 +141,7 @@
         </div>
         <div class="entry">
             <h2 id="seed-words">slova seedu</h2>
-            <p>Počáteční entropie (zpravidla 128 až 256 bitové číslo) vyjádřená &ndash; z důvodů čitelnosti a odolnosti
+            <p>Počáteční entropie (zpravidla 128 až 256bitové číslo) vyjádřená &ndash; z důvodů čitelnosti a odolnosti
                 proti
                 chybě při čtení/psaní &ndash; variací 12 až 24 slov z 2048 prvkového seznamu. Slova se mohou opakovat a
                 odolnost pro chybě je zvýšena &bdquo;kontrolní součtem&ldquo; (v posledním slově je zakódováno 4 až 8 bitů <a
@@ -182,7 +182,7 @@
         </div>
         <div class="entry">
             <h2 id="privkey">soukromý klíč (private key)</h2>
-            <p>Ten tajný z dvojce klíčů asymetrické kryptografie. Slouží k rozšifrování tajné zprávy, popř. k podpisu. V
+            <p>Ten tajný z dvojice klíčů asymetrické kryptografie. Slouží k rozšifrování tajné zprávy, popř. k podpisu. V
                 případě Bitcoinu se jedná o 256bitové číslo.</p>
             <div class="ana-link">
                 <p><a href="https://btc-slovnik.cz/pages/crypto.html">anatomie křivky</a></p>
@@ -204,7 +204,7 @@
                 skript, ve prospěch kterého budou bitcoiny uzamčeny. V minulosti bývala zakódovaná v Base58Check,
                 poslední standard využívá kódování Bech32 se sofistikovanější ochranou před překlepy. K vygenerování
                 adresy není nutná komunikace se sítí, lze ji vygenerovat offline. Nutný je pouze zdroj entropie
-                (případně již pomocí kvalitní entropie vygenerový <a href="https://btc-slovnik.cz/#seed">seed</a>).</p>
+                (případně již pomocí kvalitní entropie vygenerovaný <a href="https://btc-slovnik.cz/#seed">seed</a>).</p>
             <div class="fig">
                 <figure>
                     <img src="https://btc-slovnik.cz/img/adresa.svg" alt="bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g">
@@ -260,7 +260,7 @@
             <p>Základní operace bitcoinové sítě. Na svém vstupu utrácí (spotřebovává) dosud neutracené výstupy (UTXO)
                 předchozích transakcí. Na svém výstupu uzamyká bitcoiny ve prospěch daných adres, a vytváří tak nové
                 UTXO. Potvrzená transakce se stává nesmazatelnou součástí blockchainu (který není nic jiného, než seznam
-                do bloku uspořádáných transakcí).</p>
+                do bloku uspořádaných transakcí).</p>
             <div class="ana-link">
                 <p><a href="https://btc-slovnik.cz/pages/transaction.html">anatomie transakce</a></p>
             </div>
@@ -295,7 +295,7 @@
             <h2 id="mempool">mempool</h2>
             <p>Seznam dosud nepotvrzených transakcí vedený každý <a href="https://btc-slovnik.cz/#node">uzlem</a>. Těžící uzly z tohoto seznamu
                 vybírají <a href="https://btc-slovnik.cz/#transaction">transakce</a> do svých kandidátských <a href="https://btc-slovnik.cz/#block">bloků</a>, přičemž
-                zpravidla upřednostňují transakce s vyším poměrem <a href="https://btc-slovnik.cz/#fee">poplatek</a>/<a href="https://btc-slovnik.cz/#wu">weight
+                zpravidla upřednostňují transakce s vyšším poměrem <a href="https://btc-slovnik.cz/#fee">poplatek</a>/<a href="https://btc-slovnik.cz/#wu">weight
                     unit</a>.</p>
         </div>
         <div class="entry">
@@ -330,10 +330,10 @@
             <h2 id="segwit">segwit</h2>
             <p>Vylepšení aktivované formou soft&hyphen;forku v roce 2017 v síti Bitcoin. Mimo jiného opravuje problém
                 zvaný
-                transaction malleability (trvárnost transakcí) tím, že podpisová data (scriptSig) nejsou součástí
+                transaction malleability (tvárnost transakcí) tím, že podpisová data (scriptSig) nejsou součástí
                 serializované podoby transakce, ze které je počítán její hash. Mění limit bloku z milionu bajtů (1&nbsp;MB) na
                 4 miliony weight units. Mění se výpočet podpisového hashe, kdy doposud počet vstupů zvyšoval kvadraticky
-                náročnost podepsání/oveření transakce atd&hellip;</p>
+                náročnost podepsání/ověření transakce atd&hellip;</p>
         </div>
         <div class="entry">
             <h2 id="sfork">soft&hyphen;fork</h2>
@@ -377,9 +377,9 @@
         <div class="entry">
             <h2 id="pow">proof of work</h2>
             <p>Koncept, ve kterém (na výpočetní výkon velmi náročné) <a href="https://btc-slovnik.cz/#mining">vytěžení</a> bloku poskytuje síti v
-                podstatě důkaz o vykonané prácí. Objem této vykonané práce zvyšuje šance na vítězství v soutěži o zápis
+                podstatě důkaz o vykonané práci. Objem této vykonané práce zvyšuje šance na vítězství v soutěži o zápis
                 do blockchainu (a získání odpovídající odměny) a zároveň pobízí těžaře sestavit pravidlům vyhovující
-                blok, neboť nevyhovující lze zbytkem téměř bezpracně odhalit a odmítnout, čímž by vykononá práce přisla
+                blok, neboť nevyhovující lze zbytkem téměř bezpracně odhalit a odmítnout, čímž by vykonaná práce přišla
                 vniveč.</p>
             <div class="ana-link">
                 <p><a href="https://btc-slovnik.cz/pages/block.html#mining">anatomie těžby</a></p>
@@ -418,7 +418,7 @@
         </div>
         <div class="mail">
             <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a
-                class="key" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <a class="key" href="https://btc-slovnik.cz/pages/donate.html">Diskrece</a></p>
+                class="key" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <a class="key" href="https://btc-slovnik.cz/pages/donate.html">Diškrece</a></p>
         </div>
     </footer>
 </body>
