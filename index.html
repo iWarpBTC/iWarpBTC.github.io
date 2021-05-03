@@ -142,10 +142,10 @@
         </div>
         <div class="entry">
             <h2 id="seed-words">slova seedu</h2>
-            <p>Počáteční entropie (zpravidla 128 až 256bitové číslo) vyjádřená &ndash; z důvodů čitelnosti a odolnosti
-                proti
+            <p>Počáteční entropie (zpravidla 128 až 256 bitové číslo) vyjádřená &ndash; z důvodů čitelnosti a odolnosti
+                vůči
                 chybě při čtení/psaní &ndash; variací 12 až 24 slov z 2048 prvkového seznamu. Slova se mohou opakovat a
-                odolnost pro chybě je zvýšena &bdquo;kontrolní součtem&ldquo; (v posledním slově je zakódováno 4 až 8 bitů <a
+                případná chyba v psaní je odhalena &bdquo;kontrolním součtem&ldquo; (v posledním slově je zakódováno 4 až 8 bitů <a
                     href="#hash">hashe</a> počáteční entropie).</p>
             <div class="ana-link">
                 <p><a href="https://btc-slovnik.cz/pages/wallet.html">anatomie HD peněženky</a></p>
@@ -161,7 +161,7 @@
         </div>
         <div class="entry">
             <h2 id="passphrase">passphrase</h2>
-            <p>Někdy též zvaná 13./25. slovo seedu. Je-li použita, podílí se (jako salt funkce PBKDF2) v kombinaci s
+            <p>Někdy též zvaná 13./25. slovo seedu. Je&hyphen;li použita, podílí se (jako salt funkce PBKDF2) v kombinaci s
                 počáteční entropií (vyjadřované nejčastěji řetězcem 12/24 slov seedu) na vygenerování seedu. Narozdíl od samotné
                 počáteční entropie není uložena v peněžence a neměla by být uchovávána ani společně s fyzickou zálohou
                 (slovy seedu). Pak passphrase poskytuje další vrstvu ochrany, neboť případná extrakce počáteční entropie
