@@ -20,7 +20,7 @@
     </div>
   </header>
   <div class="container2">
-    <h2>Anatomie křivky</h2>
+    <h2 id="curve">Anatomie křivky</h2>
     <p class="just">Jak je možné vidět na stránce <a href="https://btc-slovnik.cz/pages/transaction.html">anatomie transakce a skriptu</a> standardní
       p2(w)pk transakce prostřednictvím scriptPubKey uzamyká určitý obnos satoshi ve prospěch určitého hashe veřejného
       klíče (který zakódovaný v Bech32 či starší Base58Check představuje adresu). Prostřednictvím scriptSigu lze pak
@@ -50,7 +50,7 @@
     </p>
     <p class="just">Přičemž je užita eliptická křivka popsaná standardem secp256k1:</p>
     <ul class="article">
-      <li>Křivka nad konečným tělesem s charakteristikou tělěsa p &equals;
+      <li>Křivka nad konečným tělesem s charakteristikou tělesa p &equals;
         0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f
         (tj. také 2<sup>256</sup> &minus; 2<sup>32</sup> &minus; 977)</li>
       <li>Rovnice křivky: y<sup>2</sup> &equals; x<sup>3</sup> &plus; 7</li>
@@ -81,7 +81,7 @@
         <figcaption>Takto by vypadalo zobrazení bitcoinové eliptické křivky nad množinou reálných čísel.</figcaption>
       </figure>
     </div>
-    <h2>Anatomie podpisu</h2>
+    <h2 id="ecdsa">Anatomie podpisu</h2>
     <p class="just">Současným podpisovým schématem Bitcoinu je ECDSA. Připravíme si náš soukromý klíč (a označíme ho
       jako číslo <em>d</em>), náhodného číslo k
       z intervalu &lang;1, n) (číslo k musí být opravdu náhodné a různé pro každý podpis, jinak hrozí vyzrazení
@@ -115,7 +115,7 @@
     </ul>
     <p class="just">Pokud se x -ová souřadnice vypočteného bodu <em>X</em> rovná číslu <em>r</em>, pak je dvojice <em>r,
         s</em> platným podpisem zprávy <em>e</em>.</p>
-    <h2>Anatomie Schnorrova podpisu</h2>
+    <h2 id="schnorr">Anatomie Schnorrova podpisu</h2>
     <p class="just">Schnorrův podpis by v budoucnu mohl nahradit ECDSA schéma. Oproti němu má několik výhod, z nichž ta
       klíčová je možnost kombinovat více podpisů té samé zprávy do podpisu jednoho.</p>
     <p class="just">Při podepisování začneme stejně jako s ECDSA, připravíme si soukromý klíč <em>d</em>, náhodné číslo
@@ -148,7 +148,7 @@
     </div>
     <div class="mail">
       <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a
-        class="key" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <a class="key" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Diskrece</a></p>
+        class="key" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <a class="key" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Diškrece</a></p>
     </div>
   </footer>
 </body>
