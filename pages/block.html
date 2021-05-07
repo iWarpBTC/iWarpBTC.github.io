@@ -100,7 +100,7 @@
       hash merkle
       stromu transakcí zaručuje, že se změna byť jediného bajtu v jediné do bloku zahrnuté tx projeví v konečném
       důsledku změnou hashe hlavičky tohoto bloku. Časové razítko říká, že k vytěžení bloku došlo 1616690206 sekund od
-      1/1/1970, tedy 25/3/2021 v 16:36:46 UTC. Tento údaj ovšem nemusí být zcela přesný. Aby byl block přijat sítí, musí
+      1/1/1970, tedy 25/3/2021 v 16:36:46 UTC. Tento údaj ovšem nemusí být zcela přesný. Aby byl blok přijat sítí, musí
       být časové razítko větší, než medián časových razítek posledních 11 bloků a menší než medián aktuálních časů uzlů,
       ke kterým je uzel připojen. Z pole bits si vypočteme target &ndash; první bajt (zleva) je exponent, zbytek
       koeficient.
@@ -114,9 +114,9 @@
       je 32 bajtů nul, index výstupu je ffffffff, podpisový skript musí být v rozmezí 2 a 100 bajtů, a musí být sám o
       sobě pravdivý. Právě sem umístil <a href="https://btc-slovnik.cz/#nakamoto">Satoshi</a> v <a
         href="https://btc-slovnik.cz/#genesis">genesis bloku</a> legendární titulek Timesů, zatímco ve scriptSigu mincetvorné
-      transakce našeho bloku si můžeme přečíst zprávu &bdquo;Mined by AntPool713&ldquo;. Od BIPu 34 se do podpisového
+      transakce našeho bloku si můžeme přečíst zprávu &bdquo;Mined by AntPool713&ldquo;. Od <a href="https://github.com/bitcoin/bips/blob/master/bip-0034.mediawiki">BIPu 34</a> se do podpisového
       skriptu mincetvorné transakce dává na první místo element s číslem bloku. Tím je zajištěno, aby bylo možno odlišit
-      jinak stále stejné mincetvorné transakce jejich unikátním hashem. Navzdory tomu, že neutrácí žádné <a
+      jinak stále stejné mincetvorné transakce jejich unikátním hashem txid. Navzdory tomu, že neutrácí žádné <a
         href="https://btc-slovnik.cz/#utxo">UTXO</a>, může si těžař na výstupu uzamknout odměnu (v době psaní) 6,25 BTC plus
       součet poplatků všech zahrnutých transakcí. Pokud blok obsahuje segwitovou transakci, musí také obsahovat
       OP_RETURN výstup s kořenem paralelního witness merkle stromu. Protože podpisové skripty segwit transakcí již
