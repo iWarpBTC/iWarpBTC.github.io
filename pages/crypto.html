@@ -88,11 +88,9 @@
       soukromého klíče) a nějakou zprávu, resp. její hash.</p>
     <p class="just">V Bitcoinu prokazujeme podpisem to, že jsme držiteli soukromého klíče náležícího k veřejnému klíči,
       ve prospěch jehož hashe jsou uzamknuty bitcoiny na výstupu předcházející transakce. Podepisovanou zprávou tedy
-      bude dvojitý SHA256 hash jakéhosi předobrazu naší výsledné transakce. Protože je výroba tohoto předobrazu poměrně
-      komplexní
-      záležitostí, bude této problematice nejspíš věnován další díl anatomie. Zatím si vystačíme s tím, že hash naší
-      zprávy
-      bude číslo <em>e</em>.</p>
+      bude dvojitý SHA256 hash jakéhosi předobrazu naší výsledné transakce. Výrobě tohoto předobrazu se věnuje 
+      <a href="https://btc-slovnik.cz/pages/transaction.html#preimage">bonusová část anatomie transakce</a>.
+      Výsledný hash si označíme jako číslo <em>e</em>.</p>
     <p class="just">Výpočet podpisu je pak již jednoduchý: </p>
     <ul class="article">
       <li>Provedeme operaci součinu skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, x -ová souřadnice
