@@ -215,7 +215,7 @@
             </div>
             <p>U adresy vygenerováné standardní cestou s dostatkem počáteční entropie je prakticky vyloučeno (teoretická
                 pravděpodobnost je nepředstavitelně nízká), že by již byla někdy vygenerována. Dřív objevíte trpaslíka
-                uprostřed černé díry jak hledá s baterkou vypínač, než aby se vám podařilo z kvalitní entropie
+                uprostřed černé díry, jak hledá s baterkou vypínač, než aby se vám podařilo z kvalitní entropie
                 vygenerovat již dříve vygenerovanou adresu.</p>
             <h3>Příklady různých adres:</h3>
             <div class="fig">
@@ -279,7 +279,7 @@
             <h2 id="utxo">UTXO</h2>
             <h2 class="short">unspent transaction output</h2>
             <p>Neutracený transakční výstup, který může být použit na vstupu nové <a href="https://btc-slovnik.cz/#transaction">transakce</a>.
-                Součet částek všech aktuálních UTXO se rovná aktuálně vytěženému množství <a
+                Součet částek všech aktuálních UTXO je roven aktuálně vytěženému množství <a
                     href="#bitcoin">bitcoinů</a>.</p>
             <div class="ana-link">
                 <p><a href="https://btc-slovnik.cz/pages/transaction.html">anatomie transakce</a></p>
@@ -319,6 +319,21 @@
             <div class="ana-link">
                 <p><a href="https://btc-slovnik.cz/pages/transaction.html">anatomie transakce</a></p>
             </div>
+        </div>
+        <div class="entry">
+            <h2 class="short">replace by fee</h2>
+            <h2 id="rbf">RBF</h2>
+            <p>Využítím transakčního pole <em>sequence</em> umožnuje zvyšovat poplatek nepotvrzených transakcí. Aby byla transakce nahraditelná, musí mít nastavenou <em>sequence</em> menší než <em>0xffffffff</em>. 
+                Pak je možné ji v <a href="https://btc-slovnik.cz/#mempool">mempoolech</a> nahradit transakcí s vyšším poplatkem, která utrací alespoň jeden stejný neutracený výstup.</p>
+            <div class="ana-link">
+                <p><a href="https://btc-slovnik.cz/pages/transaction.html">anatomie transakce</a></p>
+            </div>
+        </div>
+        <div class="entry">
+            <h2 class="short">child pays for parent</h2>
+            <h2 id="cpfp">CPFP</h2>
+            <p>Situace, ve které vysoký poplatek transakce utrácející výstup doposud do bloku nezařazené předchozí transakce s nízkým poplatkem zvýší průměrný poplatek obou (nebo i více předcházejících) transakcí. 
+                Tím je těžař incentivizován zařadit do bloku všechny přecházející transakce, bez kterých by nemohl vytěžit tuto s vysokým poplatkem, která tak v podstatě platí za své předky.</p>
         </div>
         <div class="entry">
             <h2 id="coinbase">mincetvorná transakce (coinbase transaction)</h2>

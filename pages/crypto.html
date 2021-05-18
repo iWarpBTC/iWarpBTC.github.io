@@ -7,7 +7,9 @@
   <link rel="shortcut icon" href="https://btc-slovnik.cz/img/favicon.png">
   <link rel="stylesheet" href="https://btc-slovnik.cz/css/styles.css">
   <meta name="description"
-        content="Vysvětluje základy asymetrické kryptografie a její využít v podepisování bitcoinových transakcí.">
+        content="Vysvětluje základy asymetrické kryptografie a její využití v podepisování bitcoinových transakcí.">
+  <meta name="keywords"
+        content="bitcoin, kryptografie, asymetrická, eliptická křivka, diskrétní logaritmus, konečné těleso, cyklická grupa, schnorr, podpis, tranasakce">
   <link rel="canonical" href="https://btc-slovnik.cz/pages/crypto.html">
 </head>
 
@@ -88,11 +90,9 @@
       soukromého klíče) a nějakou zprávu, resp. její hash.</p>
     <p class="just">V Bitcoinu prokazujeme podpisem to, že jsme držiteli soukromého klíče náležícího k veřejnému klíči,
       ve prospěch jehož hashe jsou uzamknuty bitcoiny na výstupu předcházející transakce. Podepisovanou zprávou tedy
-      bude dvojitý SHA256 hash jakéhosi předobrazu naší výsledné transakce. Protože je výroba tohoto předobrazu poměrně
-      komplexní
-      záležitostí, bude této problematice nejspíš věnován další díl anatomie. Zatím si vystačíme s tím, že hash naší
-      zprávy
-      bude číslo <em>e</em>.</p>
+      bude dvojitý SHA256 hash jakéhosi předobrazu naší výsledné transakce. Výrobě tohoto předobrazu se věnuje 
+      <a href="https://btc-slovnik.cz/pages/transaction.html#preimage">bonusová část anatomie transakce</a>.
+      Výsledný hash si označíme jako číslo <em>e</em>.</p>
     <p class="just">Výpočet podpisu je pak již jednoduchý: </p>
     <ul class="article">
       <li>Provedeme operaci součinu skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, x -ová souřadnice
@@ -145,6 +145,9 @@
       <div class="cc0"><a class="license" href="https://btc-slovnik.cz/LICENSE"><img
             src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
       </div>
+      <div class="tw"><a class="license" href="https://twitter.com/btcslovnik"><img
+        src="https://btc-slovnik.cz/img/twitter.svg" height="15"
+        alt="twitter" /></a></div>
     </div>
     <div class="mail">
       <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a
