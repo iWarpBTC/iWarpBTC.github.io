@@ -86,8 +86,16 @@ div.tw {
   margin-bottom: 10px;
 }
 
-a.license:hover {
+a.license:hover, a.tw:hover {
   opacity: 0.5;
+}
+
+a.license {
+  padding-left: 25px;
+}
+
+a.license > img {
+  padding-bottom: 5px;
 }
 
 header {
