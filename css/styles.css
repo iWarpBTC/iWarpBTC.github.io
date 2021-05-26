@@ -113,12 +113,16 @@ h2 {
   display: inline;
 }
 
-h2.short {
+h2.short, h2.price {
   float: right;
   font-size: initial;
   font-style: italic;
   margin-top: 0;
   color: #555;
+}
+
+h2.price {
+  color: #f7931a;
 }
 
 h3 {
