@@ -5,11 +5,12 @@
   <meta charset="UTF-8">
   <title>Anatomie HD peněženky</title>
   <link rel="shortcut icon" href="https://btc-slovnik.cz/img/favicon.png">
-  <link rel="stylesheet" href="https://btc-slovnik.cz/css/styles.css">
+  <link rel="stylesheet" href="../css/styles.css">
   <meta name="description" content="Popisuje základní funkce bitcoinové HD peněženky a odvozování klíčů.">
   <meta name="keywords"
         content="bitcoin, peněženka, hd peněženka, hierarchical deterministic, seed, entropie, bip 44, bip 39, bip 32, derivační cesta">
   <link rel="canonical" href="https://btc-slovnik.cz/pages/wallet.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -77,7 +78,7 @@
       nule odvozuje adresy ke zveřejnění (ty, které peněženka zobrazuje při kliknutí na tlačítko Přijmout), jednička
       jsou vnitřní adresy užívané peněženkou k uzamčení zbytku při útratě příliš velkého UTXO. Konečně poslední index již čísluje
       jednotlivé adresy. Těch může být opět 2&nbsp;147&nbsp;483&nbsp;647 pod každým účtem. Nemusíte se tedy bát používat
-      pro každou transakci novou adresu tak, jak to stanovují best practices Bitcoinu. </sup></p>
+      pro každou transakci novou adresu tak, jak to stanovují best practices Bitcoinu. </p>
     <p class="just">Odvozování potomků provádíme již představenou funkcí HMAC-SHA512 a jako <em>key</em> slouží ve všech
       případech kód řetězu. Liší se vstupy do <em>message</em> a to, co provádíme s výstupem.</p>
     <p class="just">Netvrzené odvození ze soukromého rozšířeného klíče provedeme tak, že do <em>message</em> vložíme
@@ -105,20 +106,20 @@
       </ul>
   </div>
   <footer>
-    <div>
-      <div class="cc0"><a class="license" href="https://btc-slovnik.cz/LICENSE"><img
-            src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
-      </div>
-      <div class="tw"><a class="license" href="https://twitter.com/btcslovnik"><img
-        src="https://btc-slovnik.cz/img/twitter.svg" height="15"
-        alt="twitter" /></a></div>
-    </div>
     <div class="mail">
       <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key"
           href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a class="key"
           href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <a class="key" rel=”nofollow”
           href="https://btc-slovnik.cz/pages/donate.html">Diškrece</a></p>
     </div>
+    <div>
+      <div class="tw"><a class="license" href="https://twitter.com/btcslovnik"><img
+        src="https://btc-slovnik.cz/img/twitter.svg" height="30"
+        alt="twitter" /></a></div>
+      </div>
+      <div class="cc0"><a class="license" href="https://btc-slovnik.cz/LICENSE"><img
+            src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
+      </div>
   </footer>
 </body>
 
