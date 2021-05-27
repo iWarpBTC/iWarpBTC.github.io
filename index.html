@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <title>Bitcoinový slovníček pro mírně pokročilé</title>
     <link rel="shortcut icon" href="https://btc-slovnik.cz/img/favicon.png">
-    <link rel="stylesheet" href="https://btc-slovnik.cz/css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <meta name="keywords"
         content="bitcoin, slovník, transakce, blok, blockchain, satoshi, nakamoto, proof of work, mempool, utxo, asymetrická, kryptografie, seed">
     <meta name="description"
         content="Český slovník nejdůležitějších pojmů týkajících se Bitcoinové sítě. Pro více informací lze pokračovat na stránky &bdquo;anatomií&ldquo; jednotlivých částí Bitcoinové sítě.">
     <link rel="canonical" href="https://btc-slovnik.cz/">
-    <meta name="msvalidate.01" content="2EC80E63FD5E6EB20BE3E4BDEA59F1DF" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -29,8 +29,8 @@
             <p>V síti přenášená jednotka hodnoty. Protokol stanoví maximální počet 21 milionů bitcoinů. Zkracuje se
                 obvykle jako BTC.</p>
         </div>
-        <div class="entry">
-            <h2 id="#satoshi">satoshi</h2>
+        <div id="satoshidiv" class="entry">
+            <h2 id="satoshi">satoshi</h2>
             <p>Základní a zároveň nejmenší možná jednotka používaná v sítí. 1&nbsp;bitcoin &equals; 100&nbsp;000&nbsp;000
                 satoshi.
                 Pojmenování se ujalo jako pocta tvůrci Bitcoinu vystupujícímu pod pseudonymem <a href="https://btc-slovnik.cz/#nakamoto">Satoshi
@@ -62,7 +62,7 @@
             <p>Bitcoinová platební síť. Hovoří se o ní jako o druhé vrstvě nad základní vrstvou (poměrně drahých)
                 bitcoinových transakcí. Speciální bitcoinovou transakcí je otevřen tzv. platební kanál, v rámci kterého
                 může probíhat neomezený počet velmi levných plateb. Další bitcoinovou transakcí může být kanál zase uzavřen,
-                čímž teprve dojde k finálnímu vypořádání zápisem do blockchainu. </p>
+                čímž teprve dojde k finálnímu vypořádání zápisem do blockchainu.
             </p>
         </div>
         <div class="entry">
@@ -111,15 +111,15 @@
                     <tbody>
                         <tr>
                             <td>"Ahoj"</td>
-                            <td>f23e6807b3fb0be0ea999ea8cb88a3e94dc359c84230461f9761efac57dcb081</td>
+                            <td class="long">f23e6807b3fb0be0ea999ea8cb88a3e94dc359c84230461f9761efac57dcb081</td>
                         </tr>
                         <tr>
                             <td>"Ahoy"</td>
-                            <td>491312f2ce2f0d05cc8821956a34138428a72d6cbf3e426ef6bcc87f2905b614</td>
+                            <td class="long">491312f2ce2f0d05cc8821956a34138428a72d6cbf3e426ef6bcc87f2905b614</td>
                         </tr>
                         <tr>
                             <td>"Ahoj, jak se dneska máš?"</td>
-                            <td>56528a982b106e43d1f236360b6a72c4334918c0a83413d810ac0041f8f2e377</td>
+                            <td class="long">56528a982b106e43d1f236360b6a72c4334918c0a83413d810ac0041f8f2e377</td>
                         </tr>
                     </tbody>
                 </table>
@@ -232,19 +232,19 @@
                         <tr>
                             <td>p2pkh</td>
                             <td>legacy</td>
-                            <td>1GRYfroBCL6wJeggD92VdPvJp5vKaVtsrA</td>
+                            <td class="long2">1GRYfroBCL6wJeggD92VdPvJp5vKaVtsrA</td>
                             <td>Base58Check s počáteční 1</td>
                         </tr>
                         <tr>
                             <td>p2sh</td>
                             <td>nested segwit</td>
-                            <td>39qmkmoB1t1mjGAowURRimoQduubbhVoZz</td>
+                            <td class="long2">39qmkmoB1t1mjGAowURRimoQduubbhVoZz</td>
                             <td>Base58Check s počáteční 3</td>
                         </tr>
                         <tr>
                             <td>p2wpkh</td>
                             <td>native segwit</td>
-                            <td>bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g</td>
+                            <td class="long2">bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g</td>
                             <td>Bech32 s počátečním bc1</td>
                         </tr>
                     </tbody>
@@ -269,7 +269,7 @@
         </div>
         <div class="entry">
             <h2 id="script">Script</h2>
-            <p>Název skriptovacího jazyku sítě Bitcoin, prostřednictvím kterého jsou definovány (a vyhodnocovány)
+            <p>Název skriptovacího jazyka sítě Bitcoin, prostřednictvím kterého jsou definovány (a vyhodnocovány)
                 podmínky utracení (odemčení) <a href="https://btc-slovnik.cz/#utxo">UTXO</a>.</p>
             <div class="ana-link">
                 <p><a href="https://btc-slovnik.cz/pages/transaction.html#script">anatomie skriptu</a></p>
@@ -438,19 +438,23 @@
         </div>
     </div>
     <footer>
-        <div>
-            <div class="cc0"><a class="license" href="https://btc-slovnik.cz/LICENSE"><img
-                        src="https://btc-slovnik.cz/img/public80x15.png"
-                        alt="CC0" /></a></div>
-            <div class="tw"><a class="license" href="https://twitter.com/btcslovnik"><img
-                src="https://btc-slovnik.cz/img/twitter.svg" height="15"
-                alt="twitter" /></a></div>
-        </div>
         <div class="mail">
             <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a
                 class="key" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <a class="key" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Diškrece</a></p>
         </div>
+        <div>
+            <div class="tw"><a class="tw" href="https://twitter.com/btcslovnik"><img
+                src="https://btc-slovnik.cz/img/twitter.svg" height="30"
+                alt="twitter" /></a>
+                <a class="license" href="https://btc-slovnik.cz/LICENSE"><img
+                    src="https://btc-slovnik.cz/img/public80x15.png"
+                    alt="CC0" /></a>
+            </div>
+            <div class="cc0">
+            </div>
+        </div>
     </footer>
+    <script src="https://btc-slovnik.cz/coingecko.js"></script>
 </body>
 
 </html>

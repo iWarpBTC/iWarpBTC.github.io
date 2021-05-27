@@ -9,14 +9,12 @@ body {
 div.container {
     max-width: 900px;
     margin: 0 auto;
-    min-width: 720px;
 }
 
 div.container2 {
   max-width: 1200px;
   margin-top: 40px;
   margin: 0 auto;
-  min-width: 720px;
   text-align: center;
 }
 
@@ -84,30 +82,23 @@ footer {
   border-top: solid 1px #4d4d4d;
 }
 
-div.mail {
-  position: absolute;
-  left:50%;
-  transform: translateX(-50%);
-}
-
-div.cc0 {
-  float: right;
-  padding-top: 26px;
-  margin-right: 5%;
-}
-
 div.tw {
-  float: right;
-  padding-top: 26px;
-  padding-right: 20px;
+  margin-bottom: 10px;
 }
 
-a.license:hover {
+a.license:hover, a.tw:hover {
   opacity: 0.5;
 }
 
+a.license {
+  padding-left: 25px;
+}
+
+a.license > img {
+  padding-bottom: 5px;
+}
+
 header {
-  height: 60px;
   border-bottom: 1px solid #eaecef;
   text-align: center;
   margin-bottom:20px;
@@ -130,12 +121,16 @@ h2 {
   display: inline;
 }
 
-h2.short {
+h2.short, h2.price {
   float: right;
   font-size: initial;
   font-style: italic;
   margin-top: 0;
   color: #555;
+}
+
+h2.price {
+  color: #f7931a;
 }
 
 h3 {
@@ -286,3 +281,40 @@ a#hal:hover ~ figcaption > span.hal{color: #f7931a;}
 a#back:hover ~ figcaption > span.back{color: #f7931a;}
 a#dorian:hover ~ figcaption > span.dorian{color: #f7931a;}
 a#greg:hover ~ figcaption > span.greg{color: #f7931a;}
+
+@media screen and (max-width: 700px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  figure > img {
+    width: 100%;
+    height: auto;
+  }
+
+  a.area {
+    display: none;
+  }
+
+  table {
+    font-size: small;
+  }
+
+  td.long {
+    word-wrap: break-word;
+    max-width: 200px;
+  }
+
+  td.long2 {
+    word-wrap: break-word;
+    max-width: 100px;
+  }
+
+  ul.article {
+    word-wrap: break-word;
+  }
+
+  iframe.donate {
+    min-width: 0;
+  }
+}
