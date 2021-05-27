@@ -133,6 +133,15 @@ h2.price {
   color: #f7931a;
 }
 
+h2.price > span {
+  vertical-align: super;
+}
+
+img.pricetag {
+  padding-right: 5px;
+  color: #f7931a;
+}
+
 h3 {
   padding-left: 20px;
 }
