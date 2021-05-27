@@ -314,6 +314,10 @@ a#greg:hover ~ figcaption > span.greg{color: #f7931a;}
     word-wrap: break-word;
   }
 
+  p.just {
+    word-wrap: break-word;
+  }
+
   iframe.donate {
     min-width: 0;
   }
