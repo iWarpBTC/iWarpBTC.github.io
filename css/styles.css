@@ -271,6 +271,7 @@ iframe.donate {
   margin-bottom: 50px;
   min-width: 680px;
   min-height: 660px;
+  border: 1px solid #1f2234;
 }
 
 a#luke{margin-left: 165px;}
