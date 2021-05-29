@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Bitcoinový slovníček pro mírně pokročilé</title>
-    <link rel="shortcut icon" href="https://btc-slovnik.cz/img/favicon.png">
+    <link rel="shortcut icon" href="https://btc-slovnik.cz/favicon.png">
     <link rel="stylesheet" href="./css/styles.css">
     <meta name="keywords"
         content="bitcoin, slovník, transakce, blok, blockchain, satoshi, nakamoto, proof of work, mempool, utxo, asymetrická, kryptografie, seed">
@@ -18,10 +18,16 @@
     <header>
         <h1><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně pokročilé</h1>
     </header>
-    <div class="menu"><span class="dot"></span>
-        <a href="https://btc-slovnik.cz/pages/anatomy.html">Rozcestník anatomií</a><span class="dot"></span>
+    <div class="menu">
+        <button onclick="dropIt()" class="dropbtn"><span class="dot"></span>Rozcestník anatomií<span class="dot"></span></button>
     </div>
     <div class="container">
+        <div id="dropdown" class="dropdown-content">
+            <p><a href="https://btc-slovnik.cz/pages/transaction.html">Anatomie transakce a skriptu</a></p>
+            <p><a href="https://btc-slovnik.cz/pages/block.html">Anatomie bloku a těžby</a></p>
+            <p><a href="https://btc-slovnik.cz/pages/crypto.html">Anatomie křivky a podpisu</a></p>
+            <p><a href="https://btc-slovnik.cz/pages/wallet.html">Anatomie HD peněženky</a></p>
+        </div>
         <div class="entry">
             <h2 id="capital-bitcoin">Bitcoin</h2>
             <p>Název decentralizované <a href="https://btc-slovnik.cz/#p2p">P2P</a> sítě sloužící k uchování a přenosu hodnoty. Síť byla
@@ -458,6 +464,7 @@
         </div>
     </footer>
     <script src="https://btc-slovnik.cz/coingecko.js"></script>
+    <script src="./drop.js"></script>
 </body>
 
 </html>
