@@ -104,6 +104,21 @@
         <li>33 bajtů
           pro klíč (v případě soukromého předsazeno 0x00)</li>
       </ul>
+    </p>
+    <h2>Anatomie adresy (base58/bech32)</h2>
+    <p class="just">Na různých místech bylo psáno, že bitcoinová adresa je zakódovaný hash veřejného klíče. 
+      Ve prospěch tohoto hashe, nikoliv samotného veřejného klíče, je pak standardně uzamčen transakční výstup. 
+      To tvoří další stupeň ochrany, neboť i kdyby někdo uměl efektivně řešit <a href="https://btc-slovnik.cz/pages/crypto.html">problém diskrétního logaritmu</a> 
+      a uměl z veřejných klíčů počítat klíče soukromé, nebude moci utrácet výstupy cizích adres. Nezná veřejný klíč, pouze jeho hash. </p>
+    <p class="just">Hash veřejného klíče získáme tak, že vezmeme jeho komprimovanou reprezentaci, tu přivedeme na vstup funkce SHA256 a tento hash ještě jednou zahashujeme funkcí RIPEMD160.
+      Připomeneme, z <a href="https://btc-slovnik.cz/pages/crypto.html">anatomie křivky</a>, že veřejný klíč je bod na křivce. Přestože to bylo v anatomii opomenuto zmínit, 
+      laskavý čtenář si jistě všiml, že bitcoinová křivka je osově souměrná podle osy x. Známe&hyphen;li x -ovou souřadnici <em>vlastního</em> bodu, můžeme si dopočítat jediné dvě jí odpovídající y -sourařadnice. 
+      Ne náhodou se děje, že vždy vyjde jedna y -ová souřadnice sudá a druhá lichá. Právě příznak sudosti s x -ovou souřadnicí tvoří komprimovanou reprezentaci veřejného klíče. </p>
+    <p class="just">Máme&hyphen;li 160 bajtový hash veřejného klíče, nezbývá nám už nic jiného, než ho zakódovat to nějaké přívětivější podoby. Původní kódování base58 (58 alfanumerických znaků bez nuly, velkého &raquo;I&laquo;, velkého &raquo;O&laquo; a malého&raquo;l&laquo;) 
+      nahrazuje sofistikovanější bech32 (32 alfanumerických znaků, bez majuskulí, jedničky, &raquo;b&laquo;, &raquo;i&laquo; a &raquo;o&laquo;). Adresa v base58 vznikne tak, že
+      se za prefix (0x00 pro p2pkh adresu; 0x05 pro p2sh) vloží komprimovaná reprezentace veřejného klíče. Za tento &bdquo;náklad&ldquo; jsou ještě jako &bdquo;kontrolní součet&ldquo; vloženy první 4 bajty dvojnásobného hashe SHA256 &bdquo;nákladu&ldquo;. 
+      Nakonec je tato sekvence bajtů opakovaně až k nule celočíselně dělena 58 a znak odpovídající zbytku po celočíselném dělení je vkládán na začátek výstupního řetězce. Tento proces je označován jako Base58Check. Popis postupu kódování bech32 je pak již nad 
+      možnosti těchto stránek (čtěte jejich autora). Poznameno budiž aspoň to, že dvojice znaků bc tvoří člověku čitelný identifikátor a jednička separuje idetifikátor od samotnách dat.</p>
   </div>
   <footer>
     <div class="mail">
