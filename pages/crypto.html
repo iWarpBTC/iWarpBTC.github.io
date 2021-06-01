@@ -51,7 +51,7 @@
       <img src="https://btc-slovnik.cz/img/zet.svg" alt="Z"><sub>n</sub>. Toto <em>x</em> se nazývá <strong>diskrétní logaritmus</strong> o
       základu <em>a</em> z prvku <em>b</em> v grupě <em>G</em>.
     </p>
-    <p class="just">Přičemž je užita eliptická křivka popsaná standardem secp256k1:</p>
+    <p class="just">Přičemž v Bitcoinu je užita eliptická křivka popsaná standardem secp256k1:</p>
     <ul class="article">
       <li>Křivka nad konečným tělesem s charakteristikou tělesa p &equals;
         0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f
@@ -96,7 +96,7 @@
       Výsledný hash si označíme jako číslo <em>e</em>.</p>
     <p class="just">Výpočet podpisu je pak již jednoduchý: </p>
     <ul class="article">
-      <li>Provedeme operaci součinu skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, x -ová souřadnice
+      <li>Provedeme operaci násobení skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, x -ová souřadnice
         výsledného bodu mod <em>n</em> bude číslem <em>r</em>.</li>
       <li><em>s &equals; k<sup>-1</sup> &times; (e &plus; r &times; d)</em> mod <em>n</em>.</li>
     </ul>
@@ -111,7 +111,7 @@
     <ul class="article">
       <li><em>u &equals; e &times; s<sup>-1</sup></em> mod <em>n</em>.</li>
       <li><em>v &equals; r &times; s<sup>-1</sup></em> mod <em>n</em>.</li>
-      <li>Provedeme operaci součin skalárem čísla <em>u</em> a generátoru grupy; poté součin skalárem čísla <em>v</em> a
+      <li>Provedeme operaci násobení skalárem čísla <em>u</em> a generátoru grupy; poté násobení skalárem čísla <em>v</em> a
         veřejného klíče. Výsledné dva body sečteme a označíme jako bod <em>X</em>.</li>
     </ul>
     <p class="just">Pokud se x -ová souřadnice vypočteného bodu <em>X</em> rovná číslu <em>r</em>, pak je dvojice <em>r,
@@ -123,7 +123,7 @@
       <em>k</em> a hash předobrazu transakce <em>e</em>. Oproti ECDSA budeme ovšem navíc potřebovat veřejný klíč:
     </p>
     <ul class="article">
-      <li>Provedeme operaci součinu skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, výsledkem je bod
+      <li>Provedeme operaci násobení skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, výsledkem je bod
         <em>R</em>.
       </li>
       <li>Zahashujeme zřetězení reprezentace bodu <em>R</em>, veřejného klíče a hashe zprávy <em>e</em>, tento hash
@@ -135,8 +135,8 @@
     <ul class="article">
       <li>Zahashujeme zřetězení reprezentace bodu <em>R</em>, veřejného klíče a hashe zprávy <em>e</em>, tento hash
         označíme <em>r</em>.</li>
-      <li>Provedeme operaci součinu skalárem <em>s</em> a generátoru grupy, výsledný bod označíme <em>X</em>.</li>
-      <li>Provedeme operaci součinu skalárem <em>r</em> a veřejného klíče, k výslednému bodu přičteme bod <em>R</em> a
+      <li>Provedeme operaci násobení skalárem <em>s</em> a generátoru grupy, výsledný bod označíme <em>X</em>.</li>
+      <li>Provedeme operaci násobení skalárem <em>r</em> a veřejného klíče, k výslednému bodu přičteme bod <em>R</em> a
         tento součet označíme jako bod <em>Y</em>.</li>
     </ul>
     <p class="just">Podpis je platný, pokud se body X a Y shodují.</p>

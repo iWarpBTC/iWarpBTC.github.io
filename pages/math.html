@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Anatomie křivky nad konečným tělesem a klíčů v cyklické grupě</title>
+  <link rel="shortcut icon" href="https://btc-slovnik.cz/favicon.png">
+  <link rel="stylesheet" href="../css/styles.css">
+  <meta name="description"
+        content="Přibližuje matematickou teorii nezbytnou k pochopení kryptografie eliptických křivek.">
+  <meta name="keywords"
+        content="bitcoin, kryptografie, asymetrická, eliptická křivka, konečné těleso, cyklická grupa, fermatova věta">
+  <link rel="canonical" href="https://btc-slovnik.cz/pages/math.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <header>
+    <div class="h1">
+      <h1><a href="https://btc-slovnik.cz/#asym-crypto"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně
+          pokročilé</a>
+      </h1>
+    </div>
+  </header>
+  <div class="container2">
+    <p class="disclaim">disclaim; nejsme matematik</p>
+    <h2 id="field">Anatomie křivky nad konečným tělesem</h2>
+    <p class="just">Jak by řekl poručík Aldo Raine &ndash; počítání s reálnými čísly přináší spoustu úskalí. Prvním z nich je to, že musíte počítat s reálnými čísly. 
+      Nad nekonečnou množinou reálných čísel sice můžeme kreslit krásně ladné křivky, ale počítat se v tom nikomu nechce. Mnohem lepší situace by však mohla 
+      být nad nějakou konečnou množinou třeba celých čísel. Když se k této konečné množině definují dvě binární operace (třeba sčítání &plus; a násobení &times;) a celé to  
+      splňuje níže uvedené podmínky, tak se tomu může říká konečné těleso.  
+    </p>
+    <p class="just">V tělese <b>F</b> musí platit: </p>
+    <ul class="article">
+      <li>Asociativita sčítání&colon;&emsp;a &plus; (b &plus; c) &equals; (a &plus; b) &plus; c pro libovolné a, b, c &isin; <b>F</b></li>
+      <li>Komutativita sčítání&colon;&emsp;a &plus; b &equals; b &plus; a pro libovolné a, b &isin; <b>F</b></li>
+      <li>Existence nulového prvku&colon;&emsp;existuje 0 &isin; <b>F</b> takové, že pro všechna a &isin; <b>F</b> platí a &plus; 0 &equals; 0 &plus; a &equals; a</li>
+      <li>Existence opačného prvku&colon;&emsp;pro všechna a &isin; <b>F</b> existuje &minus;a &isin; <b>F</b> takové, že platí a &plus; (&minus;a) &equals; (&minus;a) &plus; a &equals; 0</li>
+      <li>Asociativita násobení&colon;&emsp;a &times; (b &times; c) &equals; (a &times; b) &times; c pro všechna a, b, c &isin; <b>F</b></li>
+      <li>Komutativita násobení&colon;&emsp;a &times; b &equals; b &times; a pro všechna a, b &isin; <b>F</b></li>
+      <li>Existence jednotkového prvku&colon;&emsp;existuje 1 &isin; <b>F</b> takové, že pro všechna a &isin; <b>F</b> platí 1 &times; a &equals; a &times; 1 &equals; a</li>
+      <li>Existence inverzního prvku&colon;&emsp;pro všechna a &ne; 0 existuje a<sup>&minus;1</sup> &isin; <b>F</b> takové, že platí a &times; a<sup>&minus;1</sup> &equals; a<sup>&minus;1</sup> &times; a &equals; 1</li>
+      <li>Distributivita&colon;&emsp;a &times; (b + c) &equals; a &times; b &plus; a &times; c pro všechna a, b, &isin; <b>F</b></li>
+      <li>Netrivialita&colon;&emsp;0 &ne; 1</li>
+    </ul>
+    <p class="just">Není to žádná raketová věda. Jedná se vesměs o obvyklé vlastnosti sčítání a násobení. Pokud by někomu chybělo odečítání a dělení, představí si místo nich přičítání opačného prvku, resp. násobení inverzním prvkem.
+      Aby nám uvedené podmínky platily i v konečném tělese (tj. tělese s konečným počtem prvků), musí být počet prvků prvočíslo (či mocnina prvočísla). Toto prvočíslo se také nezývá charakteristika tělesa.
+      Schválně si zkuste vyrobit těleso o čtyřech prvcích a uplatněte výše uvedené pravidla. Nebude to fungovat.
+    </p>
+    <div class="fig">
+      <figure>
+        <img src="../img/ECover991.PNG" alt="křivka nad koenčným tělesem">
+        <figcaption>Bitcoinová křivka na konečným tělesem GF(991).</figcaption>
+      </figure>
+    </div>
+    <p class="just">Pokud bychom si chtěli v tělese GF(991) cvičně vypočíst bod křivky y<sup>2</sup> &equals; x<sup>3</sup> &plus; 7 pro x &equals; 500, budeme počítat nejprve ne pravé straně:</p>
+    <p class="script">
+      500<sup>3</sup> &plus; 7 mod 991 &equals; 125000007 mod 991 &equals; 222
+    </p>
+    <p class="just">Abychom nyní odmocnili y<sup>2</sup> &equals; 222, ověříme si nejprve, že charakteristika p našeho tělesa GF(p) modulo 4 vyjde 3. To znamená, že (p &plus; 1) mod 4 &equals; 0, tedy že lze (p &plus; 1) beze zbytku dělit 4. 
+      V tom případě můžeme použít k odmocnění následující hack &ndash; podle Malé Fermatovy věty a<sup>p&minus;1</sup> mod p &equals; 1. To znamená, že: 
+    </p>
+    <p class="script">
+      a<sup>2</sup> &equals; a<sup>2</sup> &times; 1 &equals; a<sup>2</sup> &times; a<sup>p&minus;1</sup> &equals; a<sup>p&plus;1</sup>
+    </p>
+    <p class="just">Protože p je prvočíslo, tedy liché, můžeme (p&plus;1) dělit dvěma a tedy provést i následující techtle mechtle: 
+    </p>
+    <p class="script">
+      a &equals; a<sup>(p&plus;1)&divide;2</sup><br><br>
+      Řekněme, že a<sup>2</sup> &equals; b, pak<br><br>
+      a &equals; a<sup>(p&plus;1)&divide;2</sup> &equals; a<sup>2(p+1)/4</sup> &equals; (a<sup>2</sup>)<sup>(p+1)/4</sup> &equals; b<sup>(p+1)/4</sup>
+    </p>
+    <p class="just">Nic si z toho nedělejte, já to taky pobral teprve asi až na pátý pokus. Až to bude mít, můžeme jít odmocňovat:
+    </p>
+    <p class="script">
+       y<sup>2</sup> &equals; 222<br><br>
+       y &equals; 222<sup>(991+1)&divide;4</sup> mod 991<br>
+       y &equals; 222<sup>(991+1)&divide;4</sup> mod 991<br>
+       y &equals; 222<sup>248</sup> mod 991<br>
+       y &equals; 786208371333206865980578302214406245844876452552629632451928239561998078475148147140448210361405280987813503719719735797300904982572723402720884593228038534149240870632791018799512315282992020359091660335750719339454870741361877320453945718901355642986921393601331735619112392312973374907097766523175065015133230667309747693557927462131854083560978609308517953202491241489981562314327814232904658279568205127893019615601159347308751467024207695647845480387687956804973164600958423988996193669931707984489318341905468724730157275693122289442109039453321041409178873301861029312987136 mod 991<br><br>
+       y &equals; 329
+    </p>
+    <p class="just">Začínalo to být zajímavé&hellip; Naštěstí jsme v konečném tělese a nezapomněli jsme na modulo! Teď už se jen přesvědčíme, že nám bod křivky A[500, 329] svítí na grafu. Než si zkusíme nějaké ty body sečíst, podíváme se, jak by sčítání vypadalo v množině reálných čísel. 
+      Tam stačí sestroji přímku procházející dvěma sčítými body A, B, která nám (téměř vždy) protne křivku právě v ještě jednom dalším bodě C. Obraz bodu C v osové souměrnosti podle osy X je součtem bodů A, B.
+    </p>
+    <div class="fig">
+      <figure>
+        <img src="../img/ECadd.png" alt="křivka nad koenčným tělesem">
+        <figcaption>Sčítání bodů na eliptické křivce.</figcaption>
+      </figure>
+    </div>
+    <p class="just">Přestože v &bdquo;tělesovém&ldquo; grafu nám rýsování přímek již nebude fungovat, algebraicky to bude vypadat v obou případech stejně:
+    </p>
+    <p class="script">
+      Směrnice přímky procházející sčítanými body bude<br>
+      s &equals; (y<sub>2</sub> &minus; y<sub>1</sub>) &divide; (x<sub>2</sub> &minus; x1)<br>
+      Rovnice výsledných bodů je<br>
+      x<sub>3</sub> &equals; s<sup>2</sup> &minus; x<sub>1</sub> &minus; x<sub>2</sub><br>
+      y<sub>3</sub> &equals; s(x<sub>1</sub> &minus; x<sub>3</sub>) &minus; y<sub>1</sub>
+    </p>
+    <p class="just">Dosadíme&hyphen;li do rovnic náš &bdquo;tělesový&ldquo; bod A[500, 329] a k němu třeba bod B[851, 75] jako druhý sčítanec, měl by nám vyjít bod AB[891, 780].
+    </p>
+    <p class="just">
+      Mnohem důležitejší pro nás pak bude tzv. zdvojení bodu (sečtení bodu se sebou samým). Graficky by tato operace vypadal jako tečna k eliptické křivce ve sčítaném bodě, která nám opět protne křivku ještě v jednom dalším bodě. 
+      Výsledný bod je opět obrazem v osové souměrnosti podle x. V algebraické formě to pak bude vypada takto:
+    </p>
+    <p class="script">
+      Směrnice tečny ve sčítaném bodě<br>
+      s &equals; (3x<sup>2</sup> &plus; a) &divide; 2y &#35; ovšem v rovnici bitcoinové křivky a &equals; 0<br>
+      x<sub>2</sub> &equals; s<sup>2</sup> &minus; 2x<sub>1</sub><br>
+      y<sub>2</sub> &equals; s(x<sub>1</sub> &minus; x<sub>2</sub>) &minus; y<sub>1</sub>
+    </p>
+    <p class="just">
+      Zdvojený bod A[500, 329] by měl vyjít jako 2A[960, 612]. Opětovným zdvojením bodu 2A bychom získali bod 3A, přičemž toho opakované zdvojování můžeme nazývat jako násobení skalárem – tím je v tomto případě celé číslo 3, které 
+      představuje počet zdvojení bodů.
+    </p>
+    <h2 id="group">Anatomie cyklické grupy</h2>
+    <p class="just">...</p>
+  </div>
+  <footer>
+    <div class="mail">
+      <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a
+        class="key" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <a class="key" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Diškrece</a></p>
+    </div>
+    <div>
+      <div class="tw"><a class="tw" href="https://twitter.com/btcslovnik"><img
+        src="https://btc-slovnik.cz/img/twitter.svg" height="30"
+        alt="twitter" /></a>
+        <a class="license" href="https://btc-slovnik.cz/LICENSE"><img
+            src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

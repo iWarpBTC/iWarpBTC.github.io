@@ -25,7 +25,6 @@ div.entry, div.entryln {
 
 p.just {
   text-align: justify;
-  font-size: small;
 }
 
 div.entry:hover {
@@ -41,9 +40,12 @@ p.raw, p.script {
   word-break: break-all;
   border: solid 1px black;
   padding: 8px;
-  background-color: #D4D4D4;
-  font-size: small;
   text-align: left;
+  background-color: #D4D4D4;
+}
+
+p.raw {
+  font-size: small;
 }
 
 p.script > a {
@@ -134,7 +136,7 @@ div.menu > button:hover {
 }
 
 div.dropdown-content {
-  padding: 20px 0 20px 0;
+  padding: 10px 0 20px 0;
   display: none;
   text-align: center;
   background: gainsboro;
@@ -307,7 +309,6 @@ a.lit:hover {
 ul.article {
   margin-left: 20px;
   text-align: left;
-  font-size: small;
 }
 
 iframe.donate {
@@ -316,6 +317,11 @@ iframe.donate {
   min-width: 680px;
   min-height: 660px;
   border: 1px solid #1f2234;
+}
+
+figure > img {
+  width: 100%;
+  height: auto;
 }
 
 a#luke{margin-left: 165px;}
@@ -339,11 +345,6 @@ a#greg:hover ~ figcaption > span.greg{color: #f7931a;}
 @media screen and (max-width: 700px) {
   h1 {
     font-size: 24px;
-  }
-
-  figure > img {
-    width: 100%;
-    height: auto;
   }
 
   a.area {
