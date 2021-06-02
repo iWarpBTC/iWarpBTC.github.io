@@ -324,6 +324,11 @@ figure > img {
   height: auto;
 }
 
+img.meme {
+  width: 500px;
+  height: 500px;
+}
+
 a#luke{margin-left: 165px;}
 a#nick{margin-left: 330px;}
 a#pieter{margin-top: 165px;}
@@ -375,6 +380,11 @@ a#greg:hover ~ figcaption > span.greg{color: #f7931a;}
 
   iframe.donate {
     min-width: 0;
+  }
+
+  img.meme {
+    width: 100%;
+    height: auto;
   }
 }
 

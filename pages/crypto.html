@@ -67,7 +67,7 @@
     </ul>
     <p class="just">Máme tedy eliptickou křivku nad konečným tělesem a zvolený bod na křivce, kterým si můžeme
       vygenerovat cyklickou grupu s operací sčítání bodů na křivce. Když pak pro opakované sčítání bodu se sebou samým
-      zavedeme operaci násobení skalárem, máme vše, co potřebuje pro využití problému diskrétního logaritmu. Z vřídla
+      zavedeme operaci násobení bodu skalárem, máme vše, co potřebuje pro využití problému diskrétního logaritmu. Z vřídla
       chaosu (nebo seedu) si vytáhneme přirozené číslo v intervalu &lang;1, n). To bude náš soukromý klíč. Provedeme
       násobení skalárem &ndash; soukromým klíčem vynásobíme generátor grupy&semi; výsledkem bude bod na křivce &ndash;
       náš veřejný klíč. Přestože
@@ -90,13 +90,13 @@
       z intervalu &lang;1, n) (číslo k musí být opravdu náhodné a různé pro každý podpis, jinak hrozí vyzrazení
       soukromého klíče) a nějakou zprávu, resp. její hash.</p>
     <p class="just">V Bitcoinu prokazujeme podpisem to, že jsme držiteli soukromého klíče náležícího k veřejnému klíči,
-      ve prospěch jehož hashe jsou uzamknuty bitcoiny na výstupu předcházející transakce. Podepisovanou zprávou tedy
+      ve prospěch jehož hashe jsou uzamknuty satoshi na výstupu předcházející transakce. Podepisovanou zprávou tedy
       bude dvojitý SHA256 hash jakéhosi předobrazu naší výsledné transakce. Výrobě tohoto předobrazu se věnuje 
       <a href="https://btc-slovnik.cz/pages/transaction.html#preimage">bonusová část anatomie transakce</a>.
       Výsledný hash si označíme jako číslo <em>e</em>.</p>
     <p class="just">Výpočet podpisu je pak již jednoduchý: </p>
     <ul class="article">
-      <li>Provedeme operaci násobení skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, x -ová souřadnice
+      <li>Provedeme operaci násobení skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, x&hyphen;ová souřadnice
         výsledného bodu mod <em>n</em> bude číslem <em>r</em>.</li>
       <li><em>s &equals; k<sup>-1</sup> &times; (e &plus; r &times; d)</em> mod <em>n</em>.</li>
     </ul>
@@ -105,8 +105,8 @@
         href="https://btc-slovnik.cz/pages/transaction.html#script">sigScriptu</a>.</p>
     <p class="just">K ověření si musíme opět sestavit předobraz podepisované transkace a vypočíst jeho dvojnásobný
       SHA256 hash, tj. číslo <em>e</em>, dále nám již stačí z scriptSigu získaný podpis (dvojice r, s) a veřejný klíč.
-      Ten je v scriptSigu zakódován ve formátu SEC (Standards of Efficient Cryptography) zpravidla pouze jako x -ová
-      souřadnice a příznak sudosti &ndash; v takovém případě dopočítáme y -ovou souřadnici.</p>
+      Ten je v scriptSigu zakódován ve formátu SEC (Standards of Efficient Cryptography) zpravidla pouze jako x&hyphen;ová
+      souřadnice a příznak sudosti &ndash; v takovém případě dopočítáme y&hyphen;ovou souřadnici.</p>
     <p class="just">Postup ověření je pak: </p>
     <ul class="article">
       <li><em>u &equals; e &times; s<sup>-1</sup></em> mod <em>n</em>.</li>
@@ -114,7 +114,7 @@
       <li>Provedeme operaci násobení skalárem čísla <em>u</em> a generátoru grupy; poté násobení skalárem čísla <em>v</em> a
         veřejného klíče. Výsledné dva body sečteme a označíme jako bod <em>X</em>.</li>
     </ul>
-    <p class="just">Pokud se x -ová souřadnice vypočteného bodu <em>X</em> rovná číslu <em>r</em>, pak je dvojice <em>r,
+    <p class="just">Pokud se x&hyphen;ová souřadnice vypočteného bodu <em>X</em> rovná číslu <em>r</em>, pak je dvojice <em>r,
         s</em> platným podpisem zprávy <em>e</em>.</p>
     <h2 id="schnorr">Anatomie Schnorrova podpisu</h2>
     <p class="just">Schnorrův podpis by v budoucnu mohl nahradit ECDSA schéma. Oproti němu má několik výhod, z nichž ta

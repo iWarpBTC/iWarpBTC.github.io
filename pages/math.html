@@ -23,7 +23,7 @@
     </div>
   </header>
   <div class="container2">
-    <p class="disclaim">disclaim; nejsme matematik</p>
+    <p class="disclaim"><em>Toto pojednání sepsal matematický samouk a nebylo dosud zkontrolováno nikým vzdělanějším.</em></p>
     <h2 id="field">Anatomie křivky nad konečným tělesem</h2>
     <p class="just">Jak by řekl poručík Aldo Raine &ndash; počítání s reálnými čísly přináší spoustu úskalí. Prvním z nich je to, že musíte počítat s reálnými čísly. 
       Nad nekonečnou množinou reálných čísel sice můžeme kreslit krásně ladné křivky, ale počítat se v tom nikomu nechce. Mnohem lepší situace by však mohla 
@@ -80,7 +80,7 @@
        y &equals; 786208371333206865980578302214406245844876452552629632451928239561998078475148147140448210361405280987813503719719735797300904982572723402720884593228038534149240870632791018799512315282992020359091660335750719339454870741361877320453945718901355642986921393601331735619112392312973374907097766523175065015133230667309747693557927462131854083560978609308517953202491241489981562314327814232904658279568205127893019615601159347308751467024207695647845480387687956804973164600958423988996193669931707984489318341905468724730157275693122289442109039453321041409178873301861029312987136 mod 991<br><br>
        y &equals; 329
     </p>
-    <p class="just">Začínalo to být zajímavé&hellip; Naštěstí jsme v konečném tělese a nezapomněli jsme na modulo! Teď už se jen přesvědčíme, že nám bod křivky A[500, 329] svítí na grafu. Než si zkusíme nějaké ty body sečíst, podíváme se, jak by sčítání vypadalo v množině reálných čísel. 
+    <p class="just">Začínalo to být zajímavé&hellip; Naštěstí jsme v konečném tělese a nezapomněli jsme na modulo! Teď už se jen přesvědčíme, že nám bod křivky A[500, 329] svítí na grafu. Než si zkusíme nějaké ty body sečíst, podíváme se, jak by sčítání vypadalo graficky v množině reálných čísel. 
       Tam stačí sestroji přímku procházející dvěma sčítými body A, B, která nám (téměř vždy) protne křivku právě v ještě jednom dalším bodě C. Obraz bodu C v osové souměrnosti podle osy X je součtem bodů A, B.
     </p>
     <div class="fig">
@@ -93,26 +93,33 @@
     </p>
     <p class="script">
       Směrnice přímky procházející sčítanými body bude<br>
-      s &equals; (y<sub>2</sub> &minus; y<sub>1</sub>) &divide; (x<sub>2</sub> &minus; x1)<br>
-      Rovnice výsledných bodů je<br>
-      x<sub>3</sub> &equals; s<sup>2</sup> &minus; x<sub>1</sub> &minus; x<sub>2</sub><br>
-      y<sub>3</sub> &equals; s(x<sub>1</sub> &minus; x<sub>3</sub>) &minus; y<sub>1</sub>
+      <b>&lambda; &equals; (y<sub>2</sub> &minus; y<sub>1</sub>) &divide; (x<sub>2</sub> &minus; x1)</b><br>
+      Rovnice přímky je<br>
+      y = &lambda;x + &kappa;<br>
+      Dosazením do rovnice eliptické křivky najdeme x&hyphen;ovou souřadnici průniku přímky s danou křivkou (tj. x<sub>3</sub>)<br>
+      0 &equals; x<sup>3</sup> &minus; (&lambda;x &plus; &kappa;)<sup>2</sup> + ax + b<br>
+      přičemž koeficient u x<sup>2</sup> je roven &minus;&lambda;<sup>2</sup> &equals; &minus;(x<sub>1</sub>&plus;x<sub>2</sub>&plus;x<sub>3</sub>) (Viétovy vzorce pro kořeny); odtud<br>
+      <b>x<sub>3</sub> &equals; &lambda;<sup>2</sup> &minus; x<sub>1</sub> &minus; x<sub>2</sub></b><br>
+      y&hyphen;ová souřadnice průniku přímky s křivkou (tedy &minus;y<sub>3</sub>) je &minus;y<sub>3</sub> &equals; &lambda;x<sub>3</sub> &plus; &kappa;; odtud<br>
+      <b>y<sub>3</sub> &equals; &lambda;(x<sub>1</sub> &minus; x<sub>3</sub>) &minus; y<sub>1</b></sub>
     </p>
     <p class="just">Dosadíme&hyphen;li do rovnic náš &bdquo;tělesový&ldquo; bod A[500, 329] a k němu třeba bod B[851, 75] jako druhý sčítanec, měl by nám vyjít bod AB[891, 780].
     </p>
     <p class="just">
-      Mnohem důležitejší pro nás pak bude tzv. zdvojení bodu (sečtení bodu se sebou samým). Graficky by tato operace vypadal jako tečna k eliptické křivce ve sčítaném bodě, která nám opět protne křivku ještě v jednom dalším bodě. 
+      Mnohem důležitejší pro nás pak bude varianta tzv. zdvojnásobení bodu (sečtení bodu se sebou samým). Graficky by tato operace vypadal jako tečna k eliptické křivce ve sčítaném bodě, která nám opět protne křivku ještě v jednom dalším bodě. 
       Výsledný bod je opět obrazem v osové souměrnosti podle x. V algebraické formě to pak bude vypada takto:
     </p>
     <p class="script">
       Směrnice tečny ve sčítaném bodě<br>
-      s &equals; (3x<sup>2</sup> &plus; a) &divide; 2y &#35; ovšem v rovnici bitcoinové křivky a &equals; 0<br>
-      x<sub>2</sub> &equals; s<sup>2</sup> &minus; 2x<sub>1</sub><br>
-      y<sub>2</sub> &equals; s(x<sub>1</sub> &minus; x<sub>2</sub>) &minus; y<sub>1</sub>
+      &lambda; &equals; (3x<sup>2</sup> &plus; a) &divide; 2y&semi; protože v případě bitcoinové křivky a &equals; 0, postačí nám i<br>
+      <b>&lambda; &equals; 3x<sup>2</sup> &divide; 2y</b><br>
+      Dosazením do rovnice eliptické křivky<br>
+      <b>x<sub>2</sub> &equals; &lambda;<sup>2</sup> &minus; 2x<sub>1</sub></b><br>
+      <b>y<sub>2</sub> &equals; &lambda;(x<sub>1</sub> &minus; x<sub>2</sub>) &minus; y<sub>1</sub></b>
     </p>
     <p class="just">
-      Zdvojený bod A[500, 329] by měl vyjít jako 2A[960, 612]. Opětovným zdvojením bodu 2A bychom získali bod 3A, přičemž toho opakované zdvojování můžeme nazývat jako násobení skalárem – tím je v tomto případě celé číslo 3, které 
-      představuje počet zdvojení bodů.
+      Zdvojnásobení bodu A[500, 329] by měl vyjít jako 2A[960, 612]. Opětovným zdojnásobením bodu 2A získáme bod 3A, přičemž toho opakované zdvojnásobování můžeme nazývat jako násobení skalárem – tím je v tomto případě celé číslo 3, které 
+      představuje počet opakování zdvojnásobení bodu.
     </p>
     <h2 id="group">Anatomie cyklické grupy</h2>
     <p class="just">...</p>
