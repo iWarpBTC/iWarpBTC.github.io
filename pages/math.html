@@ -50,7 +50,7 @@
     <div class="fig">
       <figure>
         <img src="../img/ECover991.PNG" alt="křivka nad koenčným tělesem">
-        <figcaption>Bitcoinová křivka na konečným tělesem GF(991).</figcaption>
+        <figcaption>y<sup>2</sup> = x<sup>3</sup> + 7 na konečným tělesem GF(991).</figcaption>
       </figure>
     </div>
     <p class="just">Pokud bychom si chtěli v tělese GF(991) cvičně vypočíst bod křivky y<sup>2</sup> &equals; x<sup>3</sup> &plus; 7 pro x &equals; 500, budeme počítat nejprve ne pravé straně:</p>
@@ -106,23 +106,25 @@
     <p class="just">Dosadíme&hyphen;li do rovnic náš &bdquo;tělesový&ldquo; bod A[500, 329] a k němu třeba bod B[851, 75] jako druhý sčítanec, měl by nám vyjít bod AB[891, 780].
     </p>
     <p class="just">
-      Mnohem důležitejší pro nás pak bude varianta tzv. zdvojnásobení bodu (sečtení bodu se sebou samým). Graficky by tato operace vypadal jako tečna k eliptické křivce ve sčítaném bodě, která nám opět protne křivku ještě v jednom dalším bodě. 
+      Mnohem zajímavější pro nás pak bude varianta sečtení bodu se sebou samým, říkejme jí třeba zdvojnásobení bodu. Graficky by tato operace vypadala jako tečna k eliptické křivce ve sčítaném bodě, která nám opět protne křivku ještě v jednom dalším bodě. 
       Výsledný bod je opět obrazem v osové souměrnosti podle x. V algebraické formě to pak bude vypada takto:
     </p>
     <p class="script">
-      Směrnice tečny ve sčítaném bodě<br>
-      &lambda; &equals; (3x<sup>2</sup> &plus; a) &divide; 2y&semi; protože v případě bitcoinové křivky a &equals; 0, postačí nám i<br>
-      <b>&lambda; &equals; 3x<sup>2</sup> &divide; 2y</b><br>
-      Dosazením do rovnice eliptické křivky<br>
+      Směrnicí tečny je derivace křivky<br>
+      <b>&lambda; &equals; (3x<sup>2</sup> &plus; a) &divide; 2y</b><br>
+      Výsledné body pak budou<br>
       <b>x<sub>2</sub> &equals; &lambda;<sup>2</sup> &minus; 2x<sub>1</sub></b><br>
       <b>y<sub>2</sub> &equals; &lambda;(x<sub>1</sub> &minus; x<sub>2</sub>) &minus; y<sub>1</sub></b>
     </p>
     <p class="just">
-      Zdvojnásobení bodu A[500, 329] by měl vyjít jako 2A[960, 612]. Opětovným zdojnásobením bodu 2A získáme bod 3A, přičemž toho opakované zdvojnásobování můžeme nazývat jako násobení skalárem – tím je v tomto případě celé číslo 3, které 
+      Zdvojnásobení bodu A[500, 329] by mělo vyjít jako bod 2A[960, 612]. Opětovným zdvojnásobením bodu 2A získáme bod 3A, přičemž x opakovaní zdvojnásobování můžeme nazývat jako násobení skalárem – celým číslem x, které 
       představuje počet opakování zdvojnásobení bodu.
     </p>
+    <p class="just">
+      Nesmíme zapomenout na případ, ve kterém by přímka (ať už procházející dvěma různými sčítanýmí body, nebo tečna ve zdvojnásobovaném bodě) byla rovnoběžná s osou y. Pro tento případ definujeme výsledek takového součtu (zdvojnásobení) jako bod v nekonečnu. Označíme jako <span class="inf">O</span> ; pak libovolný bod křivce A &plus; <span class="inf">O</span> &equals; A (identické zobrazení).
+    </p>
     <h2 id="group">Anatomie cyklické grupy</h2>
-    <p class="just">...</p>
+    <p class="just">Vybereme&hyphen;li bod </p>
   </div>
   <footer>
     <div class="mail">

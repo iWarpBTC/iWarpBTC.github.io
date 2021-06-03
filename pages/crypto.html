@@ -64,6 +64,7 @@
         </ul>
       </li>
       <li>Řád grupy n &equals; 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141</li>
+      <li>Kofaktor h &equals; 1</li>
     </ul>
     <p class="just">Máme tedy eliptickou křivku nad konečným tělesem a zvolený bod na křivce, kterým si můžeme
       vygenerovat cyklickou grupu s operací sčítání bodů na křivce. Když pak pro opakované sčítání bodu se sebou samým
@@ -75,7 +76,8 @@
       si tyto operace představit jako násobení a opakované násobení jako umocňování. Pak náš postup přesně zapadne do
       výše
       uvedené definice diskrétního logaritmu &ndash; prvkem <em>b</em> je veřejný klíč, zatímco <em>x</em> je klíč
-      soukromý.
+      soukromý. Řečeno matematicky &ndash; výše uvedené rovnosti <em>b &equals; a<sup>x</sup></em> z definice diskrétního logaritmu v multiplikativní notaci 
+      odpovídá rovnost <em>b &equals; ax</em> v aditivní notaci (grupová operace představuje sčítání).
       Neexistuje polynomiální algoritmus, který by ze znalosti veřejného klíče a
       generátoru grupy vypočítal soukromý klíč. Můžeme jít podepisovat.</p>
     <div class="fig">
