@@ -50,7 +50,7 @@
     <div class="fig">
       <figure>
         <img src="https://btc-slovnik.cz/img/ECover223.png" alt="křivka nad koenčným tělesem">
-        <figcaption>y<sup>2</sup> = x<sup>3</sup> + 13 na konečným tělesem GF(223).</figcaption>
+        <figcaption>y<sup>2</sup> = x<sup>3</sup> + 13 nad konečným tělesem GF(223).</figcaption>
       </figure>
     </div>
     <p class="just">Pokud bychom si chtěli v tělese GF(223) cvičně vypočíst bod křivky y<sup>2</sup> &equals; x<sup>3</sup> &plus; 13 pro x &equals; 190, budeme počítat nejprve na pravé straně:</p>
@@ -116,7 +116,7 @@
       <b>y<sub>2</sub> &equals; &lambda;(x<sub>1</sub> &minus; x<sub>2</sub>) &minus; y<sub>1</sub></b>
     </p>
     <p class="just">
-      Zdvojnásobení bodu A[190, 47] by mělo vyjít jako bod 2A[121, 114]. Opětovným zdvojnásobením bodu 2A získáme bod 3A[1,167], přičemž x opakovaní zdvojnásobování můžeme nazývat jako násobení skalárem – celým číslem x, které 
+      Zdvojnásobení bodu A[190, 47] by mělo vyjít jako bod 2A[121, 114]. Opětovným zdvojnásobením bodu 2A získáme bod 3A[1,167], přičemž <em>x</em> opakovaní zdvojnásobování můžeme nazývat jako násobení skalárem – celým číslem <em>x</em>, které 
       představuje počet opakování zdvojnásobení bodu.
     </p>
     <p class="just">
@@ -124,10 +124,10 @@
     </p>
     <p class="just">
       Počet všech bodů ležící na křivce se pak nazývá řád křivky. Na našem cvičném tělese GF(223) je můžeme najít prostým dosazením všech variací (s opakování) x, y do rovnice křivky. Zjistíme, že &num;GF(223) &equals; 196 (včetně nevlastního bodu v nekonečnu). Na větších tělesech ostrých křivek už bychom museli použít 
-      nějaký pokročilejší algoritmus (Schoof–Elkies–Atkin), popř. musíme věřit specifikaci. 
+      nějaký pokročilejší algoritmus (Schoof&hyphen;Elkies&hyphen;Atkin), popř. musíme věřit specifikaci. 
     </p>
-    <p class="just">Prohlásíme&hyphen;li bod A za generátor, a operaci sčítání bodů &#x2218; za grupovou operaci, můžeme si vygenerovat cyklickou grupu řádu n. Řád grupy je dán počtem bodů (prvků grupy), které stihne generátor opakovaným zdvojnásobování (sčítáním se sebou samým) vygenerovat, než vyjde (n &#x2218; A &equals; <span class="inf">O</span>).</p>
-    <p class="just">Tak jako těleso, i (Abelova) grupa má nějaká svá pravidla:</p>
+    <p class="just">Prohlásíme&hyphen;li bod A za generátor, a operaci sčítání bodů za grupovou operaci &#x2218;, můžeme si vygenerovat cyklickou grupu řádu n. Řád grupy je dán počtem bodů (prvků grupy), které stihne generátor opakovaným zdvojnásobování (sčítáním se sebou samým) vygenerovat, než vyjde (n &#x2218; A &equals; <span class="inf">O</span>).</p>
+    <p class="just">Tak jako těleso, i (Abelova) grupa <b>G</b> má nějaká svá pravidla:</p>
     <ul class="article">
       <li>Uzavřenost&colon;&emsp;a &#x2218; b &isin; <b>G</b> pro libovolné a, b &isin; <b>G</b></li>
       <li>Asociativita&colon;&emsp;a &#x2218; (b &#x2218; c) &equals; (a &#x2218; b) &#x2218; c pro libovolné a, b, c &isin; <b>G</b></li>
