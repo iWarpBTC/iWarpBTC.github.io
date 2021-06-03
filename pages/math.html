@@ -127,11 +127,13 @@
       nějaký pokročilejší algoritmus (Schoof–Elkies–Atkin), popř. musíme věřit specifikaci. 
     </p>
     <p class="just">Prohlásíme&hyphen;li bod A za generátor, a operaci sčítání bodů &#x2218; za grupovou operaci, můžeme si vygenerovat cyklickou grupu řádu n. Řád grupy je dán počtem bodů (prvků grupy), které stihne generátor opakovaným zdvojnásobování (sčítáním se sebou samým) vygenerovat, než vyjde (n &#x2218; A &equals; <span class="inf">O</span>).</p>
-    <p class="just">Tak jako těleso, i grupa má nějaká svá pravidla:</p>
+    <p class="just">Tak jako těleso, i (Abelova) grupa má nějaká svá pravidla:</p>
     <ul class="article">
       <li>Uzavřenost&colon;&emsp;a &#x2218; b &isin; <b>G</b> pro libovolné a, b &isin; <b>G</b></li>
-      <li>Asociativita &colon;&emsp;a &#x2218; (b &#x2218; c) &equals; (a &#x2218; b) &#x2218; c pro libovolné a, b, c &isin; <b>G</b></li>
-
+      <li>Asociativita&colon;&emsp;a &#x2218; (b &#x2218; c) &equals; (a &#x2218; b) &#x2218; c pro libovolné a, b, c &isin; <b>G</b></li>
+      <li>Komutativita&colon;&emsp;a &#x2218; b &equals; b &#x2218; a pro libovolné a, b &isin; <b>G</b></li>
+      <li>Existence neutrálního prvku&colon;&emsp;existuje <span class="inf">O</span> &isin; <b>G</b> takové, že pro všechna a &isin; <b>G</b> platí a &#x2218; <span class="inf">O</span> &equals; <span class="inf">O</span> &#x2218; a &equals; a</li>
+      <li>Existence inverzního prvku&colon;&emsp;pro všechna a &isin; <b>G</b> existuje a<sup>&minus;1</sup> &isin; <b>G</b> takové, že platí a &#x2218; a<sup>&minus;1</sup> &equals; a<sup>&minus;1</sup> &#x2218; a &equals; <span class="inf">O</span></li>
     </ul>
   </div>
   <footer>
