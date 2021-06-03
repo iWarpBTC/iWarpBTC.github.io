@@ -27,8 +27,8 @@
     <h2 id="field">Anatomie křivky nad konečným tělesem</h2>
     <p class="just">Jak by řekl poručík Aldo Raine &ndash; počítání s reálnými čísly přináší spoustu úskalí. Prvním z nich je to, že musíte počítat s reálnými čísly. 
       Nad nekonečnou množinou reálných čísel sice můžeme kreslit krásně ladné křivky, ale počítat se v tom nikomu nechce. Mnohem lepší situace by však mohla 
-      být nad nějakou konečnou množinou třeba celých čísel. Když se k této konečné množině definují dvě binární operace (třeba sčítání &plus; a násobení &times;) a celé to  
-      splňuje níže uvedené podmínky, tak se tomu může říká konečné těleso.  
+      být nad nějakou konečnou množinou třeba celých čísel. Když se k této konečné množině definují dvě binární operace (třeba sčítání &plus; a násobení &times;), a celé to  
+      splňuje níže uvedené podmínky, tak se tomu říká konečné těleso.  
     </p>
     <p class="just">V tělese <b>F</b> musí platit: </p>
     <ul class="article">
@@ -43,9 +43,9 @@
       <li>Distributivita&colon;&emsp;a &times; (b + c) &equals; a &times; b &plus; a &times; c pro všechna a, b, &isin; <b>F</b></li>
       <li>Netrivialita&colon;&emsp;0 &ne; 1</li>
     </ul>
-    <p class="just">Není to žádná raketová věda. Jedná se vesměs o obvyklé vlastnosti sčítání a násobení. Pokud by někomu chybělo odečítání a dělení, představí si místo nich přičítání opačného prvku, resp. násobení inverzním prvkem.
-      Aby nám uvedené podmínky platily i v konečném tělese (tj. tělese s konečným počtem prvků), musí být počet prvků prvočíslo (či mocnina prvočísla). Toto prvočíslo se také nezývá charakteristika tělesa.
-      Schválně si zkuste vyrobit těleso o čtyřech prvcích a uplatněte výše uvedené pravidla. Nebude to fungovat.
+    <p class="just">Není to žádná raketová věda. Jedná se vesměs o obvyklé vlastnosti sčítání a násobení. Pokud by někomu chybělo odčítání a dělení, představí si místo nich přičítání opačného prvku, resp. násobení inverzním prvkem.
+      Aby nám uvedené podmínky platily i v konečném tělese (tj. tělese s konečným počtem prvků), musí být počet prvků prvočíslo (či mocnina prvočísla). Toto prvočíslo se také nazývá charakteristika tělesa.
+      Schválně si zkuste vyrobit těleso o čtyřech prvcích a uplatněte výše uvedená pravidla. Nebude to fungovat.
     </p>
     <div class="fig">
       <figure>
@@ -53,7 +53,7 @@
         <figcaption>Bitcoinová křivka na konečným tělesem GF(991).</figcaption>
       </figure>
     </div>
-    <p class="just">Pokud bychom si chtěli v tělese GF(991) cvičně vypočíst bod křivky y<sup>2</sup> &equals; x<sup>3</sup> &plus; 7 pro x &equals; 500, budeme počítat nejprve ne pravé straně:</p>
+    <p class="just">Pokud bychom si chtěli v tělese GF(991) cvičně vypočíst bod křivky y<sup>2</sup> &equals; x<sup>3</sup> &plus; 7 pro x &equals; 500, budeme počítat nejprve na pravé straně:</p>
     <p class="script">
       500<sup>3</sup> &plus; 7 mod 991 &equals; 125000007 mod 991 &equals; 222
     </p>
@@ -70,7 +70,7 @@
       Řekněme, že a<sup>2</sup> &equals; b, pak<br><br>
       a &equals; a<sup>(p&plus;1)&divide;2</sup> &equals; a<sup>2(p+1)/4</sup> &equals; (a<sup>2</sup>)<sup>(p+1)/4</sup> &equals; b<sup>(p+1)/4</sup>
     </p>
-    <p class="just">Nic si z toho nedělejte, já to taky pobral teprve asi až na pátý pokus. Až to bude mít, můžeme jít odmocňovat:
+    <p class="just">Nic si z toho nedělejte, já to taky pobral teprve asi až na pátý pokus. Až to budete mít, můžeme jít odmocňovat:
     </p>
     <p class="script">
        y<sup>2</sup> &equals; 222<br><br>
@@ -81,7 +81,7 @@
        y &equals; 329
     </p>
     <p class="just">Začínalo to být zajímavé&hellip; Naštěstí jsme v konečném tělese a nezapomněli jsme na modulo! Teď už se jen přesvědčíme, že nám bod křivky A[500, 329] svítí na grafu. Než si zkusíme nějaké ty body sečíst, podíváme se, jak by sčítání vypadalo graficky v množině reálných čísel. 
-      Tam stačí sestroji přímku procházející dvěma sčítými body A, B, která nám (téměř vždy) protne křivku právě v ještě jednom dalším bodě C. Obraz bodu C v osové souměrnosti podle osy X je součtem bodů A, B.
+      Tam stačí sestrojit přímku procházející dvěma sčítanými body A, B, která nám (téměř vždy) protne křivku právě v ještě jednom dalším bodě C. Obraz bodu C v osové souměrnosti podle osy X je součtem bodů A, B.
     </p>
     <div class="fig">
       <figure>
@@ -98,7 +98,7 @@
       y = &lambda;x + &kappa;<br>
       Dosazením do rovnice eliptické křivky najdeme x&hyphen;ovou souřadnici průniku přímky s danou křivkou (tj. x<sub>3</sub>)<br>
       0 &equals; x<sup>3</sup> &minus; (&lambda;x &plus; &kappa;)<sup>2</sup> + ax + b<br>
-      přičemž koeficient u x<sup>2</sup> je roven &minus;&lambda;<sup>2</sup> &equals; &minus;(x<sub>1</sub>&plus;x<sub>2</sub>&plus;x<sub>3</sub>) (Viétovy vzorce pro kořeny); odtud<br>
+      přičemž koeficient u x<sup>2</sup> je roven &minus;&lambda;<sup>2</sup> &equals; &minus;(x<sub>1</sub>&plus;x<sub>2</sub>&plus;x<sub>3</sub>) (Viètovy vzorce pro kořeny); odtud<br>
       <b>x<sub>3</sub> &equals; &lambda;<sup>2</sup> &minus; x<sub>1</sub> &minus; x<sub>2</sub></b><br>
       y&hyphen;ová souřadnice průniku přímky s křivkou (tedy &minus;y<sub>3</sub>) je &minus;y<sub>3</sub> &equals; &lambda;x<sub>3</sub> &plus; &kappa;; odtud<br>
       <b>y<sub>3</sub> &equals; &lambda;(x<sub>1</sub> &minus; x<sub>3</sub>) &minus; y<sub>1</b></sub>
@@ -106,8 +106,8 @@
     <p class="just">Dosadíme&hyphen;li do rovnic náš &bdquo;tělesový&ldquo; bod A[500, 329] a k němu třeba bod B[851, 75] jako druhý sčítanec, měl by nám vyjít bod AB[891, 780].
     </p>
     <p class="just">
-      Mnohem důležitejší pro nás pak bude varianta tzv. zdvojnásobení bodu (sečtení bodu se sebou samým). Graficky by tato operace vypadal jako tečna k eliptické křivce ve sčítaném bodě, která nám opět protne křivku ještě v jednom dalším bodě. 
-      Výsledný bod je opět obrazem v osové souměrnosti podle x. V algebraické formě to pak bude vypada takto:
+      Mnohem důležitější pro nás pak bude varianta tzv. zdvojnásobení bodu (sečtení bodu se sebou samým). Graficky by tato operace vypadala jako tečna k eliptické křivce ve sčítaném bodě, která nám opět protne křivku ještě v jednom dalším bodě. 
+      Výsledný bod je opět obrazem v osové souměrnosti podle x. V algebraické formě to pak bude vypadat takto:
     </p>
     <p class="script">
       Směrnice tečny ve sčítaném bodě<br>
@@ -118,7 +118,7 @@
       <b>y<sub>2</sub> &equals; &lambda;(x<sub>1</sub> &minus; x<sub>2</sub>) &minus; y<sub>1</sub></b>
     </p>
     <p class="just">
-      Zdvojnásobení bodu A[500, 329] by měl vyjít jako 2A[960, 612]. Opětovným zdojnásobením bodu 2A získáme bod 3A, přičemž toho opakované zdvojnásobování můžeme nazývat jako násobení skalárem – tím je v tomto případě celé číslo 3, které 
+      Zdvojnásobení bodu A[500, 329] by mělo vyjít jako 2A[960, 612]. Opětovným zdvojnásobením bodu 2A získáme bod 3A, přičemž toto opakované zdvojnásobování můžeme nazývat jako násobení skalárem – tím je v tomto případě celé číslo 3, které 
       představuje počet opakování zdvojnásobení bodu.
     </p>
     <h2 id="group">Anatomie cyklické grupy</h2>
