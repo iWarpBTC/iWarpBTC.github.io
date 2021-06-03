@@ -329,6 +329,10 @@ img.meme {
   height: 500px;
 }
 
+span.inf{
+  font-family: "Segoe Print";
+}
+
 a#luke{margin-left: 165px;}
 a#nick{margin-left: 330px;}
 a#pieter{margin-top: 165px;}
