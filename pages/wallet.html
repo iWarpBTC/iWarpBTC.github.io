@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Anatomie HD peněženky</title>
-  <link rel="shortcut icon" href="https://btc-slovnik.cz/img/favicon.png">
+  <link rel="shortcut icon" href="https://btc-slovnik.cz/favicon.png">
   <link rel="stylesheet" href="../css/styles.css">
   <meta name="description" content="Popisuje základní funkce bitcoinové HD peněženky a odvozování klíčů.">
   <meta name="keywords"
@@ -27,7 +27,7 @@
       generovat prakticky neomezené množství klíčových párů a tedy i adres.</p>
     <p class="just">Při prvním spuštění (inicializaci) si taková peněženka, ideálně z několika různých zdrojů,
       vygeneruje zpravidla mezi 128 a 256 bity entropie. Za to ještě přidá prvních 4 až 8 bitů
-      hashe (SHA256) této entropie. Toto číslo se následně rozdělíme na 12 až 24 částí po 11 bitech tak, aby každá část
+      hashe (SHA256) této entropie, které slouží jako &bdquo;kontrolní součet&ldquo;. Toto číslo se následně rozdělíme na 12 až 24 částí po 11 bitech tak, aby každá část
       odpovídala indexu slova ze <a href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt">slovníku 2048
         slov</a>. Tato slova seedu jsou zobrazené uživateli, který je v
       ideálním případě bezpečně a trvanlivě zaznamená a uchová. Taktéž peněženka si těchto 132 až 264 bitů dat uloží do
@@ -41,7 +41,7 @@
     <p class="just">Po inicializaci (a následně i při každém další spuštění) může být uživatel vyzván k zadání passphrase
       (pokud si její použití povolil). Poté je zavolána funkce PBKDF2 s hashováním HMAC-SHA512 a počtem iterací
       2048. Na vstupu je jako parametr <em>password</em> řetězec slov seedu a jako parametr <em>salt</em> řetězec
-      passphrase (v případě vypnuté passphrase prázdný) předsazený řetězcem "menemonic". Výstupem funkce je 512bitový seed.</p>
+      passphrase (v případě vypnuté passphrase prázdný) předsazený řetězcem "mnemonic". Výstupem funkce je 512bitový seed.</p>
     <div class="fig">
       <figure>
         <img src="https://btc-slovnik.cz/img/seed2.svg" alt="512 bitů seedu">
