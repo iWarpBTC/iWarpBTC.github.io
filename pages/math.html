@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Anatomie křivky nad konečným tělesem a klíčů v cyklické grupě</title>
+  <title>Anatomie tělesa a grupy</title>
   <link rel="shortcut icon" href="https://btc-slovnik.cz/favicon.png">
   <link rel="stylesheet" href="../css/styles.css">
   <meta name="description"
@@ -23,8 +23,8 @@
     </div>
   </header>
   <div class="container2">
-    <p class="disclaim"><em>Toto pojednání sepsal matematický samouk a nebylo dosud zkontrolováno nikým vzdělanějším.</em></p>
-    <h2 id="field">Anatomie křivky nad konečným tělesem</h2>
+    <p class="disclaim"><em>Toto pojednání sepsal matematický samouk a nebylo dosud zrevidováno nikým řádně vzdělaným.</em></p>
+    <h2 id="field">Anatomie tělesa a grupy</h2>
     <p class="just">Jak by řekl poručík Aldo Raine &ndash; počítání s reálnými čísly přináší spoustu úskalí. Prvním z nich je to, že musíte počítat s reálnými čísly. 
       Nad nekonečnou množinou reálných čísel sice můžeme kreslit krásně ladné křivky, ale počítat se v tom nikomu nechce. Mnohem lepší situace by však mohla 
       být nad nějakou konečnou množinou třeba celých čísel. Když se k této konečné množině definují dvě binární operace (třeba sčítání &plus; a násobení &times;), a celé to  
@@ -49,15 +49,15 @@
     </p>
     <div class="fig">
       <figure>
-        <img src="../img/ECover991.PNG" alt="křivka nad konečným tělesem">
-        <figcaption>y<sup>2</sup> = x<sup>3</sup> + 7 nad konečným tělesem GF(991).</figcaption>
+        <img src="https://btc-slovnik.cz/img/ECover223.png" alt="křivka nad konečným tělesem">
+        <figcaption>y<sup>2</sup> = x<sup>3</sup> + 13 nad konečným tělesem GF(223).</figcaption>
       </figure>
     </div>
-    <p class="just">Pokud bychom si chtěli v tělese GF(991) cvičně vypočíst bod křivky y<sup>2</sup> &equals; x<sup>3</sup> &plus; 7 pro x &equals; 500, budeme počítat nejprve na pravé straně:</p>
+    <p class="just">Pokud bychom si chtěli v tělese GF(223) cvičně vypočíst bod křivky y<sup>2</sup> &equals; x<sup>3</sup> &plus; 13 pro x &equals; 190, budeme počítat nejprve na pravé straně:</p>
     <p class="script">
-      500<sup>3</sup> &plus; 7 mod 991 &equals; 125000007 mod 991 &equals; 222
+      190<sup>3</sup> &plus; 13 mod 223 &equals; 6859013 mod 223 &equals; 202
     </p>
-    <p class="just">Abychom nyní odmocnili y<sup>2</sup> &equals; 222, ověříme si nejprve, že charakteristika p našeho tělesa GF(p) modulo 4 vyjde 3. To znamená, že (p &plus; 1) mod 4 &equals; 0, tedy že lze (p &plus; 1) beze zbytku dělit 4. 
+    <p class="just">Abychom nyní odmocnili y<sup>2</sup> &equals; 202, ověříme si nejprve, že charakteristika p našeho tělesa GF(p) modulo 4 vyjde 3. To znamená, že (p &plus; 1) mod 4 &equals; 0, tedy že lze (p &plus; 1) beze zbytku dělit 4. 
       V tom případě můžeme použít k odmocnění následující hack &ndash; podle Malé Fermatovy věty a<sup>p&minus;1</sup> mod p &equals; 1. To znamená, že: 
     </p>
     <p class="script">
@@ -74,18 +74,17 @@
     </p>
     <p class="script">
        y<sup>2</sup> &equals; 222<br><br>
-       y &equals; 222<sup>(991+1)&divide;4</sup> mod 991<br>
-       y &equals; 222<sup>(991+1)&divide;4</sup> mod 991<br>
-       y &equals; 222<sup>248</sup> mod 991<br>
-       y &equals; 786208371333206865980578302214406245844876452552629632451928239561998078475148147140448210361405280987813503719719735797300904982572723402720884593228038534149240870632791018799512315282992020359091660335750719339454870741361877320453945718901355642986921393601331735619112392312973374907097766523175065015133230667309747693557927462131854083560978609308517953202491241489981562314327814232904658279568205127893019615601159347308751467024207695647845480387687956804973164600958423988996193669931707984489318341905468724730157275693122289442109039453321041409178873301861029312987136 mod 991<br><br>
-       y &equals; 329
+       y &equals; 202<sup>(223+1)&divide;4</sup> mod 223<br>
+       y &equals; 202<sup>56</sup> mod 223<br>
+       y &equals; 1257988552198402112716025241425554802066116810455891304419632544898614527285976320036463847342459011535449669236965185786568769536 <b>mod 223</b><br><br>
+       y &equals; 47
     </p>
-    <p class="just">Začínalo to být zajímavé&hellip; Naštěstí jsme v konečném tělese a nezapomněli jsme na modulo! Teď už se jen přesvědčíme, že nám bod křivky A[500, 329] svítí na grafu. Než si zkusíme nějaké ty body sečíst, podíváme se, jak by sčítání vypadalo graficky v množině reálných čísel. 
-      Tam stačí sestrojit přímku procházející dvěma sčítanými body A, B, která nám (téměř vždy) protne křivku právě v ještě jednom dalším bodě C. Obraz bodu C v osové souměrnosti podle osy X je součtem bodů A, B.
+    <p class="just">Začínalo to být zajímavé&hellip; Naštěstí jsme v konečném tělese a nezapomněli jsme na modulo (v praxi se s ním pracuje již v průběhu mocnění, <a href="https://docs.python.org/3/library/functions.html#pow">vizte kupříkladu zde</a>). Teď už se jen přesvědčíme, že nám bod křivky A[190, 47] svítí na grafu. Než si zkusíme nějaké ty body sečíst, podíváme se, jak by sčítání vypadalo graficky v množině reálných čísel. 
+      Tam stačí sestroji přímku procházející dvěma sčítanými body A, B, která nám (téměř vždy) protne křivku právě v ještě jednom dalším bodě C. Obraz bodu C v osové souměrnosti podle osy X je součtem bodů A, B.
     </p>
     <div class="fig">
       <figure>
-        <img src="../img/ECadd.png" alt="křivka nad konečným tělesem">
+        <img src="https://btc-slovnik.cz/img/ECadd.png" alt="křivka nad konečným tělesem">
         <figcaption>Sčítání bodů na eliptické křivce.</figcaption>
       </figure>
     </div>
@@ -103,7 +102,7 @@
       y&hyphen;ová souřadnice průniku přímky s křivkou (tedy &minus;y<sub>3</sub>) je &minus;y<sub>3</sub> &equals; &lambda;x<sub>3</sub> &plus; &kappa;; odtud<br>
       <b>y<sub>3</sub> &equals; &lambda;(x<sub>1</sub> &minus; x<sub>3</sub>) &minus; y<sub>1</b></sub>
     </p>
-    <p class="just">Dosadíme&hyphen;li do rovnic náš &bdquo;tělesový&ldquo; bod A[500, 329] a k němu třeba bod B[851, 75] jako druhý sčítanec, měl by nám vyjít bod AB[891, 780].
+    <p class="just">Dosadíme&hyphen;li do rovnic náš &bdquo;tělesový&ldquo; bod A[190, 47] a k němu třeba bod B[55, 91] jako druhý sčítanec, měl by nám vyjít bod AB[34, 31].
     </p>
     <p class="just">
       Mnohem zajímavější pro nás pak bude varianta sečtení bodu se sebou samým, říkejme jí třeba zdvojnásobení bodu. Graficky by tato operace vypadala jako tečna k eliptické křivce ve sčítaném bodě, která nám opět protne křivku ještě v jednom dalším bodě. 
@@ -117,14 +116,25 @@
       <b>y<sub>2</sub> &equals; &lambda;(x<sub>1</sub> &minus; x<sub>2</sub>) &minus; y<sub>1</sub></b>
     </p>
     <p class="just">
-      Zdvojnásobení bodu A[500, 329] by mělo vyjít jako bod 2A[960, 612]. Opětovným zdvojnásobením bodu 2A získáme bod 3A, přičemž x opakování zdvojnásobování můžeme nazývat jako násobení skalárem – celým číslem x, které 
+      Zdvojnásobení bodu A[190, 47] by mělo vyjít jako bod 2A[121, 114]. Opětovným zdvojnásobením bodu 2A získáme bod 3A[1,167], přičemž <em>x</em> opakování zdvojnásobování můžeme nazývat jako násobení skalárem – celým číslem <em>x</em>, které 
       představuje počet opakování zdvojnásobení bodu.
     </p>
     <p class="just">
       Nesmíme zapomenout na případ, ve kterém by přímka (ať už procházející dvěma různými sčítanýmí body, nebo tečna ve zdvojnásobovaném bodě) byla rovnoběžná s osou y. Pro tento případ definujeme výsledek takového součtu (zdvojnásobení) jako bod v nekonečnu. Označíme jako <span class="inf">O</span> ; pak libovolný bod křivce A &plus; <span class="inf">O</span> &equals; A (identické zobrazení).
     </p>
-    <h2 id="group">Anatomie cyklické grupy</h2>
-    <p class="just">Vybereme&hyphen;li bod </p>
+    <p class="just">
+      Počet všech bodů ležící na křivce se pak nazývá řád křivky. Na našem cvičném tělese GF(223) je můžeme najít prostým dosazením všech variací (s opakování) x, y do rovnice křivky. Zjistíme, že &num;GF(223) &equals; 196 (včetně nevlastního bodu v nekonečnu). Na větších tělesech ostrých křivek už bychom museli použít 
+      nějaký pokročilejší algoritmus (Schoof&hyphen;Elkies&hyphen;Atkin), popř. musíme věřit specifikaci. 
+    </p>
+    <p class="just">Prohlásíme&hyphen;li bod A za generátor, a operaci sčítání bodů za grupovou operaci &#x2218;, můžeme si vygenerovat cyklickou grupu řádu n. Řád grupy je dán počtem bodů (prvků grupy), které stihne generátor opakovaným zdvojnásobování (sčítáním se sebou samým) vygenerovat, než vyjde (n &#x2218; A &equals; <span class="inf">O</span>).</p>
+    <p class="just">Tak jako těleso, i (Abelova) grupa <b>G</b> má nějaká svá pravidla:</p>
+    <ul class="article">
+      <li>Uzavřenost&colon;&emsp;a &#x2218; b &isin; <b>G</b> pro libovolné a, b &isin; <b>G</b></li>
+      <li>Asociativita&colon;&emsp;a &#x2218; (b &#x2218; c) &equals; (a &#x2218; b) &#x2218; c pro libovolné a, b, c &isin; <b>G</b></li>
+      <li>Komutativita&colon;&emsp;a &#x2218; b &equals; b &#x2218; a pro libovolné a, b &isin; <b>G</b></li>
+      <li>Existence neutrálního prvku&colon;&emsp;existuje <span class="inf">O</span> &isin; <b>G</b> takové, že pro všechna a &isin; <b>G</b> platí a &#x2218; <span class="inf">O</span> &equals; <span class="inf">O</span> &#x2218; a &equals; a</li>
+      <li>Existence inverzního prvku&colon;&emsp;pro všechna a &isin; <b>G</b> existuje a<sup>&minus;1</sup> &isin; <b>G</b> takové, že platí a &#x2218; a<sup>&minus;1</sup> &equals; a<sup>&minus;1</sup> &#x2218; a &equals; <span class="inf">O</span></li>
+    </ul>
   </div>
   <footer>
     <div class="mail">

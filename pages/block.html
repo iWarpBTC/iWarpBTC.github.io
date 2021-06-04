@@ -147,8 +147,8 @@
     </p>
     <p class="just">Jelikož výstup hashovací funkce nelze předvídat, je splnění této podmínky věcí náhody. Této náhodě
       lze jít naproti jedině tím, že je zahashováno a otestováno co možná nejvíce hlaviček bloku v co možná nejkratším
-      čase. K tomu právě slouží pole nazvané nonce. S rozsahem 4 bajty dat dává bez změny zbytku hlavičky přes 4
-      miliardy možný hashů. Protože pole obsahuje také každou vteřinu měnící se timestamp, lze díky nonci testovat přes
+      čase. K tomu právě slouží pole nazvané nonce. S rozsahem 4 bajty dává bez změny zbytku hlavičky přes 4
+      miliardy možný hashů. Protože hlavička obsahuje také každou vteřinu měnící se timestamp, lze díky nonci testovat přes
       4 miliardy hashů každou vteřinu. Těžaři (těžařské pooly) s výkonem přes 4 miliardy hashů za sekundu pak mohou
       paralelně testovat různé kandidátské bloky, lišící se v pořadí zahrnutých transakcí, čímž je zase dosaženo různých
       kořenů merkle stromu transakcí.</p>
