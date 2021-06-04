@@ -262,17 +262,17 @@
     <h2 id="preimage">Bonus: Předobraz transakce pro podpis</h2>
     <p class="just">V <a href="https://btc-slovnik.cz/pages/crypto#ecdsa">anatomii podpisu</a> se dočtete více o ověřování podpisu. 
       Zde na tomto místě však využijeme výše rozebranou transakci, resp. její předchůdkyni a podíváme se, jakým způsobem vznikl její podepisovaný předobraz.</p>
-    <p class="just">Před segwitem vznikal předobraz tak, že v případě ověření nejprve došlo k vypráznění všech scriptSigů (v případě podpisu není co vyprazdňovat, 
+    <p class="just">Před segwitem vznikal předobraz tak, že v případě ověření nejprve došlo k vyprázdnění všech scriptSigů (v případě podpisu není co vyprazdňovat, 
       scriptSig ještě nebyl naplněn). Následně jsou tato prázdná místa &ndash; vždy po jednom pro každý podpis &ndash; vyplněna skripty scriptPubKey utrácených výstupů. 
       Pro ty je potřeba sáhnout do předchozí(ch) transakce/í. Nakonec jen přidán hashtyp &ndash; typicky SIGHASH_ALL (číslo 1 v čtyřbajtovém LE).</p>
     <p class="just">Tento přístup má však dvě hlavní nevýhody. Zaprvé &ndash; výpočetní náročnost hashování roste kvadraticky s počtem vstupů podepisované transakce. 
-      A zadruhé &ndash; předobraz neobsahuje v sobě informaci o částce utrácených vstupů, z kterých by kupříkladu hardwarová peněženka dokázala bez dalšího vypočíst a zobrazit k povrzení částku poplatku. 
+      A zadruhé &ndash; předobraz v sobě neobsahuje informaci o částce utrácených vstupů, ze kterých by kupříkladu hardwarová peněženka dokázala bez dalších informací vypočíst a zobrazit částku poplatku k potvrzení. 
       Proto byl u v rámci segwitu &ndash; konkrétně <a href="https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki">BIPem 143</a> &ndash; zaveden nový způsob výroby předobrazu pro segwitové transakce. 
       Předobraz výše rozebrané tranasakce bude tedy vypadat následovně (užité hashe jsou vždy dvojité SHA256):
     </p>
     <ul class="article">
       <li>verze tx (4 bajty LE)</li>
-      <li>hash všech txid a indexů útracených výstupů&semi; společný pro všechny podpisy (32 bajtů)</li>
+      <li>hash všech txid a indexů utracených výstupů&semi; společný pro všechny podpisy (32 bajtů)</li>
       <li>hash všech sequence útracených výstupů&semi; společný pro všechny podpisy (32 bajtů)</li>
       <li>txid a index utráceného (podepisovaného) výstupu (32 + 4 bajty LE)</li>
       <li>výše uvedený modifikovaný uzamykací skript utráceného (podepisovaného) výstupu (script)</li>
@@ -282,7 +282,7 @@
       <li>locktime (4 bajty LE)</li>
       <li>hashtyp (4 bajty LE)</li>
     </ul>
-    <p class="just">Jak by takové velmi naivní ověření podpisu naší tranasakce vypadalo lze nahlednout v jazyce python <a href="https://www.online-python.com/0tu3dncIj2">zde</a>.</p>
+    <p class="just">Jak by takové velmi naivní ověření podpisu naší transakce vypadalo lze nahlednout v jazyce python <a href="https://www.online-python.com/0tu3dncIj2">zde</a>.</p>
   </div>
   <footer>
     <div class="mail">

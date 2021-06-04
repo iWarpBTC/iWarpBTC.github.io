@@ -49,7 +49,7 @@
     </p>
     <div class="fig">
       <figure>
-        <img src="https://btc-slovnik.cz/img/ECover223.png" alt="křivka nad koenčným tělesem">
+        <img src="https://btc-slovnik.cz/img/ECover223.png" alt="křivka nad konečným tělesem">
         <figcaption>y<sup>2</sup> = x<sup>3</sup> + 13 nad konečným tělesem GF(223).</figcaption>
       </figure>
     </div>
@@ -80,11 +80,11 @@
        y &equals; 47
     </p>
     <p class="just">Začínalo to být zajímavé&hellip; Naštěstí jsme v konečném tělese a nezapomněli jsme na modulo (v praxi se s ním pracuje již v průběhu mocnění, <a href="https://docs.python.org/3/library/functions.html#pow">vizte kupříkladu zde</a>). Teď už se jen přesvědčíme, že nám bod křivky A[190, 47] svítí na grafu. Než si zkusíme nějaké ty body sečíst, podíváme se, jak by sčítání vypadalo graficky v množině reálných čísel. 
-      Tam stačí sestroji přímku procházející dvěma sčítanými body P, Q, která nám (téměř vždy) protne křivku právě v ještě jednom dalším bodě R. Obraz bodu R v osové souměrnosti podle osy x je součtem bodů P, Q.
+      Tam stačí sestrojit přímku procházející dvěma sčítanými body P, Q, která nám (téměř vždy) protne křivku právě v ještě jednom dalším bodě R. Obraz bodu R v osové souměrnosti podle osy x je součtem bodů P, Q.
     </p>
     <div class="fig">
       <figure>
-        <img src="https://btc-slovnik.cz/img/ECadd.png" alt="křivka nad koenčným tělesem">
+        <img src="https://btc-slovnik.cz/img/ECadd.png" alt="křivka nad konečným tělesem">
         <figcaption>Sčítání bodů na eliptické křivce.</figcaption>
       </figure>
     </div>
@@ -92,7 +92,7 @@
     </p>
     <p class="script">
       Směrnice přímky procházející sčítanými body bude<br>
-      <b>&lambda; &equals; (y<sub>2</sub> &minus; y<sub>1</sub>) &divide; (x<sub>2</sub> &minus; x1)</b><br>
+      <b>&lambda; &equals; (y<sub>2</sub> &minus; y<sub>1</sub>) &divide; (x<sub>2</sub> &minus; x<sub>1</sub>)</b><br>
       Rovnice přímky je<br>
       y = &lambda;x + &kappa;<br>
       Dosazením do rovnice eliptické křivky najdeme x&hyphen;ovou souřadnici průniku přímky s danou křivkou (tj. x<sub>3</sub>)<br>
@@ -116,7 +116,7 @@
       <b>y<sub>2</sub> &equals; &lambda;(x<sub>1</sub> &minus; x<sub>2</sub>) &minus; y<sub>1</sub></b>
     </p>
     <p class="just">
-      Zdvojnásobení bodu A[190, 47] by mělo vyjít jako bod 2A[121, 114]. Opětovným zdvojnásobením bodu 2A získáme bod 3A[1,167], přičemž <em>x</em> opakovaní zdvojnásobování můžeme nazývat jako násobení skalárem – celým číslem <em>x</em>, které 
+      Zdvojnásobení bodu A[190, 47] by mělo vyjít jako bod 2A[121, 114]. Opětovným zdvojnásobením bodu 2A získáme bod 3A[1,167], přičemž <em>x</em> opakování zdvojnásobování můžeme nazývat jako násobení skalárem – celým číslem <em>x</em>, které 
       představuje počet opakování zdvojnásobení bodu.
     </p>
     <p class="just">
@@ -126,7 +126,7 @@
       Počet všech bodů ležící na křivce se pak nazývá řád křivky. Na našem cvičném tělese GF(223) je můžeme najít prostým dosazením všech variací (s opakování) x, y do rovnice křivky. Zjistíme, že &num;GF(223) &equals; 196 (včetně nevlastního bodu v nekonečnu). Na větších tělesech ostrých křivek už bychom museli použít 
       nějaký pokročilejší algoritmus (Schoof&hyphen;Elkies&hyphen;Atkin), popř. musíme věřit specifikaci. 
     </p>
-    <p class="just">Prohlásíme&hyphen;li bod A za generátor, a operaci sčítání bodů za grupovou operaci &#x2218;, můžeme si vygenerovat cyklickou grupu řádu n. Řád grupy je dán počtem bodů (prvků grupy), které stihne generátor opakovaným zdvojnásobování (sčítáním se sebou samým) vygenerovat, než vyjde (n &#x2218; A &equals; <span class="inf">O</span>).</p>
+    <p class="just">Prohlásíme&hyphen;li bod A za generátor a operaci sčítání bodů za grupovou operaci &#x2218;, můžeme si vygenerovat cyklickou grupu řádu n. Řád grupy je dán počtem bodů (prvků grupy), které stihne generátor opakovaným zdvojnásobováním (sčítáním se sebou samým) vygenerovat, než vyjde (n &#x2218; A &equals; <span class="inf">O</span>).</p>
     <p class="just">Tak jako těleso, i (Abelova) grupa <b>G</b> má nějaká svá pravidla:</p>
     <ul class="article">
       <li>Uzavřenost&colon;&emsp;a &#x2218; b &isin; <b>G</b> pro libovolné a, b &isin; <b>G</b></li>
