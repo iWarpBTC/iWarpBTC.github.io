@@ -329,8 +329,13 @@ img.meme {
   height: 500px;
 }
 
-span.inf{
+span.inf {
   font-family: "Segoe Print";
+}
+
+span.rem {
+  margin-left: 0.1em;
+  color:gray;
 }
 
 a#luke{margin-left: 165px;}
