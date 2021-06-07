@@ -258,6 +258,8 @@ a.key, button.key {
   border: 0;
   font-size: 1em;
   font-family: inherit;
+  background-color: inherit;
+  padding: 4px;
 }
 
 a.key:hover, button.key:hover {
@@ -265,6 +267,8 @@ a.key:hover, button.key:hover {
   border: 0;
   font-size: 1em;
   font-family: inherit;
+  background-color: inherit;
+  padding: 4px;
 }
 
 p.lnurl {
@@ -344,6 +348,10 @@ div#donate > img {
   max-width: 418px;
   width: 100%;
   height: auto;
+}
+
+div#donate {
+  margin-bottom: 20px;
 }
 
 p.lnurl {
