@@ -335,9 +335,13 @@ iframe.donate {
   border: 1px solid #1f2234;
 }
 
-figure > img {
+figure > img, div#donate > img {
   width: 100%;
   height: auto;
+}
+
+p.lnurl {
+  word-wrap: break-word;
 }
 
 img.meme {
