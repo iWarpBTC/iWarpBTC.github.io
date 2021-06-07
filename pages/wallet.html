@@ -109,8 +109,9 @@
     <div class="mail">
       <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key"
           href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a class="key"
-          href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <a class="key" rel=”nofollow”
-          href="https://btc-slovnik.cz/pages/donate.html">Diškrece</a></p>
+          href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / 
+          <button onclick="dropDonate()" class="dropbtn key">Diškrece</button>
+        </p>
     </div>
     <div>
       <div class="tw"><a class="tw" href="https://twitter.com/btcslovnik"><img
@@ -119,7 +120,14 @@
         <a class="license" href="https://btc-slovnik.cz/LICENSE"><img
             src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
       </div>
+      <div id="donate" class="dropdown">
+        <p>LNURL pro příspěvek prostřednictvím Lightning network:</p>
+        <img src="https://btc-slovnik.cz/img/lnurl.png" alt="LNURL" />
+        <p class="lnurl">LNURL1DP68GURN8GHJ7URP0YHXYARRWDKX7ANWD94JUCM69AKXUATJD3CZ7CTSDYHHVVF0D3H82UNV9UCS5SXUCE</p>
+        <a class="invoice" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Standardní LN invoice možno vygenerovat zde.</p>
+    </div>
   </footer>
+  <script src="https://btc-slovnik.cz/drop.js"></script>
 </body>
 
 </html>

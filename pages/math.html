@@ -103,7 +103,7 @@
       přičemž koeficient u x<sup>2</sup> je roven &minus;&lambda;<sup>2</sup> &equals; &minus;(x<sub>1</sub>&plus;x<sub>2</sub>&plus;x<sub>3</sub>) (Viètovy vzorce pro kořeny); odtud<br>
       <b>x<sub>3</sub> &equals; &lambda;<sup>2</sup> &minus; x<sub>1</sub> &minus; x<sub>2</sub></b><br>
       y&hyphen;ová souřadnice průniku přímky s křivkou (tedy &minus;y<sub>3</sub>) je &minus;y<sub>3</sub> &equals; &lambda;x<sub>3</sub> &plus; &kappa;; odtud<br>
-      <b>y<sub>3</sub> &equals; &lambda;(x<sub>1</sub> &minus; x<sub>3</sub>) &minus; y<sub>1</b></sub>
+      <b>y<sub>3</sub> &equals; &lambda;(x<sub>1</sub> &minus; x<sub>3</sub>) &minus; y<sub>1</sub></b>
     </p>
     <p class="just">Dosadíme&hyphen;li do rovnic náš &bdquo;tělesový&ldquo; bod A[190, 47] a k němu třeba bod B[55, 91] jako druhý sčítanec, měl by nám vyjít bod AB[34, 31].
     </p>
@@ -168,7 +168,9 @@
   <footer>
     <div class="mail">
       <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a
-        class="key" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <a class="key" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Diškrece</a></p>
+        class="key" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / 
+        <button onclick="dropDonate()" class="dropbtn key">Diškrece</button>
+      </p>
     </div>
     <div>
       <div class="tw"><a class="tw" href="https://twitter.com/btcslovnik"><img
@@ -178,7 +180,14 @@
             src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
       </div>
     </div>
+    <div id="donate" class="dropdown">
+      <p>LNURL pro příspěvek prostřednictvím Lightning network:</p>
+      <img src="https://btc-slovnik.cz/img/lnurl.png" alt="LNURL" />
+      <p class="lnurl">LNURL1DP68GURN8GHJ7URP0YHXYARRWDKX7ANWD94JUCM69AKXUATJD3CZ7CTSDYHHVVF0D3H82UNV9UCS5SXUCE</p>
+      <a class="invoice" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Standardní LN invoice možno vygenerovat zde.</p>
+    </div>
   </footer>
+  <script src="https://btc-slovnik.cz/drop.js"></script>
 </body>
 
 </html>
