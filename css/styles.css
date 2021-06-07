@@ -252,12 +252,17 @@ a.warp:hover {
   color: #623A0A;
 }
 
+a#lit {
+  padding-right: 4px;
+}
+
 a.key, button.key {
   color: gray;
   text-decoration: none;
   border: 0;
   font-size: 1em;
   font-family: inherit;
+  background-color: inherit;
 }
 
 a.key:hover, button.key:hover {
@@ -265,6 +270,7 @@ a.key:hover, button.key:hover {
   border: 0;
   font-size: 1em;
   font-family: inherit;
+  background-color: inherit;
 }
 
 p.lnurl {
