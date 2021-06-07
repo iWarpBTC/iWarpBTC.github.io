@@ -346,6 +346,10 @@ div#donate > img {
   height: auto;
 }
 
+div#donate {
+  margin-bottom: 20px;
+}
+
 p.lnurl {
   word-wrap: break-word;
 }
