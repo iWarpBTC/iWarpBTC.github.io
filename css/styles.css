@@ -135,15 +135,18 @@ div.menu > button:hover {
   margin: 0 10px 0 10px;
 }
 
-div.dropdown-content {
+div.dropdown-menu {
   padding: 10px 0 20px 0;
-  display: none;
   text-align: center;
   background: gainsboro;
   border-left: dotted white;
   border-right: dotted white;
   margin-left: 10%;
   margin-right: 10%;
+}
+
+div.dropdown {
+  display: none;
 }
 
 div.show {
@@ -249,13 +252,26 @@ a.warp:hover {
   color: #623A0A;
 }
 
-a.key {
+a.key, button.key {
   color: gray;
   text-decoration: none;
+  border: 0;
+  font-size: 1em;
+  font-family: inherit;
 }
 
-a.key:hover {
+a.key:hover, button.key:hover {
   color: black;
+  border: 0;
+  font-size: 1em;
+  font-family: inherit;
+}
+
+p.lnurl {
+  text-transform: lowercase;
+  font-size: 0.7em;
+  margin-top: 0;
+  margin-bottom: 40px;
 }
 
 .area {

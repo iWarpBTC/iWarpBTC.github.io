@@ -22,7 +22,7 @@
         <button onclick="dropIt()" class="dropbtn"><span class="dot"></span>Rozcestník anatomií<span class="dot"></span></button>
     </div>
     <div class="container">
-        <div id="dropdown" class="dropdown-content">
+        <div id="dropdown" class="dropdown-menu dropdown">
             <p><a href="https://btc-slovnik.cz/pages/transaction.html">Anatomie transakce a skriptu</a></p>
             <p><a href="https://btc-slovnik.cz/pages/block.html">Anatomie bloku a těžby</a></p>
             <p><a href="https://btc-slovnik.cz/pages/math.html">Anatomie tělesa a grupy</a></p>
@@ -450,7 +450,9 @@
     <footer>
         <div class="mail">
             <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a
-                class="key" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <a class="key" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Diškrece</a></p>
+                class="key" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / 
+                <button onclick="dropDonate()" class="dropbtn key">Diškrece</button>
+            </p>
         </div>
         <div>
             <div class="tw"><a class="tw" href="https://twitter.com/btcslovnik"><img
@@ -462,6 +464,12 @@
             </div>
             <div class="cc0">
             </div>
+        </div>
+        <div id="donate" class="dropdown">
+            <p>LNURL pro příspěvek prostřednictvím Lightning network:</p>
+            <img src="https://btc-slovnik.cz/img/lnurl.png" alt="LNURL" />
+            <p class="lnurl">LNURL1DP68GURN8GHJ7URP0YHXYARRWDKX7ANWD94JUCM69AKXUATJD3CZ7CTSDYHHVVF0D3H82UNV9UCS5SXUCE</p>
+            <a class="invoice" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Standardní LN invoice možno vygenerovat zde.</p>
         </div>
     </footer>
     <script src="https://btc-slovnik.cz/coingecko.js"></script>
