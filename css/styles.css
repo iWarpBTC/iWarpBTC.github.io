@@ -335,7 +335,13 @@ iframe.donate {
   border: 1px solid #1f2234;
 }
 
-figure > img, div#donate > img {
+figure > img {
+  width: 100%;
+  height: auto;
+}
+
+div#donate > img {
+  max-width: 418px;
   width: 100%;
   height: auto;
 }
