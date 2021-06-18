@@ -126,6 +126,23 @@ div.menu > button:hover {
   color: #888;
 }
 
+button.copylink {
+  border: 0;
+  background-color: inherit;
+  margin-left:1em;
+  opacity: 0.6;
+}
+
+button.copylink:hover {
+  opacity: 0.4;
+}
+
+button.copylink > img {
+  height: 1em;
+  vertical-align: center;
+ 
+}
+
 .dot {
   height: 0.6em;
   width: 0.6em;
