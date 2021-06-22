@@ -67,7 +67,7 @@
               <div id="merkle" class="merkle"></div>
             </td>
             <td>d7ae2&hellip;6b</td>
-            <td>merkle root&semi; kořenový hash merkle stromu transakcí</td>
+            <td>merkle root&semi; kořenový hash Merkleho stromu transakcí</td>
             <td>32 bajtů LE</td>
           </tr>
           <tr>
@@ -100,7 +100,7 @@
     <p class="just">Z verze, konkrétně prvních tří bitů zleva (001), můžeme vyčíst signalizaci podle <a
         href="https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki">BIP 9</a>. Přítomnost hashe předchozího
       bloku je jasná, blok je tím &ndash; podobně jako oka řetězu &ndash; pevně spojen s předchozím blokem. Kořenový
-      hash merkle
+      hash Merkleho
       stromu transakcí zaručuje, že se změna byť jediného bajtu v jediné do bloku zahrnuté tx projeví v konečném
       důsledku změnou hashe hlavičky tohoto bloku. Časové razítko říká, že k vytěžení bloku došlo 1616690206 sekund od
       1/1/1970, tedy 25/3/2021 v 16:36:46 UTC. Tento údaj ovšem nemusí být zcela přesný. Aby byl blok přijat sítí, musí
@@ -122,10 +122,9 @@
       jinak stále stejné mincetvorné transakce jejich unikátním hashem txid. Navzdory tomu, že neutrácí žádné <a
         href="https://btc-slovnik.cz/#utxo">UTXO</a>, může si těžař na výstupu uzamknout odměnu (v době psaní) až 6,25 BTC plus
       součet poplatků všech zahrnutých transakcí. Pokud blok obsahuje segwitovou transakci, musí také obsahovat
-      OP_RETURN výstup s kořenem paralelního witness merkle stromu. Protože podpisové skripty segwit transakcí již
-      nejsou součástí výpočtu hashe transakce, a jejich změna by se tedy neprojevila změnou merkle hashe v hlavičce bloku
-      (a protože strukturu hlavičky nelze změnit <a href="https://btc-slovnik.cz/#sfork">soft-forkem</a>), jsou hashe transakcí
-      včetně witness dat zahrnuty do hlavního merkle stromu, a tím i do hashe hlavičky bloku právě touto cestou. Díky
+      OP_RETURN výstup s kořenem paralelního Merkleho stromu svědků (witness). Protože podpisové skripty segwit transakcí již
+      nejsou součástí výpočtu hashe transakce, a jejich změna by se tedy neprojevila změnou kořenového hashe Markleho stromu v hlavičce bloku
+      (a protože strukturu hlavičky nelze změnit <a href="https://btc-slovnik.cz/#sfork">soft-forkem</a>), jsou hashe svědků (witness) transakcí zahrnuty do hlavního Merkleho stromu (a tím i do hashe hlavičky bloku) právě touto cestou. Díky
       tomu platí, že změna kteréhokoliv bajtu kterékoliv v bloku zahrnuté transakce se nakonec projeví změnou hashe
       bloku.</p>
     <p class="just"><em>Velikost</em> zahrnutých transakcí v bloku nesmí překročit 4 miliony <a

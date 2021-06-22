@@ -42,3 +42,8 @@ function show(data) {
   img.className = "pricetag";
   h2.insertBefore(img, h2.firstChild);
 }
+
+function clipboardLink(val) {
+  text = 'https://btc-slovnik.cz/#'+val
+  navigator.clipboard.writeText(text)
+} 
