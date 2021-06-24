@@ -203,9 +203,9 @@
     <h2 id="script">Anatomie skriptu</h2>
     <p class="just">Prostřednictvím skriptovacího jazyka Bitcoinu, který je záměrně co možná nejjednodušší (a turingovsky
       neúplný) stanovujeme a následně i vyhodnocujeme podmínky utracení každého UTXO. V našem případě útraty druhého
-      výstupu (počítáno od nuly je to výstup číslo jedna) transakce 61149&hellip;17 musela transakce dodat takový
+      výstupu (počítáno od nuly je to výstup číslo jedna) předchozí transakce 61149&hellip;17 musela &bdquo;naše&ldquo; transakce dodat takový
       podpisový
-      skript (scriptSig), který bude vyhodnocen v kombinaci s uzamykacím skriptem (scriptPubKey) jako pravdivý.
+      skript (scriptSig), který bude vyhodnocen v kombinaci s uzamykacím skriptem (scriptPubKey) utráceného výstupu jako pravdivý.
       Skriptovací jazyk Bitcoinu pracuje se zásobníkem a samotný skript je složen z operátoru a elementů (dat). </p>
     <p class="just">Než zjistíme, jakým způsobem došlo k vyhodnocení skriptů naší rozpitvané segwitové (je utráceno
       segwitové UTXO) transakce, podíváme se na to, jak tuto transakci vidí předsegwitové uzly. Takový starý uzel vezme
@@ -229,7 +229,7 @@
       struktura shodná s předsegwitovým p2pkh. Zkušebně si vyhodnotíme tento skript bez podpisu: OP_DUP duplikuje
       element na vrchu zásobníku. Zásobník je ale prázdný &ndash; skript selhal. Nyní už to bez podpisu nepůjde.</p>
     <p class="just">Segwitový uzel ale ví, že v této transakci musí podpisový skript hledat v poli witness. Finální
-      skript naší transakce je tedy:</p>
+      skript naší transakce (resp. jejího prvního a jediného vstupu) je tedy:</p>
     <p class="script"><a href="#eval" onmouseover="chanclrblue('push47')"
         onmouseout="chanclrblack('push47')">OP_PUSHBYTES_47</a>
       <br>304402201cbbe2ba007b80c6e23ff6c0069b7135580c4f00089474b4c882421408fde92502204e330225ae3a72364662f50a29c2d29db6b7063f71a721af7da905de30df312001
