@@ -453,3 +453,45 @@ a#greg:hover ~ figcaption > span.greg{color: #f7931a;}
     font-size: small;
   }
 }
+
+.tooltip {
+  position: relative;
+  border-bottom: 1px dotted; 
+}
+.tooltip:before,
+.tooltip:after {
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}
+.tooltip:after {
+ border-right: 6px solid transparent;
+ border-bottom: 6px solid rgba(0,0,0,.75); 
+  border-left: 6px solid transparent;
+  content: '';
+  height: 0;
+    top: 20px;
+    left: 20px;
+  width: 0;
+}
+.tooltip:before {
+  background: rgba(0,0,0,.75);
+  border-radius: 2px;
+  color: #fff;
+  content: attr(data-title);
+  font-size: 14px;
+  padding: 6px 10px;
+    top: 26px;
+  white-space: nowrap;
+}
+.tooltip:after,
+.tooltip:before {
+  transform: translate3d(0,-10px,0);
+  transition: all .15s ease-in-out;
+}
+.tooltip:hover:after,
+.tooltip:hover:before {
+  opacity: 1;
+  transform: translate3d(0,0,0);
+}
