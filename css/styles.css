@@ -100,7 +100,7 @@ a.license > img {
   padding-bottom: 5px;
 }
 
-header {
+body > header {
   border-bottom: 1px solid #eaecef;
   text-align: center;
   margin-bottom: 14px;
@@ -295,6 +295,12 @@ p.lnurl {
   margin-bottom: 40px;
 }
 
+p.header {
+  text-align: right;
+  color: gray;
+  font-size: 0.8em;
+}
+
 .area {
     background:#fff;
     display:block;
@@ -356,7 +362,7 @@ iframe.donate {
   border: 1px solid #1f2234;
 }
 
-figure > img {
+figure > img, a.figimg > img {
   width: 100%;
   height: auto;
 }
