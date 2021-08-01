@@ -2,51 +2,33 @@
 <html lang="cs">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Anatomie transakce a skriptu</title>
-  <link rel="shortcut icon" href="https://btc-slovnik.cz/favicon.png">
-  <link rel="stylesheet" href="../css/styles.css">
-  <meta name="description"
-        content="Popisuje strukturu transakce, výpočet její velikosti a fungování skriptovacího jazyka Bitcoinu.">
-  <meta name="keywords"
-        content="bitcoin, transakce, segwit, utxo, fee, poplatek, virtual byte, script, OP_CHECKSIG, bip 143">
-  <link rel="canonical" href="https://btc-slovnik.cz/pages/transaction.html">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Anatomie transakce a skriptu</title>
+<link rel="shortcut icon" href="https://btc-slovnik.cz/favicon.png">
+<link rel="stylesheet" href="../css/styles.css">
+<meta name="description"
+      content="Popisuje strukturu transakce, výpočet její velikosti a fungování skriptovacího jazyka Bitcoinu.">
+<meta name="keywords"
+      content="bitcoin, transakce, segwit, utxo, fee, poplatek, virtual byte, script, OP_CHECKSIG, bip 143">
+<link rel="canonical" href="https://btc-slovnik.cz/pages/transaction.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-  <header>
-    <div class="h1">
-      <h1><a href="https://btc-slovnik.cz/#transaction"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně
-          pokročilé</a></h1>
-    </div>
-  </header>
-  <div class="container2">
-    <h2>Anatomie transakce</h2>
-    <p class="just">K popisu anatomie bitcoinové transakce byla náhodně vybrána segwitová transakce
-      40e285bd2b757bf455f9e3ce92aa8e51910f88a1ca9dd497465d346310e7df11 z bloku č. 676274. Jedná se o typickou transakci
-      s jedním vstupem a dvěma výstupy &ndash; to znamená, že transakce utrácí (spotřebovává) jeden <a
-        href="https://btc-slovnik.cz/#utxo">UTXO</a> a dva nové UTXO vytváří. Následuje hexadecimální reprezentace serializace
-      transakce:</p>
-    <p class="raw"><span class="ver" onmouseover="biggerbox('ver')" onmouseout="backbox('ver')">01000000</span><span
-        class="segwitmark" onmouseover="biggerbox('segwitmark')" onmouseout="backbox('segwitmark')">00</span><span
-        class="segwitflag" onmouseover="biggerbox('segwitflag')" onmouseout="backbox('segwitflag')">01</span><span
-        class="nofin" onmouseover="biggerbox('nofin')" onmouseout="backbox('nofin')">01</span><span class="prevtx"
-        onmouseover="biggerbox('prevtx')"
-        onmouseout="backbox('prevtx')">177b550c14d173e1ac3d9987b1c3892572c848381f7ef9d3dd29fbfac09e1461</span><span
-        class="previn" onmouseover="biggerbox('previn')" onmouseout="backbox('previn')">01000000</span><span class="sig"
-        onmouseover="biggerbox('sig')" onmouseout="backbox('sig')">00</span><span class="seq"
-        onmouseover="biggerbox('seq')" onmouseout="backbox('seq')">ffffffff</span><span class="nofout"
-        onmouseover="biggerbox('nofout')" onmouseout="backbox('nofout')">02</span><span class="amount"
-        onmouseover="biggerbox('amount1')" onmouseout="backbox('amount1')">b1a6910000000000</span><span class="pub"
-        onmouseover="biggerbox('pub1')"
-        onmouseout="backbox('pub1')">160014c3c03280e573ec2c59a8a11c2367368b514ff9d2</span><span class="amount"
-        onmouseover="biggerbox('amount2')" onmouseout="backbox('amount2')">204e000000000000</span><span class="pub"
-        onmouseover="biggerbox('pub2')"
-        onmouseout="backbox('pub2')">160014e447450ba6baaf561ea6c3b9d1dc2cd687d961d2</span><span class="witness"
-        onmouseover="biggerbox('witness')"
-        onmouseout="backbox('witness')">0247304402201cbbe2ba007b80c6e23ff6c0069b7135580c4f00089474b4c882421408fde92502204e330225ae3a72364662f50a29c2d29db6b7063f71a721af7da905de30df3120012103c0fb6554508be65f82305cab41d97db37e2d5b3ba5920009209f9dfbcb00dbcc</span><span
-        class="locktime" onmouseover="biggerbox('locktime')" onmouseout="backbox('locktime')">00000000</span></p>
+<header>
+  <div class="h1">
+    <h1><a href="https://btc-slovnik.cz/#transaction"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně
+        pokročilé</a></h1>
+  </div>
+</header>
+<div class="container2">
+  <article>
+    <header>
+      <h2>Anatomie transakce</h2>
+      <p class="header"><time datetime="2021-06-24">Aktualizováno: 24. 6. 2021</time></p>
+    </header>
+    <p class="just">K popisu anatomie bitcoinové transakce byla náhodně vybrána segwitová transakce 40e285bd2b757bf455f9e3ce92aa8e51910f88a1ca9dd497465d346310e7df11 z bloku č. 676274. Jedná se o typickou transakci s jedním vstupem a dvěma výstupy &ndash; to znamená, že transakce utrácí (spotřebovává) jeden <a href="https://btc-slovnik.cz/#utxo">UTXO</a> a dva nové UTXO vytváří. Následuje hexadecimální reprezentace serializace transakce:</p>
+    <p class="raw"><span class="ver" onmouseover="biggerbox('ver')" onmouseout="backbox('ver')">01000000</span><span class="segwitmark" onmouseover="biggerbox('segwitmark')" onmouseout="backbox('segwitmark')">00</span><span class="segwitflag" onmouseover="biggerbox('segwitflag')" onmouseout="backbox('segwitflag')">01</span><span class="nofin" onmouseover="biggerbox('nofin')" onmouseout="backbox('nofin')">01</span><span class="prevtx" onmouseover="biggerbox('prevtx')" onmouseout="backbox('prevtx')">177b550c14d173e1ac3d9987b1c3892572c848381f7ef9d3dd29fbfac09e1461</span><span class="previn" onmouseover="biggerbox('previn')" onmouseout="backbox('previn')">01000000</span><span class="sig" onmouseover="biggerbox('sig')" onmouseout="backbox('sig')">00</span><span class="seq" onmouseover="biggerbox('seq')" onmouseout="backbox('seq')">ffffffff</span><span class="nofout" onmouseover="biggerbox('nofout')" onmouseout="backbox('nofout')">02</span><span class="amount" onmouseover="biggerbox('amount1')" onmouseout="backbox('amount1')">b1a6910000000000</span><span class="pub" onmouseover="biggerbox('pub1')" onmouseout="backbox('pub1')">160014c3c03280e573ec2c59a8a11c2367368b514ff9d2</span><span class="amount" onmouseover="biggerbox('amount2')" onmouseout="backbox('amount2')">204e000000000000</span><span class="pub" onmouseover="biggerbox('pub2')" onmouseout="backbox('pub2')">160014e447450ba6baaf561ea6c3b9d1dc2cd687d961d2</span><span class="witness" onmouseover="biggerbox('witness')" onmouseout="backbox('witness')">0247304402201cbbe2ba007b80c6e23ff6c0069b7135580c4f00089474b4c882421408fde92502204e330225ae3a72364662f50a29c2d29db6b7063f71a721af7da905de30df3120012103c0fb6554508be65f82305cab41d97db37e2d5b3ba5920009209f9dfbcb00dbcc</span><span class="locktime" onmouseover="biggerbox('locktime')" onmouseout="backbox('locktime')">00000000</span></p>
     <div class="fig">
       <table>
         <thead>
@@ -181,95 +163,39 @@
         </tbody>
       </table>
     </div>
-    <p class="just">Serializace této tx čítá 222 bajtů z čehož je 109 bajtů &bdquo;segwitových&ldquo; (marker, flag,
-      witness). Pro
-      výpočet <a href="https://btc-slovnik.cz/#wu">váhy</a> tx vynásobíme počet bajtů &bdquo;nesegwitových&ldquo; dat čtyřmi a
-      výsledek
-      přičteme k počtu segwitových bajtů (113 &times; 4 &equals; 452&semi; 452 &plus; 109 &equals; 561 WU). Když poté
-      vydělíme WU čtyřmi,
-      dostaneme tzv. <a href="https://btc-slovnik.cz/#vsize">virtuální velikost</a> (561 &divide; 4 &equals; 140,25 vB).</p>
-    <p class="just">Odečtením součtu částek výstupů od součtu částek vstupů (hodnoty částek vstupů nejsou součástí dat
-      této tx&semi; je potřeba se podívat do předchozích) zjistíme absolutní hodnotu <a
-        href="https://btc-slovnik.cz/#fee">poplatku</a>
-      (9566387 &minus; (9545393 &plus; 20000) &equals; 994). Relativní hodnoty poplatků pak zjistíme už prostým dělením
-      velikostí, resp.
-      virtuální velikostí (994 &divide; 222 &equals; 4,5 satů/bajt&semi; 994 &divide; 140 &equals; 7,1 satů/vBajt). </p>
+    <p class="just">Serializace této tx čítá 222 bajtů z čehož je 109 bajtů &bdquo;segwitových&ldquo; (marker, flag, witness). Pro výpočet <a href="https://btc-slovnik.cz/#wu">váhy</a> tx vynásobíme počet bajtů &bdquo;nesegwitových&ldquo; dat čtyřmi a výsledek přičteme k počtu segwitových bajtů (113 &times; 4 &equals; 452&semi; 452 &plus; 109 &equals; 561 WU). Když poté vydělíme WU čtyřmi, dostaneme tzv. <a href="https://btc-slovnik.cz/#vsize">virtuální velikost</a> (561 &divide; 4 &equals; 140,25 vB). </p>
+    <p class="just">Odečtením součtu částek výstupů od součtu částek vstupů (hodnoty částek vstupů nejsou součástí dat této tx&semi; je potřeba se podívat do předchozích) zjistíme absolutní hodnotu <a href="https://btc-slovnik.cz/#fee">poplatku</a> (9566387 &minus; (9545393 &plus; 20000) &equals; 994). Relativní hodnoty poplatků pak zjistíme už prostým dělením velikostí, resp. virtuální velikostí (994 &divide; 222 &equals; 4,5 satů/bajt&semi; 994 &divide; 140 &equals; 7,1 satů/vBajt). </p>
     <div class="fig">
       <figure>
         <img src="https://btc-slovnik.cz/img/txs.svg" alt="digram transakcí">
         <figcaption>Diagram popisované transakce včetně předcházející</figcaption>
       </figure>
     </div>
-    <h2 id="script">Anatomie skriptu</h2>
-    <p class="just">Prostřednictvím skriptovacího jazyka Bitcoinu, který je záměrně co možná nejjednodušší (a turingovsky
-      neúplný) stanovujeme a následně i vyhodnocujeme podmínky utracení každého UTXO. V našem případě útraty druhého
-      výstupu (počítáno od nuly je to výstup číslo jedna) předchozí transakce 61149&hellip;17 musela &bdquo;naše&ldquo; transakce dodat takový
-      podpisový
-      skript (scriptSig), který bude vyhodnocen v kombinaci s uzamykacím skriptem (scriptPubKey) utráceného výstupu jako pravdivý.
-      Skriptovací jazyk Bitcoinu pracuje se zásobníkem a samotný skript je složen z operátoru a elementů (dat). </p>
-    <p class="just">Než zjistíme, jakým způsobem došlo k vyhodnocení skriptů naší rozpitvané segwitové (je utráceno
-      segwitové UTXO) transakce, podíváme se na to, jak tuto transakci vidí předsegwitové uzly. Takový starý uzel vezme
-      scriptPubKey odkazovaného výstupu předešle tx (61149&hellip;17:1):</p>
+  </article>
+  <article>
+    <header>
+      <h2 id="script">Anatomie skriptu</h2>
+      <p class="header"><time datetime="2021-05-28">Aktualizováno: 28. 5. 2021</time></p>
+    </header>
+    <p class="just">Prostřednictvím skriptovacího jazyka Bitcoinu, který je záměrně co možná nejjednodušší (a turingovsky neúplný) stanovujeme a následně i vyhodnocujeme podmínky utracení každého UTXO. V našem případě útraty druhého výstupu (počítáno od nuly je to výstup číslo jedna) předchozí transakce 61149&hellip;17 musela &bdquo;naše&ldquo; transakce dodat takový podpisový skript (scriptSig), který bude vyhodnocen v kombinaci s uzamykacím skriptem (scriptPubKey) utráceného výstupu jako pravdivý. Skriptovací jazyk Bitcoinu pracuje se zásobníkem a samotný skript je složen z operátoru a elementů (dat). </p>
+    <p class="just">Než zjistíme, jakým způsobem došlo k vyhodnocení skriptů naší rozpitvané segwitové (je utráceno segwitové UTXO) transakce, podíváme se na to, jak tuto transakci vidí předsegwitové uzly. Takový starý uzel vezme scriptPubKey odkazovaného výstupu předešle tx (61149&hellip;17:1): </p>
     <p class="script">OP_0 OP_PUSHBYTES_20 413879391419d23453c720a1058e959ae663c3d6</p>
-    <p class="just">Před tento uzamykací skript (scriptPubKey) předešlé tx je vložen podpisový skript (scriptSig)
-      aktuální tx. ScriptSig naší transakce je ale prázdný! No to nevadí, uzel začne s tím to co má. OP_0 vloží na vrch
-      zásobníku nulu, OP_PUSHBYTES_20 vloží na vrch zásobníku následujících 32 bajtů skriptu. Uzel vykonal celý skript
-      na vrchu zásobníku má nenulovou hodnotu (hash veřejného klíče). Skript je pravdivý, transakce je platná. I bez
-      podpisu je platná! <img src="https://btc-slovnik.cz/img/lol.png" alt="LOL"> Není to chyba, je to schválně &ndash; předsegwitové uzly
-      neví,
-      že podpisový skript je nyní v poli witness, proto je zajištěno, že se těmto uzlům bude kombinace segwitového
-      uzamykacího skriptu a prázdného podpisového skriptu segwit transakce jevit jako platná. Taky se tomu říká zpětná
-      kompatibilita.</p>
-    <p class="just">Jak si s vyhodnocením skriptů poradí segwitový uzel? Začátek je stejný, sáhne si do předchozí
-      transakce pro uzamykací skript. Rozpozná strukturu skriptu (p2wpkh) a uplatní speciální pravidlo, které skript
-      modifikuje do podoby:</p>
-    <p class="script">OP_DUP OP_HASH160 OP_PUSHBYTES_20 413879391419d23453c720a1058e959ae663c3d6 OP_EQUALVERIFY
-      OP_CHECKSIG</p>
-    <p class="just">Konečně máme skript, který nebude platný s i prázdným podpisovým skriptem! Toto je již mimochodem
-      struktura shodná s předsegwitovým p2pkh. Zkušebně si vyhodnotíme tento skript bez podpisu: OP_DUP duplikuje
-      element na vrchu zásobníku. Zásobník je ale prázdný &ndash; skript selhal. Nyní už to bez podpisu nepůjde.</p>
-    <p class="just">Segwitový uzel ale ví, že v této transakci musí podpisový skript hledat v poli witness. Finální
-      skript naší transakce (resp. jejího prvního a jediného vstupu) je tedy:</p>
-    <p class="script"><a href="#eval" onmouseover="chanclrblue('push47')"
-        onmouseout="chanclrblack('push47')">OP_PUSHBYTES_47</a>
-      <br>304402201cbbe2ba007b80c6e23ff6c0069b7135580c4f00089474b4c882421408fde92502204e330225ae3a72364662f50a29c2d29db6b7063f71a721af7da905de30df312001
-      <br><a href="#eval" onmouseover="chanclrblue('push21')" onmouseout="chanclrblack('push21')">OP_PUSHBYTES_21</a>
-      <br>03c0fb6554508be65f82305cab41d97db37e2d5b3ba5920009209f9dfbcb00dbcc <br><a href="#eval"
-        onmouseover="chanclrblue('dup')" onmouseout="chanclrblack('dup')">OP_DUP</a> <br><a href="#eval"
-        onmouseover="chanclrblue('hash')" onmouseout="chanclrblack('hash')">OP_HASH160</a> <br><a href="#eval"
-        onmouseover="chanclrblue('push20')" onmouseout="chanclrblack('push20')">OP_PUSHBYTES_20</a>
-      <br>413879391419d23453c720a1058e959ae663c3d6 <br><a href="#eval" onmouseover="chanclrblue('eq')"
-        onmouseout="chanclrblack('eq')">OP_EQUALVERIFY</a> <br><a href="#eval" onmouseover="chanclrblue('check')"
-        onmouseout="chanclrblack('check')">OP_CHECKSIG</a>
-    </p>
-    <p class="just" id="eval">Vykonáme skript &ndash; <span id="push47">71 následujících bajtů (podpis) se vloží na
-        vršek
-        zásob.</span>&semi; <span id="push21">33 následujících bajtů (veřejný klíč) se vloží na vršek
-        zásob.</span>&semi; <span id="dup">element na vršku zásob. se zduplikuje</span>&semi; <span id="hash">element na
-        vršku zásobníku se nahradí
-        svým vlastním hashem (RIPEMD160(SHA256))</span>. Na zásob. je nyní pohledem z vrchu hash (adresa), veřejný klíč
-      a podpis&semi; dále se <span id="push20">32 následujících bajtů vloží na vršek zásob</span>. (tj. adresa z
-      uzamykacího
-      skriptu)&semi; <span id="eq">dva vrchní elementy se odeberou ze zásob. a porovnají se &ndash; jsou&hyphen;li
-        shodné, skript
-        pokračuje, v opačném případě končí chybou</span>&semi; <span id="check">konečně poslední operátor odebere z
-        vrchu
-        zásob. nejprve veřejný klíč a pak i podpis &ndash; zkontroluje podpis proti danému klíči a předobrazu
-        podepisované
-        transakce a vrátí na vrch zásobníku 1 pro platný, 0 pro neplatný podpis</span>. Jsme na konci skriptu a
-      je&hyphen;li na
-      vrchu zásobníku 1, transakce je platná.</p>
-    <h2 id="preimage">Bonus: Předobraz transakce pro podpis</h2>
-    <p class="just">V <a href="https://btc-slovnik.cz/pages/crypto#ecdsa">anatomii podpisu</a> se dočtete více o ověřování podpisu. 
-      Zde na tomto místě však využijeme výše rozebranou transakci, resp. její předchůdkyni a podíváme se, jakým způsobem vznikl její podepisovaný předobraz.</p>
-    <p class="just">Před segwitem vznikal předobraz tak, že v případě ověření nejprve došlo k vyprázdnění všech scriptSigů (v případě podpisu není co vyprazdňovat, 
-      scriptSig ještě nebyl naplněn). Následně jsou tato prázdná místa &ndash; vždy po jednom pro každý podpis &ndash; vyplněna skripty scriptPubKey utrácených výstupů. 
-      Pro ty je potřeba sáhnout do předchozí(ch) transakce/í. Nakonec jen přidán hashtyp &ndash; typicky SIGHASH_ALL (číslo 1 v čtyřbajtovém LE).</p>
-    <p class="just">Tento přístup má však dvě hlavní nevýhody. Zaprvé &ndash; výpočetní náročnost hashování roste kvadraticky s počtem vstupů podepisované transakce. 
-      A zadruhé &ndash; předobraz v sobě neobsahuje informaci o částce utrácených vstupů, ze kterých by kupříkladu hardwarová peněženka dokázala bez dalších informací vypočíst a zobrazit částku poplatku k potvrzení. 
-      Proto byl u v rámci segwitu &ndash; konkrétně <a href="https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki">BIPem 143</a> &ndash; zaveden nový způsob výroby předobrazu pro segwitové transakce. 
-      Předobraz výše rozebrané tranasakce bude tedy vypadat následovně (užité hashe jsou vždy dvojité SHA256):
-    </p>
+    <p class="just">Před tento uzamykací skript (scriptPubKey) předešlé tx je vložen podpisový skript (scriptSig) aktuální tx. ScriptSig naší transakce je ale prázdný! No to nevadí, uzel začne s tím to co má. OP_0 vloží na vrch zásobníku nulu, OP_PUSHBYTES_20 vloží na vrch zásobníku následujících 32 bajtů skriptu. Uzel vykonal celý skript na vrchu zásobníku má nenulovou hodnotu (hash veřejného klíče). Skript je pravdivý, transakce je platná. I bez podpisu je platná! <img src="https://btc-slovnik.cz/img/lol.png" alt="LOL"> Není to chyba, je to schválně &ndash; předsegwitové uzly neví, že podpisový skript je nyní v poli witness, proto je zajištěno, že se těmto uzlům bude kombinace segwitového uzamykacího skriptu a prázdného podpisového skriptu segwit transakce jevit jako platná. Taky se tomu říká zpětná kompatibilita. </p>
+    <p class="just">Jak si s vyhodnocením skriptů poradí segwitový uzel? Začátek je stejný, sáhne si do předchozí transakce pro uzamykací skript. Rozpozná strukturu skriptu (p2wpkh) a uplatní speciální pravidlo, které skript modifikuje do podoby:</p>
+    <p class="script">OP_DUP OP_HASH160 OP_PUSHBYTES_20 413879391419d23453c720a1058e959ae663c3d6 OP_EQUALVERIFY OP_CHECKSIG</p>
+    <p class="just">Konečně máme skript, který nebude platný s i prázdným podpisovým skriptem! Toto je již mimochodem struktura shodná s předsegwitovým p2pkh. Zkušebně si vyhodnotíme tento skript bez podpisu: OP_DUP duplikuje element na vrchu zásobníku. Zásobník je ale prázdný &ndash; skript selhal. Nyní už to bez podpisu nepůjde. </p>
+    <p class="just">Segwitový uzel ale ví, že v této transakci musí podpisový skript hledat v poli witness. Finální skript naší transakce (resp. jejího prvního a jediného vstupu) je tedy: </p>
+    <p class="script"><a href="#eval" onmouseover="chanclrblue('push47')" onmouseout="chanclrblack('push47')">OP_PUSHBYTES_47</a> <br>304402201cbbe2ba007b80c6e23ff6c0069b7135580c4f00089474b4c882421408fde92502204e330225ae3a72364662f50a29c2d29db6b7063f71a721af7da905de30df312001 <br><a href="#eval" onmouseover="chanclrblue('push21')" onmouseout="chanclrblack('push21')">OP_PUSHBYTES_21</a> <br>03c0fb6554508be65f82305cab41d97db37e2d5b3ba5920009209f9dfbcb00dbcc <br><a href="#eval" onmouseover="chanclrblue('dup')" onmouseout="chanclrblack('dup')">OP_DUP</a> <br><a href="#eval" onmouseover="chanclrblue('hash')" onmouseout="chanclrblack('hash')">OP_HASH160</a> <br><a href="#eval" onmouseover="chanclrblue('push20')" onmouseout="chanclrblack('push20')">OP_PUSHBYTES_20</a> <br>413879391419d23453c720a1058e959ae663c3d6 <br><a href="#eval" onmouseover="chanclrblue('eq')" onmouseout="chanclrblack('eq')">OP_EQUALVERIFY</a> <br><a href="#eval" onmouseover="chanclrblue('check')" onmouseout="chanclrblack('check')">OP_CHECKSIG</a></p>
+    <p class="just" id="eval">Vykonáme skript &ndash; <span id="push47">71 následujících bajtů (podpis) se vloží na vršek zásob.</span>&semi; <span id="push21">33 následujících bajtů (veřejný klíč) se vloží na vršek zásob.</span>&semi; <span id="dup">element na vršku zásob. se zduplikuje</span>&semi; <span id="hash">element na vršku zásobníku se nahradí svým vlastním hashem (RIPEMD160(SHA256))</span>. Na zásob. je nyní pohledem z vrchu hash (adresa), veřejný klíč a podpis&semi; dále se <span id="push20">32 následujících bajtů vloží na vršek zásob</span>. (tj. adresa z uzamykacího skriptu)&semi; <span id="eq">dva vrchní elementy se odeberou ze zásob. a porovnají se &ndash; jsou&hyphen;li shodné, skript pokračuje, v opačném případě končí chybou</span>&semi; <span id="check">konečně poslední operátor odebere z vrchu zásob. nejprve veřejný klíč a pak i podpis &ndash; zkontroluje podpis proti danému klíči a předobrazu podepisované transakce a vrátí na vrch zásobníku 1 pro platný, 0 pro neplatný podpis</span>. Jsme na konci skriptu a je&hyphen;li na vrchu zásobníku 1, transakce je platná. </p>
+  </article>
+  <article>
+    <header>
+      <h2 id="preimage">Bonus: Předobraz transakce pro podpis</h2>
+      <p class="header"><time datetime="2021-06-04">Aktualizováno: 4. 6. 2021</time></p>
+    </header>
+    <p class="just">V <a href="https://btc-slovnik.cz/pages/crypto#ecdsa">anatomii podpisu</a> se dočtete více o ověřování podpisu. Zde na tomto místě však využijeme výše rozebranou transakci, resp. její předchůdkyni a podíváme se, jakým způsobem vznikl její podepisovaný předobraz. </p>
+    <p class="just">Před segwitem vznikal předobraz tak, že v případě ověření nejprve došlo k vyprázdnění všech scriptSigů (v případě podpisu není co vyprazdňovat, scriptSig ještě nebyl naplněn). Následně jsou tato prázdná místa &ndash; vždy po jednom pro každý podpis &ndash; vyplněna skripty scriptPubKey utrácených výstupů. Pro ty je potřeba sáhnout do předchozí(ch) transakce/í. Nakonec jen přidán hashtyp &ndash; typicky SIGHASH_ALL (číslo 1 v čtyřbajtovém LE). </p>
+    <p class="just">Tento přístup má však dvě hlavní nevýhody. Zaprvé &ndash; výpočetní náročnost hashování roste kvadraticky s počtem vstupů podepisované transakce. A zadruhé &ndash; předobraz v sobě neobsahuje informaci o částce utrácených vstupů, ze kterých by kupříkladu hardwarová peněženka dokázala bez dalších informací vypočíst a zobrazit částku poplatku k potvrzení. Proto byl u v rámci segwitu &ndash; konkrétně <a href="https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki">BIPem 143</a> &ndash; zaveden nový způsob výroby předobrazu pro segwitové transakce. Předobraz výše rozebrané tranasakce bude tedy vypadat následovně (užité hashe jsou vždy dvojité SHA256): </p>
     <ul class="article">
       <li>verze tx (4 bajty LE)</li>
       <li>hash všech txid a indexů utracených výstupů&semi; společný pro všechny podpisy (32 bajtů)</li>
@@ -282,32 +208,32 @@
       <li>locktime (4 bajty LE)</li>
       <li>hashtyp (4 bajty LE)</li>
     </ul>
-    <p class="just">Jak by takové velmi naivní ověření podpisu naší transakce vypadalo lze nahlednout v jazyce python <a href="https://www.online-python.com/0tu3dncIj2">zde</a>.</p>
+    <p class="just">Jak by takové velmi naivní ověření podpisu naší transakce vypadalo lze nahlednout v jazyce python <a href="https://www.online-python.com/0tu3dncIj2">zde</a>. </p>
+  </article>
+</div>
+<footer>
+  <div class="mail">
+    <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a class="key" id="lit" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <button onclick="dropDonate()" class="dropbtn key">Diškrece</button></p>
   </div>
-  <footer>
-    <div class="mail">
-      <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a
-        class="key" id="lit" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / 
-        <button onclick="dropDonate()" class="dropbtn key">Diškrece</button>
-      </p>
+  <div>
+    <div class="tw">
+      <a class="tw" href="https://twitter.com/btcslovnik">
+        <img src="https://btc-slovnik.cz/img/twitter.svg" height="30" alt="twitter" />
+      </a>
+      <a class="license" href="https://btc-slovnik.cz/LICENSE">
+        <img src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" />
+      </a>
     </div>
-    <div>
-      <div class="tw"><a class="tw" href="https://twitter.com/btcslovnik"><img
-        src="https://btc-slovnik.cz/img/twitter.svg" height="30"
-        alt="twitter" /></a>
-      <a class="license" href="https://btc-slovnik.cz/LICENSE"><img
-        src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
-      </div>
-    </div>
-    <div id="donate" class="dropdown">
-      <p>LNURL pro příspěvek prostřednictvím Lightning network:</p>
-      <img src="https://btc-slovnik.cz/img/lnurl.png" alt="LNURL" />
-      <p class="lnurl">LNURL1DP68GURN8GHJ7URP0YHXYARRWDKX7ANWD94JUCM69AKXUATJD3CZ7CTSDYHHVVF0D3H82UNV9UCS5SXUCE</p>
-      <a class="invoice" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Standardní LN invoice možno vygenerovat zde.</a>
-    </div>
-  </footer>
-  <script src="https://btc-slovnik.cz/pages/javascript.js"></script>
-  <script src="https://btc-slovnik.cz/drop.js"></script>
+  </div>
+  <div id="donate" class="dropdown">
+    <p>LNURL pro příspěvek prostřednictvím Lightning network:</p>
+    <img src="https://btc-slovnik.cz/img/lnurl.png" alt="LNURL" />
+    <p class="lnurl">LNURL1DP68GURN8GHJ7URP0YHXYARRWDKX7ANWD94JUCM69AKXUATJD3CZ7CTSDYHHVVF0D3H82UNV9UCS5SXUCE</p>
+    <a class="invoice" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Standardní LN invoice možno vygenerovat zde.</a>
+  </div>
+</footer>
+<script src="https://btc-slovnik.cz/pages/javascript.js"></script>
+<script src="https://btc-slovnik.cz/drop.js"></script>
 </body>
 
 </html>
