@@ -23,138 +23,87 @@
     </div>
   </header>
   <div class="container2">
-    <h2 id="curve">Anatomie křivky</h2>
-    <p class="just">Jak je možné vidět na stránce <a href="https://btc-slovnik.cz/pages/transaction.html">anatomie transakce a skriptu</a>, standardní
-      p2(w)pk transakce uzamyká (prostřednictvím scriptPubKey) určitý obnos satoshi ve prospěch určitého hashe veřejného
-      klíče (který zakódovaný v Bech32 či starší Base58Check představuje adresu). Prostřednictvím scriptSigu lze pak
-      poskytnutím veřejného klíče a podpisu tento výstup odemknout a utratit v další transakci. To je umožněno díky tzv.
-      asymetrické kryptografii, kterou v případě Bitcoinu představuje kryptografie eliptických křivek. </p>
-    <p class="just">Asymetrická kryptografie se od té běžné &ndash; symetrické &ndash; liší tím, že na místo jednoho a
-      toho samého
-      klíče (použitého pro zašifrování i dešifrování) používá pár klíčů &ndash; veřejný a soukromý. Pokud si příjemce
-      zprávy
-      vygeneruje takový pár klíčů a ten veřejný publikuje, kdokoliv může tímto veřejným klíčem zašifrovat zprávu, kterou
-      bude moci dešifrovat jen a pouze
-      příjemce pomocí svého soukromého klíče. Asymetrická kryptografie však umožňuje, kromě šifrování za účelem skrytí
-      tajné zprávy, také šifrování za účelem podpisu zprávy. Pokud původce zprávy tuto zprávu (v praxi stačí pouze její
-      hash) zašifruje svým soukromým klíčem, každý může jeho publikovaným veřejným klíčem zprávu dešifrovat a tím
-      ověřit, že původce zprávy je právě držitel soukromého klíče náležícímu k publikovanému veřejnému. Tomuto se říká
-      kryptografický podpis a v Bitcoinu je
-      jím prokazováno, že výstup je utrácen právě držitelem soukromého klíče přislušícího k veřejnému klíči, ve prospěch
-      jehož hashe byl výstup uzamčen. (Že je výstup uzamčen ve prospěch nikoliv přímo veřejného klíče, nýbrž jeho hashe,
-      je jen dalším stupněm ochrany.) </p>
-
-    <p class="just">Asymetrická kryptografie eliptických křivek je založena na tzv. problému diskrétního logaritmu:
-    </p>
-    <p class="math">Nechť <em>G &equals; &lang;a&rang;</em> je cyklická grupa řádu <em>n</em> s generátorem grupy
-      <em>a</em>. Každý prvek <em>b &isin; G</em> lze zapsat jako b &equals; a<sup>x</sup> pro jediné x &isin;
-      <img src="https://btc-slovnik.cz/img/zet.svg" alt="Z"><sub>n</sub>. Toto <em>x</em> se nazývá <strong>diskrétní logaritmus</strong> o
-      základu <em>a</em> z prvku <em>b</em> v grupě <em>G</em>.
-    </p>
-    <p class="just">Přičemž v Bitcoinu je užita eliptická křivka popsaná standardem secp256k1:</p>
-    <ul class="article">
-      <li>Křivka nad <a href="https://btc-slovnik.cz/pages/math.html">konečným tělesem</a> s charakteristikou tělesa p &equals;
-        0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f
-        (tj. také 2<sup>256</sup> &minus; 2<sup>32</sup> &minus; 977)</li>
-      <li>Rovnice křivky: y<sup>2</sup> &equals; x<sup>3</sup> &plus; 7</li>
-      <li>Generátor <a href="https://btc-slovnik.cz/pages/math.html">cyklické grupy</a> bod A má souřadnice:
-        <ul>
-          <li>A<sub>x</sub> &equals; 0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798</li>
-          <li>A<sub>y</sub> &equals; 0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8</li>
-        </ul>
-      </li>
-      <li>Řád grupy n &equals; 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141</li>
-      <li>Kofaktor h &equals; 1</li>
-    </ul>
-    <p class="just">Máme tedy eliptickou křivku nad konečným tělesem a zvolený bod na křivce, kterým si můžeme
-      vygenerovat cyklickou grupu s operací sčítání bodů na křivce. Když jsme pro opakované sčítání bodu se sebou samým
-      <a href="https://btc-slovnik.cz/pages/math.html">zavedli operaci násobení bodu skalárem</a>, máme vše, co potřebuje pro využití problému diskrétního logaritmu. Z vřídla
-      chaosu (nebo seedu) si vytáhneme přirozené číslo v intervalu &lang;1, n). To bude náš soukromý klíč. Provedeme
-      násobení skalárem &ndash; soukromým klíčem vynásobíme generátor grupy&semi; výsledkem bude bod na křivce &ndash;
-      náš veřejný klíč. Přestože
-      se operace naší aditivní grupy jmenuje součet bodů a opakovanému sčítání bodu sebou samým říkáme násobení skalárem, můžeme
-      si tyto operace představit v multiplikativní notaci jako násobení a opakované násobení jako umocňování. Pak náš postup přesně zapadne do
-      výše
-      uvedené definice diskrétního logaritmu &ndash; prvkem <em>b</em> je veřejný klíč, zatímco <em>x</em> je klíč
-      soukromý.
-      Neexistuje polynomiální algoritmus, který by se znalostí veřejného klíče a
-      generátoru grupy vypočítal soukromý klíč. Můžeme jít podepisovat.</p>
-    <div class="fig">
-      <figure>
-        <img src="https://btc-slovnik.cz/img/secp256k1.png" alt="secp256k1">
-        <figcaption>Takto by vypadalo zobrazení bitcoinové eliptické křivky nad množinou reálných čísel.</figcaption>
-      </figure>
-    </div>
-    <h2 id="ecdsa">Anatomie podpisu</h2>
-    <p class="just">Současným podpisovým schématem Bitcoinu je ECDSA. Připravíme si náš soukromý klíč (a označíme ho
-      jako číslo <em>d</em>), náhodné číslo k
-      z intervalu &lang;1, n) (číslo k musí být opravdu náhodné a různé pro každý podpis, jinak hrozí vyzrazení
-      soukromého klíče) a nějakou zprávu, resp. její hash.</p>
-    <p class="just">V Bitcoinu prokazujeme podpisem to, že jsme držiteli soukromého klíče náležícího k veřejnému klíči,
-      ve prospěch jehož hashe jsou uzamknuty satoshi na výstupu předcházející transakce. Podepisovanou zprávou tedy
-      bude dvojitý SHA256 hash jakéhosi předobrazu naší výsledné transakce. Výrobě tohoto předobrazu se věnuje 
-      <a href="https://btc-slovnik.cz/pages/transaction.html#preimage">bonusová část anatomie transakce</a>.
-      Výsledný hash si označíme jako číslo <em>e</em>.</p>
-    <p class="just">Výpočet podpisu je pak již jednoduchý: </p>
-    <ul class="article">
-      <li>Provedeme operaci násobení skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, x&hyphen;ová souřadnice
-        výsledného bodu mod <em>n</em> bude číslem <em>r</em>.</li>
-      <li><em>s &equals; k<sup>-1</sup> &times; (e &plus; r &times; d)</em> mod <em>n</em>.</li>
-    </ul>
-    <p class="just">Dvojice čísel <em>r, s</em> je naším podpisem zprávy <em>e</em>. Zakódováním čísel <em>r, s</em> do
-      formátu DER (Distinguished Encoding Rules) získáme podpisový element použitelný v <a
-        href="https://btc-slovnik.cz/pages/transaction.html#script">sigScriptu</a>.</p>
-    <p class="just">K ověření si musíme opět sestavit předobraz podepisované transkace a vypočíst jeho dvojnásobný
-      SHA256 hash, tj. číslo <em>e</em>, dále nám již stačí z scriptSigu získaný podpis (dvojice r, s) a veřejný klíč.
-      Ten je v scriptSigu zakódován ve formátu SEC (Standards of Efficient Cryptography) zpravidla pouze jako x&hyphen;ová
-      souřadnice a příznak sudosti &ndash; v takovém případě dopočítáme y&hyphen;ovou souřadnici.</p>
-    <p class="just">Postup ověření je pak: </p>
-    <ul class="article">
-      <li><em>u &equals; e &times; s<sup>-1</sup></em> mod <em>n</em>.</li>
-      <li><em>v &equals; r &times; s<sup>-1</sup></em> mod <em>n</em>.</li>
-      <li>Provedeme operaci násobení skalárem čísla <em>u</em> a generátoru grupy; poté násobení skalárem čísla <em>v</em> a
-        veřejného klíče. Výsledné dva body sečteme a označíme jako bod <em>X</em>.</li>
-    </ul>
-    <p class="just">Pokud se x&hyphen;ová souřadnice vypočteného bodu <em>X</em> rovná číslu <em>r</em>, pak je dvojice <em>r,
-        s</em> platným podpisem zprávy <em>e</em>.</p>
-    <h2 id="schnorr">Anatomie Schnorrova podpisu</h2>
-    <p class="just">Schnorrův podpis by v budoucnu mohl nahradit ECDSA schéma. Oproti němu má několik výhod, z nichž ta
-      klíčová je možnost kombinovat více podpisů té samé zprávy do podpisu jednoho.</p>
-    <p class="just">Při podepisování začneme stejně jako s ECDSA, připravíme si soukromý klíč <em>d</em>, náhodné číslo
-      <em>k</em> a hash předobrazu transakce <em>e</em>. Oproti ECDSA budeme ovšem navíc potřebovat veřejný klíč:
-    </p>
-    <ul class="article">
-      <li>Provedeme operaci násobení skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, výsledkem je bod
-        <em>R</em>.
-      </li>
-      <li>Zahashujeme zřetězení reprezentace bodu <em>R</em>, veřejného klíče a hashe zprávy <em>e</em>, tento hash
-        označíme <em>r</em>.</li>
-      <li><em>s &equals; k &plus; r &times; d</em> mod <em>n</em>.</li>
-    </ul>
-    <p class="just">Podpisem je tedy nikoliv dvojice čísel, ale dvojice bod <em>R</em> a číslo <em>s</em>. Tento podpis
-      pak může být ověřen postupem: </p>
-    <ul class="article">
-      <li>Zahashujeme zřetězení reprezentace bodu <em>R</em>, veřejného klíče a hashe zprávy <em>e</em>, tento hash
-        označíme <em>r</em>.</li>
-      <li>Provedeme operaci násobení skalárem <em>s</em> a generátoru grupy, výsledný bod označíme <em>X</em>.</li>
-      <li>Provedeme operaci násobení skalárem <em>r</em> a veřejného klíče, k výslednému bodu přičteme bod <em>R</em> a
-        tento součet označíme jako bod <em>Y</em>.</li>
-    </ul>
-    <p class="just">Podpis je platný, pokud se body X a Y shodují.</p>
+    <article>
+      <header>
+        <h2 id="curve">Anatomie křivky</h2>
+        <p class="header"><time datetime="2021-07-02">Aktualizováno: 2. 7. 2021</time></p>
+      </header>
+      <p class="just">Jak je možné vidět na stránce <a href="https://btc-slovnik.cz/pages/transaction.html">anatomie transakce a skriptu</a>, standardní p2(w)pk transakce uzamyká (prostřednictvím scriptPubKey) určitý obnos satoshi ve prospěch určitého hashe veřejného klíče (který zakódovaný v Bech32 či starší Base58Check představuje adresu). Prostřednictvím scriptSigu lze pak poskytnutím veřejného klíče a podpisu tento výstup odemknout a utratit v další transakci. To je umožněno díky tzv. asymetrické kryptografii, kterou v případě Bitcoinu představuje kryptografie eliptických křivek. </p>
+      <p class="just">Asymetrická kryptografie se od té běžné &ndash; symetrické &ndash; liší tím, že na místo jednoho a toho samého klíče (použitého pro zašifrování i dešifrování) používá pár klíčů &ndash; veřejný a soukromý. Pokud si příjemce zprávy vygeneruje takový pár klíčů a ten veřejný publikuje, kdokoliv může tímto veřejným klíčem zašifrovat zprávu, kterou bude moci dešifrovat jen a pouze příjemce pomocí svého soukromého klíče. Asymetrická kryptografie však umožňuje, kromě šifrování za účelem skrytí tajné zprávy, také šifrování za účelem podpisu zprávy. Pokud původce zprávy tuto zprávu (v praxi stačí pouze její hash) zašifruje svým soukromým klíčem, každý může jeho publikovaným veřejným klíčem zprávu dešifrovat a tím ověřit, že původce zprávy je právě držitel soukromého klíče náležícímu k publikovanému veřejnému. Tomuto se říká kryptografický podpis a v Bitcoinu je jím prokazováno, že výstup je utrácen právě držitelem soukromého klíče přislušícího k veřejnému klíči, ve prospěch jehož hashe byl výstup uzamčen. (Že je výstup uzamčen ve prospěch nikoliv přímo veřejného klíče, nýbrž jeho hashe, je jen dalším stupněm ochrany.) </p>
+      <p class="just">Asymetrická kryptografie eliptických křivek je založena na tzv. problému diskrétního logaritmu: </p>
+      <p class="math">Nechť <em>G &equals; &lang;a&rang;</em> je cyklická grupa řádu <em>n</em> s generátorem grupy <em>a</em>. Každý prvek <em>b &isin; G</em> lze zapsat jako b &equals; a<sup>x</sup> pro jediné x &isin; <img src="https://btc-slovnik.cz/img/zet.svg" alt="Z"><sub>n</sub>. Toto <em>x</em> se nazývá <strong>diskrétní logaritmus</strong> o základu <em>a</em> z prvku <em>b</em> v grupě <em>G</em>. </p>
+      <p class="just">Přičemž v Bitcoinu je užita eliptická křivka popsaná standardem secp256k1: </p>
+      <ul class="article">
+        <li>Křivka nad <a href="https://btc-slovnik.cz/pages/math.html">konečným tělesem</a> s charakteristikou tělesa p &equals;
+          0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f
+          (tj. také 2<sup>256</sup> &minus; 2<sup>32</sup> &minus; 977)</li>
+        <li>Rovnice křivky: y<sup>2</sup> &equals; x<sup>3</sup> &plus; 7</li>
+        <li>Generátor <a href="https://btc-slovnik.cz/pages/math.html">cyklické grupy</a> bod A má souřadnice:
+          <ul>
+            <li>A<sub>x</sub> &equals; 0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798</li>
+            <li>A<sub>y</sub> &equals; 0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8</li>
+          </ul>
+        </li>
+        <li>Řád grupy n &equals; 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141</li>
+        <li>Kofaktor h &equals; 1</li>
+      </ul>
+      <p class="just">Máme tedy eliptickou křivku nad konečným tělesem a zvolený bod na křivce, kterým si můžeme vygenerovat cyklickou grupu s operací sčítání bodů na křivce. Když jsme pro opakované sčítání bodu se sebou samým <a href="https://btc-slovnik.cz/pages/math.html">zavedli operaci násobení bodu skalárem</a>, máme vše, co potřebuje pro využití problému diskrétního logaritmu. Z vřídla chaosu (nebo seedu) si vytáhneme přirozené číslo v intervalu &lang;1, n). To bude náš soukromý klíč. Provedeme násobení skalárem &ndash; soukromým klíčem vynásobíme generátor grupy&semi; výsledkem bude bod na křivce &ndash; náš veřejný klíč. Přestože se operace naší aditivní grupy jmenuje součet bodů a opakovanému sčítání bodu sebou samým říkáme násobení skalárem, můžeme si tyto operace představit v multiplikativní notaci jako násobení a opakované násobení jako umocňování. Pak náš postup přesně zapadne do výše uvedené definice diskrétního logaritmu &ndash; prvkem <em>b</em> je veřejný klíč, zatímco <em>x</em> je klíč soukromý. Neexistuje polynomiální algoritmus, který by se znalostí veřejného klíče a generátoru grupy vypočítal soukromý klíč. Můžeme jít podepisovat. </p>
+      <div class="fig">
+        <figure>
+          <img src="https://btc-slovnik.cz/img/secp256k1.png" alt="secp256k1">
+          <figcaption>Takto by vypadalo zobrazení bitcoinové eliptické křivky nad množinou reálných čísel.</figcaption>
+        </figure>
+      </div>
+    </article>
+    <article>
+      <header>
+        <h2 id="ecdsa">Anatomie podpisu</h2>
+        <p class="header"><time datetime="2021-06-02">Aktualizováno: 2. 6. 2021</time></p>
+      </header>
+      <p class="just">Současným podpisovým schématem Bitcoinu je ECDSA. Připravíme si náš soukromý klíč (a označíme ho jako číslo <em>d</em>), náhodné číslo k z intervalu &lang;1, n) (číslo k musí být opravdu náhodné a různé pro každý podpis, jinak hrozí vyzrazení soukromého klíče) a nějakou zprávu, resp. její hash. </p>
+      <p class="just">V Bitcoinu prokazujeme podpisem to, že jsme držiteli soukromého klíče náležícího k veřejnému klíči, ve prospěch jehož hashe jsou uzamknuty satoshi na výstupu předcházející transakce. Podepisovanou zprávou tedy bude dvojitý SHA256 hash jakéhosi předobrazu naší výsledné transakce. Výrobě tohoto předobrazu se věnuje <a href="https://btc-slovnik.cz/pages/transaction.html#preimage">bonusová část anatomie transakce</a>. Výsledný hash si označíme jako číslo <em>e</em>. </p>
+      <p class="just">Výpočet podpisu je pak již jednoduchý: </p>
+      <ul class="article">
+        <li>Provedeme operaci násobení skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, x&hyphen;ová souřadnice výsledného bodu mod <em>n</em> bude číslem <em>r</em>.</li>
+        <li><em>s &equals; k<sup>-1</sup> &times; (e &plus; r &times; d)</em> mod <em>n</em>.</li>
+      </ul>
+      <p class="just">Dvojice čísel <em>r, s</em> je naším podpisem zprávy <em>e</em>. Zakódováním čísel <em>r, s</em> do formátu DER (Distinguished Encoding Rules) získáme podpisový element použitelný v <a href="https://btc-slovnik.cz/pages/transaction.html#script">sigScriptu</a>. </p>
+      <p class="just">K ověření si musíme opět sestavit předobraz podepisované transkace a vypočíst jeho dvojnásobný SHA256 hash, tj. číslo <em>e</em>, dále nám již stačí z scriptSigu získaný podpis (dvojice r, s) a veřejný klíč. Ten je v scriptSigu zakódován ve formátu SEC (Standards of Efficient Cryptography) zpravidla pouze jako x&hyphen;ová souřadnice a příznak sudosti &ndash; v takovém případě dopočítáme y&hyphen;ovou souřadnici. </p>
+      <p class="just">Postup ověření je pak: </p>
+      <ul class="article">
+        <li><em>u &equals; e &times; s<sup>-1</sup></em> mod <em>n</em>.</li>
+        <li><em>v &equals; r &times; s<sup>-1</sup></em> mod <em>n</em>.</li>
+        <li>Provedeme operaci násobení skalárem čísla <em>u</em> a generátoru grupy; poté násobení skalárem čísla <em>v</em> a veřejného klíče. Výsledné dva body sečteme a označíme jako bod <em>X</em>.</li>
+      </ul>
+      <p class="just">Pokud se x&hyphen;ová souřadnice vypočteného bodu <em>X</em> rovná číslu <em>r</em>, pak je dvojice <em>r, s</em> platným podpisem zprávy <em>e</em>.</p>
+      <h2 id="schnorr">Anatomie Schnorrova podpisu</h2>
+      <p class="just">Schnorrův podpis by v budoucnu mohl nahradit ECDSA schéma. Oproti němu má několik výhod, z nichž ta klíčová je možnost kombinovat více podpisů té samé zprávy do podpisu jednoho. </p>
+      <p class="just">Při podepisování začneme stejně jako s ECDSA, připravíme si soukromý klíč <em>d</em>, náhodné číslo <em>k</em> a hash předobrazu transakce <em>e</em>. Oproti ECDSA budeme ovšem navíc potřebovat veřejný klíč: </p>
+      <ul class="article">
+        <li>Provedeme operaci násobení skalárem náhodného čísla <em>k</em> a generátoru grupy <em>A</em>, výsledkem je bod
+          <em>R</em>.
+        </li>
+        <li>Zahashujeme zřetězení reprezentace bodu <em>R</em>, veřejného klíče a hashe zprávy <em>e</em>, tento hash
+          označíme <em>r</em>.</li>
+        <li><em>s &equals; k &plus; r &times; d</em> mod <em>n</em>.</li>
+      </ul>
+      <p class="just">Podpisem je tedy nikoliv dvojice čísel, ale dvojice bod <em>R</em> a číslo <em>s</em>. Tento podpis pak může být ověřen postupem: </p>
+      <ul class="article">
+        <li>Zahashujeme zřetězení reprezentace bodu <em>R</em>, veřejného klíče a hashe zprávy <em>e</em>, tento hash označíme <em>r</em>.</li>
+        <li>Provedeme operaci násobení skalárem <em>s</em> a generátoru grupy, výsledný bod označíme <em>X</em>.</li>
+        <li>Provedeme operaci násobení skalárem <em>r</em> a veřejného klíče, k výslednému bodu přičteme bod <em>R</em> a tento součet označíme jako bod <em>Y</em>.</li>
+      </ul>
+      <p class="just">Podpis je platný, pokud se body X a Y shodují. </p>
+    </article>
   </div>
   <footer>
     <div class="mail">
-      <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a
-        class="key" id="lit" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / 
-        <button onclick="dropDonate()" class="dropbtn key">Diškrece</button>
-      </p>
+      <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a class="key" id="lit" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <button onclick="dropDonate()" class="dropbtn key">Diškrece</button></p>
     </div>
     <div>
-      <div class="tw"><a class="tw" href="https://twitter.com/btcslovnik"><img
-        src="https://btc-slovnik.cz/img/twitter.svg" height="30"
-        alt="twitter" /></a>
-        <a class="license" href="https://btc-slovnik.cz/LICENSE"><img
-            src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
+      <div class="tw">
+        <a class="tw" href="https://twitter.com/btcslovnik"><img src="https://btc-slovnik.cz/img/twitter.svg" height="30" alt="twitter" /></a>
+        <a class="license" href="https://btc-slovnik.cz/LICENSE"><img src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
       </div>
     </div>
     <div id="donate" class="dropdown">
