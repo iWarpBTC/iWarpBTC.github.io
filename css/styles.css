@@ -395,6 +395,10 @@ span.rem {
   color:gray;
 }
 
+article {
+  margin-bottom: 3em;
+}
+
 a#luke{margin-left: 165px;}
 a#nick{margin-left: 330px;}
 a#pieter{margin-top: 165px;}
