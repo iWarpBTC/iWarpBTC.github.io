@@ -47,3 +47,7 @@ function clipboardLink(val) {
   text = 'https://btc-slovnik.cz/#'+val
   navigator.clipboard.writeText(text)
 } 
+
+function clipboardLNURL() {
+  navigator.clipboard.writeText('LNURL1DP68GURN8GHJ7URP0YHXYARRWDKX7ANWD94JUCM69AKXUATJD3CZ7CTSDYHHVVF0D3H82UNV9UESMDFXNL')
+}
