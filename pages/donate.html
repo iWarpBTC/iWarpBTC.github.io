@@ -13,7 +13,7 @@
     <meta name="robots" content="noimageindex, nofollow, nosnippet">
 </head>
 
-<body>
+<body onload="onload()">
     <header>
         <div class="h1">
             <h1><a href="https://btc-slovnik.cz/"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně pokročilé</a>
@@ -42,6 +42,15 @@
             </div>
         </div>
     </footer>
+    <script>
+        function onload() {
+            const queryString = window.location.search;
+            if (queryString == '?a=lntip')
+            {
+                window.location.replace('lightning:LNURL1DP68GURN8GHJ7URP0YHXYARRWDKX7ANWD94JUCM69AKXUATJD3CZ7CTSDYHHVVF0D3H82UNV9UESMDFXNL');
+            }
+        }
+    </script>
 </body>
 
 </html>

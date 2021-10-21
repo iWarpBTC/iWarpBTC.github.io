@@ -56,8 +56,6 @@ function onload() {
   const queryString = window.location.search;
   if (queryString == '?a=lntip')
   {
-    document.getElementsByTagName('html')[0].style.background = "rgb(60, 75, 87)";
-    document.getElementsByTagName('body')[0].style.display = "none";
-    window.location.replace('lightning:LNURL1DP68GURN8GHJ7URP0YHXYARRWDKX7ANWD94JUCM69AKXUATJD3CZ7CTSDYHHVVF0D3H82UNV9UESMDFXNL');
+    window.location.replace('https://btc-slovnik.cz/pages/donate.html?a=lntip');
   }
 }
