@@ -445,6 +445,12 @@ a#greg:hover ~ figcaption > span.greg{color: #f7931a;}
     max-width: 100px;
   }
 
+  td.long3 {
+    word-wrap: break-word;
+    max-width: 100px;
+    font-size: small;
+  }
+
   ul.article {
     word-wrap: break-word;
   }
