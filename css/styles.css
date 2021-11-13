@@ -238,10 +238,6 @@ p {
   margin-right: 20px;
 }
 
-td.long3 {
-  font-size: small;
-}
-
 td, th {
   border: 1px solid #aaa;
   padding: 8px;
@@ -447,12 +443,6 @@ a#greg:hover ~ figcaption > span.greg{color: #f7931a;}
   td.long2 {
     word-wrap: break-word;
     max-width: 100px;
-  }
-
-  td.long3 {
-    word-wrap: break-word;
-    max-width: 100px;
-    font-size: small;
   }
 
   ul.article {
