@@ -238,6 +238,10 @@ p {
   margin-right: 20px;
 }
 
+td.long3 {
+  font-size: small;
+}
+
 td, th {
   border: 1px solid #aaa;
   padding: 8px;
