@@ -16,6 +16,7 @@
     <link rel="canonical" href="https://btc-slovnik.cz/">
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@btcslovnik" />
+    <meta name="og:image" content="https://btc-slovnik.cz/img/rabbithole.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -59,7 +60,7 @@
         </div>
         <div class="entry">
             <h2 id="blockchain">blockchain</h2><button class="copylink" onclick="clipboardLink('blockchain')"><img src="https://btc-slovnik.cz/img/link.png" alt="zkopírovat odkaz"></button>
-            <p>Speciální typ databáze, kde každý nový záznam v sobě obsahuje <a href="https://btc-slovnik.cz/#hash">otisk</a> toho předchozího. </p>
+            <p>Speciální typ databáze, kde každý nový záznam v sobě obsahuje <a href="https://btc-slovnik.cz/#hash">otisk</a> toho předchozího. V Bitcoinu jsou těmito záznamy bloky bitcoinových transakcí. </p>
             <div class="ana-link">
                 <p><a href="https://btc-slovnik.cz/pages/block.html">anatomie bloku</a></p>
             </div>
@@ -80,7 +81,7 @@
         </div>
         <div class="entry">
             <h2 id="block-header">hlavička bloku</h2><button class="copylink" onclick="clipboardLink('block-header')"><img src="https://btc-slovnik.cz/img/link.png" alt="zkopírovat odkaz"></button>
-            <p>Sestává se z verze bloku, hashe předchozí bloku, hashe (rootu) merklovského stromu obsažených transakcí, času vytěžení, stanoveného targetu sítě a nonce &ndash; variabilního čísla, jehož změnou se dosahuje různých hashů. </p>
+            <p>Sestává se z verze bloku, hashe předchozí bloku, hashe (rootu) merklovského stromu obsažených transakcí, času vytěžení, stanoveného targetu sítě a nonce &ndash; variabilního čísla, jehož změnou se dosahuje různých hashů hlavičky. </p>
             <div class="ana-link">
                 <p><a href="https://btc-slovnik.cz/pages/block.html">anatomie bloku</a></p>
             </div>
@@ -146,7 +147,7 @@
         </div>
         <div class="entry">
             <h2 id="passphrase">passphrase</h2><button class="copylink" onclick="clipboardLink('passphrase')"><img src="https://btc-slovnik.cz/img/link.png" alt="zkopírovat odkaz"></button>
-            <p>Někdy též zvaná 13./25. slovo seedu. Je&hyphen;li použita, podílí se (jako salt funkce PBKDF2) v kombinaci s počáteční entropií (vyjadřované nejčastěji řetězcem 12/24 slov seedu) na vygenerování seedu. Narozdíl od samotné počáteční entropie není uložena v peněžence a neměla by být uchovávána ani společně s fyzickou zálohou (slovy seedu). Pak passphrase poskytuje další vrstvu ochrany, neboť případná extrakce počáteční entropie z peněženky či nalezení zálohy (slov seedu) dává přístup pouze k prostředkům uloženým pod semínkem bez passphrase. Pokud zde utočník nějaké uspokojivé množství prostředků najde, dost možná již nebude mít potřebu odhalovat případnou passphrase (pod kterou však může být ukryt větší zbytek prostředků). </p>
+            <p>Někdy též zvaná 13./25. slovo seedu (ačkoliv se nemusí a neměla by se omezovat pouze na jedno slovo). Je&hyphen;li použita, podílí se (jako salt funkce PBKDF2) v kombinaci s počáteční entropií (vyjadřované nejčastěji řetězcem 12/24 slov seedu) na vygenerování seedu. Narozdíl od samotné počáteční entropie není uložena v peněžence a neměla by být uchovávána ani společně s fyzickou zálohou (slovy seedu). Pak passphrase poskytuje další vrstvu ochrany, neboť případná extrakce počáteční entropie z peněženky či nalezení zálohy (slov seedu) dává přístup pouze k prostředkům uloženým pod semínkem bez passphrase. Pokud zde utočník nějaké uspokojivé množství prostředků najde, dost možná již nebude mít potřebu odhalovat případnou passphrase (pod kterou však může být ukryt větší zbytek prostředků). </p>
             <div class="ana-link">
                 <p><a href="https://btc-slovnik.cz/pages/wallet.html">anatomie HD peněženky</a></p>
             </div>
@@ -215,7 +216,7 @@
                         <tr>
                             <td>p2tp</td>
                             <td>taproot</td>
-                            <td class="long3">bc1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7vqzk5jj0</td>
+                            <td class="long2">bc1pr8pk6n4xvnnejnqpd4mxdezms8scn5zjnrw9duxt62x0fdyk8tpqmmdxnt</td>
                             <td>Bech32m s počátečním bc1</td>
                         </tr>
                     </tbody>
@@ -230,7 +231,7 @@
         </div>
         <div class="entry">
             <h2 id="transaction">transakce</h2><button class="copylink" onclick="clipboardLink('transaction')"><img src="https://btc-slovnik.cz/img/link.png" alt="zkopírovat odkaz"></button>
-            <p>Základní operace bitcoinové sítě. Na svém vstupu utrácí (spotřebovává) dosud neutracené výstupy (UTXO) předchozích transakcí. Na svém výstupu uzamyká bitcoiny ve prospěch daných adres, a vytváří tak nové UTXO. Potvrzená transakce se stává nesmazatelnou součástí blockchainu (který není nic jiného, než seznam do bloku uspořádaných transakcí). </p>
+            <p>Základní operace bitcoinové sítě. Na svém vstupu utrácí (spotřebovává) dosud neutracené výstupy (UTXO) předchozích transakcí. Na svém výstupu uzamyká bitcoiny ve prospěch daných adres, a vytváří tak nové UTXO. Je&hyphen;li transakce zařazena jako součást bloku do blockchainu, stává se s každým navazujícím blokem (a tedy snižující se možností <a href="https://btc-slovnik.cz/#reorg">reorganizace</a>) nesmazatelnou součástí transakční historie Bitcoinu. </p>
             <div class="ana-link">
                 <p><a href="https://btc-slovnik.cz/pages/transaction.html">anatomie transakce</a></p>
             </div>
@@ -271,7 +272,7 @@
         </div>
         <div class="entry">
             <h2 id="mempool">mempool</h2><button class="copylink" onclick="clipboardLink('mempool')"><img src="https://btc-slovnik.cz/img/link.png" alt="zkopírovat odkaz"></button>
-            <p>Seznam dosud nepotvrzených transakcí vedený každý <a href="https://btc-slovnik.cz/#node">uzlem</a>. Těžící uzly z tohoto seznamu vybírají <a href="https://btc-slovnik.cz/#transaction">transakce</a> do svých kandidátských <a href="https://btc-slovnik.cz/#block">bloků</a>, přičemž zpravidla upřednostňují transakce s vyšším poměrem <a href="https://btc-slovnik.cz/#fee">poplatek</a>/<a href="https://btc-slovnik.cz/#wu">weight unit</a>. </p>
+            <p>Seznam vyslaných, do blockchainu dosud nezařazených (nepotvrzených) transakcí, vedený každý <a href="https://btc-slovnik.cz/#node">uzlem</a>. Těžící uzly z tohoto seznamu vybírají <a href="https://btc-slovnik.cz/#transaction">transakce</a> do svých kandidátských <a href="https://btc-slovnik.cz/#block">bloků</a>, přičemž zpravidla upřednostňují transakce s nejvyšším poměrem <a href="https://btc-slovnik.cz/#fee">poplatek</a>/<a href="https://btc-slovnik.cz/#wu">weight unit</a>. </p>
         </div>
         <div class="entry">
             <h2 id="wu">weight unit, WU</h2><button class="copylink" onclick="clipboardLink('wu')"><img src="https://btc-slovnik.cz/img/link.png" alt="zkopírovat odkaz"></button>
@@ -309,13 +310,17 @@
             </div>
         </div>
         <div class="entry">
+            <h2 id="reorg">reorganizace blockchainu</h2><button class="copylink" onclick="clipboardLink('reorg')"><img src="https://btc-slovnik.cz/img/link.png" alt="zkopírovat odkaz"></button>
+            <p>Může v síti vzácně nastat situace, ve které dva různí těžaři vytěži a vyšlou do sítě nový blok prakticky ve stejný okamžik. V síti se pak vyskytují dvě různé verze blockchainu, jedna část sítě přijme blok těžare A, druhá část zařadí blok těžaře B. Jakmile je vytěžen další nový blok, dejme tomu navazující na blok těžaře A, stává se tato verze blockchainu nejdelší v síti a jako taková je přijata i druhou částí sítě. Ty transakce v osiřelém bloku těžaře B, které se nenachází zároveň i v bloku těžaře A, jsou v této části sítě navráceny do mempoolu. Této situaci se říká reorganizace bloku a je důvodem, proč např. směnárny vyžadují, aby blok obsahující vkladovou transakci dosáhl určené hloubky v blockchainu (&bdquo;počtu potvrzení&ldquo;), typicky 3, nebo dokonce 6. Při této &bdquo;hloubce zatěžení&ldquo; je už reorganizace prakticky vyloučena. </p>
+        </div>
+        <div class="entry">
             <h2 id="segwit">segwit</h2><button class="copylink" onclick="clipboardLink('segwit')"><img src="https://btc-slovnik.cz/img/link.png" alt="zkopírovat odkaz"></button>
             <h2 class="short">segregated witness</h2>
             <p>Vylepšení aktivované formou soft&hyphen;forku v roce 2017 v síti Bitcoin. Mimo jiného opravuje problém zvaný transaction malleability (tvárnost transakcí) tím, že podpisová data (scriptSig) nejsou součástí serializované podoby transakce, ze které je počítán její hash. Mění limit bloku z milionu bajtů (1&nbsp;MB) na 4 miliony weight units. Mění se výpočet podpisového hashe, kdy doposud počet vstupů zvyšoval kvadraticky náročnost podepsání/ověření transakce atd&hellip; </p>
         </div>
         <div class="entry">
             <h2 id="taproot">Taproot</h2><button class="copylink" onclick="clipboardLink('taproot')"><img src="https://btc-slovnik.cz/img/link.png" alt="zkopírovat odkaz"></button>
-            <p>Chystané vylepšení bitcoinové sítě. Zavádí <a href="https://btc-slovnik.cz/pages/crypto.html#schnorr">Schnorrovy podpisy</a>, které budou v této první fázi použity k zefektivnění odemykání plateb <a href="https://btc-slovnik.cz/#hash">otisku</a> skriptu. Ty by mohly být v budoucnu k nerozeznání od běžných plateb otisku veřejného klíče. </p>
+            <p>Vylepšení (soft&hyphen;fork) bitcoinové sítě aktivované 14. listopadu 2021. Zavádí <a href="https://btc-slovnik.cz/pages/crypto.html#schnorr">Schnorrovy podpisy</a> a umožňuje skrytí existence alternativních způsobů odemčení <a href="https://btc-slovnik.cz/#utxo">neutraceného výstupu</a>. To snižuje možnosti blockchain analýzy a přináší více soukromí. </p>
             <div class="ana-link">
                 <p><a href="https://btc-slovnik.cz/pages/taproot.html">úvod do Taprootu</a></p>
             </div>
