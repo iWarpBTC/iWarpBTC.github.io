@@ -8,15 +8,15 @@
   <link rel="shortcut icon" href="https://btc-slovnik.cz/favicon.png">
   <link rel="stylesheet" href="../css/styles.css">
   <meta name="description"
-        content="Přibližuje matematickou teorii nezbytnou k pochopení kryptografie eliptických křivek.">
-  <meta property="og:description" content="Přibližuje matematickou teorii nezbytnou k pochopení kryptografie eliptických křivek.">
+    content="Přibližuje matematickou teorii nezbytnou k pochopení kryptografie eliptických křivek.">
+  <meta property="og:description"
+    content="Přibližuje matematickou teorii nezbytnou k pochopení kryptografie eliptických křivek.">
   <meta name="keywords"
-        content="bitcoin, kryptografie, asymetrická, eliptická křivka, konečné těleso, cyklická grupa, fermatova věta">
+    content="bitcoin, kryptografie, asymetrická, eliptická křivka, konečné těleso, cyklická grupa, fermatova věta">
   <link rel="canonical" href="https://btc-slovnik.cz/pages/math.html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@btcslovnik" />
@@ -26,7 +26,8 @@
 <body>
   <header>
     <div class="h1">
-      <h1><a href="https://btc-slovnik.cz/#asym-crypto"><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně
+      <h1><a href="https://btc-slovnik.cz/#asym-crypto"><span style="color:#f7931a">Bitcoinový</span> slovníček pro
+          mírně
           pokročilé</a>
       </h1>
     </div>
@@ -38,70 +39,111 @@
         <h2 id="field">Anatomie tělesa a grupy</h2>
         <p class="header"><time datetime="2021-06-07">Aktualizováno: 7. 6. 2021</time></p>
       </header>
-      <p class="just">Jak by řekl poručík Aldo Raine &ndash; počítání s reálnými čísly přináší spoustu úskalí. Prvním z nich je to, že musíte počítat s reálnými čísly. Nad nekonečnou množinou reálných čísel sice můžeme kreslit krásně ladné křivky, ale počítat se v tom nikomu nechce. Mnohem lepší situace by však mohla být nad nějakou konečnou množinou třeba celých čísel. Když se k této konečné množině definují dvě binární operace (třeba sčítání &plus; a násobení &times;), a celé to splňuje níže uvedené podmínky, tak se tomu říká konečné těleso. </p>
+      <p class="just">Jak by řekl poručík Aldo Raine &ndash; počítání s reálnými čísly přináší spoustu úskalí. Prvním z
+        nich je to, že musíte počítat s reálnými čísly. Nad nekonečnou množinou reálných čísel sice můžeme kreslit
+        krásně ladné křivky, ale počítat se v tom nikomu nechce. Mnohem lepší situace by však mohla být nad nějakou
+        konečnou množinou třeba celých čísel. Když se k této konečné množině definují dvě binární operace (třeba sčítání
+        &plus; a násobení &times;), a celé to splňuje níže uvedené podmínky, tak se tomu říká konečné těleso. </p>
       <p class="just">V tělese <b>F</b> musí platit: </p>
       <ul class="article">
-        <li>Asociativita sčítání&colon;&emsp;a &plus; (b &plus; c) &equals; (a &plus; b) &plus; c pro libovolné a, b, c &isin; <b>F</b></li>
+        <li>Asociativita sčítání&colon;&emsp;a &plus; (b &plus; c) &equals; (a &plus; b) &plus; c pro libovolné a, b, c
+          &isin; <b>F</b></li>
         <li>Komutativita sčítání&colon;&emsp;a &plus; b &equals; b &plus; a pro libovolné a, b &isin; <b>F</b></li>
-        <li>Existence nulového prvku&colon;&emsp;existuje 0 &isin; <b>F</b> takové, že pro všechna a &isin; <b>F</b> platí a &plus; 0 &equals; 0 &plus; a &equals; a</li>
-        <li>Existence opačného prvku&colon;&emsp;pro všechna a &isin; <b>F</b> existuje &minus;a &isin; <b>F</b> takové, že platí a &plus; (&minus;a) &equals; (&minus;a) &plus; a &equals; 0</li>
-        <li>Asociativita násobení&colon;&emsp;a &times; (b &times; c) &equals; (a &times; b) &times; c pro všechna a, b, c &isin; <b>F</b></li>
+        <li>Existence nulového prvku&colon;&emsp;existuje 0 &isin; <b>F</b> takové, že pro všechna a &isin; <b>F</b>
+          platí a &plus; 0 &equals; 0 &plus; a &equals; a</li>
+        <li>Existence opačného prvku&colon;&emsp;pro všechna a &isin; <b>F</b> existuje &minus;a &isin; <b>F</b> takové,
+          že platí a &plus; (&minus;a) &equals; (&minus;a) &plus; a &equals; 0</li>
+        <li>Asociativita násobení&colon;&emsp;a &times; (b &times; c) &equals; (a &times; b) &times; c pro všechna a, b,
+          c &isin; <b>F</b></li>
         <li>Komutativita násobení&colon;&emsp;a &times; b &equals; b &times; a pro všechna a, b &isin; <b>F</b></li>
-        <li>Existence jednotkového prvku&colon;&emsp;existuje 1 &isin; <b>F</b> takové, že pro všechna a &isin; <b>F</b> platí 1 &times; a &equals; a &times; 1 &equals; a</li>
-        <li>Existence inverzního prvku&colon;&emsp;pro všechna a &ne; 0 existuje a<sup>&minus;1</sup> &isin; <b>F</b> takové, že platí a &times; a<sup>&minus;1</sup> &equals; a<sup>&minus;1</sup> &times; a &equals; 1</li>
-        <li>Distributivita&colon;&emsp;a &times; (b + c) &equals; a &times; b &plus; a &times; c pro všechna a, b, &isin; <b>F</b></li>
+        <li>Existence jednotkového prvku&colon;&emsp;existuje 1 &isin; <b>F</b> takové, že pro všechna a &isin; <b>F</b>
+          platí 1 &times; a &equals; a &times; 1 &equals; a</li>
+        <li>Existence inverzního prvku&colon;&emsp;pro všechna a &ne; 0 existuje a<sup>&minus;1</sup> &isin; <b>F</b>
+          takové, že platí a &times; a<sup>&minus;1</sup> &equals; a<sup>&minus;1</sup> &times; a &equals; 1</li>
+        <li>Distributivita&colon;&emsp;a &times; (b + c) &equals; a &times; b &plus; a &times; c pro všechna a, b,
+          &isin; <b>F</b></li>
         <li>Netrivialita&colon;&emsp;0 &ne; 1</li>
       </ul>
-      <p class="just">Není to žádná raketová věda. Jedná se vesměs o obvyklé vlastnosti sčítání a násobení. Pokud by někomu chybělo odčítání a dělení, představí si místo nich přičítání opačného prvku, resp. násobení inverzním prvkem. Aby nám uvedené podmínky platily i v konečném tělese (tj. tělese s konečným počtem prvků), musí být počet prvků prvočíslo (či mocnina prvočísla). Toto prvočíslo se také nazývá charakteristika tělesa. Schválně si zkuste vyrobit těleso o čtyřech prvcích a uplatněte výše uvedená pravidla. Nebude to fungovat. </p>
+      <p class="just">Není to žádná raketová věda. Jedná se vesměs o obvyklé vlastnosti sčítání a násobení. Pokud by
+        někomu chybělo odčítání a dělení, představí si místo nich přičítání opačného prvku, resp. násobení inverzním
+        prvkem. Aby nám uvedené podmínky platily i v konečném tělese (tj. tělese s konečným počtem prvků), musí být
+        počet prvků prvočíslo (či mocnina prvočísla). Toto prvočíslo se také nazývá charakteristika tělesa. Schválně si
+        zkuste vyrobit těleso o čtyřech prvcích a uplatněte výše uvedená pravidla. Nebude to fungovat. </p>
       <div class="fig">
         <figure>
           <img src="https://btc-slovnik.cz/img/ECover223.png" alt="křivka nad konečným tělesem">
-          <figcaption>Ilustrační eliptická křivka y<sup>2</sup> = x<sup>3</sup> + 13 nad konečným tělesem GF(223).</figcaption>
+          <figcaption>Ilustrační eliptická křivka y<sup>2</sup> = x<sup>3</sup> + 13 nad konečným tělesem GF(223).
+          </figcaption>
         </figure>
       </div>
-      <p class="just">Pokud bychom si chtěli v tělese GF(223) cvičně vypočíst bod křivky y<sup>2</sup> &equals; x<sup>3</sup> &plus; 13 pro x &equals; 190, budeme počítat nejprve na pravé straně:</p>
+      <p class="just">Pokud bychom si chtěli v tělese GF(223) cvičně vypočíst bod křivky y<sup>2</sup> &equals;
+        x<sup>3</sup> &plus; 13 pro x &equals; 190, budeme počítat nejprve na pravé straně:</p>
       <p class="script">190<sup>3</sup> &plus; 13 mod 223 &equals; 6859013 mod 223 &equals; 202</p>
-      <p class="just">Abychom nyní odmocnili y<sup>2</sup> &equals; 202, ověříme si nejprve, že charakteristika p našeho tělesa GF(p) modulo 4 vyjde 3. To znamená, že (p &plus; 1) mod 4 &equals; 0, tedy že lze (p &plus; 1) beze zbytku dělit 4. V tom případě můžeme použít k odmocnění následující hack &ndash; podle Malé Fermatovy věty a<sup>p&minus;1</sup> mod p &equals; 1. To znamená, že: </p>
-      <p class="script">a<sup>2</sup> &equals; a<sup>2</sup> &times; 1 &equals; a<sup>2</sup> &times; a<sup>p&minus;1</sup> &equals; a<sup>p&plus;1</sup></p>
-      <p class="just">Protože p je prvočíslo, tedy liché, můžeme (p&plus;1) dělit dvěma a tedy provést i následující techtle mechtle: </p>
+      <p class="just">Abychom nyní odmocnili y<sup>2</sup> &equals; 202, ověříme si nejprve, že charakteristika p našeho
+        tělesa GF(p) modulo 4 vyjde 3. To znamená, že (p &plus; 1) mod 4 &equals; 0, tedy že lze (p &plus; 1) beze
+        zbytku dělit 4. V tom případě můžeme použít k odmocnění následující hack &ndash; podle Malé Fermatovy věty
+        a<sup>p&minus;1</sup> mod p &equals; 1. To znamená, že: </p>
+      <p class="script">a<sup>2</sup> &equals; a<sup>2</sup> &times; 1 &equals; a<sup>2</sup> &times;
+        a<sup>p&minus;1</sup> &equals; a<sup>p&plus;1</sup></p>
+      <p class="just">Protože p je prvočíslo, tedy liché, můžeme (p&plus;1) dělit dvěma a tedy provést i následující
+        techtle mechtle: </p>
       <p class="script">
         a &equals; a<sup>(p&plus;1)&divide;2</sup><br><br>
         Řekněme, že a<sup>2</sup> &equals; b, pak<br><br>
-        a &equals; a<sup>(p&plus;1)&divide;2</sup> &equals; a<sup>2(p+1)&divide;4</sup> &equals; (a<sup>2</sup>)<sup>(p+1)&divide;4</sup> &equals; b<sup>(p+1)&divide;4</sup>
+        a &equals; a<sup>(p&plus;1)&divide;2</sup> &equals; a<sup>2(p+1)&divide;4</sup> &equals;
+        (a<sup>2</sup>)<sup>(p+1)&divide;4</sup> &equals; b<sup>(p+1)&divide;4</sup>
       </p>
-      <p class="just">Nic si z toho nedělejte, já to taky pobral teprve asi až na pátý pokus. Až to budete mít, můžeme jít odmocňovat:
+      <p class="just">Nic si z toho nedělejte, já to taky pobral teprve asi až na pátý pokus. Až to budete mít, můžeme
+        jít odmocňovat:
       </p>
       <p class="script">
         y<sup>2</sup> &equals; 202<br><br>
         y &equals; 202<sup>(223+1)&divide;4</sup> mod 223<br>
         y &equals; 202<sup>56</sup> mod 223<br>
-        y &equals; 1257988552198402112716025241425554802066116810455891304419632544898614527285976320036463847342459011535449669236965185786568769536 <b>mod 223</b><br><br>
+        y &equals;
+        1257988552198402112716025241425554802066116810455891304419632544898614527285976320036463847342459011535449669236965185786568769536
+        <b>mod 223</b><br><br>
         y &equals; 47
       </p>
-      <p class="just">Začínalo to být zajímavé&hellip; Naštěstí jsme v konečném tělese a nezapomněli jsme na modulo (v praxi se s ním pracuje již v průběhu mocnění, <a href="https://docs.python.org/3/library/functions.html#pow">vizte kupříkladu zde</a>). Bod křivky A[190, 47] je též vyznačen na grafu výše. Než si zkusíme nějaké ty body sečíst, podíváme se, jak by sčítání vypadalo graficky v množině reálných čísel. Tam stačí sestrojit přímku procházející dvěma sčítanými body P, Q, která nám (téměř vždy) protne křivku právě v ještě jednom dalším bodě R. Obraz bodu R v osové souměrnosti podle osy x je součtem bodů P, Q. </p>
+      <p class="just">Začínalo to být zajímavé&hellip; Naštěstí jsme v konečném tělese a nezapomněli jsme na modulo (v
+        praxi se s ním pracuje již v průběhu mocnění, <a
+          href="https://docs.python.org/3/library/functions.html#pow">vizte kupříkladu zde</a>). Bod křivky A[190, 47]
+        je též vyznačen na grafu výše. Než si zkusíme nějaké ty body sečíst, podíváme se, jak by sčítání vypadalo
+        graficky v množině reálných čísel. Tam stačí sestrojit přímku procházející dvěma sčítanými body P, Q, která nám
+        (téměř vždy) protne křivku právě v ještě jednom dalším bodě R. Obraz bodu R v osové souměrnosti podle osy x je
+        součtem bodů P, Q. </p>
       <div class="fig">
         <figure>
           <img src="https://btc-slovnik.cz/img/ECadd.png" alt="křivka nad konečným tělesem">
           <figcaption>Grafické sčítání bodů na eliptické křivce nad množinou <b>R</b>.</figcaption>
         </figure>
       </div>
-      <p class="just">Přestože v &bdquo;tělesovém&ldquo; grafu nám rýsování přímek již nebude fungovat, algebraicky to bude vypadat v obou případech stejně:
+      <p class="just">Přestože v &bdquo;tělesovém&ldquo; grafu nám rýsování přímek již nebude fungovat, algebraicky to
+        bude vypadat v obou případech stejně:
       </p>
       <p class="script">
         Směrnice přímky procházející sčítanými body bude<br>
-        <b>&lambda; &equals; (y<sub>2</sub> &minus; y<sub>1</sub>) &divide; (x<sub>2</sub> &minus; x<sub>1</sub>)</b><br>
+        <b>&lambda; &equals; (y<sub>2</sub> &minus; y<sub>1</sub>) &divide; (x<sub>2</sub> &minus;
+          x<sub>1</sub>)</b><br>
         Rovnice přímky je<br>
         y = &lambda;x + &kappa;<br>
-        Dosazením do rovnice eliptické křivky najdeme x&hyphen;ovou souřadnici průniku přímky s danou křivkou (tj. x<sub>3</sub>)<br>
+        Dosazením do rovnice eliptické křivky najdeme x&hyphen;ovou souřadnici průniku přímky s danou křivkou (tj.
+        x<sub>3</sub>)<br>
         0 &equals; x<sup>3</sup> &minus; (&lambda;x &plus; &kappa;)<sup>2</sup> + ax + b<br>
-        přičemž koeficient u x<sup>2</sup> je roven &minus;&lambda;<sup>2</sup> &equals; &minus;(x<sub>1</sub>&plus;x<sub>2</sub>&plus;x<sub>3</sub>) (Viètovy vzorce pro kořeny); odtud<br>
+        přičemž koeficient u x<sup>2</sup> je roven &minus;&lambda;<sup>2</sup> &equals;
+        &minus;(x<sub>1</sub>&plus;x<sub>2</sub>&plus;x<sub>3</sub>) (Viètovy vzorce pro kořeny); odtud<br>
         <b>x<sub>3</sub> &equals; &lambda;<sup>2</sup> &minus; x<sub>1</sub> &minus; x<sub>2</sub></b><br>
-        y&hyphen;ová souřadnice průniku přímky s křivkou (tedy &minus;y<sub>3</sub>) je &minus;y<sub>3</sub> &equals; &lambda;x<sub>3</sub> &plus; &kappa;; odtud<br>
+        y&hyphen;ová souřadnice průniku přímky s křivkou (tedy &minus;y<sub>3</sub>) je &minus;y<sub>3</sub> &equals;
+        &lambda;x<sub>3</sub> &plus; &kappa;; odtud<br>
         <b>y<sub>3</sub> &equals; &lambda;(x<sub>1</sub> &minus; x<sub>3</sub>) &minus; y<sub>1</sub></b>
       </p>
-      <p class="just">Dosadíme&hyphen;li do rovnic náš &bdquo;tělesový&ldquo; bod A[190, 47] a k němu třeba bod B[55, 91] jako druhý sčítanec, měl by nám vyjít bod AB[34, 31].
+      <p class="just">Dosadíme&hyphen;li do rovnic náš &bdquo;tělesový&ldquo; bod A[190, 47] a k němu třeba bod B[55,
+        91] jako druhý sčítanec, měl by nám vyjít bod AB[34, 31].
       </p>
-      <p class="just">Speciální variantou sčítání bodů je pak sečtení bodu se sebou samým, ergo zdvojnásobení bodu. Graficky by tato operace vypadala jako tečna k eliptické křivce ve sčítaném bodě, která nám opět protne křivku ještě v jednom dalším bodě. Výsledný bod je opět obrazem v osové souměrnosti podle x. V algebraické formě to pak bude vypadat takto: </p>
+      <p class="just">Speciální variantou sčítání bodů je pak sečtení bodu se sebou samým, ergo zdvojnásobení bodu.
+        Graficky by tato operace vypadala jako tečna k eliptické křivce ve sčítaném bodě, která nám opět protne křivku
+        ještě v jednom dalším bodě. Výsledný bod je opět obrazem v osové souměrnosti podle x. V algebraické formě to pak
+        bude vypadat takto: </p>
       <p class="script">
         Směrnicí tečny je derivace křivky<br>
         <b>&lambda; &equals; (3x<sup>2</sup> &plus; a) &divide; 2y</b><br>
@@ -109,19 +151,37 @@
         <b>x<sub>2</sub> &equals; &lambda;<sup>2</sup> &minus; 2x<sub>1</sub></b><br>
         <b>y<sub>2</sub> &equals; &lambda;(x<sub>1</sub> &minus; x<sub>2</sub>) &minus; y<sub>1</sub></b>
       </p>
-      <p class="just">Zdvojnásobení bodu A[190, 47] by mělo vyjít jako bod 2A[121, 114]. Opětovným zdvojnásobením bodu 2A získáme bod 3A[1,167], přičemž <em>x</em> opakování zdvojnásobování můžeme nazývat jako násobení skalárem – celým číslem <em>x</em>, které představuje počet opakování zdvojnásobení bodu. </p>
-      <p class="just">Nesmíme zapomenout na případ, ve kterém by přímka (ať už procházející dvěma různými sčítanýmí body, nebo tečna ve zdvojnásobovaném bodě) byla rovnoběžná s osou y. Pro tento případ definujeme výsledek takového součtu (zdvojnásobení) jako bod v nekonečnu. Označíme jako <span class="inf">O</span> ; pak libovolný bod křivce A &plus; <span class="inf">O</span> &equals; A (identické zobrazení). </p>
-      <p class="just">Počet všech bodů ležících na křivce se pak nazývá řád křivky. Na našem cvičném tělese GF(223) je můžeme najít prostým dosazením všech variací x, y do rovnice křivky. Zjistíme, že &num;GF(223) &equals; 196 (včetně nevlastního bodu v nekonečnu). Na větších tělesech už bychom museli použít nějaký pokročilejší algoritmus (Schoof&hyphen;Elkies&hyphen;Atkin), popř. musíme věřit specifikaci. </p>
-      <p class="just">Prohlásíme&hyphen;li bod A za generátor a operaci sčítání bodů za grupovou operaci &#x2218;, můžeme si vygenerovat cyklickou grupu řádu n. Řád grupy je dán počtem bodů (prvků grupy), které stihne generátor opakovaným zdvojnásobováním (sčítáním se sebou samým) vygenerovat, než vyjde (n &times; A &equals; <span class="inf">O</span>). </p>
+      <p class="just">Zdvojnásobení bodu A[190, 47] by mělo vyjít jako bod 2A[121, 114]. Opětovným zdvojnásobením bodu
+        2A získáme bod 3A[1,167], přičemž <em>x</em> opakování zdvojnásobování můžeme nazývat jako násobení skalárem –
+        celým číslem <em>x</em>, které představuje počet opakování zdvojnásobení bodu. </p>
+      <p class="just">Nesmíme zapomenout na případ, ve kterém by přímka (ať už procházející dvěma různými sčítanýmí
+        body, nebo tečna ve zdvojnásobovaném bodě) byla rovnoběžná s osou y. Pro tento případ definujeme výsledek
+        takového součtu (zdvojnásobení) jako bod v nekonečnu. Označíme jako <span class="inf">O</span> ; pak libovolný
+        bod křivce A &plus; <span class="inf">O</span> &equals; A (identické zobrazení). </p>
+      <p class="just">Počet všech bodů ležících na křivce se pak nazývá řád křivky. Na našem cvičném tělese GF(223) je
+        můžeme najít prostým dosazením všech variací x, y do rovnice křivky. Zjistíme, že &num;GF(223) &equals; 196
+        (včetně nevlastního bodu v nekonečnu). Na větších tělesech už bychom museli použít nějaký pokročilejší
+        algoritmus (Schoof&hyphen;Elkies&hyphen;Atkin), popř. musíme věřit specifikaci. </p>
+      <p class="just">Prohlásíme&hyphen;li bod A za generátor a operaci sčítání bodů za grupovou operaci &#x2218;,
+        můžeme si vygenerovat cyklickou grupu řádu n. Řád grupy je dán počtem bodů (prvků grupy), které stihne generátor
+        opakovaným zdvojnásobováním (sčítáním se sebou samým) vygenerovat, než vyjde (n &times; A &equals; <span
+          class="inf">O</span>). </p>
       <p class="just">Tak jako těleso, i (Abelova) grupa <b>G</b> má nějaká svá pravidla: </p>
       <ul class="article">
         <li>Uzavřenost&colon;&emsp;a &#x2218; b &isin; <b>G</b> pro libovolné a, b &isin; <b>G</b></li>
-        <li>Asociativita&colon;&emsp;a &#x2218; (b &#x2218; c) &equals; (a &#x2218; b) &#x2218; c pro libovolné a, b, c &isin; <b>G</b></li>
+        <li>Asociativita&colon;&emsp;a &#x2218; (b &#x2218; c) &equals; (a &#x2218; b) &#x2218; c pro libovolné a, b, c
+          &isin; <b>G</b></li>
         <li>Komutativita&colon;&emsp;a &#x2218; b &equals; b &#x2218; a pro libovolné a, b &isin; <b>G</b></li>
-        <li>Existence neutrálního prvku&colon;&emsp;existuje <span class="inf">O</span> &isin; <b>G</b> takové, že pro všechna a &isin; <b>G</b> platí a &#x2218; <span class="inf">O</span> &equals; <span class="inf">O</span> &#x2218; a &equals; a</li>
-        <li>Existence inverzního prvku&colon;&emsp;pro všechna a &isin; <b>G</b> existuje a<sup>&minus;1</sup> &isin; <b>G</b> takové, že platí a &#x2218; a<sup>&minus;1</sup> &equals; a<sup>&minus;1</sup> &#x2218; a &equals; <span class="inf">O</span></li>
+        <li>Existence neutrálního prvku&colon;&emsp;existuje <span class="inf">O</span> &isin; <b>G</b> takové, že pro
+          všechna a &isin; <b>G</b> platí a &#x2218; <span class="inf">O</span> &equals; <span class="inf">O</span>
+          &#x2218; a &equals; a</li>
+        <li>Existence inverzního prvku&colon;&emsp;pro všechna a &isin; <b>G</b> existuje a<sup>&minus;1</sup> &isin;
+          <b>G</b> takové, že platí a &#x2218; a<sup>&minus;1</sup> &equals; a<sup>&minus;1</sup> &#x2218; a &equals;
+          <span class="inf">O</span>
+        </li>
       </ul>
-      <p class="just">Jak již bylo naznačeno, opakování grupové operace představuje ve své podstatě mocnění, byť je v aditivní notaci zapisováno jako násobení (n je kladné celé číslo): 
+      <p class="just">Jak již bylo naznačeno, opakování grupové operace představuje ve své podstatě mocnění, byť je v
+        aditivní notaci zapisováno jako násobení (n je kladné celé číslo):
         \begin{array}{l}
         \ n\times A\ =\underbrace{A\ \circ \ A\ ...\ A\ \circ \ A}_{\ n}\\
         \end{array}
@@ -129,9 +189,11 @@
         \begin{array}{l}
         \ A^{n}\ =\underbrace{A\ \circ \ A\ ...\ A\ \circ \ A}_{\ n}\\
         \end{array}
-        Poněvadž naše grupa bodů je aditivní (grupovou operací je sčítání bodů), držme se prvního zápisu a toto &bdquo;mocnění&ldquo; nazývejme násobení bodu skalárem.
+        Poněvadž naše grupa bodů je aditivní (grupovou operací je sčítání bodů), držme se prvního zápisu a toto
+        &bdquo;mocnění&ldquo; nazývejme násobení bodu skalárem.
       </p>
-      <p class="just">Na závěr si předvedeme efektivní implementaci násobení skalárem metodou double&hyphen;and&hyphen;add: </p>
+      <p class="just">Na závěr si předvedeme efektivní implementaci násobení skalárem metodou
+        double&hyphen;and&hyphen;add: </p>
       <p class="script">
         def nasobeni_skalarem(bod, skalar):<br>
         &emsp;n &equals; skalar<br>
@@ -139,31 +201,39 @@
         &emsp;vysledek &equals; 0 &emsp;<span class="rem"># neutrální prvek / bod v nekonečnu</span><br>
         &emsp;while n:<br>
         &emsp;&emsp;if n &amp; 1: &emsp;<span class="rem"># bitový součin</span><br>
-        &emsp;&emsp;&emsp;vysledek &plus;&equals; aktualni &emsp;<span class="rem"># přičtení aktuálního bodu k výslednému</span><br>
+        &emsp;&emsp;&emsp;vysledek &plus;&equals; aktualni &emsp;<span class="rem"># přičtení aktuálního bodu k
+          výslednému</span><br>
         &emsp;&emsp;aktualni += aktualni &emsp;<span class="rem"># zdvojnásobení aktuálního bodu</span><br>
         &emsp;&emsp;n &gt;&gt;&equals; 1 &emsp;<span class="rem"># bitový posuv vpravo</span><br>
         &emsp;return vysledek
       </p>
       <p class="just">
         <a href="https://btc-slovnik.cz/pages/crypto.html">Můžeme pokračovat na anatomii bitcoinové křivky.</a>
-      </p> 
+      </p>
     </article>
   </div>
   <footer>
     <div class="mail">
-      <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key" href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a class="key" id="lit" href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <button onclick="dropDonate()" class="dropbtn key">Diškrece</button></p>
+      <p>Sepsal <a class="warp" href="mailto:iwarp@pm.me">iWarp</a> (<a class="key"
+          href="https://btc-slovnik.cz/pages/stuff/publickey.txt">pubkey</a>).<br><a class="key" id="lit"
+          href="https://btc-slovnik.cz/pages/literature.html">Doporučená literatura</a> / <button onclick="dropDonate()"
+          class="dropbtn key">Donejt</button></p>
     </div>
     <div>
       <div class="tw">
-        <a class="tw" href="https://twitter.com/btcslovnik"><img src="https://btc-slovnik.cz/img/twitter.svg" height="30" alt="twitter" /></a>
-        <a class="license" href="https://btc-slovnik.cz/LICENSE"><img src="https://btc-slovnik.cz/img/public80x15.png" alt="CC0" /></a>
+        <a class="tw" href="https://twitter.com/btcslovnik"><img src="https://btc-slovnik.cz/img/twitter.svg"
+            height="30" alt="twitter" /></a>
+        <a class="license" href="https://btc-slovnik.cz/LICENSE"><img src="https://btc-slovnik.cz/img/public80x15.png"
+            alt="CC0" /></a>
       </div>
     </div>
     <div id="donate" class="dropdown">
       <p>LNURL pro příspěvek prostřednictvím Lightning network:</p>
       <img class="pointer" onclick="clipboardLNURL()" src="https://btc-slovnik.cz/img/lnurl.png" alt="LNURL" />
-      <p onclick="clipboardLNURL()" class="lnurl pointer">LNURL1DP68GURN8GHJ7URP0YHXYARRWDKX7ANWD94JUCM69AKXUATJD3CZ7CTSDYHHVVF0D3H82UNV9UESMDFXNL</p>
-      <a class="invoice" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Standardní LN invoice možno vygenerovat zde.</a>
+      <p onclick="clipboardLNURL()" class="lnurl pointer">
+        LNURL1DP68GURN8GHJ7URP0YHXYARRWDKX7ANWD94JUCM69AKXUATJD3CZ7CTSDYHHVVF0D3H82UNV9UESMDFXNL</p>
+      <a class="invoice" rel=”nofollow” href="https://btc-slovnik.cz/pages/donate.html">Standardní LN invoice možno
+        vygenerovat zde.</a>
     </div>
   </footer>
   <script src="https://btc-slovnik.cz/drop.js"></script>
