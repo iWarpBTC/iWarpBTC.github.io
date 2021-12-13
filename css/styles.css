@@ -16,6 +16,7 @@ div.container2 {
   margin-top: 40px;
   margin: 0 auto;
   text-align: center;
+  min-height: calc(100vh - 201px);
 }
 
 div.entry, div.entryln {
