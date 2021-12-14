@@ -6,6 +6,10 @@ body {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
+h1 > span {
+  color: #f7931a;
+}
+
 div.container {
     max-width: 900px;
     margin: 0 auto;
