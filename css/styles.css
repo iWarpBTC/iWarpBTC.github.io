@@ -19,8 +19,8 @@ div.container2 {
   min-height: calc(100vh - 201px);
 }
 
-div.entry, div.entryln {
-  padding: 5px 10px 5px 10px;
+div.entry, div.entryln, div.entrytrezor {
+  padding: 10px 10px 5px 10px;
   margin-bottom: 5px;
 }
 
@@ -34,6 +34,10 @@ div.entry:hover {
 
 div.entryln:hover {
   background-color: #CCABF7;
+}
+
+div.entrytrezor:hover {
+  background-color: #02F875;
 }
 
 p.raw, p.script {
@@ -52,6 +56,10 @@ p.raw {
 p.script > a {
   text-decoration: none;
   color: blue;
+}
+
+table {
+  margin-bottom: 15px;
 }
 
 td > div {

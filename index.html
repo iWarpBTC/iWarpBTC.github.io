@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Bitcoinový slovníček pro mírně pokročilé</title>
-    <meta property="og:title" content="Bitcoinový slovníček pro mírně pokročilé">
+    <title>Bitcoinový slovník naučný</title>
+    <meta property="og:title" content="Bitcoinový slovník naučný">
     <link rel="shortcut icon" href="https://btc-slovnik.cz/favicon.png">
     <link rel="stylesheet" href="./css/styles.css">
     <meta name="keywords"
-        content="bitcoin, slovník, transakce, blok, blockchain, satoshi, nakamoto, proof of work, mempool, utxo, asymetrická, kryptografie, seed">
+        content="bitcoin, slovník, bitcoinová peněženka, transakce, blok, blockchain, satoshi, nakamoto, proof of work, mempool, utxo, asymetrická, kryptografie, seed">
     <meta name="description"
         content="Český slovník nejdůležitějších pojmů týkajících se Bitcoinové sítě. Pro více informací lze pokračovat na stránky &bdquo;anatomií&ldquo; jednotlivých částí Bitcoinové sítě.">
     <meta name="og:description"
@@ -22,7 +22,7 @@
 
 <body onload="onload()">
     <header>
-        <h1><span style="color:#f7931a">Bitcoinový</span> slovníček pro mírně pokročilé</h1>
+        <h1><span style="color:#f7931a">Bitcoinový</span> slovník naučný</h1>
     </header>
     <div class="menu">
         <button onclick="dropIt()" class="dropbtn"><span class="dot"></span>Rozcestník anatomií<span class="dot"></span></button>
@@ -131,6 +131,10 @@
                 <p><a href="https://btc-slovnik.cz/pages/wallet.html">anatomie HD peněženky</a></p>
             </div>
         </div>
+        <div class="entrytrezor">
+            <h2 id="trezor">Trezor</h2><button class="copylink" onclick="clipboardLink('trezor')"><img src="https://btc-slovnik.cz/img/link.png" alt="zkopírovat odkaz"></button>
+            <p>První a doposud stále nejlepší (dle mínění autora) hardwarová HD peněženka. Původní model Trezor One byl československým týmem vývojářů představen v roce 2014. Druhý model Trezor T, umožnující mj. bezpečnější zadávání <a href="https://btc-slovnik.cz/#passphrase">passphrase</a>, spatřil světlo světa v roce 2018. </p>
+        </div>
         <div class="entry">
             <h2 id="seed-words">slova seedu</h2><button class="copylink" onclick="clipboardLink('seed-words')"><img src="https://btc-slovnik.cz/img/link.png" alt="zkopírovat odkaz"></button>
             <p>Počáteční entropie (zpravidla 128 až 256bitové číslo) vyjádřená &ndash; z důvodů čitelnosti a odolnosti vůči chybě při čtení/psaní &ndash; variací 12 až 24 slov z 2048 prvkového seznamu. Slova se mohou opakovat a případná chyba v psaní je odhalena &bdquo;kontrolním součtem&ldquo; (v posledním slově je zakódováno 4 až 8 bitů <a href="#hash">hashe</a> počáteční entropie). </p>
@@ -147,7 +151,7 @@
         </div>
         <div class="entry">
             <h2 id="passphrase">passphrase</h2><button class="copylink" onclick="clipboardLink('passphrase')"><img src="https://btc-slovnik.cz/img/link.png" alt="zkopírovat odkaz"></button>
-            <p>Někdy též zvaná 13./25. slovo seedu (ačkoliv se nemusí a neměla by se omezovat pouze na jedno slovo). Je&hyphen;li použita, podílí se (jako salt funkce PBKDF2) v kombinaci s počáteční entropií (vyjadřované nejčastěji řetězcem 12/24 slov seedu) na vygenerování seedu. Narozdíl od samotné počáteční entropie není uložena v peněžence a neměla by být uchovávána ani společně s fyzickou zálohou (slovy seedu). Pak passphrase poskytuje další vrstvu ochrany, neboť případná extrakce počáteční entropie z peněženky či nalezení zálohy (slov seedu) dává přístup pouze k prostředkům uloženým pod semínkem bez passphrase. Pokud zde utočník nějaké uspokojivé množství prostředků najde, dost možná již nebude mít potřebu odhalovat případnou passphrase (pod kterou však může být ukryt větší zbytek prostředků). </p>
+            <p>Někdy též poněkud nesprávně zvaná 13./25. slovo seedu, ačkoliv se nemusí a neměla by se omezovat pouze na jedno slovo. Je&hyphen;li použita, podílí se (jako salt funkce PBKDF2) v kombinaci s počáteční entropií (vyjadřované nejčastěji řetězcem 12/24 slov seedu) na vygenerování seedu. Narozdíl od samotné počáteční entropie není uložena v peněžence a neměla by být uchovávána ani společně s fyzickou zálohou (slovy seedu). Pak passphrase poskytuje další vrstvu ochrany, neboť případná extrakce počáteční entropie z peněženky či nalezení zálohy (slov seedu) dává přístup pouze k prostředkům uloženým pod seedem bez passphrase. Pokud zde utočník nějaké uspokojivé množství prostředků najde, dost možná již nebude mít potřebu odhalovat případnou passphrase (pod kterou však může být ukryt větší zbytek prostředků). </p>
             <div class="ana-link">
                 <p><a href="https://btc-slovnik.cz/pages/wallet.html">anatomie HD peněženky</a></p>
             </div>
