@@ -482,6 +482,10 @@ a#greg:hover ~ figcaption > span.greg{color: #f7931a;}
   }
 }
 
+figure { 
+  margin: 3%;
+}
+
 @media screen and (max-width: 400px) {
   h2.short, h2.price > span {
     font-size: small;
