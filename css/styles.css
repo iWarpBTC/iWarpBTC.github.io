@@ -355,6 +355,10 @@ div.ana-link > p > a:hover {
   color:black;
 }
 
+div.litlinks {
+  margin-bottom: 3.5em;
+}
+
 img[src*="../img/lol.png"] {
   margin-bottom: -1px;  
 }
