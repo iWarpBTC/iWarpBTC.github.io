@@ -22,3 +22,7 @@ window.onclick = function(event) {
     }
   }
 }
+
+function clipboardLNURL() {
+  navigator.clipboard.writeText('LNURL1DP68GURN8GHJ7MRWVF5HGUEWVF6XXUMVDAMXU6TT9E3H5TMVDE6HYMRS9ASHQ6F0WCCJ7MRWW4EXCTE3Q8K275')
+}
