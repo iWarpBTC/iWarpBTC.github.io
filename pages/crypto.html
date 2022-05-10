@@ -71,7 +71,7 @@
         <li><em>s &equals; k<sup>-1</sup> &times; (e &plus; r &times; d)</em> mod <em>n</em>.</li>
       </ul>
       <p class="just">Dvojice čísel <em>r, s</em> je naším podpisem zprávy <em>e</em>. Zakódováním čísel <em>r, s</em> do formátu DER (Distinguished Encoding Rules) získáme podpisový element použitelný v <a href="https://btc-slovnik.cz/pages/transaction.html#script">sigScriptu</a>. </p>
-      <p class="just">K ověření si musíme opět sestavit předobraz podepisované transkace a vypočíst jeho dvojnásobný SHA256 hash, tj. číslo <em>e</em>, dále nám již stačí z scriptSigu získaný podpis (dvojice r, s) a veřejný klíč. Ten je v scriptSigu zakódován ve formátu SEC (Standards of Efficient Cryptography) zpravidla pouze jako x&hyphen;ová souřadnice a příznak sudosti &ndash; v takovém případě dopočítáme y&hyphen;ovou souřadnici. </p>
+      <p class="just">K ověření si musíme opět sestavit předobraz podepisované transakce a vypočíst jeho dvojnásobný SHA256 hash, tj. číslo <em>e</em>, dále nám již stačí z scriptSigu získaný podpis (dvojice r, s) a veřejný klíč. Ten je v scriptSigu zakódován ve formátu SEC (Standards of Efficient Cryptography) zpravidla pouze jako x&hyphen;ová souřadnice a příznak sudosti &ndash; v takovém případě dopočítáme y&hyphen;ovou souřadnici. </p>
       <p class="just">Postup ověření je pak: </p>
       <ul class="article">
         <li><em>u &equals; e &times; s<sup>-1</sup></em> mod <em>n</em>.</li>
