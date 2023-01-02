@@ -399,7 +399,7 @@ figure > img, a.figimg > img {
   height: auto;
 }
 
-div#donate > img {
+img#lnurl {
   max-width: 418px;
   width: 100%;
   height: auto;
