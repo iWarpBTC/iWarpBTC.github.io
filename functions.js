@@ -1,18 +1,27 @@
-const api_url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=czk';
+const api_url_czk = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=czk';
+const api_url_usd = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd';
 
-async function getapi(url) {
+async function getapi() {
     
-  const response = await fetch(url);
+  const response = await fetch(api_url_czk);
   
   var data = await response.json();
   //console.log(data);
   if (response) {
-    show(data);
+    show_czk(data);
+  }
+
+  const response2 = await fetch(api_url_usd);
+  
+  var data = await response2.json();
+  //console.log(data);
+  if (response2) {
+    show_usd(data);
   }
 }
-getapi(api_url);
+getapi();
 
-function show(data) {
+function show_czk(data) {
   satsperczk = (1 / data.bitcoin.czk * 100000000).toFixed(0);
   czkpersats = (data.bitcoin.czk / 100000000).toFixed(0);
   h2 = document.createElement('h2');
@@ -41,6 +50,17 @@ function show(data) {
   img.alt = "cena";
   img.className = "pricetag";
   h2.insertBefore(img, h2.firstChild);
+}
+
+function show_usd(data) {
+  satsperusd = (1 / data.bitcoin.usd * 100000000).toFixed(0);
+  h2 = document.createElement('h2');
+  h2.className = 'mscwtime';
+  h2.innerHTML = `<span>${satsperusd}</span>`;
+
+  div = document.getElementById('moscowdiv');
+  before = document.getElementById('moscowtime');
+  div.insertBefore(h2, before);
 }
 
 function clipboardLink(val) {

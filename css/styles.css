@@ -205,7 +205,7 @@ h2 {
   display: inline;
 }
 
-h2.short, h2.price {
+h2.short, h2.price, h2.mscwtime {
   float: right;
   font-size: initial;
   font-style: italic;
@@ -217,8 +217,20 @@ h2.price {
   color: #f7931a;
 }
 
+h2.mscwtime {
+  color: gray;
+  margin-right: 20pt;
+}
+
 h2.price > span {
   vertical-align: super;
+}
+
+h2.mscwtime > span {
+  font-family: fantasy;
+  font-weight: bold;
+  font-style: normal;
+  font-size: x-large;
 }
 
 img.pricetag {
@@ -495,7 +507,7 @@ figure {
 }
 
 @media screen and (max-width: 400px) {
-  h2.short, h2.price > span {
+  h2.short, h2.price > span, h2.mscwtime > span {
     font-size: small;
   }
 }
