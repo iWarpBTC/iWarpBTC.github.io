@@ -1,0 +1,14 @@
+{
+    "extensions": [
+        {
+            "id": "cashu",
+            "repo": "https://github.com/cashubtc/lnbits-cashu",
+            "name": "Cashu Mint",
+            "version": "0.5",
+            "short_description": "Chaumian Ecash mint",
+            "icon": "https://raw.githubusercontent.com/cashubtc/lnbits-cashu/main/static/image/cashu.png",
+            "archive": "https://github.com/cashubtc/lnbits-cashu/archive/refs/tags/0.5.zip",
+            "hash": "5fe31db1de69966ed458768e148857ce337b27abc86d87ec00576d9b4223350f"
+        }
+    ]
+}
