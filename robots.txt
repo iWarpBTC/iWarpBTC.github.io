@@ -1,4 +1,3 @@
 User-agent: * 
 Disallow: https://btc-slovnik.cz/pages/stuff
-Disallow: https://btc-slovnik.cz/pages/donate.html
 Sitemap: https://btc-slovnik.cz/sitemap.xml

@@ -67,11 +67,3 @@ function clipboardLink(val) {
   text = 'https://btc-slovnik.cz/#'+val
   navigator.clipboard.writeText(text)
 } 
-
-function onload() {
-  const queryString = window.location.search;
-  if (queryString == '?a=lntip')
-  {
-    window.location.replace('https://btc-slovnik.cz/pages/donate.html?a=lntip');
-  }
-}
