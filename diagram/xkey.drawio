@@ -1,1 +1,85 @@
-<mxfile host="Electron" modified="2021-04-30T21:03:13.316Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.5.1 Chrome/89.0.4389.82 Electron/12.0.1 Safari/537.36" etag="nRKtUhUsZKnUFXr-3J_v" version="14.5.1" type="device"><diagram id="lM3cd9JXkfPZ450w8evN" name="Stránka-">7Vpbk6I4FP41PLaVCyB59DI7XTPVtVPVtbW9jxGCUiJhAVudX78nEJQAunaPOjd9ITlJTnLO9+XkJKVFJ6vtx4yniycZiNgiKNhadGoRgpHnwUdJdpXE81AlmGdRoDsdBM/RV1GP1NJ1FIjc6FhIGRdRagp9mSTCLwwZzzK5MbuFMjZnTflcdATPPo+70r+joFhoKXbZoeFRRPOFntojw6phxevO2pJ8wQO5aYjoB4tOMimLqrTaTkSsnFf7pRr3x5HW/cIykRTnDBg72Is//5WSKUm3L0/Bn8Gn9YNbaXnl8VobrBdb7GoPZHKdBEIpQRYdbxZRIZ5T7qvWDWAOskWxiqGGoRjzmYjH3F/Oy2ETGcsMmhKZQP9xKJNCQ4xdXa+7WISi8gfyrmna2leRFWLbEGlTPwq5EkW2gy661a7dXvNOVzcHEImjZYsGfniohVwTZ75XffAtFLR73+Bq2uNqN4Zpx3nKE8Pn7r9rxYrSPw8hX0UxWDGylEkuX6Wlhyi14Qu0z2UMa203lJ0n/UPWWSQyaErE5vi4lUxkXuJMKkhQuZq8hE+tBbvp9rBUKM3V9/FpNHl4fhw5eG8eeKuysOrRIRggWpgsyotMLkWbPFEct0Q8juYJVH3gCVhEx4ofEWzekW5YRUGgpumlrUnsM5irl4x7mHwJxjLHYCzGXcpi1ENZci3G2kcZm2aihvOz2DWAbjT8vDjfKEJhM0Jht4u3d0u4nXPgfhJ5ro7MO+TvgZyakBP0nSH3OpA/8nxxh/E0jG4rt9jnDA0Y7VvCiPtyixaGIglGKh9WYEDCkEe+iei5/gO3ZbsXED6gAYKJteQfBdKAIq8WTLcatqq2a9a+iCwCyxUhKuE2Kl70OlS5Uubo2kGTqtSKjuKYQ37ji1Pe0hm6CIzUvwt3A86+VLGWZSLmRfRqXhj6MNYzfJERLHnPJsrogLSOfpcNhsRUVJmlxzbT/Ja6duJb6mKNHzX1Fjybi6Kjt+Th3hffQM2+JOInouY30Iz96DQjiA089zI0U7oYbdDMPotmgDvfNbqlqkN+3Aobd63Axr0XCpXSy9J42Jcc6bvPOCp8WKYihYDTqnEnup+jp85R3Al7PTeevi1xvYOUdWBGPvHcwWBAMSGzO6JvQ7Qvwb0tonsburca5Yfjzy6Nhw5iPnSgkPvmgEn9pNJ+DeEOZmFIHMo4gehou7YQ3AbgbA8Rl9lDNAvEbBbYDqI2dma2y8UMO8zh3MbC37/OJLO8eqRBjDvDEIfcHQoMY1EYeiJgvhMwG4487AUsZDbhDCaGD2XY5xh5AUe2j+kw5Lhxc6sccL+6nZXzDwcmtWnP8wxznFtS+4ZZ/1EP/iDZjYdaWa/X8vq5eU1bEUUtRVfOl8kZL/INUPVG+AURdesL0KUR7Si6MqL1m08D0UXMXxNrQq3RtLpJLDO5UvWxqi9j3TSxLW96D8ynA7PX2q9Oz1vMTTMO2pdx/I47uI2M/c4N7ND/UXTtDUzugFZqnAshihH+zpB2UyczJi/LaEzhMo+siWMxJgoVjtn46/oekE8H5A5L+iKye9OI/LY3yF93A7cjcju3ff/+vViWDNXDX2Kq7oc/FtEP/wE=</diagram></mxfile>
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15" version="25.0.3">
+  <diagram id="lM3cd9JXkfPZ450w8evN" name="Stránka-">
+    <mxGraphModel dx="1181" dy="487" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="B518lKUp2D2pxXMdOdJu-6" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontSize=16;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="420" y="80" width="250" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-3" value="&lt;span style=&quot;font-family: &amp;#34;consolas&amp;#34; , &amp;#34;courier new&amp;#34; , monospace ; font-size: 16px&quot;&gt;HMAC-SHA512&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontStyle=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="495" y="110" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-4" value="&lt;pre&gt;Key&lt;/pre&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=16;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="410" y="160" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-5" value="&lt;pre&gt;Message&lt;/pre&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=16;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="430" y="200" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-8" value="Hash" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=16;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="620" y="170" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-13" value="" style="endArrow=classic;html=1;fontSize=16;fontColor=#000000;entryX=-0.013;entryY=0.308;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="B518lKUp2D2pxXMdOdJu-17" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="393.25" y="169.72" as="sourcePoint" />
+            <mxPoint x="420" y="169.79999999999993" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-14" value="" style="endArrow=classic;html=1;fontSize=16;fontColor=#000000;entryX=-0.013;entryY=0.308;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="B518lKUp2D2pxXMdOdJu-19" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="393.25" y="209.86" as="sourcePoint" />
+            <mxPoint x="420" y="209.93999999999994" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="413.25" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-17" value="&quot;Bitcoin seed&quot;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=16;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="125" y="160" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-19" value="0c286...3122b" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=16;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="125" y="200" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-21" value="&lt;font style=&quot;font-size: 12px&quot; face=&quot;Courier&quot;&gt;a519ff2539a2939464eea4ded480269470bdebbd4503415b46aeb1595aa41ec9 &amp;nbsp;a57f1fa67e1bde0ff8ed9c5d9401318d9f942a951942a391ca108da04c137fa1&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=16;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="67.5" y="310" width="955" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-23" value="" style="endArrow=classic;html=1;fontSize=16;fontColor=#000000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="800" y="180" as="sourcePoint" />
+            <mxPoint x="800" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-26" value="" style="endArrow=none;html=1;fontSize=16;fontColor=#000000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="672" y="180" as="sourcePoint" />
+            <mxPoint x="800" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-30" value="hlavní soukromý klíč" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=16;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="80" y="350" width="450" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-31" value="" style="endArrow=none;html=1;fontSize=16;fontColor=#000000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="80" y="340" as="sourcePoint" />
+            <mxPoint x="540" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-32" value="" style="endArrow=none;html=1;fontSize=16;fontColor=#000000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="552" y="340" as="sourcePoint" />
+            <mxPoint x="1012" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-33" value="hlavní kód řetězu" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=16;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="550" y="350" width="460" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="B518lKUp2D2pxXMdOdJu-34" value="" style="endArrow=none;html=1;fontSize=16;fontColor=#000000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="80" y="300" as="sourcePoint" />
+            <mxPoint x="1010" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
