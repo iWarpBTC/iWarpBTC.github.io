@@ -1,0 +1,57 @@
+{
+  "url": "https://btc-slovnik.cz",
+  "title": "Bitcoinový slovník naučný",
+  "tagline": "Český výkladový slovník pojmů Bitcoinové sítě.",
+  "description": "Český slovník nejdůležitějších pojmů týkajících se Bitcoinové sítě. Pro více informací lze pokračovat na stránky „anatomií“ jednotlivých částí Bitcoinové sítě.",
+  "keywords": "bitcoin, slovník, bitcoinová peněženka, trezor, transakce, blok, blockchain, satoshi, nakamoto, proof of work, mempool, utxo, asymetrická, kryptografie, seed",
+  "lang": "cs",
+  "languages": [
+    {
+      "code": "cs",
+      "label": "Česky",
+      "prefix": ""
+    }
+  ],
+  "author": {
+    "name": "iWarp",
+    "email": "iwarp@pm.me"
+  },
+  "social": {
+    "x": "https://x.com/iwarpbtc",
+    "xHandle": "@btcslovnik",
+    "mastodon": "https://bitcoinhackers.org/@iwarp"
+  },
+  "lnurl": "LNURL1DP68GURN8GHJ7MRWVF5HGUEWVF6XXUMVDAMXU6TT9E3H5TMVDE6HYMRS9ASHQ6F0WCCJ7MRWW4EXCTE3Q8K275",
+  "ogImage": "/img/rabbithole.png",
+  "repo": "https://github.com/iWarpBTC/iWarpBTC.github.io",
+  "anatomies": [
+    {
+      "href": "/pages/transaction.html",
+      "text": "Anatomie transakce a skriptu"
+    },
+    {
+      "href": "/pages/block.html",
+      "text": "Anatomie bloku a těžby"
+    },
+    {
+      "href": "/pages/math.html",
+      "text": "Anatomie tělesa a grupy"
+    },
+    {
+      "href": "/pages/crypto.html",
+      "text": "Anatomie křivky a podpisu"
+    },
+    {
+      "href": "/pages/wallet.html",
+      "text": "Anatomie HD peněženky"
+    },
+    {
+      "href": "/pages/lightning.html",
+      "text": "Úvod do Lightning network"
+    },
+    {
+      "href": "/pages/taproot.html",
+      "text": "Úvod do Taprootu"
+    }
+  ]
+}

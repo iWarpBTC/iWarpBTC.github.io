@@ -1,0 +1,24 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+pages:
+  - { url: "/", priority: "1.00" }
+  - { url: "/pages/transaction.html", priority: "0.80" }
+  - { url: "/pages/block.html", priority: "0.80" }
+  - { url: "/pages/wallet.html", priority: "0.80" }
+  - { url: "/pages/crypto.html", priority: "0.80" }
+  - { url: "/pages/lightning.html", priority: "0.80" }
+  - { url: "/pages/math.html", priority: "0.40" }
+  - { url: "/pages/taproot.html", priority: "0.40" }
+  - { url: "/pages/literature.html", priority: "0.20" }
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for item in pages %}
+  <url>
+    <loc>{{ item.url | absoluteUrl(site) }}</loc>
+    <lastmod>{{ lastmod[item.url] }}</lastmod>
+    <priority>{{ item.priority }}</priority>
+  </url>
+{%- endfor %}
+</urlset>

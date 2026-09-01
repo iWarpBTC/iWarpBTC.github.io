@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="{{ lang or site.lang }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title or site.title }}</title>
+
+    {# Applied before first paint so a stored dark preference never flashes light. #}
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.dataset.theme = t;
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <meta name="description" content="{{ description or site.description }}" />
+    <meta name="keywords" content="{{ keywords or site.keywords }}" />
+    <link rel="canonical" href="{{ (canonical or page.url) | absoluteUrl(site) }}" />
+    {% for l in site.languages %}
+    <link rel="alternate" hreflang="{{ l.code }}" href="{{ (l.prefix + '/') | absoluteUrl(site) }}" />
+    {% endfor %}
+    <link rel="alternate" hreflang="x-default" href="{{ '/' | absoluteUrl(site) }}" />
+
+    <meta property="og:title" content="{{ title or site.title }}" />
+    <meta property="og:description" content="{{ description or site.description }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ (canonical or page.url) | absoluteUrl(site) }}" />
+    <meta property="og:image" content="{{ site.ogImage | absoluteUrl(site) }}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="{{ site.social.xHandle }}" />
+    <meta name="twitter:image" content="{{ site.ogImage | absoluteUrl(site) }}" />
+    {% for href in pageStyles %}
+    <link rel="stylesheet" href="{{ href }}" />
+    {% endfor %}
+  </head>
+
+  <body>
+    <a class="skip-link" href="#slovnik">Přeskočit na slovník</a>
+
+    <header class="masthead">
+      <div class="masthead__inner">
+        <div class="masthead__brand">
+          <p class="wordmark">
+            <a href="{{ '/' | localeUrl(site, lang) }}"
+              ><span class="bitcoin">Bitcoinový</span> slovník naučný</a
+            >
+          </p>
+          <p class="tagline">{{ site.tagline }}</p>
+        </div>
+
+        <nav class="nav" aria-label="Hlavní navigace">
+          <a class="nav__link" href="{{ '/' | localeUrl(site, lang) }}#slovnik">Slovník</a>
+          <details class="nav__more">
+            <summary class="nav__link">Anatomie</summary>
+            <ul class="nav__panel">
+              {% for item in site.anatomies %}
+              <li><a href="{{ item.href | localeUrl(site, lang) }}">{{ item.text }}</a></li>
+              {% endfor %}
+            </ul>
+          </details>
+          <a class="nav__link" href="{{ '/pages/literature.html' | localeUrl(site, lang) }}">Literatura</a>
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Přepnout světlý a tmavý režim"
+            title="Přepnout světlý a tmavý režim"
+          >
+            <span class="theme-toggle__icon" aria-hidden="true"></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    {{ content | safe }}
+
+    <footer>
+      <div class="mail">
+        <p>
+          Sepsal <a class="warp" href="mailto:{{ site.author.email }}">{{ site.author.name }}</a> (<a
+            class="key"
+            href="/pages/stuff/publickey.txt"
+            >🔑 pubkey</a
+          >)<br /><a class="key" id="lit" href="{{ '/pages/literature.html' | localeUrl(site, lang) }}"
+            >📚 Oblíbená literatura</a
+          >
+          |
+          <button onclick="dropDonate()" class="dropbtn key">⚡ Donejt</button>
+        </p>
+      </div>
+      <div>
+        <div class="tw">
+          <a class="tw" href="{{ site.social.x }}"
+            ><img src="/img/twitter.svg" height="30" alt="twitter"
+          /></a>
+          <a class="license" href="/LICENSE.txt"
+            ><img src="/img/public80x15.png" alt="CC0"
+          /></a>
+        </div>
+      </div>
+      <div id="donate" class="dropdown">
+        <p>Přispěj mi na pivo přes LNURL:</p>
+        <a href="lightning:{{ site.lnurl }}">
+          <img
+            id="lnurl"
+            class="pointer"
+            onclick="clipboardLNURL()"
+            src="/img/lnurl.png"
+            alt="LNURL"
+          />
+        </a>
+        <p onclick="clipboardLNURL()" class="lnurl pointer">{{ site.lnurl }}</p>
+      </div>
+      <a rel="me" style="display: none" href="{{ site.social.mastodon }}">Mastodon</a>
+    </footer>
+
+    <script src="/drop.js"></script>
+    <script src="/js/theme.js"></script>
+    {% for src in pageScripts %}
+    <script src="{{ src }}" defer></script>
+    {% endfor %}
+  </body>
+</html>

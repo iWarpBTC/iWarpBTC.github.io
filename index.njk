@@ -1,0 +1,163 @@
+---
+layout: layouts/base.njk
+lang: cs
+canonical: /
+pageScripts:
+  - /js/glossary.js
+  - /functions.js
+---
+{%- set terms = collections.terms -%}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "@id": "{{ '/' | absoluteUrl(site) }}",
+    "name": {{ site.title | jsonify | safe }},
+    "description": {{ site.description | jsonify | safe }},
+    "inLanguage": "{{ lang }}",
+    "hasDefinedTerm": [
+      {%- for term in terms %}
+      {
+        "@type": "DefinedTerm",
+        "@id": "{{ ('/#' + term.data.id) | absoluteUrl(site) }}",
+        "name": {{ term.data.term | jsonify | safe }},
+        "inDefinedTermSet": "{{ '/' | absoluteUrl(site) }}"
+      }{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    ]
+  }
+</script>
+
+<div class="toolbar" data-search-toolbar>
+  <div class="toolbar__inner">
+    <form class="search" role="search" onsubmit="return false">
+      <label class="search__label" for="search">Hledat pojem</label>
+      <input
+        class="search__input"
+        id="search"
+        type="search"
+        name="q"
+        placeholder="Hledat pojem…  (napište třeba „penezenka“)"
+        autocomplete="off"
+        autocapitalize="none"
+        spellcheck="false"
+        data-search-input
+      />
+      <button class="search__clear" type="button" data-search-clear hidden aria-label="Vymazat hledání">
+        ✕
+      </button>
+    </form>
+    <p class="search__status" data-search-status role="status" aria-live="polite"></p>
+  </div>
+</div>
+
+<main class="layout" id="slovnik">
+  <aside class="rail" aria-labelledby="rejstrik-nadpis">
+    {# Open by default so the index is usable without JS; glossary.js collapses it on narrow viewports. #}
+    <details class="rail__disclosure" data-rail open>
+      <summary class="rail__summary" id="rejstrik-nadpis">Seznam pojmů <span class="rail__count">{{ terms.length }}</span></summary>
+
+      <div class="rail__views">
+        <div class="rail__tabs" role="tablist" aria-label="Řazení rejstříku">
+          <button
+            class="rail__tab"
+            type="button"
+            role="tab"
+            id="tab-temata"
+            aria-controls="panel-temata"
+            aria-selected="true"
+            data-rail-tab="temata"
+          >
+            Podle témat
+          </button>
+          <button
+            class="rail__tab"
+            type="button"
+            role="tab"
+            id="tab-abecedne"
+            aria-controls="panel-abecedne"
+            aria-selected="false"
+            data-rail-tab="abecedne"
+          >
+            Abecedně
+          </button>
+        </div>
+
+        <div class="rail__panel" role="tabpanel" id="panel-temata" aria-labelledby="tab-temata" data-rail-panel="temata">
+          {%- for group in collections.termsByTopic %}
+          <section class="rail__group">
+            <h2 class="rail__groupTitle">{{ group.label }}</h2>
+            <ul class="rail__list">
+              {%- for term in group.terms %}
+              <li><a href="#{{ term.data.id }}">{{ term.data.term | safe }}</a></li>
+              {%- endfor %}
+            </ul>
+          </section>
+          {%- endfor %}
+        </div>
+
+        <div
+          class="rail__panel"
+          role="tabpanel"
+          id="panel-abecedne"
+          aria-labelledby="tab-abecedne"
+          data-rail-panel="abecedne"
+          hidden
+        >
+          {%- for bucket in collections.termsAlphabeticalGrouped %}
+          <section class="rail__group">
+            <h2 class="rail__groupTitle rail__letter">{{ bucket.letter }}</h2>
+            <ul class="rail__list">
+              {%- for term in bucket.terms %}
+              <li><a href="#{{ term.data.id }}">{{ term.data.term | safe }}</a></li>
+              {%- endfor %}
+            </ul>
+          </section>
+          {%- endfor %}
+        </div>
+      </div>
+    </details>
+  </aside>
+
+  <div class="entries" data-entries>
+    {%- for term in terms %}
+    {%- set t = term.data %}
+    <article
+      class="{{ t.entryClass }}"
+      {% if t.injectId %}id="{{ t.injectId }}"{% endif %}
+      data-term
+      data-id="{{ t.id }}"
+      data-topic="{{ t.topic }}"
+    >
+      <h2 id="{{ t.id }}">{{ t.term | safe }}</h2>
+      <button
+        class="copylink"
+        type="button"
+        data-copy="{{ t.id }}"
+        aria-label="Zkopírovat odkaz na pojem {{ t.term | plain }}"
+        title="Zkopírovat odkaz"
+      >
+        <img src="/img/link.png" alt="" aria-hidden="true" />
+      </button>
+      {%- if t.short %}
+      <p class="short">{{ t.short | safe }}</p>
+      {%- endif %}
+      <div class="entry__body">
+        {{ term.templateContent | safe }}
+      </div>
+      {%- if t.links %}
+      <div class="ana-link">
+        {%- for link in t.links %}
+        <p><a href="{{ link.href | localeUrl(site, lang) }}">{{ link.text | safe }}</a></p>
+        {%- endfor %}
+      </div>
+      {%- endif %}
+    </article>
+    {%- endfor %}
+
+    <p class="entries__empty" data-search-empty hidden>
+      Nic takového tu není. Zkuste jiný výraz — hledá se i bez diakritiky.
+    </p>
+  </div>
+</main>

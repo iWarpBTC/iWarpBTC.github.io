@@ -1,3 +1,4 @@
-User-agent: * 
-Disallow: https://btc-slovnik.cz/pages/stuff
+User-agent: *
+Disallow: /pages/stuff/
+
 Sitemap: https://btc-slovnik.cz/sitemap.xml
