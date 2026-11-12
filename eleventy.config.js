@@ -1,10 +1,11 @@
-import { parseFragment } from 'parse5';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { parse, parseFragment } from 'parse5';
+import { inlineSvg } from './tools/lib/inline-svg.mjs';
 import { TOPICS } from './tools/lib/topics.mjs';
 
 export default function (eleventyConfig) {
-  // Only .njk and .md are templates. Every .html in the repo — the eight anatomy
-  // pages — is passthrough-copied verbatim so its hand-tuned hex dumps and
-  // absolute URLs stay exactly as they are.
+  // Glossary and anatomy sources are templates; anatomy permalinks retain .html URLs.
   eleventyConfig.setTemplateFormats(['njk', 'md']);
 
   // Eleventy copies nothing by default. functions.js and drop.js are referenced by
@@ -14,7 +15,11 @@ export default function (eleventyConfig) {
     'css',
     'js',
     'img',
-    'pages',
+    // NOT 'pages': its .njk files are templates. These two must still be
+    // copied by hand — pages/javascript.js drives the hex-dump highlighting on
+    // block and transaction, and would 404 silently if it were dropped.
+    'pages/javascript.js',
+    'pages/stuff',
     'python',
     'stuff',
     'temp',
@@ -69,6 +74,37 @@ export default function (eleventyConfig) {
     return buckets;
   });
 
+  /**
+   * Reverse of the 31 `ana-link`s: for each anatomy page, the glossary terms that
+   * point at it. This is the navigation direction the site never had, and it needs
+   * no new hand-maintained data. Sources are the frontmatter `links` plus any
+   * /pages/*.html link written inline in a term body.
+   */
+  eleventyConfig.addCollection('anatomyBacklinks', (api) => {
+    const map = {};
+    // Keyed on the page, not the link: a third of the ana-links carry a fragment
+    // (/pages/block.html#mining), and keying on the raw href would split each page
+    // into two buckets and silently drop half its backlinks.
+    const add = (href, term) => {
+      const page = href.split('#')[0];
+      const list = (map[page] ||= []);
+      if (!list.some((t) => t.id === term.data.id)) {
+        list.push({ id: term.data.id, term: term.data.term, order: term.data.order });
+      }
+    };
+    for (const term of api.getFilteredByTag('terms')) {
+      for (const link of term.data.links || []) {
+        if (link.href?.startsWith('/pages/')) add(link.href, term);
+      }
+      const raw = typeof term.rawInput === 'string' ? term.rawInput : '';
+      for (const match of raw.matchAll(/href="(\/pages\/[a-z]+\.html)(?:#[^"]*)?"/g)) {
+        add(match[1], term);
+      }
+    }
+    for (const href of Object.keys(map)) map[href].sort((a, b) => a.order - b.order);
+    return map;
+  });
+
   eleventyConfig.addGlobalData('topics', TOPICS);
 
   /**
@@ -109,6 +145,65 @@ export default function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter('jsonify', (value) => JSON.stringify(value));
+
+  /**
+   * Inline every draw.io diagram into the page.
+   *
+   * A transform rather than a shortcode: it covers the glossary and the converted
+   * anatomy pages with one implementation and needs no edits to the content files.
+   * Runs on rendered HTML, so the <img> has already been produced by whichever
+   * template wrote it.
+   *
+   * twitter.svg is excluded — it is a monochrome UI icon already handled by the
+   * --icon-invert token, not a diagram.
+   */
+  const ICON_SVGS = new Set(['/img/twitter.svg']);
+  // The maths glyph is set inline in a sentence, not presented as a figure, so it
+  // gets the same colour mapping but inline-text sizing.
+  const GLYPH_SVGS = new Set(['/img/zet.svg']);
+
+  eleventyConfig.addTransform('inline-diagrams', function (content) {
+    if (!(this.page?.outputPath || '').endsWith('.html')) return content;
+    if (!content.includes('.svg')) return content;
+
+    const doc = parse(content, { sourceCodeLocationInfo: true });
+    const images = [];
+    (function walk(node) {
+      if (node.tagName === 'img') images.push(node);
+      for (const child of node.childNodes || []) walk(child);
+    })(doc);
+
+    const attrOf = (node, name) => node.attrs?.find((a) => a.name === name)?.value;
+    const replacements = [];
+
+    for (const img of images) {
+      const src = attrOf(img, 'src');
+      if (!src?.startsWith('/img/') || !src.endsWith('.svg')) continue;
+      if (ICON_SVGS.has(src)) continue;
+
+      const file = join('img', src.slice('/img/'.length));
+      if (!existsSync(file)) continue;
+
+      replacements.push({
+        start: img.sourceCodeLocation.startOffset,
+        end: img.sourceCodeLocation.endOffset,
+        html: inlineSvg(file, {
+          src,
+          alt: attrOf(img, 'alt') || '',
+          className: GLYPH_SVGS.has(src) ? 'glyph' : 'diagram',
+        }),
+      });
+    }
+
+    if (!replacements.length) return content;
+
+    // Splice back to front so earlier offsets stay valid.
+    let out = content;
+    for (const item of replacements.sort((a, b) => b.start - a.start)) {
+      out = out.slice(0, item.start) + item.html + out.slice(item.end);
+    }
+    return out;
+  });
 
   return {
     dir: {

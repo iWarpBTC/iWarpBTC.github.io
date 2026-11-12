@@ -7,16 +7,26 @@
 import { execFileSync } from 'node:child_process';
 import { statSync, existsSync } from 'node:fs';
 
-function gitDate(path) {
+function gitLog(args) {
   try {
-    const out = execFileSync('git', ['log', '-1', '--format=%cI', '--', path], {
+    return execFileSync('git', ['log', ...args], {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'ignore'],
     }).trim();
-    return out || null;
   } catch {
-    return null;
+    return '';
   }
+}
+
+function gitDate(path) {
+  // --follow traces the .html -> .njk rename of the anatomy pages, so their dates
+  // are not truncated to the conversion commit. Its pathspec rules are stricter
+  // than plain log's, so fall back rather than losing the date.
+  return (
+    gitLog(['--follow', '-1', '--format=%cI', '--', path]) ||
+    gitLog(['-1', '--format=%cI', '--', path]) ||
+    null
+  );
 }
 
 function isShallow() {
@@ -51,13 +61,13 @@ export default function () {
   const termFiles = ['content/cs'];
   return {
     '/': dateFor([...termFiles, 'index.njk', '_includes/layouts/base.njk']),
-    '/pages/transaction.html': dateFor(['pages/transaction.html']),
-    '/pages/block.html': dateFor(['pages/block.html']),
-    '/pages/wallet.html': dateFor(['pages/wallet.html']),
-    '/pages/crypto.html': dateFor(['pages/crypto.html']),
-    '/pages/math.html': dateFor(['pages/math.html']),
-    '/pages/taproot.html': dateFor(['pages/taproot.html']),
-    '/pages/lightning.html': dateFor(['pages/lightning.html']),
-    '/pages/literature.html': dateFor(['pages/literature.html']),
+    '/pages/transaction.html': dateFor(['pages/transaction.njk']),
+    '/pages/block.html': dateFor(['pages/block.njk']),
+    '/pages/wallet.html': dateFor(['pages/wallet.njk']),
+    '/pages/crypto.html': dateFor(['pages/crypto.njk']),
+    '/pages/math.html': dateFor(['pages/math.njk']),
+    '/pages/taproot.html': dateFor(['pages/taproot.njk']),
+    '/pages/lightning.html': dateFor(['pages/lightning.njk']),
+    '/pages/literature.html': dateFor(['pages/literature.njk']),
   };
 }

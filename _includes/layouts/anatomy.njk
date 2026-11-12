@@ -1,0 +1,47 @@
+---
+layout: layouts/base.njk
+---
+<main class="container2 anatomy" id="main-content">
+  <nav class="crumbs" aria-label="Drobečková navigace">
+    <a href="{{ '/' | localeUrl(site, lang) }}">Slovník</a>
+    <span class="crumbs__sep" aria-hidden="true">›</span>
+    <span class="crumbs__current" aria-current="page">{{ title }}</span>
+  </nav>
+
+  {# The body keeps its original heading structure, where the page title is an h2.
+     This gives the document the h1 it would otherwise lack, without duplicating
+     the title on screen or touching the preserved content. #}
+  <h1 class="visually-hidden">{{ title }}</h1>
+
+  {{ content | safe }}
+
+  <div class="pagefoot">
+    {%- set related = collections.anatomyBacklinks[page.url] %}
+    {%- if related and related.length %}
+    <section class="pagefoot__block">
+      <h2 class="pagefoot__title">Související pojmy</h2>
+      <ul class="pagefoot__list">
+        {%- for term in related %}
+        <li>
+          <a href="{{ '/' | localeUrl(site, lang) }}#{{ term.id }}">{{ term.term | safe }}</a>
+        </li>
+        {%- endfor %}
+      </ul>
+    </section>
+    {%- endif %}
+
+    <section class="pagefoot__block">
+      <h2 class="pagefoot__title">Další anatomie</h2>
+      <ul class="pagefoot__list">
+        {%- for item in site.anatomies %}
+        {%- if item.href != page.url %}
+        <li><a href="{{ item.href | localeUrl(site, lang) }}">{{ item.text }}</a></li>
+        {%- endif %}
+        {%- endfor %}
+        <li>
+          <a href="{{ '/pages/literature.html' | localeUrl(site, lang) }}">Oblíbená literatura</a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</main>

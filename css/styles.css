@@ -9,8 +9,7 @@
    6. Index (rail)    topic / A-Z term index
    7. Entries         glossary terms
    8. Shared          figures, tables, code — used by the glossary AND by the
-                      hand-written anatomy pages in /pages, which are served
-                      verbatim. Every selector below this line still exists for
+                      anatomy pages rendered through shared layouts. Every selector below this line still exists for
                       their benefit; do not rename them.
    9. Footer
    ========================================================================== */
@@ -20,17 +19,17 @@
 :root {
   color-scheme: light;
 
-  --bg: #fbfaf8;
-  --surface: #ffffff;
-  --surface-2: #f2f0ec;
-  --fg: #1b1b1d;
-  --muted: #5d6068;
-  --faint: #8b8e96;
-  --rule: #e2ded6;
-  --rule-strong: #c9c4ba;
+  --bg: #f7f4ed;
+  --surface: #f7f4ed;
+  --surface-2: #efede2;
+  --fg: #272b24;
+  --muted: #686c60;
+  --faint: #707366;
+  --rule: #d7d7c9;
+  --rule-strong: #bfc2b3;
 
-  --accent: #f7931a;
-  --accent-ink: #8a4b00;
+  --accent: #a94b22;
+  --accent-ink: #a94b22;
   --accent-soft: rgba(247, 147, 26, 0.09);
   --ln: #6b3fd4;
   --ln-soft: rgba(107, 63, 212, 0.09);
@@ -46,11 +45,18 @@
   --c-gray: #5e5e5e;
   --c-cyan: #00707e;
   --c-cyan-bg: transparent;
-  --c-black: #14151a;
+  --c-black: #191b18;
 
-  /* Diagrams are black line art drawn for a light ground; several SVGs are fully
-     transparent, so they need their own backdrop rather than the page's. */
-  --figure-bg: #ffffff;
+  /* Inlined draw.io diagrams. The palette maps onto these, and because custom
+     properties resolve at use time these four aliases follow the active theme
+     without being redeclared in the dark blocks. */
+  --dg-ink: var(--fg);
+  --dg-paper: var(--bg);
+  --dg-alert: var(--c-red);
+  --dg-muted: var(--muted);
+
+  /* Rasters that cannot be recoloured keep a light plate; see the img[src$=] rules. */
+  --figure-bg: #f7f4ed;
   /* Monochrome UI icons (copy link, twitter, CC0 badge) are black PNG/SVG. */
   --icon-invert: none;
 
@@ -60,6 +66,7 @@
     "Roboto Mono", Menlo, Consolas, "Andale Mono", monospace;
 
   --measure: 68ch;
+  --measure-wide: 62rem;
   --step-0: 1.0625rem;
   --step-1: 1.1875rem;
   --step-2: 1.4rem;
@@ -81,17 +88,17 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg: #14151a;
-  --surface: #1a1c22;
-  --surface-2: #22252d;
-  --fg: #e7e6e3;
-  --muted: #a2a6b0;
-  --faint: #7d818b;
-  --rule: #2c2f38;
-  --rule-strong: #3d414c;
+  --bg: #191b18;
+  --surface: #20231e;
+  --surface-2: #232620;
+  --fg: #e8e5dc;
+  --muted: #acaea2;
+  --faint: #acaea2;
+  --rule: #3b4035;
+  --rule-strong: #555c4c;
 
-  --accent: #f7931a;
-  --accent-ink: #f7ab4d;
+  --accent: #e5a078;
+  --accent-ink: #e5a078;
   --accent-soft: rgba(247, 147, 26, 0.12);
   --ln: #b795f5;
   --ln-soft: rgba(183, 149, 245, 0.12);
@@ -106,7 +113,7 @@
   --c-gray: #b3b3b3;
   --c-cyan: #4fd4e4;
   --c-cyan-bg: transparent;
-  --c-black: #e7e6e3;
+  --c-black: #e8e5dc;
 
   /* Dimmed rather than pure white so a diagram is not a floodlight at night. */
   --figure-bg: #e9ecef;
@@ -117,17 +124,17 @@
   :root:not([data-theme="light"]) {
     color-scheme: dark;
 
-    --bg: #14151a;
-    --surface: #1a1c22;
-    --surface-2: #22252d;
-    --fg: #e7e6e3;
-    --muted: #a2a6b0;
-    --faint: #7d818b;
-    --rule: #2c2f38;
-    --rule-strong: #3d414c;
+    --bg: #191b18;
+    --surface: #20231e;
+    --surface-2: #232620;
+    --fg: #e8e5dc;
+    --muted: #acaea2;
+    --faint: #acaea2;
+    --rule: #3b4035;
+    --rule-strong: #555c4c;
 
-    --accent: #f7931a;
-    --accent-ink: #f7ab4d;
+    --accent: #e5a078;
+    --accent-ink: #e5a078;
     --accent-soft: rgba(247, 147, 26, 0.12);
     --ln: #b795f5;
     --ln-soft: rgba(183, 149, 245, 0.12);
@@ -142,7 +149,7 @@
     --c-gray: #b3b3b3;
     --c-cyan: #4fd4e4;
     --c-cyan-bg: transparent;
-    --c-black: #e7e6e3;
+    --c-black: #e8e5dc;
 
     /* Dimmed rather than pure white so a diagram is not a floodlight at night. */
     --figure-bg: #e9ecef;
@@ -344,29 +351,7 @@ body > header {
   color: var(--accent-ink);
 }
 
-.theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  background: none;
-  color: var(--muted);
-  cursor: pointer;
-  font: inherit;
-}
 
-.theme-toggle:hover {
-  background: var(--surface-2);
-  color: var(--fg);
-}
-
-.theme-toggle__icon::before {
-  content: "◐";
-  font-size: 1.25rem;
-}
 
 /* 4. Toolbar ============================================================ */
 
@@ -604,9 +589,20 @@ body > header {
 
 /* 7. Entries ============================================================ */
 
+/* The column is wide; the *text* is what gets the 68ch measure. Capping the
+   container instead is what let a 761px diagram overflow it by 132px. */
 .entries {
-  max-width: var(--measure);
+  max-width: var(--measure-wide);
   min-width: 0;
+}
+
+.entry > h2,
+.entryln > h2,
+.entry__body > p,
+.entry__body > h3,
+.entry__body > ul,
+.entry__body > ol {
+  max-width: var(--measure);
 }
 
 .entry,
@@ -664,7 +660,10 @@ body > header {
 
 .entry__body {
   order: 4;
-  flex: 1 0 100%;
+  flex: 1 1 100%;
+  /* Both are needed: without them a table of unbreakable addresses sets a
+     min-content width that the entry cannot shrink below, and it overflows. */
+  min-width: 0;
 }
 
 .entry__body > p {
@@ -732,40 +731,6 @@ button.copylink.is-copied {
   background-color: var(--accent-soft);
 }
 
-/* Injected by functions.js: the live price on #satoshi, Moscow time on #moscowtime.
-   Both are inserted before the term heading, so `order` — not DOM position —
-   decides where they land. */
-h2.price,
-h2.mscwtime {
-  order: 2;
-  margin: 0 0 0 auto;
-  font-size: var(--step--1);
-  font-weight: 500;
-  font-style: italic;
-  color: var(--muted);
-  text-align: right;
-}
-
-h2.price {
-  color: var(--accent-ink);
-}
-
-h2.price > span {
-  vertical-align: baseline;
-}
-
-h2.mscwtime > span {
-  font-weight: 700;
-  font-style: normal;
-  font-size: var(--step-2);
-  color: var(--fg);
-}
-
-img.pricetag {
-  padding-right: 5px;
-  vertical-align: text-bottom;
-}
-
 div.ana-link {
   order: 5;
   flex: 1 0 100%;
@@ -809,15 +774,14 @@ div.ana-link > p > a:hover {
 }
 
 /* 8. Shared components ==================================================
-   Also used by the eight hand-written anatomy pages in /pages, which are
-   published verbatim. Renaming anything below breaks them silently. */
+   Also used by the eight anatomy pages rendered through shared layouts. Renaming anything below breaks them silently. */
 
 div.container {
   max-width: 900px;
   margin: 0 auto;
 }
 
-div.container2 {
+.container2 {
   flex: 1 0 auto;
   max-width: 1200px;
   margin: 0 auto;
@@ -825,16 +789,16 @@ div.container2 {
   text-align: center;
 }
 
-div.container2 article {
+.container2 article {
   margin-bottom: var(--space-7);
 }
 
-div.container2 p {
+.container2 p {
   margin-left: 20px;
   margin-right: 20px;
 }
 
-div.container2 h3 {
+.container2 h3 {
   padding-left: 20px;
 }
 
@@ -856,6 +820,7 @@ div.h2 {
 
 p.just {
   text-align: justify;
+  hyphens: auto;
   max-width: 80ch;
   margin-inline: auto;
 }
@@ -885,37 +850,72 @@ p.script > a {
   color: var(--focus);
 }
 
+/* Applied by pages/javascript.js when a script opcode is hovered. */
+.is-highlighted {
+  color: var(--focus);
+  background-color: var(--accent-soft);
+}
+
 div.fig {
   display: flex;
   justify-content: center;
+  min-width: 0;
   margin: var(--space-5) 0;
 }
 
+/* Addresses, txids and hashes are unbreakable strings; let them wrap rather than
+   set a min-content width the column cannot honour. */
+td.long,
+td.long2 {
+  overflow-wrap: anywhere;
+}
+
+.entry__body table {
+  max-width: 100%;
+}
+
+/* Was display:table with a width:100% child — a circular constraint with no
+   definite width, so the image fell back to its intrinsic size and dragged the
+   whole entry wider. Block + fit-content sizes from the content and can never
+   exceed the column. */
 figure {
-  display: table;
-  margin: 0 3%;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
   text-align: center;
   border: solid 1px var(--rule-strong);
-  background: var(--figure-bg);
+  background: transparent;
 }
 
 figcaption {
-  display: table-caption;
-  caption-side: bottom;
   background-color: var(--surface-2);
   color: var(--muted);
-  margin-top: -1px;
   padding: var(--space-2) var(--space-3);
   font-size: var(--step--1);
-  border: solid 1px var(--rule-strong);
-  border-top: none;
+  border-top: solid 1px var(--rule-strong);
+  text-align: center;
 }
 
 figure > img,
-a.figimg > img {
-  width: 100%;
+a.figimg > img,
+figure > a > img {
+  display: block;
+  max-width: 100%;
   height: auto;
+}
+
+/* Colour plots and scannable codes: drawn for a light ground and impossible to
+   recolour. Inverting ECadd.png would turn its green secant magenta, and the QR
+   codes must stay dark-on-light to scan at all — so they keep a light plate in
+   every theme instead. */
+img[src$="/ECadd.png"],
+img[src$="/ECover223.png"],
+img[src$="/secp256k1.png"],
+img[src$="/QR.PNG"],
+img[src$="/lnurl.png"] {
   background: var(--figure-bg);
+  padding: var(--space-2);
 }
 
 table {
@@ -942,7 +942,7 @@ th {
   padding-top: var(--space-3);
   padding-bottom: var(--space-3);
   background-color: var(--accent);
-  color: #14151a;
+  color: #191b18;
 }
 
 td > div {
@@ -1201,6 +1201,220 @@ img[src*="../img/lol.png"] {
   margin-bottom: -1px;
 }
 
+/* Inlined diagrams ====================================================== */
+
+/* No plate: the palette resolves against the page tokens, so ink and shape fills
+   follow the theme directly. */
+svg.diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  background: transparent;
+}
+
+figure > svg.diagram,
+a.figimg > svg.diagram {
+  /* Diagrams are authored at 761-1213px. Let them use the column they are given
+     rather than the 68ch text measure, but never more than their natural size. */
+  width: min(100%, var(--dg-natural, 100%));
+}
+
+/* The maths glyph is set inside a sentence, not presented as a figure. */
+svg.glyph {
+  display: inline-block;
+  width: auto;
+  height: 0.85em;
+  vertical-align: baseline;
+}
+
+/* draw.io computes label boxes in pixels; the global border-box reset would
+   change how that padding resolves inside the inlined foreignObject HTML. */
+.diagram foreignObject div,
+.glyph foreignObject div {
+  box-sizing: content-box;
+}
+
+.diagram-open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  color: inherit;
+  font: inherit;
+}
+
+.diagram-open:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* Full-screen diagram viewer -------------------------------------------- */
+
+dialog.lightbox {
+  width: 100vw;
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+dialog.lightbox::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.lightbox__bar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+}
+
+.lightbox__caption {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--step--1);
+}
+
+.lightbox__close {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 3px;
+  background: var(--surface);
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+}
+
+.lightbox__close:hover {
+  background: var(--surface-2);
+}
+
+.lightbox__stage {
+  overflow: auto;
+  /* Let the diagram exceed the viewport so labels stay at readable size and the
+     reader pans or pinches instead of squinting at a 4x downscale. */
+  touch-action: pinch-zoom;
+  height: calc(100dvh - 3.5rem);
+  padding: var(--space-4);
+}
+
+.lightbox__stage svg {
+  display: block;
+  width: auto;
+  height: auto;
+  min-width: min(var(--dg-natural, 900px), 1400px);
+  margin: 0 auto;
+}
+
+/* Page furniture ======================================================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.crumbs {
+  margin-bottom: var(--space-5);
+  text-align: left;
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+.crumbs a {
+  color: var(--muted);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.crumbs a:hover {
+  color: var(--fg);
+}
+
+.crumbs__sep {
+  margin: 0 var(--space-2);
+  color: var(--faint);
+}
+
+.crumbs__current {
+  color: var(--fg);
+}
+
+.pagefoot {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--rule);
+  text-align: left;
+}
+
+@media (min-width: 700px) {
+  .pagefoot {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.pagefoot__title {
+  margin: 0 0 var(--space-3);
+  font-size: var(--step--2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+}
+
+.pagefoot__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+
+.pagefoot__list a {
+  display: inline-block;
+  padding: var(--space-1) 0;
+  color: var(--muted);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.pagefoot__list a:hover {
+  color: var(--accent-ink);
+}
+
+.nav__panel a[aria-current="page"],
+.nav__link[aria-current="page"] {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.nav__panel a[aria-current="page"]::before {
+  content: "▸ ";
+  color: var(--accent);
+}
+
 /* 9. Footer ============================================================= */
 
 footer {
@@ -1320,10 +1534,7 @@ div#donate.show {
     margin-left: calc(var(--space-3) * -1);
   }
 
-  /* Keep the theme toggle on the nav row instead of letting it wrap alone. */
-  .nav .theme-toggle {
-    margin-left: auto;
-  }
+
 
   .layout {
     padding: var(--space-5) var(--space-3) var(--space-6);
@@ -1332,6 +1543,12 @@ div#donate.show {
   .entry,
   .entryln {
     padding: var(--space-3) var(--space-2) var(--space-3) var(--space-4);
+  }
+
+  /* Justification at phone width opens rivers of whitespace between words;
+     Czech text with few break opportunities makes it worse. */
+  p.just {
+    text-align: left;
   }
 
   a.area {
@@ -1343,12 +1560,10 @@ div#donate.show {
   }
 
   td.long {
-    word-wrap: break-word;
     max-width: 200px;
   }
 
   td.long2 {
-    word-wrap: break-word;
     max-width: 100px;
   }
 
@@ -1368,3 +1583,58 @@ div#donate.show {
     opacity: 0.6;
   }
 }
+
+/* Folio: shared editorial typography and page furniture. */
+:root { --font-serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; --step-0: 1.125rem; }
+body { line-height: 1.75; }
+.masthead__inner { padding-block: 1.5rem; align-items: center; }
+.wordmark { font-family: var(--font-serif); font-weight: 500; font-size: 1.65rem; }
+.tagline { font-size: .8rem; }
+.nav__link { font-size: .8rem; font-variant: normal; letter-spacing: .02em; }
+.nav__panel { box-shadow: none; }
+.folio-intro { width: 100%; max-width: 1240px; margin: auto; padding: 2.5rem 1rem 2rem; display: flex; justify-content: space-between; align-items: end; gap: 2rem; }
+.folio-intro__title { font: 400 clamp(2.3rem, 5vw, 4rem)/1.12 var(--font-serif); letter-spacing: -.04em; margin: 0; }
+.folio-intro__title em { color: var(--accent-ink); }
+.folio-intro__note { max-width: 19rem; padding-top: 1rem; border-top: 1px solid var(--rule-strong); color: var(--muted); font-size: .85rem; }
+.toolbar { background: var(--bg); }
+.search__input { background: transparent; border: 0; border-bottom: 1px solid var(--rule-strong); border-radius: 0; font-size: .95rem; }
+.search__input:focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+.search__input::placeholder { color: var(--muted); }
+.rail__disclosure { border: 0; background: transparent; }
+.rail__summary, .rail__views { padding-inline: .5rem; }
+.rail__groupTitle { font-size: .7rem; letter-spacing: .12em; margin-block: 1.2rem .4rem; }
+.rail__list a { font-size: .85rem; }
+.entry, .entryln { padding: 1.75rem 1rem 2rem; margin: 0; border-top: 1px solid var(--rule); }
+.entry:hover, .entryln:hover { background: transparent; border-left-color: transparent; }
+.entry.is-target, .entryln.is-target, .entry:focus-within, .entryln:focus-within { background: var(--entry-tint); border-left-color: var(--entry-accent); }
+.entry > h2, .entryln > h2 { font: 400 clamp(1.9rem, 3vw, 2.7rem)/1.2 var(--font-serif); letter-spacing: -.025em; }
+.entry > .short, .entryln > .short { font: normal .78rem/1.6 var(--font-mono); margin: .2rem 0 .6rem; }
+.entry__body, .anatomy > p, .anatomy > ul, .anatomy > ol, .anatomy .just { font-family: var(--font-serif); font-size: 1.1875rem; line-height: 1.8; }
+.entry__body a, .anatomy p a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: .18em; }
+.anatomy h2, .anatomy h3 { font-family: var(--font-serif); font-weight: 500; letter-spacing: -.02em; }
+.anatomy > h2 { font-size: clamp(2rem, 4vw, 3rem); }
+.anatomy p.just { text-align: left; max-width: 70ch; }
+.anatomy .pagefoot__title { font-family: var(--font-sans); font-size: .8rem; letter-spacing: .08em; }
+.entry__body table, .anatomy table { display: block; width: max-content; max-width: 100%; overflow-x: auto; font-family: var(--font-sans); }
+th { background: var(--surface-2); color: var(--fg); }
+pre { max-width: 100%; overflow-x: auto; }
+figcaption, .ana-link, .crumbs, .pagefoot { font-family: var(--font-sans); }
+footer { background: var(--bg); font-size: .85rem; }
+@media(min-width:1100px) { .layout { grid-template-columns: 14rem minmax(0,1fr); gap: 3.5rem; } }
+@media(max-width:700px) { .folio-intro { padding: 1.5rem 1rem; } .folio-intro__note { display: none; } .entry, .entryln { padding: 1.5rem .5rem; } .entry__body, .anatomy > p, .anatomy > ul, .anatomy > ol, .anatomy .just { font-size: 1.0625rem; } }
+
+/* Compact appearance control and live glossary marginalia. */
+.theme-switch { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--rule); border-radius: 999px; margin-left: .5rem; }
+.theme-switch button { display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; }
+.theme-switch button:hover { background: var(--surface-2); color: var(--fg); }
+.theme-switch button[aria-pressed="true"] { color: var(--accent-ink); background: var(--accent-soft); }
+.theme-switch svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.live-quote { order: 2; margin: 0 0 0 auto; align-self: center; display: flex; align-items: center; gap: .6rem; color: var(--muted); font: .75rem/1.4 var(--font-sans); }
+.live-quote__value { color: var(--accent-ink); font: 500 1.25rem/1.2 var(--font-serif); font-variant-numeric: tabular-nums; }
+.live-quote__label { max-width: 7rem; }
+.moscow-display { display: flex; gap: 3px; color: var(--accent-ink); padding: 10px 12px; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface-2); }
+.moscow-digit { width: 16px; height: 29px; }
+.moscow-digit.pair-start { margin-left: 6px; }
+.moscow-digit polygon { fill: currentColor; opacity: .065; }
+.moscow-digit polygon.lit { opacity: 1; }
+@media(max-width:700px) { .theme-switch { margin-left: auto; } .live-quote { gap: .4rem; flex-wrap: wrap; } .live-quote__value { font-size: 1.1rem; } .moscow-display { padding: 7px 9px; } }

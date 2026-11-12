@@ -7,7 +7,7 @@ výkladového slovníku pojmů Bitcoinové sítě.
 
 Každý pojem je jeden soubor v `content/cs/`. Název souboru je zároveň jeho
 **trvalý odkaz** (`content/cs/utxo.md` → `https://btc-slovnik.cz/#utxo`), takže
-existující soubory se nepřejmenovávají — odkazy na ně už kolují po internetu.
+existující soubory se nepřejmenovávají — odkazy na ně už mohou kolovat po internetu.
 
 ```markdown
 ---
@@ -39,12 +39,14 @@ budoucí anglická verze na `/en/` neodkáže čtenáře zpátky do české.
 npm install
 npm run serve     # http://localhost:8080 s automatickým obnovením
 npm run build     # vygeneruje _site/
-npm run verify    # porovná _site/index.html s původní ručně psanou verzí
+npm run verify    # ověří slovník i osm anatomií proti původní verzi
 ```
 
-`npm run verify` je pojistka migrace: parsuje `git show html:index.html`
-a vygenerovanou stránku a kontroluje kotvy, id, třídy, strukturu DOM, odkazy,
-obrázky, HTML entity i text každého hesla. Pouští se i v CI.
+`npm run verify` porovnává 49 hesel a osm anatomií s původní HTML verzí
+v commitu `e1274345c1f4bf3ac30c1374c65780530de44281`. Kontroluje obsah,
+kotvy, odkazy, strukturu a obrazové zdroje včetně převodu diagramů na inline SVG.
+Kontrola běží také v CI a vyžaduje dostupnou git historii. Jiný základ lze zadat
+pomocí `npm run verify -- --ref <revize>`.
 
 ## Struktura
 
@@ -57,16 +59,29 @@ sitemap.njk          generovaná sitemap.xml
 _includes/layouts/   společná HTML kostra
 css/styles.css       vzhled včetně tmavého režimu (token vrstva nahoře)
 js/glossary.js       vyhledávání, rejstřík, kopírování odkazů
-js/theme.js          přepínač světlý/tmavý režim
+js/theme.js          ikonová volba systém / světlý / tmavý
+js/diagram.js        celoobrazovkový prohlížeč diagramů
 functions.js         živý kurz a moskevský čas (CoinGecko)
 drop.js              rozbalovací menu a LNURL
-pages/*.html         „anatomie“ — ručně psané stránky, publikují se beze změny
+pages/*.njk          anatomie se společnou šablonou a původními .html URL
 tools/               migrační a kontrolní skripty
 ```
 
-Stránky v `pages/` se **negenerují** — kopírují se tak, jak jsou, včetně svých
-absolutních odkazů a ručně laděných hexdumpů. Sdílejí ale `css/styles.css`, takže
-změna vzhledu se jich týká; po úpravách stylů je dobré je projít.
+Stránky v `pages/` se generují přes `_includes/layouts/anatomy.njk` a sdílejí
+navigaci, vzhled a patičku se slovníkem. Původní `.html` URL zůstávají zachované.
+Diagramy se při sestavení vkládají jako SVG s barvami navázanými na aktivní motiv;
+kliknutí otevře zvětšený diagram. Barevně kódované hexdumpy zachovávají své legendy.
+
+## Vzhled Folio
+
+Světlá papírová a tmavá grafitová paleta jsou definované v `css/styles.css`.
+Volba motivu se ukládá do `localStorage`; systémový režim sleduje nastavení OS.
+Preference se aplikuje v hlavičce před vykreslením stránky. Typografie používá
+systémové serifové a bezserifové náhrady; vlastní fontové soubory zatím nejsou součástí repozitáře.
+
+Kurz u satoshi a sedmisegmentový moskevský čas získávají data jedním požadavkem
+na CoinGecko. Při nedostupnosti API se údaje nezobrazí. Prototypy v
+`design-proposals/` jsou lokální, ignorované Gitem a nejsou součástí sestavení.
 
 ## Nasazení
 

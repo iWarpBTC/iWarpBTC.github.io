@@ -20,7 +20,10 @@
     <link rel="shortcut icon" href="/favicon.png" />
     <link rel="stylesheet" href="/css/styles.css" />
     <meta name="description" content="{{ description or site.description }}" />
-    <meta name="keywords" content="{{ keywords or site.keywords }}" />
+    {%- set metaKeywords = keywords or (site.keywords if page.url == '/' else none) %}
+    {%- if metaKeywords %}
+    <meta name="keywords" content="{{ metaKeywords }}" />
+    {%- endif %}
     <link rel="canonical" href="{{ (canonical or page.url) | absoluteUrl(site) }}" />
     {% for l in site.languages %}
     <link rel="alternate" hreflang="{{ l.code }}" href="{{ (l.prefix + '/') | absoluteUrl(site) }}" />
@@ -41,39 +44,62 @@
   </head>
 
   <body>
-    <a class="skip-link" href="#slovnik">Přeskočit na slovník</a>
+    <a class="skip-link" href="{% if page.url == '/' %}#slovnik{% else %}#main-content{% endif %}">Přeskočit na obsah</a>
 
     <header class="masthead">
       <div class="masthead__inner">
         <div class="masthead__brand">
+          {#- The site name is the document's h1 only on the glossary itself; inner
+              pages carry their own h1, so here it degrades to a paragraph. #}
+          {%- set isHome = page.url == '/' %}
+          {%- if isHome %}
+          <h1 class="wordmark">
+            <a href="{{ '/' | localeUrl(site, lang) }}"
+              ><span class="bitcoin">Bitcoinový</span> slovník naučný</a
+            >
+          </h1>
+          {%- else %}
           <p class="wordmark">
             <a href="{{ '/' | localeUrl(site, lang) }}"
               ><span class="bitcoin">Bitcoinový</span> slovník naučný</a
             >
           </p>
+          {%- endif %}
           <p class="tagline">{{ site.tagline }}</p>
         </div>
 
         <nav class="nav" aria-label="Hlavní navigace">
-          <a class="nav__link" href="{{ '/' | localeUrl(site, lang) }}#slovnik">Slovník</a>
+          <a
+            class="nav__link"
+            href="{{ '/' | localeUrl(site, lang) }}#slovnik"
+            {% if isHome %}aria-current="page"{% endif %}
+            >Slovník</a
+          >
           <details class="nav__more">
             <summary class="nav__link">Anatomie</summary>
             <ul class="nav__panel">
-              {% for item in site.anatomies %}
-              <li><a href="{{ item.href | localeUrl(site, lang) }}">{{ item.text }}</a></li>
-              {% endfor %}
+              {%- for item in site.anatomies %}
+              <li>
+                <a
+                  href="{{ item.href | localeUrl(site, lang) }}"
+                  {% if item.href == page.url %}aria-current="page"{% endif %}
+                  >{{ item.text }}</a
+                >
+              </li>
+              {%- endfor %}
             </ul>
           </details>
-          <a class="nav__link" href="{{ '/pages/literature.html' | localeUrl(site, lang) }}">Literatura</a>
-          <button
-            class="theme-toggle"
-            type="button"
-            data-theme-toggle
-            aria-label="Přepnout světlý a tmavý režim"
-            title="Přepnout světlý a tmavý režim"
+          <a
+            class="nav__link"
+            href="{{ '/pages/literature.html' | localeUrl(site, lang) }}"
+            {% if page.url == '/pages/literature.html' %}aria-current="page"{% endif %}
+            >Literatura</a
           >
-            <span class="theme-toggle__icon" aria-hidden="true"></span>
-          </button>
+          <div class="theme-switch" role="group" aria-label="Barevný režim">
+            <button type="button" data-theme-choice="system" aria-label="Podle systému" title="Podle systému" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></button>
+            <button type="button" data-theme-choice="light" aria-label="Světlý režim" title="Světlý režim" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button>
+            <button type="button" data-theme-choice="dark" aria-label="Tmavý režim" title="Tmavý režim" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 15.5A9 9 0 0 1 8.5 4a9 9 0 1 0 11.5 11.5Z"/></svg></button>
+          </div>
         </nav>
       </div>
     </header>
@@ -122,6 +148,7 @@
 
     <script src="/drop.js"></script>
     <script src="/js/theme.js"></script>
+    <script src="/js/diagram.js" defer></script>
     {% for src in pageScripts %}
     <script src="{{ src }}" defer></script>
     {% endfor %}

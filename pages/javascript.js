@@ -1,10 +1,12 @@
-function chanclrblue(id) {
-    document.getElementById(id).style.color = "blue";
-    document.getElementById(id).style.backgroundColor = "#D4D4D4";
-  }  
+// Toggle a class instead of writing literal colours. The old version restored
+  // `color: black`, which is invisible on the dark theme's code background.
+  function chanclrblue(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.add("is-highlighted");
+  }
   function chanclrblack(id) {
-    document.getElementById(id).style.color = "black";
-    document.getElementById(id).style.backgroundColor = "initial";
+    var el = document.getElementById(id);
+    if (el) el.classList.remove("is-highlighted");
   } 
   function biggerbox(id) {
     el =  document.getElementById(id);
