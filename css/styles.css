@@ -1638,3 +1638,73 @@ footer { background: var(--bg); font-size: .85rem; }
 .moscow-digit polygon { fill: currentColor; opacity: .065; }
 .moscow-digit polygon.lit { opacity: 1; }
 @media(max-width:700px) { .theme-switch { margin-left: auto; } .live-quote { gap: .4rem; flex-wrap: wrap; } .live-quote__value { font-size: 1.1rem; } .moscow-display { padding: 7px 9px; } }
+
+/* Long-form Folio pages: a reading column inside a wider technical canvas. */
+.container2.anatomy {
+  width: 100%;
+  max-width: 1120px;
+  padding: 2rem 1.5rem 4rem;
+  margin: 0 auto;
+  text-align: left;
+}
+.anatomy .crumbs { font-size: .8rem; margin-bottom: 2.5rem; }
+.anatomy > article { margin-bottom: 4rem; min-width: 0; }
+.anatomy > article + article { border-top: 1px solid var(--rule); padding-top: 2.5rem; }
+.anatomy article > header,
+.anatomy article > h3,
+.anatomy article > p:not(.raw):not(.script),
+.anatomy article > ul,
+.anatomy article > ol { max-width: 70ch; margin-inline: auto; }
+.anatomy article > header { font-size: 1.1875rem; margin-bottom: 2rem; }
+.anatomy article > header h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; margin: 0 0 1rem; }
+.anatomy article p.header { margin: 0; text-align: left; font: .75rem/1.5 var(--font-sans); color: var(--muted); }
+.anatomy article > h3 { padding: 0; margin-block: 2rem 1rem; font-size: 1.5rem; }
+.anatomy article > p:not(.raw):not(.script):not(.header),
+.anatomy article > ul,
+.anatomy article > ol { font: 1.1875rem/1.8 var(--font-serif); overflow-wrap: anywhere; }
+.anatomy article > ul, .anatomy article > ol { padding-left: 1.5rem; }
+.anatomy article li + li { margin-top: .5rem; }
+.anatomy p.raw, .anatomy p.script { margin: 1.75rem 0; padding: 1.25rem; font-family: var(--font-mono); font-size: .85rem; line-height: 1.9; }
+.anatomy .fig { margin: 2rem 0; }
+.anatomy figure { border-color: var(--rule); }
+.anatomy figcaption { padding: .75rem 1rem; font-size: .8rem; line-height: 1.6; }
+.anatomy table { margin: 1.5rem auto 2rem; text-align: left; font-size: .85rem; line-height: 1.6; }
+.anatomy th { font-weight: 600; }
+.anatomy .undernotes { padding-top: 1rem; margin-top: 2rem; }
+.anatomy .undernotes p { font: .85rem/1.7 var(--font-sans); color: var(--muted); }
+.anatomy .pagefoot { margin-top: 3rem; padding-top: 1.75rem; }
+.anatomy .pagefoot__list { display: grid; gap: .5rem; }
+.anatomy .pagefoot__list a { font-size: .85rem; }
+
+/* Literature reads like a bibliography, with a shared baseline for each entry. */
+.reading-header { margin: 0 0 3rem; }
+.anatomy .reading-kicker { margin: 0 0 1rem; font: .7rem/1.5 var(--font-sans); text-transform: uppercase; letter-spacing: .16em; color: var(--accent-ink); }
+.reading-header h1 { font: 400 clamp(2.3rem, 5vw, 3.6rem)/1.15 var(--font-serif); letter-spacing: -.035em; margin: 0 0 1rem; }
+.anatomy .reading-deck { margin: 0; max-width: 60ch; font: 1.05rem/1.7 var(--font-serif); color: var(--muted); }
+.literature .litlinks { display: grid; grid-template-columns: 11rem minmax(0, 1fr); column-gap: 3rem; margin-bottom: 2.75rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+.literature .litlinks h2 { grid-column: 1; grid-row: 1 / span 20; margin: .65rem 0; font-size: 1.65rem; }
+.literature .litlinks p { grid-column: 2; margin: 0; border-bottom: 1px solid var(--rule); }
+.literature .litlinks a.lit { display: block; padding: .85rem 0; font: 1.125rem/1.5 var(--font-serif); color: var(--fg); text-decoration: none; overflow-wrap: anywhere; }
+.literature .litlinks a.lit:hover { color: var(--accent-ink); text-decoration: underline; text-underline-offset: .2em; }
+@media (max-width: 700px) {
+  .container2.anatomy { padding: 1.5rem 1rem 2.5rem; }
+  .anatomy .crumbs { margin-bottom: 2rem; }
+  .anatomy article > p:not(.raw):not(.script):not(.header), .anatomy article > ul, .anatomy article > ol { font-size: 1.0625rem; }
+  .anatomy p.raw, .anatomy p.script { padding: .75rem; font-size: .75rem; }
+  .anatomy table { font-size: .75rem; }
+  .literature .litlinks { display: block; padding-top: 1.25rem; }
+  .literature .litlinks h2 { margin-bottom: 1rem; }
+  .literature .litlinks a.lit { font-size: 1.0625rem; }
+}
+/* Anatomy prose shares the full technical canvas with code and diagrams. */
+.anatomy article > header,
+.anatomy article > h3,
+.anatomy article > p:not(.raw):not(.script),
+.anatomy article > ul,
+.anatomy article > ol { max-width: 100%; }
+
+.anatomy:not(.literature) .fig figure { width: 100%; }
+.anatomy:not(.literature) .fig svg.diagram,
+.anatomy:not(.literature) .fig a.figimg { display: block; width: 100%; }
+.anatomy:not(.literature) .fig figure > img,
+.anatomy:not(.literature) .fig figure > a > img { width: 100%; height: auto; }

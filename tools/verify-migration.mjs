@@ -281,6 +281,7 @@ function verifyGlossary() {
 /** The layout adds furniture around the preserved body; exclude it. */
 const isFurniture = (node) =>
   hasClass(node, 'crumbs') ||
+  hasClass(node, 'reading-header') ||
   hasClass(node, 'pagefoot') ||
   (node.tagName === 'h1' && hasClass(node, 'visually-hidden'));
 

@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 ---
-<main class="container2 anatomy" id="main-content">
+<main class="container2 anatomy{% if slug == 'literature' %} literature{% endif %}" id="main-content">
   <nav class="crumbs" aria-label="Drobečková navigace">
     <a href="{{ '/' | localeUrl(site, lang) }}">Slovník</a>
     <span class="crumbs__sep" aria-hidden="true">›</span>
@@ -11,10 +11,19 @@ layout: layouts/base.njk
   {# The body keeps its original heading structure, where the page title is an h2.
      This gives the document the h1 it would otherwise lack, without duplicating
      the title on screen or touching the preserved content. #}
+  {% if slug == 'literature' %}
+  <header class="reading-header">
+    <p class="reading-kicker">Knihovna</p>
+    <h1>{{ title }}</h1>
+    <p class="reading-deck">{{ description }}</p>
+  </header>
+  {% else %}
   <h1 class="visually-hidden">{{ title }}</h1>
+  {% endif %}
 
   {{ content | safe }}
 
+  {% if slug != 'literature' %}
   <div class="pagefoot">
     {%- set related = collections.anatomyBacklinks[page.url] %}
     {%- if related and related.length %}
@@ -38,10 +47,11 @@ layout: layouts/base.njk
         <li><a href="{{ item.href | localeUrl(site, lang) }}">{{ item.text }}</a></li>
         {%- endif %}
         {%- endfor %}
-        <li>
-          <a href="{{ '/pages/literature.html' | localeUrl(site, lang) }}">Oblíbená literatura</a>
-        </li>
+        {% if slug != 'literature' %}
+        <li><a href="{{ '/pages/literature.html' | localeUrl(site, lang) }}">Oblíbená literatura</a></li>
+        {% endif %}
       </ul>
     </section>
   </div>
+  {% endif %}
 </main>
