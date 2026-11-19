@@ -1417,49 +1417,59 @@ dialog.lightbox::backdrop {
 
 /* 9. Footer ============================================================= */
 
-footer {
+.site-footer {
   flex: 0 0 auto;
   margin-top: auto;
-  text-align: center;
-  background-color: var(--surface-2);
+  padding: var(--space-7) var(--space-4) var(--space-5);
   color: var(--muted);
-  padding: var(--space-5) var(--space-4);
-  border-top: solid 1px var(--rule);
+  background: var(--bg);
+  font-family: var(--font-sans);
+  font-size: var(--step--2);
 }
 
-footer p {
-  margin: 0 0 var(--space-3);
+.site-footer__inner {
+  max-width: 1208px;
+  margin-inline: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2) var(--space-6);
+  flex-wrap: wrap;
 }
 
-div.tw {
-  margin-bottom: 10px;
+.site-footer__credits {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
 }
 
-a.license:hover,
-a.tw:hover {
-  opacity: 0.5;
-}
-
-a.license {
-  padding-left: 25px;
-}
-
-a.license > img {
-  padding-bottom: 5px;
-  filter: var(--icon-invert);
-}
-
-a.tw > img {
-  filter: var(--icon-invert);
-}
-
-a.warp {
-  color: var(--accent-ink);
+.site-footer a {
+  color: inherit;
   text-decoration: none;
+  text-underline-offset: .2em;
 }
 
-a.warp:hover {
+.site-footer a:hover {
+  color: var(--fg);
   text-decoration: underline;
+}
+
+.site-footer__feedback {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+}
+
+@media (max-width: 600px) {
+  .site-footer__inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 
 a.key,
@@ -1619,7 +1629,6 @@ body { line-height: 1.75; }
 th { background: var(--surface-2); color: var(--fg); }
 pre { max-width: 100%; overflow-x: auto; }
 figcaption, .ana-link, .crumbs, .pagefoot { font-family: var(--font-sans); }
-footer { background: var(--bg); font-size: .85rem; }
 @media(min-width:1100px) { .layout { grid-template-columns: 14rem minmax(0,1fr); gap: 3.5rem; } }
 @media(max-width:700px) { .folio-intro { padding: 1.5rem 1rem; } .folio-intro__note { display: none; } .entry, .entryln { padding: 1.5rem .5rem; } .entry__body, .anatomy > p, .anatomy > ul, .anatomy > ol, .anatomy .just { font-size: 1.0625rem; } }
 

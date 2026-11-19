@@ -3,7 +3,7 @@ layout: layouts/anatomy.njk
 permalink: /pages/block.html
 title: Anatomie bloku a těžby
 description: Popisuje strukturu bloku a obligatorní mincetvorné transakce. Dále vysvětluje princip těžby bitcoinu.
-keywords: bitcoin, block, blok, blockchain, tranasakce, bip 9, těžba, mining, difficulty, target, genesis, bip 34, OP_RETURN
+keywords: bitcoin, block, blok, blockchain, transakce, bip 9, těžba, mining, difficulty, target, genesis, bip 34, OP_RETURN
 lang: cs
 slug: block
 parentTerm: block
@@ -15,7 +15,7 @@ pageScripts:
   <header>
     <h2>Anatomie bloku</h2>
     <p class="header">
-      <time datetime="2021-06-21">Aktualizováno: 21. 6. 2021</time>
+      <time datetime="2026-11-19">Aktualizováno: 19. 11. 2026</time>
     </p>
   </header>
   <p class="just">
@@ -91,7 +91,7 @@ pageScripts:
           </td>
           <td>d7ae2&hellip;6b</td>
           <td>
-            merkle root&semi; kořenový hash Merkleho stromu transakcí
+            merkle root&semi; kořenový hash Merkleova stromu transakcí
           </td>
           <td>32 bajtů LE</td>
         </tr>
@@ -132,31 +132,31 @@ pageScripts:
       >BIP 9</a
     >. Přítomnost hashe předchozího bloku je jasná, blok je tím &ndash;
     podobně jako oka řetězu &ndash; pevně spojen s předchozím blokem.
-    Kořenový hash Merkleho stromu transakcí zaručuje, že se změna byť
+    Kořenový hash Merkleova stromu transakcí zaručuje, že se změna byť
     jediného bajtu v jediné do bloku zahrnuté tx projeví v konečném
-    důsledku změnou hashe hlavičky tohoto bloku. Časové razítko říká, že k
-    vytěžení bloku došlo 1616690206 sekund od 1/1/1970, tedy 25/3/2021 v
+    důsledku změnou hashe hlavičky tohoto bloku. Časové razítko deklarované těžařem má hodnotu 1616690206 sekund od 1/1/1970, tedy 25/3/2021 v
     16:36:46 UTC. Tento údaj ovšem nemusí být zcela přesný. Aby byl blok
-    přijat sítí, musí být časové razítko větší, než medián časových
-    razítek posledních 11 bloků a menší než o dvě hodiny navýšený medián
-    aktuálních časů uzlů, ke kterým je uzel připojen. Z pole bits si
+    přijat sítí, musí být časové razítko větší než medián časových
+    razítek posledních 11 bloků a nesmí předbíhat aktuální čas ověřujícího uzlu o více než dvě
+    hodiny. Bitcoin Core od verze 27 používá neupravený systémový čas;
+    dříve používal čas upravovaný podle údajů připojených uzlů. Z pole bits si
     vypočteme target &ndash; první bajt (zleva) je exponent, zbytek
     koeficient. Zůstaneme&hyphen;li v hexa, bude target cdf6f &times;
     100<sup>17&minus;3</sup>.
     <a href="https://www.online-python.com/cVBjGF2Y5Z">Porovnáme</a>,
-    je&hyphen;li hash našeho bloku menší než vypočtený target. Poslední
+    je&hyphen;li hash našeho bloku menší nebo rovný vypočtenému targetu. Poslední
     pole obsahuje nonci, které se budeme věnovat později.
   </p>
   <p class="just">
-    Za hlavičkou následuje LE varint s počtem transakcí v bloku a pak už
+    Za hlavičkou následuje CompactSize s počtem transakcí v bloku a pak už
     serializace všech těchto transakcí. První z nich je ovšem speciální,
     tzv. mincetvorná (coinbase). Ta se oproti zbytku liší tím, že nemá
     žádný skutečný vstup, resp. technicky vzato má mincetvorná transakce
     právě jeden vstup &ndash; hash předchozí transakce je 32 bajtů nul,
-    index výstupu je ffffffff, podpisový skript musí být v rozmezí 2 a 100
-    bajtů, a musí být sám o sobě pravdivý. Právě sem umístil
-    <a href="#nakamoto">Satoshi</a> v
-    <a href="#genesis">genesis bloku</a> legendární
+    index výstupu je ffffffff, podpisový skript musí být v rozmezí 2 až 100
+    bajtů, ale nevyhodnocuje se jako běžný odemykací skript. Právě sem umístil
+    <a href="/#nakamoto">Satoshi</a> v
+    <a href="/#genesis">genesis bloku</a> legendární
     titulek Timesů, zatímco ve scriptSigu mincetvorné transakce našeho
     bloku si můžeme přečíst zprávu &bdquo;Mined by AntPool713&ldquo;. Od
     <a
@@ -167,23 +167,24 @@ pageScripts:
     element s číslem bloku. Tím je zajištěno, aby bylo možno odlišit jinak
     stále stejné mincetvorné transakce jejich unikátním hashem txid.
     Navzdory tomu, že neutrácí žádné
-    <a href="#utxo">UTXO</a>, může si těžař na
-    výstupu uzamknout odměnu (v době psaní) až 6,25 BTC plus součet
-    poplatků všech zahrnutých transakcí. Pokud blok obsahuje segwitovou
-    transakci, musí také obsahovat OP_RETURN výstup s kořenem paralelního
-    Merkleho stromu svědků (witness). Protože podpisové skripty segwit
-    transakcí již nejsou součástí výpočtu hashe transakce, a jejich změna
-    by se tedy neprojevila změnou kořenového hashe Markleho stromu v
-    hlavičce bloku (a protože strukturu hlavičky nelze změnit
-    <a href="#sfork">soft-forkem</a>), jsou hashe
-    svědků (witness) transakcí zahrnuty do hlavního Merkleho stromu (a tím
-    i do hashe hlavičky bloku) právě touto cestou. Díky tomu platí, že
-    změna kteréhokoliv bajtu kterékoliv v bloku zahrnuté transakce se
-    nakonec projeví změnou hashe bloku.
+    <a href="/#utxo">UTXO</a>, může si těžař na
+    výstupu uzamknout odměnu až do výše subvence tohoto historického bloku, tedy
+    6,25 BTC, plus součet
+    poplatků všech zahrnutých transakcí. Pokud jsou v bloku witness data, musí
+    coinbase obsahovat výstup s witness commitmentem. Jeho scriptPubKey
+    začíná bajty <code>6a24aa21a9ed</code>, po nichž následuje
+    <code>SHA256d(witness_root || witness_reserved_value)</code>.
+    Listy witness stromu tvoří wtxid transakcí, přičemž pro coinbase se
+    používá 32 nulových bajtů. Witness reserved value je 32bajtová položka
+    witnessu coinbase vstupu. Nejde tedy o prosté vložení samotného kořene.
+    Díky tomuto závazku jsou witness data navázána přes txid coinbase na
+    Merkle root v hlavičce. ScriptSig zůstává součástí výpočtu txid;
+    mimo něj jsou witness data. Změna transakčních dat se tak projeví
+    v příslušných hashech a pro zachování platného bloku i v jeho hlavičce.
   </p>
   <p class="just">
-    <em>Velikost</em> zahrnutých transakcí v bloku nesmí překročit 4
-    miliony <a href="#wu">WU</a>. Na druhou stranu
+    <em>Váha</em> celého bloku včetně hlavičky, počtu transakcí a všech
+    transakcí nesmí překročit 4 miliony <a href="/#wu">WU</a>. Na druhou stranu
     však nemusí blok obsahovat žádnou další transakci, kromě mincetvorné.
     To se dělo zejména v prvních měsících fungování sítě, nyní už jen
     zřídka.
@@ -193,7 +194,7 @@ pageScripts:
   <header>
     <h2 id="mining">Anatomie těžby</h2>
     <p class="header">
-      <time datetime="2021-06-07">Aktualizováno: 7. 6. 2021</time>
+      <time datetime="2026-11-19">Aktualizováno: 19. 11. 2026</time>
     </p>
   </header>
   <p class="just">
@@ -202,11 +203,11 @@ pageScripts:
     nepokoušet se o podvodný zápis. Úkolem takového uchazeče o zápis
     příštího bloku do blockchainu je z dosud nezařazených transakcí
     sestavit tzv. kandidátský blok a ten upravit do takové podoby, aby byl
-    <a href="#hash">hash</a> hlavičky tohoto bloku
-    menší, než tzv.
-    <a href="#target">cíl těžby</a>, nebo&hyphen;li
+    <a href="/#hash">hash</a> hlavičky tohoto bloku
+    menší nebo rovný tzv.
+    <a href="/#target">cíl těžby</a>, nebo&hyphen;li
     target. Ten byl v
-    <a href="#genesis">genesis bloku</a> nastaven
+    <a href="/#genesis">genesis bloku</a> nastaven
     na ffff &times; 100<sup>1d-3</sup>. Od té doby je jednou za 2016 bloků
     (tzv. epocha obtížnosti) přepočítáván tak, že se spočte
     <em>rozdíl</em> časového razítka posledního a prvního* bloku končící
@@ -214,7 +215,8 @@ pageScripts:
     použije se dále hodnota osmi týdnů; pokud je vypočtený
     <em>rozdíl</em> menší než 84 hodin, použije se dále hodnota 84 hodin.
     Nový cíl &equals; předcházející cíl &times; <em>rozdíl</em> &divide; 2
-    týdny. Tímto postupem se postupně došlo i k cíli výše popsaného bloku
+    týdny, nejvýše však povolený limit cíle sítě. Popis platí pro mainnet.
+    Tímto postupem se postupně došlo i k cíli výše popsaného bloku
     (cdf6f &times; 100<sup>17-3</sup>).
   </p>
   <p class="just">
@@ -223,28 +225,22 @@ pageScripts:
     zahashováno a otestováno co možná nejvíce hlaviček bloku v co možná
     nejkratším čase. K tomu právě slouží pole nazvané nonce. S rozsahem 4
     bajty dává bez změny zbytku hlavičky přes 4 miliardy možných hashů.
-    Protože hlavička obsahuje také každou vteřinu měnící se timestamp, lze
-    díky nonci testovat přes 4 miliardy hashů každou vteřinu. Těžaři
+    Těžař může v povolených mezích měnit také timestamp; nejde však
+    o pole, které by se muselo automaticky změnit každou sekundu. Těžaři
     (těžařské pooly) s výkonem přes 4 miliardy hashů za sekundu pak mohou
     paralelně testovat různé kandidátské bloky, lišící se nejčastěji
-    podpisovým skriptem mincetvorné tranasakce (extra nonce), nebo pořadím
-    zahrnutých transakcí, čímž je dosaženo různých kořenů Merkleho stromu
+    podpisovým skriptem mincetvorné transakce (extra nonce), nebo pořadím
+    zahrnutých transakcí, čímž je dosaženo různých kořenů Merkleova stromu
     transakcí.
   </p>
   <p class="just">
-    Jakkoliv je vytěžení (najití takové podoby hlavičky, která
-    zahashováním dá relativně nízké číslo &ndash; cíl těžby) výpočetně
-    velmi náročné &ndash; v době psaní tohoto pojednání vypočítají všichni
-    těžaři v síti přes 170 miliard miliard hashů za vteřinu, aby jeden z
-    nich objevil průměrně jednou za 10 minut vyhovující hash &ndash;
-    ověření celého bloku je ve srovnání s tím až legračně jednoduché
-    &ndash; za tímto účelem stačí provést pouhé tisíce výpočtů hashe. Tím
-    je zajištěna krajní nevýhodnost pokusů o podvádění či porušení
-    pravidel při těžbě, neboť to by bylo nesrovnatelně jednodušeji a
-    rychleji odhaleno. Budiž tedy zdůrazněno, že těžař musí zajistit, aby
-    jeho blok vyhovoval všem pravidlům sítě &ndash; nemůže si ve svém
-    bloku např. zvýšit svou odměnu, protože takový blok by byl okamžitě
-    zbytkem sítě odmítnut a veškerá jeho práce na bloku by přišla vniveč.
+    Nalezení vyhovujícího hashe je při síťové obtížnosti v průměru
+    výpočetně náročné, zatímco ověření samotného proof of work vyžaduje jen
+    zahashování hlavičky a kontrolu cíle. Ověření celého bloku je rozsáhlejší:
+    zahrnuje mimo jiné strukturu bloku, Merkle root, existenci a neutracenost
+    vstupů, částky, skripty, podpisy a povolenou odměnu. Nejde tedy jen o několik
+    tisíc hashů. Těžař musí splnit všechna pravidla konsenzu; blok s neoprávněně
+    zvýšenou odměnou plně ověřující uzly odmítnou i se správným proof of work.
   </p>
   <p class="just">
     Těžba tedy není žádné &bdquo;řešení komplexního matematického
@@ -253,15 +249,15 @@ pageScripts:
     problém veskrze jednoduchý &ndash; tak dlouho hashovat hlavičku
     sestaveného bloku s různými noncemi, měnícím se časovým razítkem a
     eventuelně i různými variantami stromu transakcí, až nám vyjde hash
-    menší, než cíl těžby.
+    menší nebo rovný cíli těžby.
   </p>
   <div class="undernotes">
     <p class="note">
       *
       <em
-        >toto je bug. Správně by se měl použít rozdíl razítka posledního
-        bloku končíčí epochy a posledního bloku epochy předcházející té
-        končící.</em
+        >Historická odchylka: epocha má 2016 bloků, ale rozdíl časů jejího
+        prvního a posledního bloku pokrývá jen 2015 intervalů. Tento postup
+        zůstává součástí konsenzu hlavní sítě.</em
       >
     </p>
   </div>

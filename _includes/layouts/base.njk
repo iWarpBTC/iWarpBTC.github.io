@@ -106,47 +106,18 @@
 
     {{ content | safe }}
 
-    <footer>
-      <div class="mail">
-        <p>
-          Sepsal <a class="warp" href="mailto:{{ site.author.email }}">{{ site.author.name }}</a> (<a
-            class="key"
-            href="/pages/stuff/publickey.txt"
-            >🔑 pubkey</a
-          >)<br /><a class="key" id="lit" href="{{ '/pages/literature.html' | localeUrl(site, lang) }}"
-            >📚 Oblíbená literatura</a
-          >
-          |
-          <button onclick="dropDonate()" class="dropbtn key">⚡ Donejt</button>
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p class="site-footer__credits">
+          <span>Sepsal <a href="mailto:{{ site.author.email }}">{{ site.author.name }}</a></span>
+          <span aria-hidden="true">·</span>
+          <a href="/LICENSE.txt">Volně k použití (CC0)</a>
         </p>
+        <a class="site-footer__feedback" href="{{ site.repo }}/issues">Navrhnout opravu <span aria-hidden="true">↗</span></a>
       </div>
-      <div>
-        <div class="tw">
-          <a class="tw" href="{{ site.social.x }}"
-            ><img src="/img/twitter.svg" height="30" alt="twitter"
-          /></a>
-          <a class="license" href="/LICENSE.txt"
-            ><img src="/img/public80x15.png" alt="CC0"
-          /></a>
-        </div>
-      </div>
-      <div id="donate" class="dropdown">
-        <p>Přispěj mi na pivo přes LNURL:</p>
-        <a href="lightning:{{ site.lnurl }}">
-          <img
-            id="lnurl"
-            class="pointer"
-            onclick="clipboardLNURL()"
-            src="/img/lnurl.png"
-            alt="LNURL"
-          />
-        </a>
-        <p onclick="clipboardLNURL()" class="lnurl pointer">{{ site.lnurl }}</p>
-      </div>
-      <a rel="me" style="display: none" href="{{ site.social.mastodon }}">Mastodon</a>
+      <a rel="me" hidden href="{{ site.social.mastodon }}">Mastodon</a>
     </footer>
 
-    <script src="/drop.js"></script>
     <script src="/js/theme.js"></script>
     <script src="/js/diagram.js" defer></script>
     {% for src in pageScripts %}

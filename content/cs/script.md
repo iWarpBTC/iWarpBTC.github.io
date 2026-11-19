@@ -11,7 +11,14 @@ links:
 ---
 
 <p>
-  Název skriptovacího jazyka sítě Bitcoin, prostřednictvím kterého jsou
-  definovány (a vyhodnocovány) podmínky utracení (odemčení)
-  <a href="#utxo">UTXO</a>.
+  Jazyk, kterým bitcoin zapisuje podmínky utracení prostředků. Může například vyžadovat
+  podpis jedním klíčem, podpisy více klíči nebo čekání do určitého okamžiku.
 </p>
+<details class="technical-detail">
+  <summary>Technicky přesně</summary>
+  <p>
+    Název skriptovacího jazyka sítě Bitcoin, prostřednictvím kterého jsou
+    definovány (a vyhodnocovány) podmínky utracení (odemčení)
+    <a href="#utxo">UTXO</a>.
+  </p>
+</details>

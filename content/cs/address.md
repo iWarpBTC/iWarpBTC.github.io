@@ -8,21 +8,29 @@ entryClass: entry
 ---
 
 <p>
-  Textově zakódované údaje, ze kterých peněženka sestaví uzamykací
-  <a href="#script">skript</a> výstupu. Jejich obsah závisí na typu adresy:
-  P2PKH a P2WPKH používají HASH160 veřejného klíče (SHA256 následované RIPEMD160),
-  P2SH používá HASH160 skriptu a P2WSH SHA256 svědeckého skriptu.
-  <a href="#taproot">P2TR</a> obsahuje 32bajtovou souřadnici <em>x</em>
-  upraveného výstupního veřejného klíče.
+  Údaj, který předáte tomu, kdo vám chce poslat bitcoin. Peněženka z něj pozná, jak
+  platbu připravit, aby ji bylo možné později utratit podle příslušných podmínek. Adresu
+  lze vytvořit i bez připojení k síti.
 </p>
-<p>
-  Base58Check zůstává platným kódováním pro P2PKH a P2SH; P2SH není omezeno
-  jen na vnořený segwit. Segwit verze 0 používá Bech32, verze 1 a vyšší Bech32m.
-  Adresy lze generovat offline, například z rozšířeného veřejného klíče
-  příslušné větve <a href="#hd-wallet">HD peněženky</a>, bez nové entropie
-  a bez znalosti soukromých klíčů. Kvalitní entropie je důležitá při počátečním
-  vytváření tajných klíčů či <a href="#seed">seedu</a>.
-</p>
+<details class="technical-detail">
+  <summary>Technicky přesně</summary>
+  <p>
+    Textově zakódované údaje, ze kterých peněženka sestaví uzamykací
+    <a href="#script">skript</a> výstupu. Jejich obsah závisí na typu adresy:
+    P2PKH a P2WPKH používají HASH160 veřejného klíče (SHA256 následované RIPEMD160),
+    P2SH používá HASH160 skriptu a P2WSH SHA256 svědeckého skriptu.
+    <a href="#taproot">P2TR</a> obsahuje 32bajtovou souřadnici <em>x</em>
+    upraveného výstupního veřejného klíče.
+  </p>
+  <p>
+    Base58Check zůstává platným kódováním pro P2PKH a P2SH; P2SH není omezeno
+    jen na vnořený segwit. Segwit verze 0 používá Bech32, verze 1 a vyšší Bech32m.
+    Adresy lze generovat offline, například z rozšířeného veřejného klíče
+    příslušné větve <a href="#hd-wallet">HD peněženky</a>, bez nové entropie
+    a bez znalosti soukromých klíčů. Kvalitní entropie je důležitá při počátečním
+    vytváření tajných klíčů či <a href="#seed">seedu</a>.
+  </p>
+</details>
 <div class="fig">
   <figure>
     <img

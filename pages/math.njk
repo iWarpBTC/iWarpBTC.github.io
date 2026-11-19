@@ -13,7 +13,7 @@ parentTerm: asym-crypto
   <header>
     <h2 id="field">Anatomie tělesa a grupy</h2>
     <p class="header">
-      <time datetime="2021-06-07">Aktualizováno: 7. 6. 2021</time>
+      <time datetime="2026-11-19">Aktualizováno: 19. 11. 2026</time>
     </p>
   </header>
   <p class="just">
@@ -67,19 +67,18 @@ parentTerm: asym-crypto
     </li>
     <li>
       Distributivita&colon;&emsp;a &times; (b + c) &equals; a &times; b
-      &plus; a &times; c pro všechna a, b, &isin; <b>F</b>
+      &plus; a &times; c pro všechna a, b, c &isin; <b>F</b>
     </li>
     <li>Netrivialita&colon;&emsp;0 &ne; 1</li>
   </ul>
   <p class="just">
     Není to žádná raketová věda. Jedná se vesměs o obvyklé vlastnosti
-    sčítání a násobení. Pokud by někomu chybělo odčítání a dělení,
-    představí si místo nich přičítání opačného prvku, resp. násobení
-    inverzním prvkem. Aby nám uvedené podmínky platily i v konečném tělese
-    (tj. tělese s konečným počtem prvků), musí být počet prvků prvočíslo.
-    Toto prvočíslo se také nazývá charakteristika tělesa. Schválně si
-    zkuste vyrobit těleso o dvanácti prvcích a uplatněte výše uvedená
-    pravidla. Nebude to fungovat.
+    sčítání a násobení. Odčítání je přičítání opačného prvku a dělení nenulovým
+    prvkem je násobení jeho inverzí. Konečné těleso může mít p<sup>k</sup> prvků,
+    kde p je prvočíslo a k kladné celé číslo; jeho charakteristika je p.
+    Zde se omezíme na prvočíselná tělesa GF(p), v nichž počítáme modulo p.
+    Těleso o dvanácti prvcích neexistuje, ale například o čtyřech či osmi ano;
+    to však není totéž jako počítat s celými čísly modulo 4 či 8.
   </p>
   <div class="fig">
     <figure>
@@ -103,34 +102,19 @@ parentTerm: asym-crypto
     202
   </p>
   <p class="just">
-    Abychom nyní odmocnili y<sup>2</sup> &equals; 202, ověříme si nejprve,
-    že charakteristika p našeho tělesa GF(p) modulo 4 vyjde 3. To znamená,
-    že (p &plus; 1) mod 4 &equals; 0, tedy že lze (p &plus; 1) beze zbytku
-    dělit 4. V tom případě můžeme použít k odmocnění následující hack
-    &ndash; podle Malé Fermatovy věty a<sup>p&minus;1</sup> mod p &equals;
-    1. To znamená, že:
-  </p>
-  <p class="script">
-    a<sup>2</sup> &equals; a<sup>2</sup> &times; 1 &equals; a<sup>2</sup>
-    &times; a<sup>p&minus;1</sup> &equals; a<sup>p&plus;1</sup>
+    Odmocňování v konečném tělese není obyčejná reálná odmocnina. Pro liché
+    prvočíslo p splňující p mod 4 = 3 lze pro rovnici y² = b mod p spočítat
+    kandidáta y = b<sup>(p+1)/4</sup> mod p. Jeho správnost ověříme dosazením
+    y² mod p = b. Pokud b není kvadratickým zbytkem, rovnice řešení nemá.
   </p>
   <p class="just">
-    Protože p je prvočíslo, tedy liché, můžeme (p&plus;1) dělit dvěma a
-    tedy provést i následující techtle mechtle:
-  </p>
-  <p class="script">
-    a &equals; a<sup>(p&plus;1)&divide;2</sup><br /><br />
-    Řekněme, že a<sup>2</sup> &equals; b, pak<br /><br />
-    a &equals; a<sup>(p&plus;1)&divide;2</sup> &equals; a<sup
-      >2(p+1)&divide;4</sup
-    >
-    &equals; (a<sup>2</sup>)<sup>(p+1)&divide;4</sup> &equals; b<sup
-      >(p+1)&divide;4</sup
-    >
-  </p>
-  <p class="just">
-    Nic si z toho nedělejte, já to taky pobral teprve asi až na pátý
-    pokus. Až to budete mít, můžeme jít odmocňovat:
+    Proč to funguje? Pro nenulový kvadratický zbytek b = a² dává Malá Fermatova
+    věta b<sup>(p−1)/2</sup> = a<sup>p−1</sup> = 1 mod p. Proto druhá mocnina
+    našeho kandidáta vyjde b<sup>(p+1)/2</sup> = b mod p. Získáme jeden ze dvou
+    kořenů y a p−y, nikoli nutně původně zvolené a. Pro b = 0 je jediným
+    kořenem nula. Nic si z toho nedělejte, pokud to napoprvé nesedne &ndash;
+    autor to pobral asi až na pátý pokus. V našem příkladu 223 mod 4 = 3,
+    takže můžeme počítat:
   </p>
   <p class="script">
     y<sup>2</sup> &equals; 202<br /><br />
@@ -169,7 +153,9 @@ parentTerm: asym-crypto
   </div>
   <p class="just">
     Přestože v &bdquo;tělesovém&ldquo; grafu nám rýsování přímek již
-    nebude fungovat, algebraicky to bude vypadat v obou případech stejně:
+    nebude fungovat, algebraické vzorce jsou stejné. V GF(p) však všechny operace provádíme
+    modulo p a dělení nenulovým prvkem znamená násobení jeho modulární
+    inverzí. Následující vzorec pro dva různé body předpokládá x₁ ≠ x₂:
   </p>
   <p class="script">
     Směrnice přímky procházející sčítanými body bude<br />
@@ -231,15 +217,15 @@ parentTerm: asym-crypto
     >
   </p>
   <p class="just">
-    Zdvojnásobení bodu A[190, 47] by mělo vyjít jako bod 2A[121, 114].
-    Opětovným zdvojnásobením bodu 2A získáme bod 3A[1,167], přičemž
-    <em>x</em> opakování zdvojnásobování můžeme nazývat jako násobení
-    skalárem – celým číslem <em>x</em>, které představuje počet opakování
-    zdvojnásobení bodu.
+    Zdvojnásobení bodu A[190, 47] vyjde jako 2A[121, 114]. Přičtením
+    původního A k bodu 2A dostaneme 3A[1, 167]. Naproti tomu zdvojnásobením
+    2A získáme 4A[46, 212]. Násobení bodu skalárem n znamená součet n kopií
+    bodu A; opakované zdvojnásobování vytváří pouze násobky 2A, 4A, 8A, …
+    Efektivní výpočet libovolného nA kombinuje zdvojnásobování a přičítání.
   </p>
   <p class="just">
     Nesmíme zapomenout na případ, ve kterém by přímka (ať už procházející
-    dvěma různými sčítanýmí body, nebo tečna ve zdvojnásobovaném bodě)
+    dvěma různými sčítanými body, nebo tečna ve zdvojnásobovaném bodě)
     byla rovnoběžná s osou y. Pro tento případ definujeme výsledek
     takového součtu (zdvojnásobení) jako bod v nekonečnu. Označíme jako
     <span class="inf">O</span> ; pak libovolný bod křivce A &plus;
@@ -248,17 +234,17 @@ parentTerm: asym-crypto
   <p class="just">
     Počet všech bodů ležících na křivce se pak nazývá řád křivky. Na našem
     cvičném tělese GF(223) je můžeme najít prostým dosazením všech variací
-    x, y do rovnice křivky. Zjistíme, že &num;GF(223) &equals; 196 (včetně
+    x, y do rovnice křivky. Zjistíme, že &num;E(GF(223)) &equals; 196 (včetně
     nevlastního bodu v nekonečnu). Na větších tělesech už bychom museli
     použít nějaký pokročilejší algoritmus
     (Schoof&hyphen;Elkies&hyphen;Atkin), popř. musíme věřit specifikaci.
   </p>
   <p class="just">
-    Prohlásíme&hyphen;li bod A za generátor a operaci sčítání bodů za
-    grupovou operaci &#x2218;, můžeme si vygenerovat cyklickou grupu řádu
-    n. Řád grupy je dán počtem bodů (prvků grupy), které stihne generátor
-    opakovaným zdvojnásobováním (sčítáním se sebou samým) vygenerovat, než
-    vyjde (n &times; A &equals; <span class="inf">O</span>).
+    Opakovaným přičítáním bodu A vytváříme cyklickou podgrupu
+    {O, A, 2A, …, (n−1)A}. Řád bodu A je nejmenší kladné n, pro které nA = O,
+    a současně počet prvků této podgrupy. Náš bod A má řád 98, zatímco celá
+    křivka má 196 bodů; A tedy negeneruje všechny její body. U bitcoinové
+    secp256k1 zvolený generátor naopak generuje celou grupu bodů křivky.
   </p>
   <p class="just">
     Tak jako těleso, i (Abelova) grupa <b>G</b> má nějaká svá pravidla:
@@ -301,7 +287,9 @@ parentTerm: asym-crypto
     zápisu a toto &bdquo;mocnění&ldquo; nazývejme násobení bodu skalárem.
   </p>
   <p class="just">
-    Na závěr si předvedeme efektivní implementaci násobení skalárem
+    Na závěr si předvedeme výukový pseudokód násobení nezáporným skalárem
+    (předpokládá implementované sčítání bodů a neutrální prvek; není určen
+    pro práci se skutečnými tajnými klíči)
     metodou double&hyphen;and&hyphen;add:
   </p>
   <p class="script">

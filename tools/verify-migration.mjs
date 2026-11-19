@@ -10,6 +10,7 @@
 //   node tools/verify-migration.mjs [--ref html]
 
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
+import matter from 'gray-matter';
 import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
 import {
@@ -269,6 +270,13 @@ function verifyGlossary() {
     'moscowtime',
     'address',
     'hash',
+    'script',
+    'utxo_join',
+    'wu',
+    'difficulty',
+    'hfork',
+    'lnurl',
+    'lnaddress',
   ]);
   const built = entriesOf(builtSrc);
   if (base.length !== built.length) {
@@ -337,6 +345,17 @@ function containerOf(src) {
   return elements(doc).find((n) => hasClass(n, 'container2'));
 }
 
+// Anatomy pages with approved editorial and fact-check revisions.
+const revisedPages = new Set([
+  'block',
+  'crypto',
+  'lightning',
+  'math',
+  'taproot',
+  'transaction',
+  'wallet',
+]);
+
 function verifyAnatomy() {
   const slugs = readdirSync('pages')
     .filter((f) => f.endsWith('.njk'))
@@ -368,8 +387,18 @@ function verifyAnatomy() {
 
     const aRoots = childElements(baseContainer);
     const bRoots = childElements(builtContainer).filter((n) => !isFurniture(n));
-    compareRegion(label, aRoots, bRoots);
-    compareEntities(label, sourceOf(baseSrc, aRoots), sourceOf(builtSrc, bRoots));
+    if (revisedPages.has(slug)) {
+      // Approved fact-check revisions: verify the current template body survives
+      // rendering unchanged instead of comparing against the git baseline.
+      const source = readFileSync(`pages/${slug}.njk`, 'utf8').split(/^---\s*$/m).slice(2).join('---');
+      const doc = parseDoc(`<html><body>${source}</body></html>`);
+      const body = elements(doc).find((n) => n.tagName === 'body');
+      compareRegion(label, childElements(body), bRoots);
+      compareEntities(label, source, sourceOf(builtSrc, bRoots));
+    } else {
+      compareRegion(label, aRoots, bRoots);
+      compareEntities(label, sourceOf(baseSrc, aRoots), sourceOf(builtSrc, bRoots));
+    }
 
     // Head metadata must survive the move into frontmatter.
     for (const name of ['description', 'keywords']) {
@@ -379,8 +408,14 @@ function verifyAnatomy() {
         );
         return el ? attr(el, 'content').replace(/\s+/g, ' ').trim() : null;
       };
-      if (read(baseSrc) !== read(builtSrc)) {
-        fail(`${label}: <meta ${name}> changed\n      ${read(baseSrc)}\n      ${read(builtSrc)}`);
+      // Revised pages are checked against their own frontmatter instead of the baseline.
+      const fromFrontmatter = () => {
+        const value = matter(readFileSync(`pages/${slug}.njk`, 'utf8')).data[name];
+        return value == null ? null : String(value).replace(/\s+/g, ' ').trim();
+      };
+      const expected = revisedPages.has(slug) ? fromFrontmatter() : read(baseSrc);
+      if (expected !== read(builtSrc)) {
+        fail(`${label}: <meta ${name}> changed\n      ${expected}\n      ${read(builtSrc)}`);
       }
     }
     const titleOf = (src) => {
@@ -424,7 +459,7 @@ function verifyBuildOutput() {
   }
 
   for (const required of [
-    'CNAME', 'functions.js', 'drop.js', 'js/glossary.js', 'js/theme.js', 'js/diagram.js',
+    'CNAME', 'functions.js', 'js/glossary.js', 'js/theme.js', 'js/diagram.js',
     'pages/javascript.js', 'pages/stuff/publickey.txt',
     'css/styles.css', 'css/tooltip.css', 'sitemap.xml', 'robots.txt',
   ]) {

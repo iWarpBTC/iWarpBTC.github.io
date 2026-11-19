@@ -5,7 +5,7 @@ title: Anatomie křivky a podpisu
 description: Vysvětluje základy asymetrické kryptografie a její využití v podepisování bitcoinových transakcí.
 keywords: >-
   bitcoin, kryptografie, asymetrická, eliptická křivka, diskrétní logaritmus, konečné těleso, cyklická grupa, schnorr,
-  podpis, tranasakce, podpis
+  podpis, transakce, podpis
 lang: cs
 slug: crypto
 parentTerm: asym-crypto
@@ -15,40 +15,25 @@ parentTerm: asym-crypto
   <header>
     <h2 id="curve">Anatomie křivky</h2>
     <p class="header">
-      <time datetime="2021-07-02">Aktualizováno: 2. 7. 2021</time>
+      <time datetime="2026-11-19">Aktualizováno: 19. 11. 2026</time>
     </p>
   </header>
   <p class="just">
-    Jak je možné vidět na stránce
-    <a href="/pages/transaction.html"
-      >anatomie transakce a skriptu</a
-    >, standardní p2(w)pk transakce uzamyká (prostřednictvím scriptPubKey)
-    určitý obnos satoshi ve prospěch určitého hashe veřejného klíče (který
-    zakódovaný v Bech32 či starší Base58Check představuje adresu).
-    Prostřednictvím scriptSigu lze pak poskytnutím veřejného klíče a
-    podpisu tento výstup odemknout a utratit v další transakci. To je
-    umožněno díky tzv. asymetrické kryptografii, kterou v případě Bitcoinu
-    představuje kryptografie eliptických křivek.
+    Jak je možné vidět na stránce <a href="/pages/transaction.html">anatomie
+    transakce a skriptu</a>, výstupy P2PKH a P2WPKH uzamykají prostředky
+    pomocí hashe veřejného klíče. Při utracení se předkládá veřejný klíč a podpis:
+    u P2PKH ve scriptSigu, u P2WPKH ve witnessu. Nejde však o jediný způsob
+    uzamčení prostředků; například Taproot používá upravený výstupní veřejný klíč.
   </p>
   <p class="just">
-    Asymetrická kryptografie se od té běžné &ndash; symetrické &ndash;
-    liší tím, že na místo jednoho a toho samého klíče (použitého pro
-    zašifrování i dešifrování) používá pár klíčů &ndash; veřejný a
-    soukromý. Pokud si příjemce zprávy vygeneruje takový pár klíčů a ten
-    veřejný publikuje, kdokoliv může tímto veřejným klíčem zašifrovat
-    zprávu, kterou bude moci dešifrovat jen a pouze příjemce pomocí svého
-    soukromého klíče. Asymetrická kryptografie však umožňuje, kromě
-    šifrování za účelem skrytí tajné zprávy, také šifrování za účelem
-    podpisu zprávy. Pokud původce zprávy tuto zprávu (v praxi stačí pouze
-    její hash) zašifruje svým soukromým klíčem, každý může jeho
-    publikovaným veřejným klíčem zprávu dešifrovat a tím ověřit, že
-    původce zprávy je právě držitel soukromého klíče náležícímu k
-    publikovanému veřejnému. Tomuto se říká kryptografický podpis a v
-    Bitcoinu je jím prokazováno, že výstup je utrácen právě držitelem
-    soukromého klíče přislušícího k veřejnému klíči, ve prospěch jehož
-    hashe byl výstup uzamčen. (Že je výstup uzamčen ve prospěch nikoliv
-    přímo veřejného klíče, nýbrž jeho hashe, je jen dalším stupněm
-    ochrany.)
+    Na rozdíl od symetrické kryptografie, kde obě strany sdílejí jeden tajný
+    klíč, používá asymetrická kryptografie dvojici matematicky propojených klíčů:
+    soukromý a veřejný. Podle konkrétního algoritmu slouží například k šifrování,
+    dohodě na společném tajemství nebo digitálním podpisům. Podpis není
+    „zašifrování zprávy soukromým klíčem“. Podpisový algoritmus vytvoří ze zprávy
+    a soukromého klíče podpis; ověřovací algoritmus pomocí veřejného klíče ověří
+    jeho platnost, aniž by zprávu dešifroval. Bitcoin používá ECDSA a Schnorrovy
+    podpisy nad křivkou secp256k1 k prokázání oprávnění utratit prostředky.
   </p>
   <p class="just">
     Asymetrická kryptografie eliptických křivek je založena na tzv.
@@ -115,9 +100,10 @@ parentTerm: asym-crypto
     multiplikativní notaci jako násobení a opakované násobení jako
     umocňování. Pak náš postup přesně zapadne do výše uvedené definice
     diskrétního logaritmu &ndash; prvkem <em>b</em> je veřejný klíč,
-    zatímco <em>x</em> je klíč soukromý. Neexistuje polynomiální
-    algoritmus, který by se znalostí veřejného klíče a generátoru grupy
-    vypočítal soukromý klíč. Můžeme jít podepisovat.
+    zatímco <em>x</em> je klíč soukromý. Pro tento problém na secp256k1 není znám efektivní klasický algoritmus,
+    který by ze znalosti veřejného klíče vypočítal soukromý klíč. Jeho
+    neexistence však není dokázána. Na dostatečně výkonném kvantovém počítači
+    by diskrétní logaritmus řešil v polynomiálním čase Shorův algoritmus. Můžeme jít podepisovat.
   </p>
   <div class="fig">
     <figure>
@@ -136,15 +122,16 @@ parentTerm: asym-crypto
   <header>
     <h2 id="ecdsa">Anatomie podpisu</h2>
     <p class="header">
-      <time datetime="2021-06-02">Aktualizováno: 2. 6. 2021</time>
+      <time datetime="2026-11-19">Aktualizováno: 19. 11. 2026</time>
     </p>
   </header>
   <p class="just">
-    Současným podpisovým schématem Bitcoinu je ECDSA. Připravíme si náš
-    soukromý klíč (a označíme ho jako číslo <em>d</em>), náhodné číslo k z
-    intervalu &lang;1, n) (číslo k musí být opravdu náhodné a různé pro
-    každý podpis, jinak hrozí vyzrazení soukromého klíče) a nějakou
-    zprávu, resp. její hash.
+    Nejprve si ukážeme podpisové schéma ECDSA, používané u starších typů
+    výstupů včetně segwitu v0. Taproot používá Schnorrovy podpisy podle BIP340.
+    Připravíme si soukromý klíč d, zprávu a tajnou nonce k z intervalu ⟨1, n).
+    Nonce musí vzniknout bezpečným postupem: může být náhodná nebo deterministicky
+    odvozená ze soukromého klíče a zprávy, například podle RFC6979. Její vyzrazení
+    nebo nevhodné opakování pro různé zprávy může odhalit soukromý klíč.
   </p>
   <p class="just">
     V Bitcoinu prokazujeme podpisem to, že jsme držiteli soukromého klíče
@@ -154,7 +141,8 @@ parentTerm: asym-crypto
     Výrobě tohoto předobrazu se věnuje
     <a href="/pages/transaction.html#preimage"
       >bonusová část anatomie transakce</a
-    >. Výsledný hash si označíme jako číslo <em>e</em>.
+    >. Výsledný hash si označíme jako číslo <em>e</em>. Tento postup se týká
+    ECDSA; Taproot má vlastní pravidla výpočtu podpisového hashe.
   </p>
   <p class="just">Výpočet podpisu je pak již jednoduchý:</p>
   <ul class="article">
@@ -169,18 +157,20 @@ parentTerm: asym-crypto
     </li>
   </ul>
   <p class="just">
+    Pokud r nebo s vyjde nula, je nutné výpočet opakovat s jinou nonce.
     Dvojice čísel <em>r, s</em> je naším podpisem zprávy <em>e</em>.
     Zakódováním čísel <em>r, s</em> do formátu DER (Distinguished Encoding
-    Rules) získáme podpisový element použitelný v
+    Rules) a připojením bajtu určujícího sighash typ získáme bitcoinový
+    podpisový element použitelný podle typu výstupu ve witnessu nebo v
     <a href="/pages/transaction.html#script"
-      >sigScriptu</a
+      >scriptSigu</a
     >.
   </p>
   <p class="just">
     K ověření si musíme opět sestavit předobraz podepisované transakce a
-    vypočíst jeho dvojnásobný SHA256 hash, tj. číslo <em>e</em>, dále nám
-    již stačí z scriptSigu získaný podpis (dvojice r, s) a veřejný klíč.
-    Ten je v scriptSigu zakódován ve formátu SEC (Standards of Efficient
+    vypočíst jeho dvojnásobný SHA256 hash, tj. číslo <em>e</em>, dále potřebujeme podpis (dvojici r, s) a veřejný klíč získaný
+    podle typu vstupu ze scriptSigu nebo witnessu. Nejprve ověříme
+    1 ≤ r, s &lt; n a platnost veřejného klíče. Ten je zakódován ve formátu SEC (Standards of Efficient
     Cryptography) zpravidla pouze jako x&hyphen;ová souřadnice a příznak
     sudosti &ndash; v takovém případě dopočítáme y&hyphen;ovou souřadnici.
   </p>
@@ -199,50 +189,68 @@ parentTerm: asym-crypto
     </li>
   </ul>
   <p class="just">
-    Pokud se x&hyphen;ová souřadnice vypočteného bodu <em>X</em> rovná
-    číslu <em>r</em>, pak je dvojice <em>r, s</em> platným podpisem zprávy
-    <em>e</em>.
+    Pokud X je bod v nekonečnu, podpis odmítneme. Jinak převedeme jeho
+    x-ovou souřadnici na celé číslo a ověříme <code>x(X) mod n = r</code>.
+    Při splnění této podmínky je dvojice r, s platným ECDSA podpisem zprávy e.
   </p>
   <h3 id="schnorr">Anatomie Schnorrova podpisu</h3>
   <p class="just">
-    Schnorrův podpis by v budoucnu mohl nahradit ECDSA schéma. Oproti němu
-    má několik výhod, z nichž ta klíčová je možnost kombinovat více
-    podpisů té samé zprávy do podpisu jednoho.
+    Schnorrovy podpisy podle BIP340 se v bitcoinu používají od aktivace Taprootu
+    v listopadu 2021. ECDSA tím nezaniklo: nadále se používá u starších typů
+    výstupů. Nejprve si ukážeme algebraický princip Schnorrova podpisu.
   </p>
   <p class="just">
-    Při podepisování začneme stejně jako s ECDSA, připravíme si soukromý
-    klíč <em>d</em>, náhodné číslo <em>k</em> a hash předobrazu transakce
-    <em>e</em>. Oproti ECDSA budeme ovšem navíc potřebovat veřejný klíč:
+    Připravíme si soukromý klíč <em>d</em>, veřejný klíč <em>P &equals; dG</em>,
+    zprávu <em>m</em> a bezpečně vytvořenou tajnou nonce <em>k</em>.
+    Podpis pak vytvoříme ve třech krocích:
   </p>
   <ul class="article">
     <li>
-      Provedeme operaci násobení skalárem náhodného čísla <em>k</em> a
-      generátoru grupy <em>A</em>, výsledkem je bod <em>R</em>.
+      Vynásobíme generátor <em>G</em> skalárem <em>k</em>, výsledkem je bod
+      <em>R &equals; kG</em>.
     </li>
     <li>
-      Zahashujeme zřetězení reprezentace bodu <em>R</em>, veřejného klíče
-      a hashe zprávy <em>e</em>, tento hash označíme <em>r</em>.
+      Zahashujeme zřetězení bodu <em>R</em>, veřejného klíče <em>P</em>
+      a zprávy <em>m</em>; výsledek modulo <em>n</em> je výzva
+      <em>e &equals; H(R || P || m)</em>.
     </li>
-    <li><em>s &equals; k &plus; r &times; d</em> mod <em>n</em>.</li>
+    <li><em>s &equals; k &plus; e &times; d</em> mod <em>n</em>.</li>
   </ul>
   <p class="just">
-    Podpisem je tedy nikoliv dvojice čísel, ale dvojice bod <em>R</em> a
-    číslo <em>s</em>. Tento podpis pak může být ověřen postupem:
+    Podpisem je dvojice (<em>R</em>, <em>s</em>). Ověřovatel z ní a z veřejného
+    klíče postupuje takto:
   </p>
   <ul class="article">
-    <li>
-      Zahashujeme zřetězení reprezentace bodu <em>R</em>, veřejného klíče
-      a hashe zprávy <em>e</em>, tento hash označíme <em>r</em>.
-    </li>
-    <li>
-      Provedeme operaci násobení skalárem <em>s</em> a generátoru grupy,
-      výsledný bod označíme <em>X</em>.
-    </li>
-    <li>
-      Provedeme operaci násobení skalárem <em>r</em> a veřejného klíče, k
-      výslednému bodu přičteme bod <em>R</em> a tento součet označíme jako
-      bod <em>Y</em>.
-    </li>
+    <li>Stejně jako podepisující spočítá výzvu <em>e &equals; H(R || P || m)</em>.</li>
+    <li>Vynásobí generátor skalárem <em>s</em>, získá bod <em>sG</em>.</li>
+    <li>K bodu <em>R</em> přičte násobek veřejného klíče <em>eP</em>.</li>
   </ul>
-  <p class="just">Podpis je platný, pokud se body X a Y shodují.</p>
+  <p class="just">
+    Podpis je platný, pokud se oba body shodují: <em>sG &equals; R &plus; eP</em>.
+    Proč to funguje? Protože <em>sG &equals; (k &plus; ed)G &equals; kG &plus;
+    e(dG) &equals; R &plus; eP</em>. Toto je schéma principu, nikoli úplný
+    implementační předpis BIP340.
+  </p>
+  <p class="just">
+    BIP340 přesně určuje kódování, hashování i kontroly. Veřejný klíč obsahuje
+    pouze 32bajtovou souřadnici x; odpovídající bod P se volí se sudým y.
+    Při podpisu se podle parity případně nahradí d hodnotou n−d a k hodnotou n−k,
+    aby i R mělo sudé y. Výzva používá tagged hash s tagem
+    <code>BIP0340/challenge</code> nad x(R), x(P) a zprávou.
+    Podpis je 64 bajtů: x(R) a s, každé jako 32bajtové číslo.
+  </p>
+  <p class="just">
+    Ověřovatel kontroluje délky a rozsahy r &lt; p, s &lt; n a platnost bodu P.
+    Spočítá e podle uvedeného pravidla a R = sG − eP. Podpis přijme, pokud R
+    není bodem v nekonečnu, má sudé y a x(R) = r. Kompletní postup včetně
+    bezpečného odvození nonce stanoví
+    <a href="https://bips.dev/340/">BIP340</a>.
+  </p>
+  <p class="just">
+    Linearita umožňuje více účastníkům společně vytvořit jeden podpis pro
+    agregovaný veřejný klíč, například protokolem
+    <a href="https://bips.dev/327/">MuSig2</a>. Nejde o prosté sečtení libovolných
+    hotových podpisů: bezpečná agregace vyžaduje odpovídající protokol
+    a spolupráci podepisujících.
+  </p>
 </article>

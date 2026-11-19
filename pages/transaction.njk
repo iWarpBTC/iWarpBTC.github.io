@@ -15,7 +15,7 @@ pageScripts:
   <header>
     <h2>Anatomie transakce</h2>
     <p class="header">
-      <time datetime="2021-06-24">Aktualizováno: 24. 6. 2021</time>
+      <time datetime="2026-11-19">Aktualizováno: 19. 11. 2026</time>
     </p>
   </header>
   <p class="just">
@@ -24,7 +24,7 @@ pageScripts:
     40e285bd2b757bf455f9e3ce92aa8e51910f88a1ca9dd497465d346310e7df11 z
     bloku č. 676274. Jedná se o typickou transakci s jedním vstupem a
     dvěma výstupy &ndash; to znamená, že transakce utrácí (spotřebovává)
-    jeden <a href="#utxo">UTXO</a> a dva nové UTXO
+    jeden <a href="/#utxo">UTXO</a> a dva nové UTXO
     vytváří. Následuje hexadecimální reprezentace serializace transakce:
   </p>
   <p class="raw">
@@ -129,7 +129,7 @@ pageScripts:
             <div id="segwitmark" class="segwitmark"></div>
           </td>
           <td>0</td>
-          <td>segwit marker&semi; zavedený segwitem, zatím nevyužitý</td>
+          <td>segwit marker&semi; spolu s flagem rozlišuje serializaci s witnessem</td>
           <td>bajt</td>
         </tr>
         <tr>
@@ -170,10 +170,10 @@ pageScripts:
           </td>
           <td>0</td>
           <td>
-            1. vstup &ndash; scriptSig&semi; v předsegwitových tx je na
-            tomto místě podpisový skript
+            1. vstup &ndash; délka scriptSigu; nula znamená prázdný
+            scriptSig nativního segwitového vstupu
           </td>
-          <td>script</td>
+          <td>CompactSize + script (zde prázdný)</td>
         </tr>
         <tr>
           <td class="color">
@@ -181,8 +181,8 @@ pageScripts:
           </td>
           <td>ffffffff</td>
           <td>
-            1. vstup &ndash; sequence&semi; zamýšleno pro časté platby,
-            nyní slouží převážně k RBF
+            1. vstup &ndash; sequence; ovlivňuje locktime, relativní
+            časové zámky podle BIP68 a opt-in RBF. Zde je finální 0xffffffff
           </td>
           <td>4 bajty LE</td>
         </tr>
@@ -232,10 +232,10 @@ pageScripts:
           </td>
           <td>script</td>
           <td>
-            svědek (witness)&semi; segregovaný podpisový skript
-            (scriptSig)
+            svědek (witness); seznam položek zásobníku pro každý vstup,
+            zde podpis a veřejný klíč
           </td>
-          <td>script</td>
+          <td>počet položek a jejich délky v CompactSize + data</td>
         </tr>
         <tr>
           <td class="color">
@@ -254,22 +254,22 @@ pageScripts:
   <p class="just">
     Serializace této tx čítá 222 bajtů z čehož je 109 bajtů
     &bdquo;segwitových&ldquo; (marker, flag, witness). Pro výpočet
-    <a href="#wu">váhy</a> tx vynásobíme počet
+    <a href="/#wu">váhy</a> tx vynásobíme počet
     bajtů &bdquo;nesegwitových&ldquo; dat čtyřmi a výsledek přičteme k
     počtu segwitových bajtů (113 &times; 4 &equals; 452&semi; 452 &plus;
     109 &equals; 561 WU). Když poté vydělíme WU čtyřmi, dostaneme tzv.
-    <a href="#vsize">virtuální velikost</a> (561
-    &divide; 4 &equals; 140,25 vB).
+    <a href="/#vsize">virtuální velikost</a> (561
+    &divide; 4 &equals; 140,25; po zaokrouhlení nahoru <strong>141 vB</strong>).
   </p>
   <p class="just">
     Odečtením součtu částek výstupů od součtu částek vstupů (hodnoty
     částek vstupů nejsou součástí dat této tx&semi; je potřeba se podívat
     do předchozích) zjistíme absolutní hodnotu
-    <a href="#fee">poplatku</a> (9566387 &minus;
+    <a href="/#fee">poplatku</a> (9566387 &minus;
     (9545393 &plus; 20000) &equals; 994). Relativní hodnoty poplatků pak
     zjistíme už prostým dělením velikostí, resp. virtuální velikostí (994
-    &divide; 222 &equals; 4,5 satů/bajt&semi; 994 &divide; 140 &equals;
-    7,1 satů/vBajt).
+    &divide; 222 &asymp; 4,5 sat/B&semi; 994 &divide; 141 &asymp;
+    7,05 sat/vB).
   </p>
   <div class="fig">
     <figure>
@@ -287,7 +287,7 @@ pageScripts:
   <header>
     <h2 id="script">Anatomie skriptu</h2>
     <p class="header">
-      <time datetime="2021-05-28">Aktualizováno: 28. 5. 2021</time>
+      <time datetime="2026-11-19">Aktualizováno: 19. 11. 2026</time>
     </p>
   </header>
   <p class="just">
@@ -296,8 +296,9 @@ pageScripts:
     vyhodnocujeme podmínky utracení každého UTXO. V našem případě útraty
     druhého výstupu (počítáno od nuly je to výstup číslo jedna) předchozí
     transakce 61149&hellip;17 musela &bdquo;naše&ldquo; transakce dodat
-    takový podpisový skript (scriptSig), který bude vyhodnocen v kombinaci
-    s uzamykacím skriptem (scriptPubKey) utráceného výstupu jako pravdivý.
+    taková svědecká data (witness), která splní podmínky uzamykacího
+    skriptu (scriptPubKey) utráceného výstupu. U tohoto nativního P2WPKH
+    vstupu zůstává scriptSig prázdný.
     Skriptovací jazyk Bitcoinu pracuje se zásobníkem a samotný skript je
     složen z operátoru a elementů (dat).
   </p>
@@ -316,12 +317,13 @@ pageScripts:
     podpisový skript (scriptSig) aktuální tx. ScriptSig naší transakce je
     ale prázdný! No to nevadí, uzel začne s tím to co má. OP_0 vloží na
     vrch zásobníku nulu, OP_PUSHBYTES_20 vloží na vrch zásobníku
-    následujících 32 bajtů skriptu. Uzel vykonal celý skript a na vrchu
+    následujících 20 bajtů skriptu. Uzel vykonal celý skript a na vrchu
     zásobníku má nenulovou hodnotu (hash veřejného klíče). Skript je
-    pravdivý, transakce je platná. I bez podpisu je platná!
+    pro tento starý uzel pravdivý a nevyžaduje podpis! Platnost transakce
+    ovšem podléhá i ostatním pravidlům.
     <img src="/img/lol.png" alt="LOL" /> Není to
-    chyba, je to schválně &ndash; předsegwitové uzly neví, že podpisový
-    skript je nyní v poli witness, proto je zajištěno, že se těmto uzlům
+    chyba, je to schválně &ndash; předsegwitové uzly nevědí, že podpisová
+    data jsou nyní v poli witness, proto je zajištěno, že se těmto uzlům
     bude kombinace segwitového uzamykacího skriptu a prázdného podpisového
     skriptu segwit transakce jevit jako platná. Taky se tomu říká zpětná
     kompatibilita.
@@ -344,26 +346,28 @@ pageScripts:
     skript selhal. Nyní už to bez podpisu nepůjde.
   </p>
   <p class="just">
-    Segwitový uzel ale ví, že v této transakci musí podpisový skript
-    hledat v poli witness. Finální odemykací skript naší transakce (resp.
-    jejího prvního a jediného vstupu) je tedy:
+    Segwitový uzel pro tento P2WPKH vstup vyžaduje právě dvě položky
+    witnessu: podpis a veřejný klíč. Ty nejprve vloží na zásobník a pak nad ním
+    vykoná výše uvedený P2PKH skript. Witness sám není skript a délky jeho
+    položek nejsou instrukce PUSH. Výukový zápis tedy odděluje počáteční
+    zásobník od vykonávaných instrukcí:
   </p>
   <p class="script">
     <a
       href="#eval"
       onmouseover="chanclrblue('push47')"
       onmouseout="chanclrblack('push47')"
-      >OP_PUSHBYTES_47</a
+      >witness[0]: podpis, 71 bajtů (0x47)</a
     >
     <br />304402201cbbe2ba007b80c6e23ff6c0069b7135580c4f00089474b4c882421408fde92502204e330225ae3a72364662f50a29c2d29db6b7063f71a721af7da905de30df312001
     <br /><a
       href="#eval"
       onmouseover="chanclrblue('push21')"
       onmouseout="chanclrblack('push21')"
-      >OP_PUSHBYTES_21</a
+      >witness[1]: veřejný klíč, 33 bajtů (0x21)</a
     >
     <br />03c0fb6554508be65f82305cab41d97db37e2d5b3ba5920009209f9dfbcb00dbcc
-    <br /><a
+    <br /><br />Vykonávaný skript:<br /><a
       href="#eval"
       onmouseover="chanclrblue('dup')"
       onmouseout="chanclrblack('dup')"
@@ -379,7 +383,7 @@ pageScripts:
       href="#eval"
       onmouseover="chanclrblue('push14')"
       onmouseout="chanclrblack('push14')"
-      >OP_PUSHBYTES_14</a
+      >OP_PUSHBYTES_20 (0x14)</a
     >
     <br />413879391419d23453c720a1058e959ae663c3d6 <br /><a
       href="#eval"
@@ -395,22 +399,22 @@ pageScripts:
     >
   </p>
   <p class="just" id="eval">
-    Vykonáme skript &ndash;
+    Nejprve naplníme zásobník z witnessu &ndash;
     <span id="push47"
-      >71 následujících bajtů (podpis) se vloží na vršek zásob.</span
+      >položka o délce 71 bajtů (podpis) se vloží na vršek zásob.</span
     >&semi;
     <span id="push21"
-      >33 následujících bajtů (veřejný klíč) se vloží na vršek
+      >položka o délce 33 bajtů (veřejný klíč) se vloží na vršek
       zásob.</span
     >&semi;
-    <span id="dup">element na vršku zásob. se zduplikuje</span>&semi;
+    <span id="dup">při vykonávání skriptu se element na vršku zásob. zduplikuje</span>&semi;
     <span id="hash"
       >element na vršku zásobníku se nahradí svým vlastním hashem
       (RIPEMD160(SHA256))</span
-    >. Na zásobníku je nyní pohledem z vrchu hash (adresa), veřejný klíč a
+    >. Na zásobníku je nyní pohledem z vrchu hash veřejného klíče, veřejný klíč a
     podpis&semi; dále se
     <span id="push14">20 následujících bajtů vloží na vršek zásob</span>.
-    (tj. adresa z uzamykacího skriptu)&semi;
+    (tj. očekávaný hash veřejného klíče z uzamykacího skriptu)&semi;
     <span id="eq"
       >dva vrchní elementy se odeberou ze zásob. a porovnají se &ndash;
       jsou&hyphen;li shodné, skript pokračuje, v opačném případě končí
@@ -422,14 +426,16 @@ pageScripts:
       předobrazu podepisované transakce a vrátí na vrch zásobníku 1 pro
       platný, 0 pro neplatný podpis</span
     >. Jsme na konci skriptu a je&hyphen;li na vrchu zásobníku 1,
-    transakce je platná.
+    tento vstup splnil podpisovou podmínku. U P2WPKH musí navíc zůstat
+    na zásobníku právě jediná pravdivá položka; celá transakce musí splnit
+    i všechna ostatní pravidla.
   </p>
 </article>
 <article>
   <header>
     <h2 id="preimage">Bonus: Předobraz transakce pro podpis</h2>
     <p class="header">
-      <time datetime="2021-06-04">Aktualizováno: 4. 6. 2021</time>
+      <time datetime="2026-11-19">Aktualizováno: 19. 11. 2026</time>
     </p>
   </header>
   <p class="just">
@@ -442,13 +448,15 @@ pageScripts:
     jakým způsobem vznikl její podepisovaný předobraz.
   </p>
   <p class="just">
-    Před segwitem vznikal předobraz tak, že v případě ověření nejprve
-    došlo k vyprázdnění všech scriptSigů (v případě podpisu není co
-    vyprazdňovat, scriptSig ještě nebyl naplněn). Následně jsou tato
-    prázdná místa &ndash; vždy po jednom pro každý podpis &ndash; vyplněna
-    skripty scriptPubKey utrácených výstupů. Pro ty je potřeba sáhnout do
-    předchozí(ch) transakce/í. Nakonec jen přidán hashtyp &ndash; typicky
-    SIGHASH_ALL (číslo 1 v čtyřbajtovém LE).
+    Pro jednoduchý legacy P2PKH vstup a SIGHASH_ALL bez ANYONECANPAY
+    vzniká předobraz takto: ve všech vstupech se scriptSig vyprázdní
+    (při podepisování ještě prázdný je, při ověření se z něj podpis
+    odstraní). Do právě podepisovaného vstupu se místo něj vloží
+    scriptPubKey utráceného výstupu &ndash; pro ten je potřeba sáhnout do
+    předchozí transakce. Ostatní vstupy zůstanou s prázdným scriptSigem,
+    takže každý podpis se počítá nad trochu jiným předobrazem. U složitějších
+    skriptů je nutné zohlednit další pravidla scriptCode. Nakonec je přidán
+    hashtyp &ndash; typicky SIGHASH_ALL (číslo 1 v čtyřbajtovém LE).
   </p>
   <p class="just">
     Tento přístup má však dvě hlavní nevýhody. Zaprvé &ndash; výpočetní
@@ -462,7 +470,10 @@ pageScripts:
       >BIPem 143</a
     >
     &ndash; zaveden nový způsob výroby předobrazu pro segwitové transakce.
-    Předobraz výše rozebrané tranasakce bude tedy vypadat následovně
+    Následující výčet platí pro náš P2WPKH vstup, tedy segwit v0,
+    a SIGHASH_ALL bez ANYONECANPAY. Jiné sighash režimy mění zahrnutá data;
+    Taproot používá odlišný algoritmus podle BIP341.
+    Předobraz výše rozebrané transakce bude vypadat následovně
     (užité hashe jsou vždy dvojité SHA256):
   </p>
   <ul class="article">
@@ -472,7 +483,7 @@ pageScripts:
       všechny podpisy (32 bajtů)
     </li>
     <li>
-      hash všech sequence útracených výstupů&semi; společný pro všechny
+      hash všech nSequence vstupů podepisované transakce&semi; společný pro všechny
       podpisy (32 bajtů)
     </li>
     <li>
@@ -480,7 +491,8 @@ pageScripts:
     </li>
     <li>
       výše uvedený modifikovaný uzamykací skript utráceného
-      (podepisovaného) výstupu (script)
+      (podepisovaného) výstupu (scriptCode), včetně délkového prefixu
+      CompactSize; zde 0x19 následované 25bajtovým P2PKH skriptem
     </li>
     <li>částka utráceného (podepisovaného) výstupu (8 bajtů LE)</li>
     <li>
@@ -495,7 +507,7 @@ pageScripts:
   </ul>
   <p class="just">
     Jak by takové velmi naivní ověření podpisu naší transakce vypadalo lze
-    nahlednout v jazyce python
+    nahlédnout v jazyce python
     <a href="https://www.online-python.com/0tu3dncIj2">zde</a>.
   </p>
 </article>

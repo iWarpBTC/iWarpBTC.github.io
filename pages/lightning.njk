@@ -15,20 +15,21 @@ pageStyles:
   <header>
     <h2 id="ln1">Úvod do Lightning network</h2>
     <p class="header">
-      <time datetime="2021-11-23">Aktualizováno: 23. 11. 2021</time>
+      <time datetime="2026-11-19">Aktualizováno: 19. 11. 2026</time>
     </p>
   </header>
   <p class="just">
     Lightning network je
-    <a href="#p2p"
+    <a href="/#p2p"
       ><span
         class="tooltip bottom animationTips blue"
         tool-tips="peer-to-peer"
         >p2p</span
       ></a
     >
-    platební síť umožňující teoreticky neomezené množství velmi rychlých
-    bitcoinových plateb. Jedná se o druhou vrstvu (chcete-li nadstavbu)
+    platební síť umožňující opakované rychlé bitcoinové platby bez
+    zápisu každé platby do blockchainu. Praktickou kapacitu omezují
+    likvidita kanálů, limity protokolu i výkon a dostupnost uzlů. Jedná se o druhou vrstvu (chcete-li nadstavbu)
     nad základní, „blockchainovou“, vrstvou
     <a href="/pages/transaction.html"
       >bitcoinových transakcí</a
@@ -37,22 +38,23 @@ pageStyles:
     mohlo dovolit provoz vlastního bitcoinového uzlu (full node). Proto je
     jeden blok omezen na 4 miliony váhových jednotek. Samoregulační
     <a href="/pages/block.html#mining"
-      >mechanismus težby</a
+      >mechanismus těžby</a
     >
     zajišťuje vytěžení bloku (zapsání bloku do blockchainu) průměrně
     jednou za deset minut. Tím je však omezen počet zapisovaných transakcí
-    do blockchainu asi na 10 za sekundu (v závislosti na typu a velikosti
-    transakcí).
+    do blockchainu podle jejich váhy. Například při průměrné velikosti 200 vB
+    vychází řádově osm transakcí za sekundu; nejde o pevný limit a jedna
+    transakce může obsahovat více plateb.
   </p>
   <p class="just">
-    Lightning network umožnuje trustless (tzn. nevyžadující důvěru v
+    Lightning network umožňuje trustless (tzn. nevyžadující důvěru v
     druhou či třetí stranu) provádění plateb bez nutnosti zapsání každé
     platby jako samostatné transakce do blockchainu zvlášť. Zavádí
     protokol, díky kterému dvě strany (tvořící platební kanál) mohou mezi
     sebou provádět platby (měnit účetní stav kanálu), přičemž
     <strong
-      >obě strany v každém okamžiku drží platnou a podepsanou bitcoinovou
-      transakci</strong
+      >po dokončení aktualizace mají obě strany k dispozici podepsanou
+      bitcoinovou transakci</strong
     >, která odráží poslední stav platebního kanálu a může být v případě
     potřeby kdykoliv vyslána do sítě, čímž dojde k vypořádání (a uzavření)
     kanálu na základní vrstvě. V
@@ -69,120 +71,111 @@ pageStyles:
     příjemcem naší platby (stejně, jako není nutné mít vlastní síťový
     kabel ke každému webovému serveru, jehož stránky si chceme
     prohlédnout), je v Lightning network umožněno „směrování“ (chcete-li
-    přeposílání, routouvání, forwardování, …) plateb. Naše platba může ke
+    přeposílání, routování, forwardování, …) plateb. Naše platba může ke
     svému příjemci procházet cizími platebními kanály (opět bez nutnosti
     důvěry v operátory těchto kanálů), dokonce může být i rozdělena na
     několik menších částí, které projdou různými cestami, přes různé
     platební kanály.
   </p>
   <p class="just">
-    Jakkoliv se jedná o trustless řešení, nic nám nebrání tuto vlastnost v
-    různé míře vyměnit za více pohodlí. Můžeme se tak naprosto svěřit do
-    rukou např. provozovatelů custodial „peněženky“ Bluewallet, kteří nám
-    umožní disponovat jejich bitcoiny a provádět s nimi LN platby (v
-    takovém případě bitcoiny skutečně nevlastníme, vlastníme pouze
-    pohlédávku vůči provozovateli peněženky, podobně jako v případě
-    bankovního fiat účtu). Můžeme zvolit i řešení „na půli cesty“, jako je
-    např. peněženka Phoenix. V takovém případě budeme mít na svém zařízení
-    „odlehčený“ LN uzel, který nám umožní otevírat vlastní platební kanály
-    s plným uzlem provozovatele Phoenixu (<a
-      href="https://amboss.space/node/03864ef025fde8fb587d989186ce6a4a186895ee44a926bfc370e2c366597a3f8f"
-      >ACINQ</a
-    >). Prostřednictvím takového kvalitně propojeného uzlu můžeme přijímat
-    a odesílat platby prakticky do celé sítě. Přestože jsme v tomto
-    případě, co se funkčnosti týče, plně závislí na provozovateli, zde
-    jsme již vlastníky svých bitcoinů. Kdykoliv můžeme provést konečné
-    vypořádání svých bitcoinů z platebního kanálu na základní vstvu
-    (zápisem transakce do blockchainu). Ultimátní řešení je pak
-    provozování vlastního bitcoinového a lightningového uzlu (lightningový
-    je na tom bitcoinovém závislý). Nejen, že budeme výhradními vlastníky
-    našich bitcoinů, ale také nezávislými účastníky sítě, kteří nemusí
-    věřit a spoléhat na nikoho, jen na vlastní zařízení a na něm běžící
-    kód.
+    Jakkoliv protokol umožňuje správu prostředků bez jejich svěření
+    protistraně, můžeme tuto vlastnost vyměnit za pohodlí custodial služby.
+    U takové služby ovládá klíče provozovatel a uživatel má vůči němu jen
+    pohledávku, podobně jako u peněz na bankovním účtu.
+    Historickým příkladem byla služba Lndhub.io provozovaná BlueWallet, ukončená
+    v roce 2023; nešlo o vlastnost všech peněženek BlueWallet.
+    Samostatnou kategorii představují peněženky jako Phoenix: uživatel ovládá
+    klíče, zatímco pro běžný provoz využívá poskytovatele lightningových služeb.
+    Závislost na jeho dostupnosti není totéž jako svěření prostředků do úschovy.
+    Při provozu vlastního bitcoinového a lightningového uzlu si správu zajišťujeme
+    sami, ale stále potřebujeme spolehlivé zařízení, zálohy, sledování řetězce
+    a možnost včas potvrdit potřebné onchain transakce.
   </p>
   <p class="just">
-    Existuje několik implementací lightnigového uzlu (lnd, c-lightning,
-    eclair, ...). Také existuje mnoho „distribucí“, usnadňujících přístup
-    k celému setu bitcoinového uzlu, lightnigového uzlu a dalších aplikací
-    umožnujících snazší správu uzlu, či příjímání plateb:
+    Existuje několik implementací lightningového uzlu, například LND,
+    Core Lightning (dříve c-lightning) a Eclair. Instalaci a správu celého
+    stacku mohou usnadnit projekty jako
+    <a href="https://umbrel.com/">Umbrel</a>,
+    <a href="https://raspiblitz.org/">RaspiBlitz</a> nebo
+    <a href="https://mynodebtc.com/">myNode</a>.
+    Podporovaný hardware je třeba ověřit u konkrétního projektu; například
+    Umbrel lze provozovat na Intel/AMD i podporovaných Raspberry Pi.
   </p>
-  <ul class="article">
-    <li>
-      Výhradně pro x86-64 platformu:
-      <ul>
-        <li>
-          cryptoanarchy-deb-repo-builder (<a
-            href="https://github.com/debian-cryptoanarchy/cryptoanarchy-deb-repo-builder"
-            >Github</a
-          >)
-        </li>
-      </ul>
-    </li>
-  </ul>
-  <ul class="article">
-    <li>
-      Mnohem rozšířenější jsou však ARM distribuce, typicky pro zařízení
-      Raspberry Pi:
-      <ul>
-        <li><a href="https://getumbrel.com/">Umbrel</a></li>
-        <li><a href="https://raspiblitz.org/">RaspiBlitz</a></li>
-        <li><a href="https://mynodebtc.com/">myNode</a></li>
-      </ul>
-    </li>
-  </ul>
+  <p class="just">
+    Následující výklad a diagramy používají zjednodušený model klasického
+    jednostranně financovaného kanálu s trestáním odvolaných stavů, bez anchorů
+    a bez počátečního převodu prostředků protistraně. Modelové částky slouží
+    k vysvětlení principu. Současný protokol nabízí také oboustranné financování
+    a jiné formáty commitment transakcí; jejich podporu určuje implementace
+    a vyjednaný typ kanálu.
+  </p>
   <h3>Otevření platebního kanálu</h3>
   <p class="just">
+    Samotný seed obecně nestačí k obnovení stavu lightningových kanálů.
+    Zálohování a obnova závisejí na implementaci. Například LND používá
+    také static channel backup pro obnovu prostřednictvím uzavření kanálů;
+    Core Lightning má vlastní postupy pro zálohu tajemství a databáze či
+    nouzovou obnovu. Obnovení klíčů není totéž jako obnovení aktuálních stavů
+    kanálů. Před otevřením kanálu je proto potřeba nastavit zálohování podle
+    <a href="https://docs.lightning.engineering/lightning-network-tools/lnd/recovery-planning-for-failure">dokumentace LND</a>
+    nebo <a href="https://docs.corelightning.org/docs/backup">Core Lightning</a>.
+  </p>
+  <p class="just">
     Máme-li svůj spuštěný a synchronizovaný LN uzel, naším druhým krokem
-    bude nejspíš (po zapsání si seedu a „nabití“ peněženky on-chain
+    bude nejspíš (po nastavení zálohování a „nabití“ peněženky onchain
     transakcí) otevření platebního kanálu. K tomu budeme potřebovat
-    platební protistranu, jiný LN uzel. Uzel je jednoznačně identifikován
-    svým neměnným veřejným klíčem a IP, resp. TOR adresou, ve formátu
+    platební protistranu, jiný LN uzel. Uzel je jednoznačně určen
+    svým identifikačním veřejným klíčem (node ID). Pro připojení se k němu
+    přidává IP nebo Tor adresa a port, které se mohou měnit, ve formátu
     klíč@adresa:port. Uzel může být označen i libovolným aliasem, ten však
     může být kdykoliv měněn a také být shodný pro více uzlů, proto je
     právě třeba při otevírání kanálu záhodno alespoň zběžně kontrolovat
     veřejný klíč. Před samotným otevřením kanálu je nutné s protistranou
     navázat přímé spojení (direct peer). Toto přímé spojení je pak
     udržováno ideálně po celou dobu trvání platebního kanálu, neboť v
-    případě jeho přerušení není možné přijímat, ani odesílat platby. Nyní
-    může kterákoliv ze stran navhrnout protistraně
+    případě jeho přerušení není možné tímto kanálem provádět nové platby. Nyní
+    může kterákoliv ze stran navrhnout protistraně
     <a
-      href="https://github.com/lightningnetwork/lightning-rfc/blob/master/02-peer-protocol.md#the-open_channel-message"
+      href="https://github.com/lightning/bolts/blob/master/02-peer-protocol.md#the-open_channel-message"
       >otevření nového</a
     >
-    kanálu a jeho parametry, z nichž nejdůležitější je kapacita kanálu. Ta
-    určuje maximální objem platby, která může kanálem najednou projít.
+    kanálu a jeho parametry, z nichž nejdůležitější je kapacita kanálu. Ta je
+    horní mezí prostředků uzamčených v kanálu. Skutečně odeslatelná částka
+    závisí na směru a dostupném zůstatku, rezervách, poplatcích a limitech HTLC.
     Stejná částka bude i výstupem tzv. otevírací transakce, ve které
     navrhovatel uzamkne bitcoiny ve prospěch multisig adresy 2 ze 2, tedy
     vznikne takový výstup, který bude možné utratit pouze s podpisem obou
-    stran kanálu. Financovat nově otevíraný kanál lze prozatím pouze
-    jednostraně, podaří-li se ho otevřít, bude tak celá jeho kapacita na
-    straně navrhovatele. Ten ji bude moci odeslat, ale nebude schopen v
-    úvodním stavu tímto kanálem platbu přijmout &ndash; na druhé straně v
-    úvodu nebude žádná likvidita.
+    stran kanálu. V našem jednostranně financovaném příkladu bez počátečního převodu
+    bude na začátku zůstatek na straně navrhovatele. Odeslatelná částka
+    bude nižší o potřebné rezervy a poplatky; přijmout tímto kanálem zatím
+    nebude moci, protože protistrana nemá odchozí likviditu. Protokol
+    podporuje i interaktivní oboustranné financování, kdy přispívají obě strany.
   </p>
   <p class="just">
     Pokud protistrana
     <a
-      href="https://github.com/lightningnetwork/lightning-rfc/blob/master/02-peer-protocol.md#the-accept_channel-message"
+      href="https://github.com/lightning/bolts/blob/master/02-peer-protocol.md#the-accept_channel-message"
       >souhlasí</a
     >
     s parametry navrhovaného kanálu, odešle navrhovateli odpověď, na
     základě které bude schopen sestavit dvě transakce. Jednak již popsanou
     otevírající, kterou však zatím nesmí vyslat do sítě. Jednak řekněme
     únikovou transakci, nebo také závazek (commitment) – tedy transakci,
-    která v případě problémů odemkne výstup otevírácí transakce a utratí
-    jej dle posledního stavu kanálu (ke kterému se strany v unikové
+    která v případě problémů odemkne výstup otevírací transakce a utratí
+    jej dle posledního stavu kanálu (ke kterému se strany v únikové
     transakci zavazují). V případě úvodního stavu po otevření, kdy ještě
-    neproběhla žádná platba, posílá úniková transakce vše zpět
-    navrhovateli. Když navrhovatel kanálů oznámí protistraně hash této
-    transakce a označí index inkriminovaného výstupu otevírací transakce,
-    může protistrana poskytnou svůj podpis únikové transakce. Nyní se
+    neproběhla žádná platba, posílá úniková transakce dostupné prostředky po odečtení poplatku
+    zpět navrhovateli. Když navrhovatel kanálu oznámí protistraně txid otevírací
+    transakce a index jejího financujícího výstupu a předá podpis
+    commitment transakce protistrany,
+    může protistrana poskytnout svůj podpis únikové transakce. Nyní se
     navrhovatel nemusí bát zveřejnit otevírací transakci a počkat na její
     zatěžení (resp. dosažení požadované hloubky zatěžení, zejména v
     případě větších kapacit kanálu). I kdyby protistrana v tomto okamžiku
     zmizela se světa, navrhovatel drží podepsanou únikovou transakci,
     kterou může zveřejnit a po uplynutí smluvené čekací doby
-    (to_self_delay) získá zpět svůj vklad uzamčený otevírací transakcí.
+    (to_self_delay) může utratit svůj výstup po odečtení souvisejících poplatků.
+    Čekací doba se počítá od potvrzení commitment transakce.
   </p>
   <div class="fig">
     <figure>
@@ -205,10 +198,9 @@ pageStyles:
     únikové transakce, zohledňující nový účetní stav. Zároveň dochází k
     jakémusi odvolání předchozí iterace únikových transakcí. Právě k
     zajištění této „odvolatelnosti“ drží každá ze stran vlastní &ndash;
-    asymetrickou &ndash; verzi únikové transakce. Pokud byste teď chtěli
-    namítnout, že podepsaná a platná bitcoinová transakce je přeci
-    neodvolatelná, a to dokonce už před svým zapsáním do blockchainu, tak
-    máte standardně pravdu. Ne však u únikové LN transakce. Každá ze stran
+    asymetrickou &ndash; verzi únikové transakce. Odvoláním se stará commitment transakce nestává neplatnou podle
+    bitcoinového konsenzu. Nadále může být potvrzena, ale zveřejnění
+    odvolaného stavu umožní protistraně použít trestnou větev jeho výstupů. Každá ze stran
     drží takovou únikovou transakci, která odemkne 2 ze 2 výstup otevírací
     transakce a vytvoří dva (nevypořádané
     <span
@@ -224,14 +216,17 @@ pageStyles:
     strany dohodly při otevření kanálu) vlastním klíčem držitele. Právě
     tyto revokační klíče, resp. tajemství nutné k jejich
     <a
-      href="https://github.com/lightningnetwork/lightning-rfc/blob/master/03-transactions.md#revocationpubkey-derivation"
+      href="https://github.com/lightning/bolts/blob/master/03-transactions.md#revocationpubkey-derivation"
       >výrobě</a
     >, si strany vyměňují při podepisování nových únikových transakcí,
     čímž tedy prakticky dochází k odvolání předchozí iterace únikových
-    transakcí. Zde je nutné si uvědomit, že každá ze stran drží privátní
-    revokační klíč protistrany, svůj vlastní zná pouze veřejný, který
-    vyrábí tzv. naslepo. Těmito revokačními klíči lze tedy odemykat
-    výstup(y) odvolané únikové transakce protistrany, nikoliv své vlastní.
+    transakcí. Pro aktuální neodvolaný stav ještě protistrana revokační soukromý
+    klíč odvodit nedokáže. Teprve po předání per-commitment secret ho
+    zkombinuje se svým revocation basepoint secret a získá revokační klíč
+    k příslušnému starému stavu. Každá strana tedy umí trestat odvolané
+    commitment transakce protistrany, nikoli sama sebe. Označení
+    „revokační klíč Alice“ v diagramech znamená klíč pro trestání Alicina
+    stavu, který po odvolání dokáže odvodit Bob; analogicky pro Boba.
   </p>
   <p class="just">
     Pokud by se např. navrhovatel kanálu pokusil po 2 platbách protistranu
@@ -293,14 +288,17 @@ pageStyles:
   </div>
   <h3>Uzavření platebního kanálu</h3>
   <p class="just">
-    Tohle je nejjednodušší. Uzavření proběhne buď zveřejněním a zatěžením
-    popsané únikové transakce. Nebo se uzly ideálně dohodnou na aktuálním
-    stavu a podepíšou si prostou uzavírací transakci, která bez dalších
-    podmínek rozdělí výstup otevírací transakce oběma stranám. Takové
-    uzavření je výhodnější i z pohledu poplatků, který si strany mohou
-    stanovit podle aktuálního stavu mempoolu na rozdíl od únikové
-    transakce, která již po svém podpisu nemůže přizpůsobit poplatek stavu
-    mempoolu v době svého zveřejnění a tak bývá pro jistotu předražená.
+    Kanál lze uzavřít dvojím způsobem. Ideálně se strany dohodnou na
+    aktuálním stavu a společně podepíšou prostou uzavírací transakci, která
+    rovnou rozdělí prostředky oběma stranám; poplatek přitom mohou zvolit
+    podle aktuální situace v mempoolu. Pokud protistrana nespolupracuje,
+    lze kanál uzavřít jednostranně zveřejněním poslední commitment
+    transakce. Strana, která ji zveřejnila, pak musí na své prostředky
+    počkat po dobu to_self_delay a případná nevypořádaná HTLC řeší dalšími
+    transakcemi. Poplatek už podepsané commitment transakce nelze jednoduše
+    změnit, proto novější typy kanálů (tzv. anchor kanály) obsahují malé
+    výstupy, na které lze navázat transakci s vyšším poplatkem
+    (<a href="/#cpfp">CPFP</a>).
   </p>
   <h3 id="forward">Přeposílání plateb</h3>
   <p class="just">
@@ -339,24 +337,27 @@ pageStyles:
     časovém limitu splní zadanou podmínku, jinak vrátí prostředky zpět
     první straně. V LN je však důvěra ve třetí stranu nahrazena chytrým
     kontraktem zapsaným v jazyce
-    <a href="#script">Script</a>. Ten by v běžné
-    řeci mohl být vyjádřen např. takto
+    <a href="/#script">Script</a>. Provozní požadavek na včasné vypořádání takové platby bychom
+    v běžné řeči mohli vyjádřit například takto
     <em
       >„získáš 300&nbsp;021 satů, když před uplynutím 120 bloků získáš a
       odhalíš platební předobraz, tj. takový vstup funkce SHA256, který
       vygeneruje hash H&nbsp;&equals;&nbsp;6c672...59“.</em
     >
-    Po marném uplynutí stanoveného počtu bloků se prostředky navrací
-    odesílateli. Jak již víme, hashování je jednosměrná funkce. Snadno
+    Po dosažení expirace může odesílatel uplatnit cestu pro vrácení
+    prostředků. Nevracejí se automaticky: je potřeba dohoda v protokolu
+    nebo onchain transakce. Samotné dosažení expirace obecně nezneplatňuje
+    cestu s předobrazem, takže při onchain vypořádání záleží na včasném
+    potvrzení příslušné transakce. Jak již víme, hashování je jednosměrná funkce. Snadno
     spočítáme hash libovolného vstupu, je však prakticky nemožné z hashe
     zjistit, jaký byl vstup (předobraz). Pokud tedy konečný příjemce
     platby vygeneruje nějaké náhodné (256bitové) číslo, spočte jeho hash,
     který předá prostřednictvím invoice odesílateli platby jako
     <em>platební hash</em>, může odesílatel zajistit přesměrování platby
-    přes cizí uzly za použítí HTLC. Nabídne uzlu B HTLC „když do 120 bloků
+    přes cizí uzly za použití HTLC. Nabídne uzlu B HTLC „když do 120 bloků
     odhalíš předobraz pro tento platební hash H, získáš nárok na
     300&nbsp;021 satů“. Pokud B HTLC přijme, přidají si ho obě strany jako
-    další výstup do svých únikových (commitment) transkací, které si i
+    další výstup do svých únikových (commitment) transakcí, které si i
     podepíší. Aby B získal předobraz, musí nyní nabídnou podobné HTLC uzlu
     i C (o tom, jak ví, že zrovna C, si snad povíme více v pojednání o
     samotném trasování a routování) &ndash; „když do 80 bloků odhalíš
@@ -367,7 +368,11 @@ pageStyles:
     délka časového zámku (vyjádřená v blocích) a jednak se snižuje i
     částka; jen platební hash zůstává ve všech třech případech shodný. 4,
     resp. 17&nbsp;satů tvořící rozdíl mezi částkami je poplatek náležící
-    uzlu B, resp. C. Zkrácování časového zámku je pak nutné proto, aby měl
+    uzlu B, resp. C. Čísla 120, 80 a 40 zde vyjadřují zbývající čas vzhledem ke společné
+    výchozí výšce H. V protokolu jsou expirace absolutní výšky H+120, H+80
+    a H+40 (cltv_expiry), nikoli relativní zámky od potvrzení commitmentu.
+    Od nich je třeba odlišit relativní to_self_delay.
+    Zkracování času do expirace je nutné proto, aby měl
     např. B dostatek času vypořádat své HTLC i v případě, že mu C odhalí
     předobraz platebního hashe až na poslední chvíli. Jediný, kdo doposud
     zná předobraz platebního hashe je D &ndash; to on ho náhodně
@@ -376,13 +381,14 @@ pageStyles:
     na tuto částku a požadující předobraz tohoto hashe, stačí, aby odhalil
     uzlu C onen předobraz o požádal o vypořádání HTLC. To proběhne
     standardně tak, jak je popsáno v odstavci Aktualizace platebního
-    kanálu &ndash; C ověří, že přeobraz skutečně generuje platební hash,
+    kanálu &ndash; C ověří, že předobraz skutečně generuje platební hash,
     pak si strany aktualizují své únikové transakce &ndash; odstraní z
-    nich vypořádavané HTLC a zaznamenají nový účetní stav kanálu. Pokud by
-    C přestal před, či během vypořádáním odpovídat, musí D dokončit
-    vypořádání HTLC před uplynutím stanoveného počtu bloků onchain
-    zveřejněním únikové transakce obsahující tento HTLC, který si následně
-    i odemkne, protože zná předobraz platebního hashe. Úplně stejným
+    nich vypořádávané HTLC a zaznamenají nový účetní stav kanálu. Pokud by
+    C přestal odpovídat před vypořádáním či během něj, musí D včas zahájit onchain vypořádání: nechat potvrdit commitment
+    transakci a příslušné utracení HTLC s předobrazem, aby předešel
+    konkurenční timeout cestě. Pouhé odvysílání transakce nezaručuje její
+    potvrzení. Případné další čekání to_self_delay patří k navazujícímu
+    výstupu a není totožné s expirací HTLC. Úplně stejným
     způsobem následně proběhne vypořádání i mezi C a B, a konečně i mezi B
     a A. Díky získanému předobrazu platebního hashe si A může být jist, že
     jeho platba dorazila v pořádku až k D. Ačkoliv to není nezbytné,
@@ -429,22 +435,16 @@ pageStyles:
   </div>
   <h3 id="invoice">Krátce o payment invoice</h3>
   <p class="just">
-    A právě platební hash &ndash; základ HTLC &ndash; je důvod, proč je v
-    LN zpravidla nutné pro každou jednotlivou platbu generovat novou
-    invoice. To je
-    <a
-      href="https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md"
-      >datová struktura</a
-    >
-    zakódovaná &ndash; podobně jako onchain adresa &ndash; v bech32 s
-    prefixem <em>lnbc</em> a lidsky čitelnou částkou. Uvnitř se pak kromě
-    platbního hashe vyskytuje typicky opět částka, hlavní veřejný klíč
-    přijímajícího uzlu, čas vystavení, čas expirace, popisek, payment
-    secret (neplést s předobrazem pro platební hash!), či feature bits
-    (indikující např. možnost rozdělit platbu na několik částí). Zpravidla
-    nechybí ani kryptografický podpis hlavním soukromým klíčem. Invoice
-    může také obsahovat informace o neveřejných kanálech, kterými by mohla
-    být platba routována.
+    Platební požadavek v běžném formátu
+    <a href="https://github.com/lightning/bolts/blob/master/11-payment-encoding.md">BOLT11</a>
+    obsahuje platební hash pro HTLC. Pro každou samostatnou platbu se zpravidla
+    vytváří nový požadavek s novým předobrazem. BOLT11 používá Bech32; na mainnetu
+    začíná lnbc a může následovat částka. Ta je volitelná a není znovu uvedena
+    v datové části. Datová část obsahuje čas vystavení, platební hash, popis nebo
+    jeho hash a další pole, například payment secret, expiraci či feature bits.
+    Podpis je povinný. Identitu příjemce lze získat z podpisu, takže veřejný klíč
+    nemusí být uveden samostatně. Invoice může obsahovat i nápovědu trasy přes
+    neveřejné kanály. Payment secret není předobrazem platebního hashe.
   </p>
   <h3 id="onion">Drby, trasování a cibulové routování</h3>
   <p class="just">
@@ -476,15 +476,16 @@ pageStyles:
     následujícím uzlem. Platební hash nemusí být zašifrován ve vrstvách
     onion paketu, ten je znám z již uzavřeného HTLC od předchozího uzlu.
     Víc směrující uzel (nazývaný také hop) neví a ani nepotřebuje vědět.
-    Neví, je&hyphen;li přechozí uzel původcem platby, nebo taky jen hopem.
+    Neví, je&hyphen;li předchozí uzel původcem platby, nebo taky jen hopem.
     Neví ani, je&hyphen;li následující uzel konečným příjemcem platby,
-    nebo jen dalším hopem. Nemůže to ani tušit, neboť paket je v každém
-    okamžiku své cesty stále stejně velký (před předáním dalšímu uzlu je
-    jakoby vyfutrován zevnitř na konstatní velikost). Teprve až ve vrstvě,
+    nebo jen dalším hopem. Z formátu onion paketu to přímo nezjistí: směrovací informace jsou
+    vyplňovány na konstantní délku. Nejde však o absolutní anonymitu.
+    Topologie sítě, částky, časování a analýza provozu mohou umožnit odhady. Teprve až ve vrstvě,
     kterou si rozšifruje konečný uzel, se nalézá dříve zmiňovaný payment
-    secret. Konečný uzel tak má jistotu, že obdržel paket sestavený
-    skutečným původním plátcem, neboť jen on se payment secret dozvěděl z
-    invoce. Žádný hop nemůže sestavit vlastní paket pro následující uzel
+    secret. Payment secret pomáhá bránit sondování, při kterém by prostředník
+    zkusil sestavit nový paket a ověřit, zda je následující uzel příjemcem.
+    Neprokazuje však identitu původního plátce: invoice a její payment secret
+    může znát více lidí. Hop bez znalosti payment secret nemůže sestavit platný koncový paket pro následující uzel
     tak, jako kdyby měl být následující uzel tím posledním a tím ho
     odhalit jako konečného příjemce platby v případě, že by jím doopravdy
     byl. Dojde&hyphen;li takto platba v pořádku až ke svému konečnému

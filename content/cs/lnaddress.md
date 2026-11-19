@@ -11,7 +11,7 @@ links:
 ---
 
 <p>
-  Nastavba nad
+  Nástavba nad
   <a href="#lnurl">LNURL</a> umožňující použití
   adresy ve tvaru uživatel@doména, notoricky známé z emailové
   komunikace.

@@ -11,12 +11,20 @@ links:
 ---
 
 <p>
-  Výchozí data pro deterministické odvozování klíčů. BIP32 přijímá seed
-  dlouhý 128 až 512 bitů. Při použití BIP39 vzniká 512bitový seed funkcí
-  PBKDF2-HMAC-SHA512 ze <a href="#seed-words">slovní zálohy</a>
-  normalizované do Unicode NFKD a saltu tvořeného řetězcem
-  <code>mnemonic</code> a stejně normalizovanou
-  <a href="#passphrase">passphrase</a> (případně prázdnou).
-  Délka výsledku 512 bitů neznamená 512 bitů entropie: roztažením vstupu
-  se nová náhodnost nevytváří.
+  Výchozí tajná data, ze kterých peněženka odvozuje své klíče. Často vznikají z
+  kombinace slovní zálohy a případné passphrase. Při stejném postupu vzniknou ze
+  stejného seedu stejné klíče.
 </p>
+<details class="technical-detail">
+  <summary>Technicky přesně</summary>
+  <p>
+    Výchozí data pro deterministické odvozování klíčů. BIP32 přijímá seed
+    dlouhý 128 až 512 bitů. Při použití BIP39 vzniká 512bitový seed funkcí
+    PBKDF2-HMAC-SHA512 ze <a href="#seed-words">slovní zálohy</a>
+    normalizované do Unicode NFKD a saltu tvořeného řetězcem
+    <code>mnemonic</code> a stejně normalizovanou
+    <a href="#passphrase">passphrase</a> (případně prázdnou).
+    Délka výsledku 512 bitů neznamená 512 bitů entropie: roztažením vstupu
+    se nová náhodnost nevytváří.
+  </p>
+</details>

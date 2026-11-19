@@ -15,154 +15,82 @@ pageStyles:
   <header>
     <h2 id="taproot">Úvod do Taprootu (BIP 340/341/342)</h2>
     <p class="header">
-      <time datetime="2021-06-24">Aktualizováno: 24. 6. 2021</time>
+      <time datetime="2026-11-19">Aktualizováno: 19. 11. 2026</time>
     </p>
   </header>
   <p class="just">
-    Dne 12/06/2021 byl vytěžen blok s pořadovým číslem 687284, který byl
-    1815. blokem dané epochy obtížnosti signalizující připravenost na
-    Taproot. Tím se bitcoinová síť dohodla na tom, že počínaje blokem
-    709632 (vytěžen 14/11/2021) došlo k aktivaci
-    <a href="#sfork">soft&hyphen;forku</a>
-    nazvaného Taproot.
+    Dne 12. června 2021 dosáhla signalizace připravenosti na Taproot
+    požadovaného prahu. Vylepšení bylo aktivováno jako
+    <a href="/#sfork">soft-fork</a> od bloku 709632, vytěženého
+    14. listopadu 2021. Skládá se ze Schnorrových podpisů podle BIP340,
+    pravidel výstupů podle BIP341 a skriptovacího systému Tapscript podle BIP342.
   </p>
   <p class="just">
-    Toto vylepšení přináší nový typ výstupu pay&hyphen;to&hyphen;taproot
-    (<span
-      class="tooltip bottom animationTips blue"
-      tool-tips="pay to taproot"
-      >p2tp</span
-    >). Ten je podobný prapůvodnímu
-    <span
-      class="tooltip bottom animationTips blue"
-      tool-tips="pay to pubkey"
-      >p2pk</span
-    >, jelikož neuzamyká výstup ve prospěch nějakého hashe (ať už
-    veřejného klíče &ndash;
-    <span
-      class="tooltip bottom animationTips blue"
-      tool-tips="pay to (witness) pubkey hash"
-      >p2(w)pkh</span
-    >, nebo skriptu &ndash;
-    <span
-      class="tooltip bottom animationTips blue"
-      tool-tips="pay to (witness) script hash"
-      >p2(w)sh</span
-    >), nýbrž ve prospěch přímo agregovaného veřejného klíče. Tím se sice
-    připravíme o jednu vrstvu ochrany před velmi hypotetickým útokem přímo
-    na problém diskrétního logaritmu v cyklické grupě, zato ovšem ušetříme
-    na podpisových datech, neboť již není potřeba k ověření podpisu
-    předkládat "za hashem skrytý" veřejný klíč. Pozorný čtenář
-    <a href="/pages/crypto.html#schnorr"
-      >anatomie Schnorrova podpisu</a
-    >, kteréžto podpisové schéma bude nově pro
-    <span
-      class="tooltip bottom animationTips blue"
-      tool-tips="pay to taproot"
-      >p2tp</span
-    >
-    užito, by teď měl namítnout, že sice bude ušetřeno na veřejném klíči,
-    avšak místo dvojice 256bitových čísel (<em>r</em>, <em>s</em>)
-    dostaneme podpis reprezentovaný bodem na křivce a 256bitovým číslem
-    (<em>R</em>, <em>s</em>), tedy si moc nepolepšíme. Zde je však zvoleno
-    poněkud neortodoxní řešení &ndash; nové podpisové schéma bude pracovat
-    pouze s body, jejichž y&hyphen;ová souřadnice bude sudá. V takovém
-    případě bude postačovat k reprezentaci bodu R pouze x&hyphen;ová
-    souřadnice, ze které je v takovém případě y&hyphen;ová jednoznačně
-    dopočítatelná. Podpis
-    <span
-      class="tooltip bottom animationTips blue"
-      tool-tips="pay to taproot"
-      >p2tp</span
-    >
-    výstupu tedy bude v ideálním případě zabírat pouhých 64 bajtů
-    (x&hyphen;ová souřadnice bodu <em>R</em>, číslo <em>s</em>).
+    Výstup pay-to-taproot (<strong>P2TR</strong>) obsahuje 32bajtovou
+    x-ovou souřadnici výstupního veřejného klíče. Na rozdíl od P2PKH nebo
+    P2WPKH tedy nejde o hash veřejného klíče. Tento výstup lze utratit
+    klíčovou cestou (key path), případně některou ze skriptových cest
+    (script path), které byly do výstupního klíče zavázány.
+  </p>
+  <h3>Schnorrovy podpisy a společné podepisování</h3>
+  <p class="just">
+    <a href="/pages/crypto.html#schnorr">Schnorrovy podpisy podle BIP340</a>
+    mají pevnou délku 64 bajtů: 32 bajtů pro x-ovou souřadnici bodu R a 32 bajtů
+    pro číslo s. Pro jednoznačnou interpretaci se u příslušných bodů používá
+    konvence sudé souřadnice y. V Taprootu je podpis s výchozím SIGHASH_DEFAULT
+    64bajtový; při explicitně uvedeném jiném povoleném sighash typu má
+    podpisová položka witnessu 65 bajtů.
   </p>
   <p class="just">
-    Hlavním přínosem Schnorrových podpisů je však linearita tohoto
-    schématu, díky které je možné sčítat (agregovat) jak podpisy, tak i
-    veřejné klíče. I přesto, že patent (<a
-      href="https://patents.google.com/patent/US4995082A/en"
-      >US4995082A</a
-    >) na ně vypršel už před spuštěním Bitcoinu, nebyly tehdy ještě
-    Schrorrovy podpisy natolik využívány, proto Satoshi zvolil
-    rozšířenější schéma
-    <span
-      class="tooltip bottom animationTips blue"
-      tool-tips="elliptic curve digital signature algorithm"
-      >ECDSA</span
-    >. A tak se Bitcoin jejich zavedení dočká téměř až po 13 letech v
-    rámci Taprootu, který je na možnosti přímočarého sčítání klíčů a
-    podpisů založen.
+    Linearita Schnorrova schématu umožňuje více účastníkům společně vytvořit
+    jeden podpis pro agregovaný klíč, například protokolem
+    <a href="https://bips.dev/327/">MuSig2</a>. Nejde o prosté sečtení
+    libovolných hotových podpisů: účastníci spolupracují podle protokolu,
+    který řeší i bezpečnost agregace klíčů a použití noncí. ECDSA nadále
+    slouží starším typům výstupů.
+  </p>
+  <h3>Vnitřní klíč, strom skriptů a výstupní klíč</h3>
+  <p class="just">
+    Nejprve zvolíme vnitřní veřejný klíč P. Může patřit jednomu držiteli nebo
+    vzniknout agregací klíčů více účastníků. Případné alternativní podmínky
+    připravíme jako samostatné skripty v listech Merkleova stromu. Jde
+    o využití myšlenky MAST; konkrétní pravidla Taprootu stanoví BIP341,
+    nikoli starší návrh BIP114.
   </p>
   <p class="just">
-    Tento nový výstup, označovaný také jako native segwit v1, bude
-    používat opravenou verzi kódování adresy bech32<b>m</b>. U dosud
-    používaného kódování bech32 pro native segwit v0 (<span
-      class="tooltip bottom animationTips blue"
-      tool-tips="pay to witness pubkey hash"
-      >p2wpkh</span
-    >
-    a
-    <span
-      class="tooltip bottom animationTips blue"
-      tool-tips="pay to witness script hash"
-      >p2wsh</span
-    >) byl totiž objeven nečekaný bug &ndash; pokud bylo posledním znakem
-    adresy písmeno <em>p</em>, smazaní nebo naopak přidání písmena
-    <em>q</em> před tohle poslední <em>p</em> nemá za následek zneplatnění
-    kontrolního součtu. Toto je tedy zavedením bech32m opraveno, ačkoliv
-    popsaný bug neohrožuje dosavadní native segwit v0 adresy, neboť jim je
-    <a
-      href="https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki"
-      >BIPem 173</a
-    >
-    stanovena fixní délka.
+    Z vnitřního klíče a kořene stromu m vypočteme tweak
+    <code>t = int(hash_TapTweak(bytes(P) || m))</code> a výstupní klíč
+    <code>Q = P + tG</code>. Hash je tagged SHA256 podle BIP341; hodnotu
+    t ≥ n je nutné odmítnout. Pokud žádný strom není, m se vynechá;
+    BIP341 i tehdy doporučuje klíč upravit, aby nešlo dokázat, že
+    skriptová cesta neexistuje. Pravidla konsenzu to ale nevynucují. Do scriptPubKey se zapisuje x-ová souřadnice Q.
   </p>
   <p class="just">
-    Samotný Taproot je pak nadstavba
-    <a
-      href="https://github.com/bitcoin/bips/blob/master/bip-0114.mediawiki"
-      >vylepšení
-      <span
-        class="tooltip bottom animationTips blue"
-        tool-tips="merklized alternative script trees"
-        >MAST</span
-      ></a
-    >. Jak napovídá název, toto vylepšení rozdělí skript na několik
-    různých podmínek (alternativ) skriptu a nad těmi sestaví náš starý
-    známý Merkleho strom hashů. Pokud má k odemčení výstupu postačovat
-    splnění pouze některých podmínek z více stanovených, není díku
-    <span
-      class="tooltip bottom animationTips blue"
-      tool-tips="merklized alternative script trees"
-      >MASTu</span
-    >
-    potřeba odhalovat a zatěžovat blockchain těmi nesplněnými, ty budou v
-    odemykacím skriptu reprezentovány pouze svými hashi, resp. hashi
-    celých větví. Díky Taprootu však navíc můžeme vybrat preferovaný
-    způsob odemčení skriptu, kupříkladu multisig 2 ze 2, který díky
-    Schnorrovi agregujeme do jediného veřejného klíče (říkejme mu vnitřní
-    klíč). Případné ostatní způsoby odemčení &ndash; např. opatřené
-    spoustou různých podmínek, či časových zámků při poskytnutí pouze
-    jednoho podpisu &ndash; budou i nadále tvořit Merkleho strom, jehož
-    kořenový hash bude zkombinován s vnitřním klíčem, výsledkem čehož je
-    finální veřejný klíč celého
-    <span
-      class="tooltip bottom animationTips blue"
-      tool-tips="pay to taproot"
-      >p2tp</span
-    >
-    výstupu. Je&hyphen;li výstup odemčen (agregovaným) podpisem
-    odpovídajícímu vnitřnímu klíči, není možné poznat, zda byl odemykaný
-    výstup uzamčen jednomu, či více veřejným klíčům, ani zda existoval
-    alternativní způsob odemčení skriptem. V případě odemčení skriptem je
-    pak i nadále nutné vyjevit pouze ty splňované podmínky.
+    Klíčová cesta vyžaduje podpis platný pro <strong>výstupní klíč Q</strong>,
+    nikoli pouze pro vnitřní klíč P. Podepisující proto musí zohlednit tweak
+    i pravidla parity. Z takového utracení není přímo patrné, zda se na
+    podpisu podílel jeden člověk nebo více účastníků ani zda existovaly
+    alternativní skripty. Neznamená to však obecnou anonymitu transakce.
   </p>
   <p class="just">
-    Co prozatím Taproot nepřináší, je možnost vytvoření jednoho
-    agregovaného podpisu pro několik různých vstupů (cross&hyphen;input
-    signature aggregation). I nadále platí, že každý vstup transakce musí
-    mít svůj vlastní podpis.
+    Při utracení skriptovou cestou witness odhalí celý použitý listový skript,
+    data pro jeho splnění a control block s vnitřním klíčem a Merkleovou cestou.
+    Ostatní listové skripty se neodhalují; zastupují je hashe v důkazu.
+    Uzel ověří vazbu skriptu na výstupní klíč a vykoná ho podle pravidel
+    Tapscriptu. Není tedy odhalena jen jednotlivá splněná podmínka, pokud
+    použitý listový skript obsahuje i další větvení.
+  </p>
+  <h3>Adresy a rozsah vylepšení</h3>
+  <p class="just">
+    P2TR je nativní segwit verze 1 a používá kódování Bech32m. Segwit verze 0
+    (P2WPKH a P2WSH) nadále používá Bech32. U původního Bech32 lze před koncové
+    p přidávat nebo odebírat q bez porušení kontrolního součtu. Dosavadní
+    adresy verze 0 chrání omezení na dvě povolené délky; Bech32m tuto slabinu
+    odstraňuje pro verze 1 a vyšší podle <a href="https://bips.dev/350/">BIP350</a>.
+  </p>
+  <p class="just">
+    Taproot nezavádí agregaci podpisů napříč vstupy (cross-input signature
+    aggregation). To však neznamená, že každý bitcoinový vstup musí mít právě
+    jeden podpis: počet podpisů a další podmínky závisejí na způsobu utracení.
   </p>
 </article>

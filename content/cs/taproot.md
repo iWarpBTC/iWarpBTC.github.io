@@ -11,12 +11,20 @@ links:
 ---
 
 <p>
-  Vylepšení (<a href="#sfork">soft-fork</a>) bitcoinové sítě aktivované
-  14. listopadu 2021. Zavádí
-  <a href="/pages/crypto.html#schnorr">Schnorrovy podpisy</a>.
-  Při utracení <a href="#utxo">výstupu</a> klíčovou cestou (key path)
-  nemusí být zveřejněno, zda vůbec existují alternativní skriptové podmínky.
-  Při utracení skriptovou cestou (script path) se odhaluje použitý skript
-  a důkaz jeho zahrnutí, nikoli všechny ostatní skripty.
-  To může zlepšit soukromí, ale nezaručuje anonymitu každé taprootové transakce.
+  Vylepšení, díky kterému mohou i složitější podmínky utracení zůstat při běžné platbě
+  skryté. Když se použije alternativní skriptová cesta, zveřejní se použitá podmínka
+  místo celého seznamu možností. Přináší také nový typ digitálních podpisů.
 </p>
+<details class="technical-detail">
+  <summary>Technicky přesně</summary>
+  <p>
+    Vylepšení (<a href="#sfork">soft-fork</a>) bitcoinové sítě aktivované
+    14. listopadu 2021. Zavádí
+    <a href="/pages/crypto.html#schnorr">Schnorrovy podpisy</a>.
+    Při utracení <a href="#utxo">výstupu</a> klíčovou cestou (key path)
+    nemusí být zveřejněno, zda vůbec existují alternativní skriptové podmínky.
+    Při utracení skriptovou cestou (script path) se odhaluje použitý skript
+    a důkaz jeho zahrnutí, nikoli všechny ostatní skripty.
+    To může zlepšit soukromí, ale nezaručuje anonymitu každé taprootové transakce.
+  </p>
+</details>

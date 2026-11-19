@@ -8,9 +8,9 @@ export default function (eleventyConfig) {
   // Glossary and anatomy sources are templates; anatomy permalinks retain .html URLs.
   eleventyConfig.setTemplateFormats(['njk', 'md']);
 
-  // Eleventy copies nothing by default. functions.js and drop.js are referenced by
-  // absolute URL from every anatomy page; if they are missing from the build the
-  // price badge and the dropdowns break sitewide. CNAME missing drops the domain.
+  // Eleventy copies nothing by default. functions.js is referenced by absolute URL
+  // from every anatomy page; if it is missing from the build the price badge breaks
+  // sitewide. CNAME missing drops the domain.
   for (const path of [
     'css',
     'js',
@@ -25,7 +25,6 @@ export default function (eleventyConfig) {
     'temp',
     'diagram',
     'functions.js',
-    'drop.js',
     'favicon.png',
     'CNAME',
     'LICENSE.txt',

@@ -8,16 +8,24 @@ entryClass: entry
 ---
 
 <p>
-  Výstup hashovací funkce, která vstupní data převádí na otisk pevné délky.
-  U kryptograficky bezpečné funkce je výpočetně neproveditelné z otisku
-  získat odpovídající vstup nebo nalézt dva různé vstupy se stejným otiskem.
-  Malá změna vstupu mění výstup nepředvídatelně; typicky se změní přibližně
-  polovina bitů, nikoli nutně číselná hodnota o velkou část rozsahu.
-  Nelze prakticky předvídat, jak vstup změnit, aby vyšel požadovaný otisk,
-  například číslo pod <a href="#target">cílem těžby</a>.
-  V bitcoinu používaná SHA256 vytváří 256bitový otisk, zpravidla zapisovaný
-  v šestnáctkové soustavě.
+  Krátký digitální otisk dat. Ze stejných dat vznikne vždy stejný otisk, ale po jejich
+  změně bude zpravidla úplně jiný. Otisk umožňuje kontrolovat shodu dat; původní obsah z
+  něj prakticky nelze obnovit.
 </p>
+<details class="technical-detail">
+  <summary>Technicky přesně</summary>
+  <p>
+    Výstup hashovací funkce, která vstupní data převádí na otisk pevné délky.
+    U kryptograficky bezpečné funkce je výpočetně neproveditelné z otisku
+    získat odpovídající vstup nebo nalézt dva různé vstupy se stejným otiskem.
+    Malá změna vstupu mění výstup nepředvídatelně; typicky se změní přibližně
+    polovina bitů, nikoli nutně číselná hodnota o velkou část rozsahu.
+    Nelze prakticky předvídat, jak vstup změnit, aby vyšel požadovaný otisk,
+    například číslo pod <a href="#target">cílem těžby</a>.
+    V bitcoinu používaná SHA256 vytváří 256bitový otisk, zpravidla zapisovaný
+    v šestnáctkové soustavě.
+  </p>
+</details>
 <h3>Příklady:</h3>
 <div class="fig">
   <table>
