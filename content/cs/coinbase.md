@@ -11,14 +11,15 @@ links:
 ---
 
 <p>
-  Speciální <a href="#transaction">transakce</a>,
-  která jako jediná nemá žádné skutečné vstupy. Je to první transakce
-  každého <a href="#block">bloku</a>, vytváří
-  nové <a href="#bitcoin">bitcoiny</a>, které
-  jsou společně s
-  <a href="#fee">poplatky</a> odměnou těžařům.
-  Maximální počet nově vytvořených bitcoinů je pevně stanoven protokolem
-  sítě. Jednou za 210 000 bloků (přibližně každé 4 roky) dochází k jeho
-  půlení z původních 50&nbsp;BTC na dnešních 6,25&nbsp;BTC (rok 2021),
-  až při 33. půlení (velmi přibližně v roce 2140) dosáhne nuly.
+  Speciální <a href="#transaction">transakce</a> na první pozici každého
+  <a href="#block">bloku</a>. Její vstup neodkazuje na předchozí výstup.
+  Těžař si jí může připsat nejvýše blokovou subvenci, tedy nově vytvořené
+  <a href="#bitcoin">bitcoiny</a>, a součet <a href="#fee">poplatků</a>
+  transakcí v bloku. Subvence a poplatky dohromady tvoří blokovou odměnu.
+</p>
+<p>
+  Subvence začínala na 50 BTC a každých 210 000 bloků se půlí se zaokrouhlením
+  dolů na celé satoshi. Od bloku 840 000, vytěženého v dubnu 2024,
+  činí 3,125 BTC. Při 33. půlení, přibližně v roce 2140, klesne na nulu;
+  poplatky tím nezaniknou.
 </p>

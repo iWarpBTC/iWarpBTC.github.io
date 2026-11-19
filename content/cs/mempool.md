@@ -8,14 +8,11 @@ entryClass: entry
 ---
 
 <p>
-  Seznam vyslaných, do blockchainu dosud nezařazených transakcí, vedený
-  každý <a href="#node">uzlem</a>. Těžící uzly z
-  tohoto seznamu vybírají
-  <a href="#transaction">transakce</a> do svých
-  kandidátských <a href="#block">bloků</a>,
-  přičemž zpravidla upřednostňují transakce s nejvyšším poměrem
-  <a href="#fee">poplatek</a>/<a
-    href="#wu"
-    >weight unit</a
-  >.
+  Lokální soubor nepotvrzených <a href="#transaction">transakcí</a>, které
+  konkrétní <a href="#node">uzel</a> přijal podle svých pravidel.
+  Neexistuje jeden společný mempool celé sítě: uzly se mohou lišit jeho obsahem,
+  nastavením i tím, zda ho vůbec udržují. Těžaři z těchto transakcí sestavují
+  kandidátské bloky a obvykle zohledňují poměr
+  <a href="#fee">poplatku</a> k <a href="#vsize">virtuální velikosti</a>,
+  včetně závislostí a poplatkové sazby celých balíčků transakcí.
 </p>

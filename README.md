@@ -42,10 +42,13 @@ npm run build     # vygeneruje _site/
 npm run verify    # ověří slovník i osm anatomií proti původní verzi
 ```
 
-`npm run verify` porovnává 49 hesel a osm anatomií s původní HTML verzí
+`npm run verify` porovnává 48 hesel a osm anatomií s původní HTML verzí
 v commitu `e1274345c1f4bf3ac30c1374c65780530de44281`. Kontroluje obsah,
 kotvy, odkazy, strukturu a obrazové zdroje včetně převodu diagramů na inline SVG.
-Kontrola běží také v CI a vyžaduje dostupnou git historii. Jiný základ lze zadat
+Hesla upravená při redakci a fact-checku jsou výslovně uvedena v sadě `revised`
+v `tools/verify-migration.mjs`; u jejich těl se ověřuje shoda s aktuálním
+zdrojem, zatímco kotvy, pořadí a odkazy pod hesly se dál kontrolují proti
+původní verzi. Ostatní hesla se s původní verzí porovnávají i obsahově. Kontrola běží také v CI a vyžaduje dostupnou git historii. Jiný základ lze zadat
 pomocí `npm run verify -- --ref <revize>`.
 
 ## Struktura

@@ -8,11 +8,18 @@ entryClass: entry
 ---
 
 <p>
-  Vylepšení aktivované formou soft&hyphen;forku v roce 2017 v síti
-  Bitcoin. Mimo jiného opravuje problém zvaný transaction malleability
-  (tvárnost transakcí) tím, že podpisová data (scriptSig) nejsou
-  součástí serializované podoby transakce, ze které je počítán její
-  hash. Mění limit bloku z milionu bajtů (1&nbsp;MB) na 4 miliony weight
-  units. Mění se výpočet podpisového hashe, kdy doposud počet vstupů
-  zvyšoval kvadraticky náročnost podepsání/ověření transakce atd&hellip;
+  Vylepšení aktivované <a href="#sfork">soft-forkem</a> v roce 2017.
+  Odděluje svědecká data (witness), včetně podpisů segwitových vstupů,
+  od serializace používané k výpočtu identifikátoru transakce <code>txid</code>.
+  Pole <code>scriptSig</code> v tomto výpočtu zůstává: u nativních segwitových
+  vstupů je prázdné, u vnořeného segwitu obsahuje witness program.
+  Identifikátor <code>wtxid</code> zahrnuje i witness.
+</p>
+<p>
+  Tím odstraňuje významný zdroj změn txid třetí stranou (transaction
+  malleability); nejde však o obecnou záruku neměnnosti každé transakce.
+  Mění limit bloku z 1 MB na 4 miliony <a href="#wu">weight units</a>.
+  Pro segwit v0 zavádí podle BIP143 nový výpočet podpisového hashe,
+  který umožňuje odstranit kvadratický růst náročnosti hashování při
+  ověřování podpisů.
 </p>

@@ -11,11 +11,16 @@ links:
 ---
 
 <p>
-  Využití transakčního pole <em>sequence</em> umožňuje zvyšovat poplatek
-  do bloku dosud nezařazených transakcí. Aby byla transakce
-  nahraditelná, musí mít nastavenou <em>sequence</em> menší než
-  <em>0xffffffff</em>. Pak je možné ji v
-  <a href="#mempool">mempoolech</a> nahradit
-  transakcí s vyšším poplatkem, která utrácí alespoň jeden stejný
-  neutracený výstup.
+  Politika umožňující nahradit nepotvrzenou transakci v
+  <a href="#mempool">mempoolu</a> jinou transakcí utrácející alespoň jeden
+  stejný vstup. Používá se například ke zvýšení <a href="#fee">poplatku</a>.
+  Náhrada musí splnit poplatkové i další podmínky daného uzlu; nestačí pouze
+  libovolně zvýšit absolutní poplatek.
+</p>
+<p>
+  U opt-in RBF podle BIP125 transakce signalizuje nahraditelnost hodnotou
+  <code>nSequence &lt; 0xfffffffe</code> alespoň na jednom vstupu; signál může
+  také zdědit od nepotvrzeného předka. Full RBF tuto signalizaci nevyžaduje.
+  Jde o politiku uzlů, nikoli o pravidlo konsenzu nebo záruku, kterou
+  z konfliktních transakcí těžař potvrdí.
 </p>

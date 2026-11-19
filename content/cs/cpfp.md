@@ -8,10 +8,11 @@ entryClass: entry
 ---
 
 <p>
-  Situace, ve které vysoký poplatek transakce utrácející výstup doposud
-  do bloku nezařazené předchozí transakce s nízkým poplatkem zvýší
-  průměrný poplatek obou (nebo i více předcházejících) transakcí. Tím je
-  těžař incentivizován zařadit do bloku všechny přecházející transakce,
-  bez kterých by nemohl vytěžit tuto s vysokým poplatkem, která tak v
-  podstatě platí za své předky.
+  Způsob, jak motivovat těžaře k potvrzení transakce s nízkým poplatkem.
+  Nová transakce utratí její dosud nepotvrzený výstup a přidá dostatečně
+  vysoký <a href="#fee">poplatek</a>. Těžař ji může zařadit pouze společně
+  s potřebnými nepotvrzenými předky, případně až po jejich potvrzení.
+  Rozhodující je poplatková sazba balíčku: součet poplatků dělený součtem
+  <a href="#vsize">virtuálních velikostí</a>, nikoli prostý průměr poplatků.
+  Potomek tak v podstatě platí za své předky.
 </p>

@@ -8,16 +8,20 @@ entryClass: entry
 ---
 
 <p>
-  Je to <a href="#hash">zahashovaný</a> (funkcí
-  SHA256 a následně ještě RIPEMD160) veřejný klíč, případně skript,
-  případně nově u
-  <a href="#taproot">taprootu</a> samotný veřejný
-  klíč, ve prospěch kterého budou bitcoiny uzamčeny. V minulosti bývala
-  zakódovaná v Base58Check, poslední standard využívá kódování Bech32(m)
-  se sofistikovanější ochranou před překlepy. K vygenerování adresy není
-  nutná komunikace se sítí, lze ji vygenerovat offline. Nutný je pouze
-  zdroj entropie (případně již pomocí kvalitní entropie vygenerovaný
-  <a href="#seed">seed</a>).
+  Textově zakódované údaje, ze kterých peněženka sestaví uzamykací
+  <a href="#script">skript</a> výstupu. Jejich obsah závisí na typu adresy:
+  P2PKH a P2WPKH používají HASH160 veřejného klíče (SHA256 následované RIPEMD160),
+  P2SH používá HASH160 skriptu a P2WSH SHA256 svědeckého skriptu.
+  <a href="#taproot">P2TR</a> obsahuje 32bajtovou souřadnici <em>x</em>
+  upraveného výstupního veřejného klíče.
+</p>
+<p>
+  Base58Check zůstává platným kódováním pro P2PKH a P2SH; P2SH není omezeno
+  jen na vnořený segwit. Segwit verze 0 používá Bech32, verze 1 a vyšší Bech32m.
+  Adresy lze generovat offline, například z rozšířeného veřejného klíče
+  příslušné větve <a href="#hd-wallet">HD peněženky</a>, bez nové entropie
+  a bez znalosti soukromých klíčů. Kvalitní entropie je důležitá při počátečním
+  vytváření tajných klíčů či <a href="#seed">seedu</a>.
 </p>
 <div class="fig">
   <figure>
@@ -31,7 +35,7 @@ entryClass: entry
   </figure>
 </div>
 <p>
-  U adresy vygenerováné standardní cestou s dostatkem počáteční entropie
+  U adresy vygenerované standardní cestou s dostatkem počáteční entropie
   je prakticky vyloučeno (teoretická pravděpodobnost je nepředstavitelně
   nízká), že by již byla někdy vygenerována. Dřív objevíte trpaslíka
   uprostřed černé díry, jak hledá s baterkou vypínač, než aby se vám
@@ -58,7 +62,7 @@ entryClass: entry
       </tr>
       <tr>
         <td>p2sh</td>
-        <td>nested segwit</td>
+        <td>skriptová adresa (též nested segwit)</td>
         <td class="long2">39qmkmoB1t1mjGAowURRimoQduubbhVoZz</td>
         <td>Base58Check s počáteční 3</td>
       </tr>
@@ -68,7 +72,7 @@ entryClass: entry
         <td class="long2">
           bc1ql0t4gka0j9084nz0zrs9sc9tqtf0w29rdh503g
         </td>
-        <td>Bech32 s počátečním bc1</td>
+        <td>Bech32 s počátečním bc1q</td>
       </tr>
       <tr>
         <td>p2tr</td>
@@ -76,7 +80,7 @@ entryClass: entry
         <td class="long2">
           bc1pr8pk6n4xvnnejnqpd4mxdezms8scn5zjnrw9duxt62x0fdyk8tpqmmdxnt
         </td>
-        <td>Bech32m s počátečním bc1</td>
+        <td>Bech32m s počátečním bc1p</td>
       </tr>
     </tbody>
   </table>

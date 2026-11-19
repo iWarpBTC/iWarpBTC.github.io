@@ -8,7 +8,9 @@ entryClass: entry
 ---
 
 <p>
-  Změna pravidel sítě způsobem, který je kompatibilní s
-  <a href="#node">uzly</a>, které tuto změnu
-  neimplementují.
+  Zpřísnění pravidel konsenzu: množina nově platných bloků je podmnožinou
+  bloků platných podle dosavadních pravidel.
+  Starší <a href="#node">uzly</a> tedy přijímají bloky vyhovující novým
+  pravidlům, samy však nová omezení nevynucují a mohou přijmout i blok,
+  který je podle nových pravidel neplatný.
 </p>

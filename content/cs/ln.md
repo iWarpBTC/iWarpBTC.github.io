@@ -11,12 +11,13 @@ links:
 ---
 
 <p>
-  Bitcoinová platební síť. Hovoří se o ní jako o druhé vrstvě nad
-  základní vrstvou (poměrně drahých) bitcoinových transakcí. Speciální
-  bitcoinovou transakcí je otevřen tzv. platební kanál, v rámci kterého
-  může probíhat neomezený počet velmi levných plateb. Další bitcoinovou
-  transakcí může být kanál zase uzavřen, čímž teprve dojde k finálnímu
-  vypořádání zápisem do blockchainu. Oproti základní vrstvě Bitcoinu
-  umožňuje další dělitelnost až na tisíciny
-  <a href="#satoshi">satoshi</a>.
+  Bitcoinová platební síť, označovaná jako druhá vrstva.
+  Onchain transakcí se otevře platební kanál, ve kterém lze opakovaně
+  platit bez zápisu každé platby do blockchainu. Platby lze směrovat
+  přes více kanálů; jejich úspěch závisí mimo jiné na dostupné likviditě.
+  Bývají rychlé a levné, ale nízká cena ani průchodnost nejsou zaručené.
+  Náklady na otevření a uzavření kanálu závisejí také na onchain poplatcích.
+  Uzavřením kanálu se jeho stav vypořádá v základní vrstvě.
+  Lightning účtuje až v tisícinách <a href="#satoshi">satoshi</a>
+  (millisatoshi), zatímco onchain výstupy mají částky v celých satoshi.
 </p>

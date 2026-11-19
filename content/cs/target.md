@@ -11,10 +11,12 @@ links:
 ---
 
 <p>
-  256bitové číslo stanovující hranici hashe platného bloku. Pouze pokud
-  je hash bloku nižší než toto číslo, může být zařazen do blockchainu. K
-  přepočtu dochází každých 2016 bloků (přibližně každé dva týdny)
-  &ndash; na základě doby potřebné k vytěžení posledních 2015 (toto je
-  stále aktivní bug) bloků se upraví target tak, aby docházelo k
-  vytěžení bloku jednou za 10 minut.
+  Číselná hranice pro <a href="#hash">hash</a> hlavičky bloku, reprezentovatelná
+  256 bity. Aby blok splnil <a href="#pow">proof of work</a>, musí být jeho hash
+  menší nebo rovný předepsanému cíli. Současně musí splnit všechna ostatní
+  pravidla platnosti bloku.
+  Na hlavní bitcoinové síti se cíl přepočítává každých 2016 bloků podle rozdílu
+  časových razítek prvního a posledního bloku období. Ten kvůli historické
+  odchylce zahrnuje 2015 intervalů mezi bloky. Úprava míří na průměrný interval
+  deset minut, nezaručuje však pravidelné příchody jednotlivých bloků.
 </p>

@@ -231,7 +231,45 @@ function verifyGlossary() {
   }
   const builtSrc = readFileSync(builtPath, 'utf8');
 
-  const base = entriesOf(baseSrc);
+  const base = entriesOf(baseSrc).filter(e => attr(entryParts(e).heading, 'id') !== 'capital-bitcoin');
+  // Approved editorial and fact-check revisions; keep all other baseline checks.
+  const revised = new Set([
+    'bitcoin',
+    'utxo',
+    'nakamoto',
+    'fee',
+    'asym-crypto',
+    'privkey',
+    'pubkey',
+    'passphrase',
+    'blockchain',
+    'reorg',
+    'rbf',
+    'segwit',
+    'coinbase',
+    'seed-words',
+    'seed',
+    'hd-wallet',
+    'htlc',
+    'vsize',
+    'mining',
+    'target',
+    'block-header',
+    'sfork',
+    'mempool',
+    'cpfp',
+    'transaction',
+    'wallet',
+    'node',
+    'pow',
+    'block',
+    'ln',
+    'invoice',
+    'taproot',
+    'moscowtime',
+    'address',
+    'hash',
+  ]);
   const built = entriesOf(builtSrc);
   if (base.length !== built.length) {
     fail(`entry count: baseline ${base.length}, built ${built.length}`);
@@ -257,7 +295,7 @@ function verifyGlossary() {
     const aCls = hasClass(baseById.get(id), 'entryln') ? 'entryln' : 'entry';
     const bCls = hasClass(builtById.get(id), 'entryln') ? 'entryln' : 'entry';
     if (aCls !== bCls) fail(`${label}: entry class ${aCls} -> ${bCls}`);
-    if (attr(baseById.get(id), 'id') !== attr(builtById.get(id), 'id')) {
+    if (id !== 'bitcoin' && attr(baseById.get(id), 'id') !== attr(builtById.get(id), 'id')) {
       fail(`${label}: wrapper id changed`);
     }
     if (textOf([a.heading]) !== textOf([b.heading])) fail(`${label}: term text changed`);
@@ -266,13 +304,22 @@ function verifyGlossary() {
     if (aliasA !== aliasB) fail(`${label}: alias "${aliasA}" -> "${aliasB}"`);
     if (!b.copy) fail(`${label}: copylink button missing`);
 
-    compareRegion(label, a.bodyRoots, b.bodyRoots);
+    if (revised.has(id)) {
+      // These editorial changes are intentional; verify their current HTML
+      // sources survive rendering, while all other entries retain the git baseline.
+      const source = readFileSync(`content/cs/${id}.md`, 'utf8').split(/^---\s*$/m).slice(2).join('---');
+      const doc = parseDoc(`<html><body>${source}</body></html>`);
+      const body = elements(doc).find(n => n.tagName === 'body');
+      compareRegion(label, childElements(body), b.bodyRoots);
+    } else compareRegion(label, a.bodyRoots, b.bodyRoots);
     if (!same(hrefsOf(a.anaLinks), hrefsOf(b.anaLinks))) {
       fail(`${label}: ana-link footer changed`);
     }
   }
 
-  compareEntities('glossary entries', sourceOf(baseSrc, base), sourceOf(builtSrc, built));
+  const unchanged = list => list.filter(e => !revised.has(attr(entryParts(e).heading, 'id')));
+  compareEntities('unchanged glossary entries', sourceOf(baseSrc, unchanged(base)), sourceOf(builtSrc, unchanged(built)));
+  if (!elements(parseDoc(builtSrc)).some(n => attr(n, 'id') === 'capital-bitcoin')) fail('legacy #capital-bitcoin anchor missing');
   return { baseCount: base.length, builtCount: built.length };
 }
 

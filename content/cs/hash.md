@@ -8,14 +8,15 @@ entryClass: entry
 ---
 
 <p>
-  Výstup jednosměrné matematické funkce, která libovolně dlouhá vstupní
-  data převede na číslo v daném rozsahu. I velmi malá změna vstupních
-  dat způsobí velmi velkou změnu na výstupu funkce. Zároveň nelze
-  předvídat jaká změna vstupních dat by mohla způsobit kýženou změnu
-  výstupu, např. získání menšího čísla na výstupu (což je mimochodem
-  cílem <a href="#mining">těžby</a>). Výstupem v
-  Bitcoinu používané funkce SHA256 je 256bitové číslo, zpravidla
-  zapisované v šestnáctkové soustavě.
+  Výstup hashovací funkce, která vstupní data převádí na otisk pevné délky.
+  U kryptograficky bezpečné funkce je výpočetně neproveditelné z otisku
+  získat odpovídající vstup nebo nalézt dva různé vstupy se stejným otiskem.
+  Malá změna vstupu mění výstup nepředvídatelně; typicky se změní přibližně
+  polovina bitů, nikoli nutně číselná hodnota o velkou část rozsahu.
+  Nelze prakticky předvídat, jak vstup změnit, aby vyšel požadovaný otisk,
+  například číslo pod <a href="#target">cílem těžby</a>.
+  V bitcoinu používaná SHA256 vytváří 256bitový otisk, zpravidla zapisovaný
+  v šestnáctkové soustavě.
 </p>
 <h3>Příklady:</h3>
 <div class="fig">

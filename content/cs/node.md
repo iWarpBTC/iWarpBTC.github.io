@@ -8,8 +8,10 @@ entryClass: entry
 ---
 
 <p>
-  Zařízení (počítač) tvořící síť. Do bitcoinové sítě je v současnosti
-  (rok 2021) zapojeno na tisíce uzlů. Pokud se uzel neúčastní těžby, má
-  jen minimální nároky na výpočetní výkon a jeho provoz si tak může
-  dovolit široká veřejnost.
+  Počítač s bitcoinovým softwarem zapojený do sítě.
+  Plně ověřující uzel (full node) nezávisle kontroluje transakce a bloky
+  podle pravidel konsenzu; k tomu nepotřebuje těžit.
+  Provoz je dostupný i na běžném hardwaru, vyžaduje však odpovídající úložiště,
+  připojení a výpočetní výkon. Počáteční synchronizace bývá náročnější
+  než následný průběžný provoz.
 </p>

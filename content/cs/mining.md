@@ -11,12 +11,11 @@ links:
 ---
 
 <p>
-  V podstatě se jedná o soutěž o právo zápisu dalšího bloku do
-  blockchainu. Soutěž vyhraje ten, kdo jako první sestaví takový
-  navazující blok transakcí, jehož
-  <a href="#hash">hash</a> (resp. hash jeho
-  hlavičky) bude menší, než nastavený cíl (target) sítě. Nalezení
-  takového hashe je věcí náhody, šance se zvyšují se schopností
-  otestovat (zahashovat) co nejvíce variant v co nejkratším čase (ergo s
-  početním výkonem).
+  Soutěž o přidání dalšího <a href="#block">bloku</a> do blockchainu.
+  Těžaři sestavují kandidátské bloky a zkoušejí varianty jejich hlaviček,
+  dokud nenajdou <a href="#hash">hash</a> menší nebo rovný předepsanému
+  <a href="#target">cíli</a>. Nalezení je věcí náhody; více výpočetního
+  výkonu umožňuje vyzkoušet více variant a zvyšuje šanci na úspěch.
+  Splnění cíle samo nestačí: blok musí splňovat i ostatní pravidla konsenzu
+  a může prohrát závod s konkurenční větví.
 </p>

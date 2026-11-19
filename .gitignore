@@ -4,3 +4,5 @@ _site
 
 # Local design studies; not production sources.
 /design-proposals/
+
+/generated_images/

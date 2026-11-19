@@ -11,7 +11,12 @@ links:
 ---
 
 <p>
-  Počáteční entropie (zpravidla 128 až 256 bitů), rozšířená společně s
-  případnou passphrase funkcí PBKDF2 v 512bitové číslo. Z tohoto čísla
-  jsou následně deterministicky odvozovány všechny klíče (resp. adresy).
+  Výchozí data pro deterministické odvozování klíčů. BIP32 přijímá seed
+  dlouhý 128 až 512 bitů. Při použití BIP39 vzniká 512bitový seed funkcí
+  PBKDF2-HMAC-SHA512 ze <a href="#seed-words">slovní zálohy</a>
+  normalizované do Unicode NFKD a saltu tvořeného řetězcem
+  <code>mnemonic</code> a stejně normalizovanou
+  <a href="#passphrase">passphrase</a> (případně prázdnou).
+  Délka výsledku 512 bitů neznamená 512 bitů entropie: roztažením vstupu
+  se nová náhodnost nevytváří.
 </p>

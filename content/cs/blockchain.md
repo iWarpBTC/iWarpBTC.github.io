@@ -11,9 +11,11 @@ links:
 ---
 
 <p>
-  Speciální typ databáze, kde každý nový záznam v sobě obsahuje
-  <a href="#hash">otisk</a> toho předchozího.
-  Záznamy zde jsou bloky bitcoinových transakcí. Ve spojení s konceptem
-  <a href="#pow">proof of work</a> vytváří
-  jakousi časovou osu seřazených transakcí s nezměnitelnou minulostí.
+  Řetězec <a href="#block">bloků</a> bitcoinových transakcí, v němž
+  hlavička každého bloku kromě prvního obsahuje <a href="#hash">hash</a>
+  hlavičky svého předchůdce. Uzly vybírají z platných řetězců ten s největší
+  kumulovanou <a href="#pow">prací</a>, nikoli nutně s největším počtem bloků.
+  Vzniká tak uspořádaná historie transakcí, jejíž přepsání vyžaduje konkurenční
+  platný řetězec s větší prací. Minulost není absolutně nezměnitelná:
+  může nastat <a href="#reorg">reorganizace</a>.
 </p>

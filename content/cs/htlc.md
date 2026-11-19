@@ -11,10 +11,12 @@ links:
 ---
 
 <p>
-  Chytrý (smart) kontrakt. Pokud přijímající strana odhalí v daném
-  časovém limitu předobraz (vstup) zadaného
-  <a href="#hash">hashe</a>, získá uzamčené
-  prostředky; ty se jinak po uplynutí limitu navrátí odesílateli. Tímto
-  způsobem se standarně přesouvají prostředky v rámci
+  Kontrakt kombinující podmínku znalosti předobrazu
+  <a href="#hash">hashe</a> s časovým zámkem. Příjemce může získat prostředky
+  odhalením odpovídajícího předobrazu a splněním dalších podmínek kontraktu.
+  Po uplynutí časového limitu může odesílatel uplatnit cestu pro vrácení
+  prostředků. Ty se nevracejí automaticky: je potřeba příslušná akce protokolu,
+  případně onchain transakce. Samotné vypršení časového zámku obecně nezneplatňuje
+  cestu s předobrazem. HTLC se používají při směrování plateb v
   <a href="#ln">Lightning network</a>.
 </p>

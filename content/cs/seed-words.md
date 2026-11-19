@@ -11,10 +11,12 @@ links:
 ---
 
 <p>
-  Počáteční entropie (zpravidla 128 až 256bitové číslo) vyjádřená
-  &ndash; z důvodů čitelnosti a odolnosti vůči chybě při čtení/psaní
-  &ndash; variací 12 až 24 slov z 2048 prvkového seznamu. Slova se mohou
-  opakovat a případná chyba v psaní je odhalena &bdquo;kontrolním
-  součtem&ldquo; (v posledním slově je zakódováno 4 až 8 bitů
-  <a href="#hash">hashe</a> počáteční entropie).
+  Lidsky čitelný zápis počáteční entropie a kontrolního součtu. Ve standardu
+  BIP39 jde o 12, 15, 18, 21 nebo 24 slov ze seznamu 2048 položek,
+  odpovídajících 128 až 256 bitům entropie v krocích po 32 bitech.
+  Slova se mohou opakovat. Poslední slovo obsahuje část entropie i 4 až 8 bitů
+  kontrolního součtu odvozeného z jejího <a href="#hash">hashe</a>.
+  Kontrolní součet pomáhá odhalit chyby, ale neodhalí každou chybu.
+  Z této slovní zálohy a případné <a href="#passphrase">passphrase</a>
+  se odvozuje <a href="#seed">seed</a>. Ne všechny peněženky používají BIP39.
 </p>

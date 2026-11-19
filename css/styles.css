@@ -1708,3 +1708,10 @@ footer { background: var(--bg); font-size: .85rem; }
 .anatomy:not(.literature) .fig a.figimg { display: block; width: 100%; }
 .anatomy:not(.literature) .fig figure > img,
 .anatomy:not(.literature) .fig figure > a > img { width: 100%; height: auto; }
+
+.technical-detail { margin-top: 1.25rem; border-top: 1px solid var(--rule); padding-top: .75rem; }
+.technical-detail summary { cursor: pointer; color: var(--accent-ink); font: .85rem/1.6 var(--font-sans); padding: .4rem 0; }
+.technical-detail p { max-width: var(--measure); margin: 1rem 0 0; }
+figure.satoshi-portrait { width: min(100%, 320px); border: 0; }
+.satoshi-portrait img { width: 100%; height: auto; }
+.satoshi-portrait figcaption { background: transparent; border: 0; font-size: .75rem; letter-spacing: .04em; }

@@ -11,11 +11,13 @@ links:
 ---
 
 <p>
-  Koncept, ve kterém (na výpočetní výkon velmi náročné)
-  <a href="#mining">vytěžení</a> bloku poskytuje
-  síti v podstatě důkaz o vykonané práci. Objem této vykonané práce
-  zvyšuje šance na vítězství v soutěži o zápis do blockchainu (a získání
-  odpovídající odměny) a zároveň pobízí těžaře sestavit pravidlům
-  vyhovující blok, neboť nevyhovující lze zbytkem téměř bezpracně
-  odhalit a odmítnout, čímž by vykonaná práce přišla vniveč.
+  Důkaz prací: výsledek, jehož nalezení je při dané obtížnosti v průměru
+  výpočetně náročné, ale jehož splnění lze snadno ověřit. V bitcoinu jde
+  o <a href="#hash">hash</a> hlavičky bloku menší nebo rovný
+  <a href="#target">cíli těžby</a>. Nedokazuje přesný počet skutečně
+  provedených pokusů: těžař může mít štěstí a uspět brzy.
+  Kumulovaná práce řetězce vyjadřuje očekávanou práci podle obtížností jeho bloků.
+  Ověření samotného proof of work je levné; ověření celého bloku navíc
+  zahrnuje transakce, podpisy a další pravidla. Neplatný blok uzly odmítnou
+  i tehdy, když splňuje proof of work.
 </p>

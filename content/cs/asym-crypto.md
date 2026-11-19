@@ -11,8 +11,10 @@ links:
 ---
 
 <p>
-  Způsob šifrování, kde je pro zašifrování zprávy použit jiný klíč, než
-  jaký je použit k rozšifrování zprávy. Obráceným použitím klíčů (viz.
-  níže) lze dosáhnout kryptografického podpisu. Bitcoin používá k
-  podepisování transakcí asymetrickou kryptografii eliptických křivek.
+  Kryptografie využívající dvojici soukromého a veřejného klíče.
+  Podle konkrétního algoritmu slouží k digitálním podpisům, šifrování
+  nebo dohodě na společném tajemství. Podpis není obecně „šifrování obráceně“.
+  Bitcoin používá pro podpisy algoritmy ECDSA a Schnorr nad eliptickou
+  křivkou secp256k1: <a href="#privkey">soukromý klíč</a> umožňuje
+  podepisovat, <a href="#pubkey">veřejný klíč</a> podpis ověřit.
 </p>

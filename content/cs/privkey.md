@@ -11,7 +11,10 @@ links:
 ---
 
 <p>
-  Ten tajný z dvojice klíčů asymetrické kryptografie. Slouží k
-  rozšifrování tajné zprávy, popř. k podpisu. V případě Bitcoinu se
-  jedná o 256bitové číslo.
+  Tajná část dvojice klíčů <a href="#asym-crypto">asymetrické kryptografie</a>.
+  V bitcoinu slouží k vytváření podpisů, kterými se prokazuje oprávnění
+  utratit prostředky. Jde o celé číslo <em>d</em> v rozsahu
+  <code>1 ≤ d &lt; n</code>, kde <em>n</em> je řád generátoru křivky
+  secp256k1. Zapisuje se pomocí 256 bitů, ale ne každé 256bitové číslo
+  je platným soukromým klíčem.
 </p>

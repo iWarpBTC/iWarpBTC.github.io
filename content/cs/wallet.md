@@ -8,8 +8,10 @@ entryClass: entry
 ---
 
 <p>
-  Software, případně i samostatné HW zařízení, které generuje a uchovává
-  <a href="#privkey">soukromé klíče</a>, vytváří
-  a podepisuje
-  <a href="#transaction">transakce</a>.
+  Software nebo zařízení pro správu bitcoinových klíčů, adres a transakcí.
+  Může generovat a uchovávat <a href="#privkey">soukromé klíče</a>,
+  sestavovat a podepisovat <a href="#transaction">transakce</a>.
+  Sledovací (watch-only) peněženka spravuje pouze veřejné údaje a sama
+  podepisovat nedokáže. Podpisy může zajišťovat oddělené zařízení,
+  například hardwarová peněženka.
 </p>

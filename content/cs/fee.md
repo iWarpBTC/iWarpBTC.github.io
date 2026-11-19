@@ -11,7 +11,9 @@ links:
 ---
 
 <p>
-  Odměna těžaři za zařazení transakce do bloku. Je to rozdíl mezi
-  součtem částek na výstupu a součtem částek na vstupu. Nesmí být
-  záporný, a v současné době už ani nulový.
+  Odměna těžaři za zařazení <a href="#transaction">transakce</a> do bloku.
+  Je to součet částek na vstupech minus součet částek na výstupech.
+  Poplatek nesmí být záporný; nulový poplatek pravidla konsenzu dovolují.
+  Zda uzel transakci přijme do mempoolu a přepošle ji nebo zda ji těžař
+  zařadí do bloku, záleží také na jejich vlastní politice.
 </p>

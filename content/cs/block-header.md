@@ -11,8 +11,10 @@ links:
 ---
 
 <p>
-  Sestává se z verze bloku, hashe předchozí bloku, hashe (rootu)
-  merklovského stromu obsažených transakcí, času vytěžení, stanoveného
-  targetu sítě a nonce &ndash; variabilního čísla, jehož změnou se
-  dosahuje různých hashů hlavičky.
+  80bajtová hlavička obsahující verzi bloku, hash hlavičky předchozího bloku,
+  kořen Merkleova stromu transakcí, časové razítko, kompaktně zakódovaný
+  <a href="#target">cíl těžby</a> (<code>nBits</code>) a <code>nonce</code>.
+  Časové razítko volí těžař v mezích pravidel protokolu; nejde o přesné
+  měření okamžiku vytěžení. Změnou nonce nebo jiných údajů v hlavičce získává
+  těžař další kandidátní hashe.
 </p>

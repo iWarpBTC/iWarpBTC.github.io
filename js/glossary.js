@@ -66,6 +66,14 @@
         if (item) item.hidden = !match;
       });
       if (match) visible.push(record);
+      record.el.querySelectorAll('details.technical-detail').forEach(function (detail) {
+        if (needle && match && fold(detail.textContent).includes(needle)) {
+          if (!detail.open) { detail.open = true; detail.dataset.searchOpened = 'true'; }
+        } else if (detail.dataset.searchOpened) {
+          detail.open = false;
+          delete detail.dataset.searchOpened;
+        }
+      });
     });
 
     // Hide index groups that no longer contain anything.

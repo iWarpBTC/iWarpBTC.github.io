@@ -11,9 +11,9 @@ links:
 ---
 
 <p>
-  Předepsaná datová struktura transakcí omezené velikosti
-  (4&nbsp;000&nbsp;000&nbsp;WU&semi; dříve 1&nbsp;MB). Zařazením do
-  bloku je transakci přiděleno „časové razítko“ a tím i její relativní
-  pořadí vůči ostatním transakcím. Sestává se z hlavičky bloku a
-  serializovaných transakcí.
+  Datová struktura obsahující <a href="#block-header">hlavičku</a>
+  a uspořádaný seznam serializovaných transakcí. Její váha je omezena
+  na 4&nbsp;000&nbsp;000&nbsp;<a href="#wu">WU</a> (před segwitem platil
+  limit 1 MB). Zařazení transakce do bloku určuje její pozici v potvrzené
+  historii, nikoli přesný okamžik jejího vytvoření nebo odvysílání.
 </p>
